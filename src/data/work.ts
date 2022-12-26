@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { JSX } from 'solid-js';
 
 export type Project = {
 	name?: string;
-	description?: string | ReactNode;
-	technologies?: any[];
+	description?: string | JSX.Element;
+	technologies?: string[];
 	website?: string;
 	responsibilities?: any[];
 };

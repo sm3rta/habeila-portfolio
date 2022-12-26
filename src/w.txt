@@ -1,1 +1,6 @@
 I am a senior front-end web developer with 4 years of experience in React, Angular, Vue and Solid.js
+
+
+
+
+created using solid.js, typescript, vite, and Astro

@@ -1,20 +1,14 @@
-import { createTheme } from '@suid/material';
+import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
 import './fonts/fonts.scss';
 
-export const theme = createTheme({
-	palette: {
-		mode: 'dark',
-		primary: {
-			main: 'rgba(255, 255, 255)',
-		},
-		text: {
-			// primary: "rgb(255, 255, 255)",
-		},
-	},
-	typography: {
-		allVariants: {
-			color: 'white',
-			fontFamily: 'rubik',
+export const theme: HopeThemeConfig = {
+	initialColorMode: 'system',
+	components: {
+		Text: {
+			baseStyle: {
+				color: 'white',
+				fontFamily: 'rubik',
+			},
 		},
 	},
-});
+};

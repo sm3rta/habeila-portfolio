@@ -1,10 +1,9 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 import mkcert from 'vite-plugin-mkcert';
-import suidPlugin from '@suid/vite-plugin';
 
 export default defineConfig({
-	plugins: [solidPlugin(), mkcert(), suidPlugin()],
+	plugins: [solidPlugin(), mkcert()],
 	server: { https: true, port: 3002, host: true },
 	build: {
 		target: 'esnext',
