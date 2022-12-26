@@ -1,10 +1,10 @@
 export const randRange = (_a: number, _b = 0) => {
-	const [a, b] = [_a, _b].sort().reverse();
+	const [a, b] = [_a, _b].sort((a, b) => a - b).reverse();
 	return Math.random() * (b - a) + a;
 };
 export const randRangeInt = (_a: number, _b = 0) => {
-	const [a, b] = [_a, _b].sort().reverse();
-	return Math.floor(Math.random() * (b - a) + a);
+	const [a, b] = [_a, _b].sort((a, b) => a - b).reverse();
+	return Math.floor(Math.random() * (b - a)) + a;
 };
 
 export const generateRandomColor = (alpha = 1) =>

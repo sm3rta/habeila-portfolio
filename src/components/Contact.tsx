@@ -1,4 +1,4 @@
-import { List, ListItem, ListIcon, Text } from '@hope-ui/solid';
+import { List, ListIcon, ListItem, Text } from '@hope-ui/solid';
 
 export const Contact = () => {
 	return (

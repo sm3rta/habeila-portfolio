@@ -1,5 +1,5 @@
 import { Text, Box } from '@hope-ui/solid';
-import { Parallax } from 'rallax';
+import { Parallax, makeParallaxAnimation, createParallax } from 'rallax';
 import About from './components/About';
 import { projects } from './data/work';
 import Project from './components/Project';
@@ -19,7 +19,7 @@ function App() {
 			</AppBar> */}
 			<Box as="main" mt={8}>
 				{/* <Parallax pages={pages}> */}
-				<Stars pages={pages} />
+				<Stars />
 				<Parallax z={0}>
 					<About />
 				</Parallax>
@@ -28,9 +28,7 @@ function App() {
 					<Project project={project} />
 				</Parallax>
 			))} */}
-				<Parallax z={0}>
-					<Contact />
-				</Parallax>
+				<Contact />
 
 				<Parallax z={0}>
 					<Box

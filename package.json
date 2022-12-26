@@ -11,14 +11,14 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@hope-ui/solid": "^0.6.7",
-		"@stitches/core": "^1.2.8",
-		"rallax": "0.1.0",
+		"@hope-ui/solid": "0.6.7",
+		"@stitches/core": "1.2.8",
+		"rallax.js": "2.0.4",
 		"sass": "1.57.1",
 		"sass-loader": "13.2.0",
 		"solid-js": "1.6.6",
 		"solid-styled-components": "0.28.5",
-		"solid-transition-group": "^0.0.12"
+		"solid-transition-group": "0.0.12"
 	},
 	"devDependencies": {
 		"prettier-plugin-organize-imports": "3.2.1",

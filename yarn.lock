@@ -402,7 +402,7 @@
   dependencies:
     "@floating-ui/core" "^0.6.1"
 
-"@hope-ui/solid@^0.6.7":
+"@hope-ui/solid@0.6.7":
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/@hope-ui/solid/-/solid-0.6.7.tgz#52c5a6c72391f6ea3acf7e403ffe196b70af1359"
   integrity sha512-7zGGy4QbGUC7QhwRnNH8HO0MZFg4jFISlC2cnAMBfFBy272uqQN3PYdTjiIbnpR/4JilUfxCWpFQY+4qslqcIw==
@@ -554,49 +554,7 @@
   dependencies:
     "@octokit/openapi-types" "^14.0.0"
 
-"@solid-primitives/event-listener@^2.2.4":
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/event-listener/-/event-listener-2.2.4.tgz#2f571b992359abd01cdfae4efaa0bad204680162"
-  integrity sha512-O/ppM0SpXWtNC7AHv1bQA9Dy6pj3NUM06MhSV9xwVv4N06PmlNYhGLDSPT1Esesm6b0fDgCXB5V+AgCSEzQd/w==
-  dependencies:
-    "@solid-primitives/utils" "^4.0.0"
-
-"@solid-primitives/resize-observer@^2.0.2":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/resize-observer/-/resize-observer-2.0.7.tgz#0f909ed58d5fd7ec59b2fee15ddafdd28fdce4c8"
-  integrity sha512-/RtCTs61ACdsCKJodNTgnKA05CI09dkg7usAb5jg14L6mzwTNWWdZbXtbYsUlD+kh1/1j+BKxp6VtkbpgJE5yQ==
-  dependencies:
-    "@solid-primitives/event-listener" "^2.2.4"
-    "@solid-primitives/rootless" "^1.2.1"
-    "@solid-primitives/utils" "^4.0.0"
-
-"@solid-primitives/rootless@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/rootless/-/rootless-1.2.1.tgz#17d3a7428ebc3d2c7fbf2ec96093edad3b7ad217"
-  integrity sha512-8RpdyS1e58PQbDjgjpyCh+IGoX3QEs/2LauMfl94eXJ5d/o1y/c6P61z9XqQm+Bx1Otdgx4nbFCoF7HPqa0mwg==
-  dependencies:
-    "@solid-primitives/utils" "^4.0.0"
-
-"@solid-primitives/scroll@^2.0.2":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/scroll/-/scroll-2.0.6.tgz#7bbf23e359b172c91928201b71b41b74db77ff7d"
-  integrity sha512-rmqrRtPL2KmAfoL9Ak8ukZ+nu6gjCdgDu1e9CkWaitOhorR+xDJ4Jp3xGQARiYRcf9wKBrHJufKKq4F4T9Wivw==
-  dependencies:
-    "@solid-primitives/event-listener" "^2.2.4"
-    "@solid-primitives/rootless" "^1.2.1"
-    "@solid-primitives/utils" "^4.0.0"
-
-"@solid-primitives/utils@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-2.2.1.tgz#7df54fb4802ea5988cc881f6ee3c4d27bff0c6f6"
-  integrity sha512-vaBO3MGOpjzitbSAVuJkYZnzNPRl6sRrw2do390DEBbfeqMfPpW4fAEb5/tI4b5T13V1xAY+giHoxqvVg2SRhQ==
-
-"@solid-primitives/utils@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-4.0.0.tgz#3c592287519dc885290d134f8aff3f0f6f4b4720"
-  integrity sha512-fGsJy8Z8YiwogpiezD7TWjI62UCb0JAHJWdoXWGrggrn4bfToZotKkabiB0IVFMkWVE1ZcrkvZT3bkmqGnK0ng==
-
-"@stitches/core@^1.2.8":
+"@stitches/core@1.2.8":
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/@stitches/core/-/core-1.2.8.tgz#dce3b8fdc764fbc6dbea30c83b73bfb52cf96173"
   integrity sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==
@@ -999,14 +957,10 @@ prettier-plugin-organize-imports@3.2.1:
   resolved "https://registry.yarnpkg.com/prettier-plugin-organize-imports/-/prettier-plugin-organize-imports-3.2.1.tgz#7e0e0a18457e0166e740daaff1aed1c08069fcb9"
   integrity sha512-bty7C2Ecard5EOXirtzeCAqj4FU4epeuWrQt/Z+sh8UVEpBlBZ3m3KNPz2kFu7KgRTQx/C9o4/TdquPD1jOqjQ==
 
-rallax@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/rallax/-/rallax-0.1.0.tgz#4d662b1b4bded65b9d784ca717e7f671be90d5cc"
-  integrity sha512-eMVjHjIL24cHW1ZiTTmtoJeHhwWkmxWRGJmyv5hkPd4kzHEohYZA+er7uGI0wy+JOdIkpXzLlRswmszPT32w7Q==
-  dependencies:
-    "@solid-primitives/resize-observer" "^2.0.2"
-    "@solid-primitives/scroll" "^2.0.2"
-    "@solid-primitives/utils" "^2.2.1"
+rallax.js@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/rallax.js/-/rallax.js-2.0.4.tgz#4b393d858a124770fe2703cd1566ebc7f75cbd25"
+  integrity sha512-E0WiHrWrnoX4RU79xWP4SvTmgrrXIU3lILwFv7rkrt8r6sDtq+ZMELiLlgDsvY7GW/Ut78bsUIzP0JWDhMBzog==
 
 readdirp@~3.6.0:
   version "3.6.0"
@@ -1082,7 +1036,7 @@ solid-styled-components@0.28.5:
     csstype "^3.1.0"
     goober "^2.1.10"
 
-solid-transition-group@^0.0.12:
+solid-transition-group@0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/solid-transition-group/-/solid-transition-group-0.0.12.tgz#5b5d542aa20d4ff666ac582b6f4863c34743769b"
   integrity sha512-Eu4MfNZSSxM67C+4EXaoDiWr4BFbDLg3j30JQJgQEIH9UDOfgNPfZlsFDhT/PxwJqhe6sn85W+dbmYJzBmjpAA==
