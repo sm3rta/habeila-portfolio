@@ -1,0 +1,16 @@
+body {
+	margin: 0;
+	background-color: hsl(192deg 25% 9%);
+	overflow: hidden;
+}
+
+* {
+	box-sizing: border-box;
+	// outline: none;
+}
+
+html,
+body,
+body > div#root {
+	height: 100%;
+}
