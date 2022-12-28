@@ -3,7 +3,7 @@ import { Route, Router, Routes } from '@solidjs/router';
 import { AppBar } from './components/AppBar';
 import { Footer } from './components/Footer';
 import { Stars } from './components/Stars';
-import { HEADER_HEIGHT, theme } from './ui/theme';
+import { HEADER_HEIGHT, colors, theme } from './ui/theme';
 import { lazy } from 'solid-js';
 
 const Home = lazy(() => import('./components/home'));
@@ -20,13 +20,17 @@ const App = () => {
 					flexDirection="column"
 					position="relative"
 					overflow="hidden"
-					background={`linear-gradient(${theme.darkTheme.colors.secondary1}, ${theme.darkTheme.colors.primary1})`}
+					background={`linear-gradient(${colors.secondary1}, ${colors.primary1})`}
+					minHeight="100%"
 				>
 					<Stars />
 					<AppBar />
+
 					<Routes>
-						<Route path="/" element={<Home />} />
+						<Route path="/" component={Home} />
+						<Route path="/resume" element={() => null} />
 					</Routes>
+
 					<Footer />
 				</Box>
 			</HopeProvider>
