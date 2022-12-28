@@ -16,6 +16,8 @@ const clipPath = `polygon(0 50%, \
 
 const leftRange = [-50, 150] as const;
 const speedRange = [0.1, 0.7] as const;
+const starAlpha = 0.3;
+const interactionDelayMs = 500;
 
 const StarBase = (props: ComponentProps<typeof Box>) => {
 	return (
@@ -32,6 +34,7 @@ const StarBase = (props: ComponentProps<typeof Box>) => {
 
 export const Star = () => {
 	const [top, setTop] = createSignal('-1000px');
+	const [delay, setDelay] = createSignal(0);
 
 	const width = randRangeInt(10, 40);
 
@@ -48,13 +51,10 @@ export const Star = () => {
 	const translateX = randRangeInt(1000) * (animationDirection === 'left' ? -1 : 1);
 	const boxShadow = `0 0 ${(width * 4) / 5}px ${-width / 3}px #ffffff1f`;
 
-	const [backgroundColor, setBackgroundColor] = createSignal(generateRandomColor(0.2));
+	const [backgroundColor, setBackgroundColor] = createSignal(generateRandomColor(starAlpha));
 
-	const animation = `${animationDirection} ${randRangeInt(80, 120)}s ease-in-out alternate infinite`;
-	// @dev: faster animation
-	// const animation = `${animationDirection} ${randRangeInt(1, 3)}s ease-in-out alternate infinite`;
-	// @dev: disable animation
-	// const animation = '';
+	const animationDuration = randRangeInt(80, 120);
+	const animation = () => `${animationDirection} ${animationDuration}s ${delay()}s ease-in-out infinite alternate`;
 
 	const Star = styled(StarBase)({
 		[`@keyframes ${animationDirection}`]: {
@@ -63,17 +63,15 @@ export const Star = () => {
 			'90%': { opacity: 1 },
 			'100%': { opacity: 0, marginLeft: `${translateX}px` },
 		},
-		transition: 'background-color 0.5s ease-in-out',
+		transition: `background-color ${interactionDelayMs}ms ease-in-out`,
 	});
 
 	let [ref, setRef] = createSignal<HTMLDivElement>();
 
 	onMount(() => {
 		if (ref()) {
-			setTimeout(() => {
-				updateTop();
-				new Parallax(ref(), { speed });
-			}, 500);
+			updateTop();
+			new Parallax(ref(), { speed });
 		}
 	});
 
@@ -85,13 +83,14 @@ export const Star = () => {
 			left={left}
 			backgroundColor={backgroundColor()}
 			boxShadow={boxShadow}
-			animation={animation}
+			animation={animation()}
 			pointerEvents={backgroundColor() === 'transparent' ? 'none' : 'all'}
 			onMouseEnter={() => {
 				setBackgroundColor('transparent');
 				setTimeout(() => {
-					setBackgroundColor(generateRandomColor(0.2));
-				}, 500);
+					setDelay(delay() - 4);
+					setBackgroundColor(generateRandomColor(starAlpha));
+				}, interactionDelayMs);
 			}}
 		/>
 	);

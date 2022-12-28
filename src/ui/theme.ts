@@ -1,39 +1,43 @@
 import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
 import './fonts/fonts.scss';
 
-export const HEADER_HEIGHT = 48;
+export const HEADER_HEIGHT = 60;
+export const ICON_SIZE = 30;
+export const TILE_SIZE = 120;
+
+export const colors = {
+	primary1: '#332b2b',
+	primary2: '#564d4d',
+	primary3: '#766d6d',
+	primary4: '#8b8281',
+	primary5: '#b6acac',
+	primary6: '#d4c9c9',
+	primary7: '#f5eaea',
+	primary8: '#fbf0f0',
+	primary9: '#fff5f5',
+	primary10: '#fffafa',
+	primary11: '#ffffff',
+	primary12: '#ffffff',
+
+	secondary1: '#030c0e',
+	secondary2: '#082a34',
+	secondary3: '#1a3f4b',
+	secondary4: '#275260',
+	secondary5: '#356575',
+	secondary6: '#407385',
+	secondary7: '#5c8898',
+	secondary8: '#769dac',
+	secondary9: '#9abac6',
+	secondary10: '#bcd7e0',
+	secondary11: '#ddf0f9',
+	secondary12: '#ffffff',
+} as const satisfies NonNullable<HopeThemeConfig['darkTheme']>['colors'];
 
 export const theme = {
 	initialColorMode: 'dark',
 
 	darkTheme: {
-		colors: {
-			primary1: '#332b2b',
-			primary2: '#564d4d',
-			primary3: '#766d6d',
-			primary4: '#8b8281',
-			primary5: '#b6acac',
-			primary6: '#d4c9c9',
-			primary7: '#f5eaea',
-			primary8: '#fbf0f0',
-			primary9: '#fff5f5',
-			primary10: '#fffafa',
-			primary11: '#ffffff',
-			primary12: '#ffffff',
-
-			secondary1: '#0d1011',
-			secondary2: '#2e3031',
-			secondary3: '#4b4e4f',
-			secondary4: '#5e6162',
-			secondary5: '#858889',
-			secondary6: '#a6a9aa',
-			secondary7: '#cbcecf',
-			secondary8: '#dee1e2',
-			secondary9: '#ebeeef',
-			secondary10: '#f4f7f8',
-			secondary11: '#ffffff',
-			secondary12: '#ffffff',
-		},
+		colors,
 		fontSizes: {
 			'9xl': '9vw',
 			'8xl': '8rem',
@@ -60,6 +64,18 @@ export const theme = {
 			baseStyle: {
 				color: 'white',
 				fontFamily: 'rubik',
+			},
+		},
+		IconButton: {
+			baseStyle: {
+				background: 'unset',
+				_hover: {
+					background: 'unset',
+					color: colors.secondary3,
+				},
+				_active: {
+					color: colors.secondary2,
+				},
 			},
 		},
 	},

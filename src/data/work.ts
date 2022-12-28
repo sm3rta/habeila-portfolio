@@ -1,7 +1,8 @@
 import { JSX } from 'solid-js';
 
 export type Project = {
-	name?: string;
+	name: string;
+	id: string;
 	description?: string | JSX.Element;
 	technologies?: string[];
 	website?: string;
@@ -38,7 +39,8 @@ export const work: Workplace[] = [
 			//   ],
 			// },
 			{
-				name: 'Dokanek/Netjeek',
+				name: 'Netjeek',
+				id: 'netjeek',
 				description:
 					"First project I've worked on that's went live, it's trans-shipping system designed to facilitate the purchase and delivery of goods to countries where customers can’t place an order to international e-retailers directly",
 				technologies: [
@@ -70,6 +72,7 @@ export const work: Workplace[] = [
 		projects: [
 			{
 				name: 'BMW Foundation',
+				id: 'bmw-foundation',
 				website: 'https://bmw-foundation.org/',
 				description:
 					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features, multilanguage routing and",
@@ -87,6 +90,7 @@ export const work: Workplace[] = [
 			},
 			{
 				name: 'TwintyThirty',
+				id: 'twentythirty',
 				website: 'https://twentythirty.com/',
 				description:
 					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
@@ -94,6 +98,8 @@ export const work: Workplace[] = [
 				responsibilities: ['Website (front-end)'],
 			},
 			{
+				name: 'Educational platform',
+				id: 'educational-platform',
 				description:
 					"An educational platform where professors can upload and schedule lectures to different classes, create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, an admin dashboard where professors can manage lectures, send emails with grades to students' parents.",
 				technologies: [
@@ -121,6 +127,8 @@ export const work: Workplace[] = [
 		title: 'Front-end Web Developer',
 		projects: [
 			{
+				name: 'Calqulate',
+				id: 'calqulate',
 				website: 'https://calqulate.io/',
 				description:
 					'A financial tool for modern SaaS organizations that automatically generates reports on finances, growth metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription management and more. Features complex editable tree tables with fixed columns, sticky headers and advanced styles, interactive data rich charts. Collects data from most known major accounting softwares. My biggest responsiblity in this project is to create and maintain different libraries in a monorepo for tables, charts and reusable UI components',
