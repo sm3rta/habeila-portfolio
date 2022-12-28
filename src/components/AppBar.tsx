@@ -1,59 +1,70 @@
 import { Box, List, ListItem } from '@hope-ui/solid';
 import { Link } from '../ui/components/Link';
-import { HEADER_HEIGHT, theme } from '../ui/theme';
-import { createSignal, onCleanup, onMount } from 'solid-js';
+import { HEADER_HEIGHT, colors, theme } from '../ui/theme';
+import { Show, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
+import { useLocation, useResolvedPath } from '@solidjs/router';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 
 export const AppBar = () => {
-	const [visibleElement, setVisibleElement] = createSignal<HomeSection | undefined>();
+	const location = useLocation();
+	const pathname = useResolvedPath(() => location.pathname);
+
+	const [visibleElement, setVisibleElement] = createSignal<HomeSection | undefined>('home');
 	const sections: Array<HomeSection> = ['home', 'work', 'about', 'contact'];
 
 	const createScrollHandler = (section: HomeSection) => () => {
-		window.scrollTo({ top: (document.getElementById(section)?.offsetTop ?? 0) - HEADER_HEIGHT });
+		window.scrollTo({ top: (document.getElementById(section)?.offsetTop ?? 0) - HEADER_HEIGHT, behavior: 'smooth' });
 	};
 
-	const scrollHandler = () => {
+	const onScroll = () => {
 		const home = document.getElementById('home')?.getBoundingClientRect().top ?? 0;
 		const work = document.getElementById('work')?.getBoundingClientRect().top ?? 0;
 		const about = document.getElementById('about')?.getBoundingClientRect().top ?? 0;
 		const contact = document.getElementById('contact')?.getBoundingClientRect().top ?? 0;
-		const i = [home, work, about, contact].findIndex((v) => {
-			return v > 0;
-		});
-		setVisibleElement(sections[i]);
+		const i = [home, work, about, contact].findIndex((v) => v > 0);
+		console.log(`🚀 ~ onScroll ~ [home, work, about, contact]`, [home, work, about, contact]);
+		// [home, work, about, contact]
+		if (i === -1) setVisibleElement(undefined);
+		else setVisibleElement(sections[i]);
 	};
 
 	onMount(() => {
-		window.addEventListener('scroll', scrollHandler);
+		window.addEventListener('scroll', onScroll);
 	});
 	onCleanup(() => {
-		window.removeEventListener('scroll', scrollHandler);
+		window.removeEventListener('scroll', onScroll);
 	});
 
 	return (
 		<Box
 			position="fixed"
 			height={HEADER_HEIGHT}
-			backgroundColor={theme.darkTheme.colors.secondary1}
+			backgroundColor={colors.secondary1}
 			top={0}
 			width="100%"
 			display="flex"
 			justifyContent="center"
 			alignItems="center"
+			zIndex={1}
 		>
 			<List display="flex" columnGap="$4">
-				<Link href="#home" onClick={createScrollHandler('home')} active={visibleElement() === 'home'}>
+				<Link href="/" onClick={createScrollHandler('home')} active={pathname() === '/' && visibleElement() === 'home'}>
 					<ListItem>Home</ListItem>
 				</Link>
-				<Link href="#work" onClick={createScrollHandler('work')} active={visibleElement() === 'work'}>
-					<ListItem>Work</ListItem>
-				</Link>
-				<Link href="#about" onClick={createScrollHandler('about')} active={visibleElement() === 'about'}>
-					<ListItem>About</ListItem>
-				</Link>
-				<Link href="#contact" onClick={createScrollHandler('contact')} active={visibleElement() === 'contact'}>
-					<ListItem>Contact</ListItem>
+				<Show when={pathname() === '/'}>
+					<Link href="/" onClick={createScrollHandler('work')} active={visibleElement() === 'work'}>
+						<ListItem>Work</ListItem>
+					</Link>
+					<Link href="/" onClick={createScrollHandler('about')} active={visibleElement() === 'about'}>
+						<ListItem>About</ListItem>
+					</Link>
+					<Link href="/" onClick={createScrollHandler('contact')} active={visibleElement() === 'contact'}>
+						<ListItem>Contact</ListItem>
+					</Link>
+				</Show>
+				<Link href="/resume" active={pathname() === '/resume'}>
+					<ListItem>Resume</ListItem>
 				</Link>
 			</List>
 		</Box>

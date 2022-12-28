@@ -1,22 +1,22 @@
-import { Box, Heading, Container, Text } from '@hope-ui/solid';
+import { Box, Heading, Text } from '@hope-ui/solid';
+import Section from './Section';
 
-const Intro = () => (
-	<Box id="home">
-		<Heading level="1" textAlign="center" mb={2} fontSize="$9xl">
-			Ahmed Habeila
-		</Heading>
-		<Heading level="3" textAlign="center" mb={2} fontSize="$3xl">
-			Front-end Web Developer
-		</Heading>
-
-		<Container css={{ pt: 10 }}>
-			<Text>
-				I am a software developer based in Egypt, interested in web development, game development, Python scripting and
-				all that includes programming. My work extends from system design, analysis to complete implementation. I'm
-				currently working as a MERN stack developer focused on front-end, with flexibility to work on other stacks.
-			</Text>
-		</Container>
-	</Box>
-);
-
-export default Intro;
+export default function Intro() {
+	return (
+		<Box id="home">
+			<Heading level="1" textAlign="center" mb={2} fontSize="$9xl">
+				Ahmed Habeila
+			</Heading>
+			<Heading level="3" textAlign="center" mb={2} fontSize="$2xl">
+				Front-end Web Developer
+			</Heading>
+			<Section>
+				<Text>
+					I am a senior software engineer with 4 years of experience My work extends from system design and analysis to
+					complete implementation, but front-end web development is where my passion truly lies working with React, Vue
+					and Solid.js.
+				</Text>
+			</Section>
+		</Box>
+	);
+}

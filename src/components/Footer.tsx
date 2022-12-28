@@ -4,7 +4,7 @@ export const Footer = () => (
 	<Box marginTop="auto" position="relative" zIndex={2} pointerEvents="none">
 		<Box
 			css={{
-				backgroundImage: 'url(mountains3.png)',
+				backgroundImage: 'url(mountains.png)',
 				backgroundPosition: 'center bottom',
 				backgroundRepeat: 'repeat no-repeat',
 				backgroundSize: 'contain',
