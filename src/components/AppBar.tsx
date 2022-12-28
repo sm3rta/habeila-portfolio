@@ -49,21 +49,31 @@ export const AppBar = () => {
 			zIndex={1}
 		>
 			<List display="flex" columnGap="$4">
-				<Link href="/" onClick={createScrollHandler('home')} active={pathname() === '/' && visibleElement() === 'home'}>
+				<Link
+					role="listitem"
+					href="/"
+					onClick={createScrollHandler('home')}
+					active={pathname() === '/' && visibleElement() === 'home'}
+				>
 					Home
 				</Link>
 				<Show when={pathname() === '/'}>
-					<Link href="/" onClick={createScrollHandler('work')} active={visibleElement() === 'work'}>
+					<Link role="listitem" href="/" onClick={createScrollHandler('work')} active={visibleElement() === 'work'}>
 						Work
 					</Link>
-					<Link href="/" onClick={createScrollHandler('about')} active={visibleElement() === 'about'}>
+					<Link role="listitem" href="/" onClick={createScrollHandler('about')} active={visibleElement() === 'about'}>
 						About
 					</Link>
-					<Link href="/" onClick={createScrollHandler('contact')} active={visibleElement() === 'contact'}>
+					<Link
+						role="listitem"
+						href="/"
+						onClick={createScrollHandler('contact')}
+						active={visibleElement() === 'contact'}
+					>
 						Contact
 					</Link>
 				</Show>
-				<Link href="/resume" active={pathname() === '/resume'}>
+				<Link role="listitem" href="/resume" active={pathname() === '/resume'}>
 					Resume
 				</Link>
 			</List>

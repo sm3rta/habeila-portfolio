@@ -5,7 +5,7 @@ import { styled } from 'solid-styled-components';
 import { colors } from '../theme';
 
 export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean }) => (
-	<Link {...props} role="navigation" size="sm" variant="ghost" as={A} />
+	<Link title={props.children} role="navigation" size="sm" variant="ghost" as={A} {...props} />
 ))(({ active }) => ({
 	backgroundColor: 'unset !important',
 	height: '36px',
