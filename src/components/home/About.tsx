@@ -9,7 +9,7 @@ export default function About() {
 				<Image
 					loading="lazy"
 					fallback={<div />}
-					src="self.jpg"
+					src="self.webp"
 					alt="self image"
 					borderRadius="50%"
 					w={TILE_SIZE}
