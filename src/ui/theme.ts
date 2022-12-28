@@ -57,13 +57,13 @@ export const theme = {
 	components: {
 		Heading: {
 			baseStyle: {
-				fontFamily: 'rubik',
+				// fontFamily: 'Rubik',
 			},
 		},
 		Text: {
 			baseStyle: {
 				color: 'white',
-				fontFamily: 'rubik',
+				// fontFamily: 'Rubik',
 			},
 		},
 		IconButton: {
