@@ -6,7 +6,16 @@ export default function About() {
 	return (
 		<Section id="about">
 			<Container>
-				<Image src="self.jpg" alt="self image" borderRadius="50%" w={TILE_SIZE} height={TILE_SIZE} mx="auto" />
+				<Image
+					loading="lazy"
+					fallback={<div />}
+					src="self.jpg"
+					alt="self image"
+					borderRadius="50%"
+					w={TILE_SIZE}
+					height={TILE_SIZE}
+					mx="auto"
+				/>
 				<Text mt="$4">
 					While my career currently revolves around web development, I love everything programming which includes game
 					development, Python, AHK and more
