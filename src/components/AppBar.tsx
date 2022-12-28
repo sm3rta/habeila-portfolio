@@ -50,21 +50,21 @@ export const AppBar = () => {
 		>
 			<List display="flex" columnGap="$4">
 				<Link href="/" onClick={createScrollHandler('home')} active={pathname() === '/' && visibleElement() === 'home'}>
-					<ListItem>Home</ListItem>
+					Home
 				</Link>
 				<Show when={pathname() === '/'}>
 					<Link href="/" onClick={createScrollHandler('work')} active={visibleElement() === 'work'}>
-						<ListItem>Work</ListItem>
+						Work
 					</Link>
 					<Link href="/" onClick={createScrollHandler('about')} active={visibleElement() === 'about'}>
-						<ListItem>About</ListItem>
+						About
 					</Link>
 					<Link href="/" onClick={createScrollHandler('contact')} active={visibleElement() === 'contact'}>
-						<ListItem>Contact</ListItem>
+						Contact
 					</Link>
 				</Show>
 				<Link href="/resume" active={pathname() === '/resume'}>
-					<ListItem>Resume</ListItem>
+					Resume
 				</Link>
 			</List>
 		</Box>

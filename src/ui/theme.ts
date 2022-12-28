@@ -1,5 +1,5 @@
 import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
-import './fonts/fonts.scss';
+// import './fonts/fonts.scss';
 
 export const HEADER_HEIGHT = 60;
 export const ICON_SIZE = 30;

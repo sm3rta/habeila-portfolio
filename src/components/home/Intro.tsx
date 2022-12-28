@@ -7,7 +7,7 @@ export default function Intro() {
 			<Heading level="1" textAlign="center" mb={2} fontSize="$9xl">
 				Ahmed Habeila
 			</Heading>
-			<Heading level="3" textAlign="center" mb={2} fontSize="$2xl">
+			<Heading level="2" textAlign="center" mb={2} fontSize="$2xl">
 				Front-end Web Developer
 			</Heading>
 			<Section>
