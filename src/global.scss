@@ -1,15 +1,9 @@
-body {
-	margin: 0;
-	background-color: hsl(192deg 25% 9%);
-	overflow-x: hidden;
-}
-
-* {
-	box-sizing: border-box;
-}
-
 html,
 body,
 body > div#root {
 	height: 100%;
+}
+
+html {
+	// scroll-behavior: smooth;
 }

@@ -1,66 +1,37 @@
-import { Text, Box } from '@hope-ui/solid';
-import { Parallax, makeParallaxAnimation, createParallax } from 'rallax';
-import About from './components/About';
-import { projects } from './data/work';
-import Project from './components/Project';
-import { randRangeInt, randRange, generateRandomColor } from './utils';
-import { Star } from './ui/Star';
+import { Box, HopeProvider } from '@hope-ui/solid';
+import { Route, Router, Routes } from '@solidjs/router';
+import { AppBar } from './components/AppBar';
+import { Footer } from './components/Footer';
 import { Stars } from './components/Stars';
-import { Contact } from './components/Contact';
+import { HEADER_HEIGHT, theme } from './ui/theme';
+import { lazy } from 'solid-js';
 
-function App() {
-	const pages = projects.length + 2;
-	// const pages = 2;
+const Home = lazy(() => import('./components/home'));
 
+const App = () => {
 	return (
-		<>
-			{/* <AppBar position="fixed">
-				<Toolbar>1231</Toolbar>
-			</AppBar> */}
-			<Box as="main" mt={8}>
-				{/* <Parallax pages={pages}> */}
-				<Stars />
-				<Parallax z={0}>
-					<About />
-				</Parallax>
-				{/* {projects.map((project, index) => (
-				<Parallax offset={index + 1} key={project.name}>
-					<Project project={project} />
-				</Parallax>
-			))} */}
-				<Contact />
-
-				<Parallax z={0}>
-					<Box
-						css={{
-							position: 'relative',
-							backgroundImage: 'url(mountains3.png)',
-							backgroundSize: 'contain',
-							backgroundPosition: 'center bottom 40px',
-							filter: 'drop-shadow(2px 4px 6px black)',
-						}}
-					>
-						<Box
-							css={{
-								position: 'absolute',
-								bottom: 0,
-								backgroundColor: 'black',
-								width: '100%',
-								height: 40,
-								display: 'flex',
-								placeContent: 'center',
-							}}
-						>
-							<Text as="p" textAlign="center" alignSelf="center" verticalAlign="middle">
-								copy right habeila
-							</Text>
-						</Box>
-					</Box>
-				</Parallax>
-				{/* </Parallax> */}
-			</Box>
-		</>
+		<Router>
+			<HopeProvider config={theme}>
+				<Box
+					as="main"
+					width="100%"
+					pt={HEADER_HEIGHT}
+					display="flex"
+					flexDirection="column"
+					position="relative"
+					overflow="hidden"
+					background={`linear-gradient(${theme.darkTheme.colors.secondary1}, ${theme.darkTheme.colors.primary1})`}
+				>
+					<Stars />
+					<AppBar />
+					<Routes>
+						<Route path="/" element={<Home />} />
+					</Routes>
+					<Footer />
+				</Box>
+			</HopeProvider>
+		</Router>
 	);
-}
+};
 
 export default App;

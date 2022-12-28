@@ -1,6 +1,6 @@
 import { Box } from '@hope-ui/solid';
 import Parallax from 'rallax.js';
-import { ComponentProps, createSignal, onMount } from 'solid-js';
+import { ComponentProps, createSignal, onMount, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { generateRandomColor, randRange, randRangeInt } from '../utils';
 
@@ -15,7 +15,7 @@ const clipPath = `polygon(0 50%, \
 	${50 - m}% ${50 + m}%)`;
 
 const leftRange = [-50, 150] as const;
-const speedRange = [0.2, 0.4] as const;
+const speedRange = [0.1, 0.7] as const;
 
 const StarBase = (props: ComponentProps<typeof Box>) => {
 	return (
@@ -31,10 +31,18 @@ const StarBase = (props: ComponentProps<typeof Box>) => {
 };
 
 export const Star = () => {
-	const [top, setTop] = createSignal(-1000);
+	const [top, setTop] = createSignal('-1000px');
+
 	const width = randRangeInt(10, 40);
-	const left = randRangeInt(...leftRange);
-	const animationDirection = left < 50 ? 'right' : 'left';
+
+	const updateTop = () => setTop(`${randRangeInt(0, document.body.scrollHeight)}px`);
+
+	window.addEventListener('resize', updateTop);
+	onCleanup(() => window.removeEventListener('resize', updateTop));
+
+	const leftRandom = randRangeInt(...leftRange);
+	const left = `${leftRandom}%`;
+	const animationDirection = leftRandom < 50 ? 'right' : 'left';
 
 	const speed = randRange(...speedRange);
 	const translateX = randRangeInt(1000) * (animationDirection === 'left' ? -1 : 1);
@@ -50,7 +58,7 @@ export const Star = () => {
 
 	const Star = styled(StarBase)({
 		[`@keyframes ${animationDirection}`]: {
-			'0%': { opacity: 0, marginLeft: 0 },
+			'0%': { opacity: 0, marginLeft: '0px' },
 			'5%': { opacity: 1 },
 			'90%': { opacity: 1 },
 			'100%': { opacity: 0, marginLeft: `${translateX}px` },
@@ -58,27 +66,32 @@ export const Star = () => {
 		transition: 'background-color 0.5s ease-in-out',
 	});
 
-	let ref: HTMLDivElement;
+	let [ref, setRef] = createSignal<HTMLDivElement>();
 
 	onMount(() => {
-		if (ref) {
-			setTop(randRangeInt(0, document.body.scrollHeight));
-			new Parallax(ref, { speed });
+		if (ref()) {
+			setTimeout(() => {
+				updateTop();
+				new Parallax(ref(), { speed });
+			}, 500);
 		}
 	});
 
 	return (
 		<Star
-			ref={(el: HTMLDivElement) => (ref = el)}
+			ref={setRef}
 			width={`${width}px`}
-			left={`${left}%`}
-			top={`${top()}px`}
+			top={top()}
+			left={left}
 			backgroundColor={backgroundColor()}
 			boxShadow={boxShadow}
 			animation={animation}
 			pointerEvents={backgroundColor() === 'transparent' ? 'none' : 'all'}
 			onMouseEnter={() => {
 				setBackgroundColor('transparent');
+				setTimeout(() => {
+					setBackgroundColor(generateRandomColor(0.2));
+				}, 500);
 			}}
 		/>
 	);
