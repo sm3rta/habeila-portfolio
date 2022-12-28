@@ -19,7 +19,8 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			onMouseLeave={() => setHover(false)}
 			borderRadius="50%"
 			overflow="hidden"
-			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : 'none'}
+			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : `0 0 0px 0px ${boxShadowColor}`}
+			transition="all 0.2s ease-in-out"
 		>
 			<Box
 				width={TILE_SIZE}
@@ -31,20 +32,20 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				zIndex={1}
 				backgroundColor={backgroundColor}
 				opacity={hover() ? 0 : 1}
-				css={{ transition: 'opacity 0.2s ease-in-out' }}
+				css={{ transition: 'all 0.2s ease-in-out' }}
 			>
 				<Text fontSize="$md">{project.name}</Text>
 			</Box>
 			<Button
 				width={TILE_SIZE}
 				height={TILE_SIZE}
-				css={{ transition: 'opacity 0.2s ease-in-out' }}
+				css={{ transition: 'all 0.2s ease-in-out' }}
 				opacity={hover() ? 1 : 0}
 				position="absolute"
 				top={0}
 				left={0}
 				zIndex={2}
-				backgroundColor="rgba(0, 0, 0, 0.6) !important"
+				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
 				href={`projects/${project.id}`}
 			>
