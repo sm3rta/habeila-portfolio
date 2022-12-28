@@ -11,6 +11,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
+		"@formkit/auto-animate": "^1.0.0-beta.5",
 		"@hope-ui/solid": "0.6.7",
 		"@solidjs/router": "0.6.0",
 		"@stitches/core": "1.2.8",

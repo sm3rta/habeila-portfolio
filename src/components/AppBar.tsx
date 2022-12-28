@@ -23,8 +23,6 @@ export const AppBar = () => {
 		const about = document.getElementById('about')?.getBoundingClientRect().top ?? 0;
 		const contact = document.getElementById('contact')?.getBoundingClientRect().top ?? 0;
 		const i = [home, work, about, contact].findIndex((v) => v > 0);
-		console.log(`🚀 ~ onScroll ~ [home, work, about, contact]`, [home, work, about, contact]);
-		// [home, work, about, contact]
 		if (i === -1) setVisibleElement(undefined);
 		else setVisibleElement(sections[i]);
 	};

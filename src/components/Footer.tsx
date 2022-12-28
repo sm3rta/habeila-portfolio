@@ -23,8 +23,8 @@ export const Footer = () => (
 				placeContent: 'center',
 			}}
 		>
-			<Text textAlign="center" alignSelf="center" verticalAlign="middle">
-				copy right habeila
+			<Text textAlign="center" alignSelf="center" verticalAlign="middle" fontSize="$md">
+				@ {new Date().getFullYear()} Ahmed Habeila
 			</Text>
 		</Box>
 	</Box>

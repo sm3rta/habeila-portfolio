@@ -58,12 +58,14 @@ export const theme = {
 		Heading: {
 			baseStyle: {
 				// fontFamily: 'Rubik',
+				fontSize: '$md',
 			},
 		},
 		Text: {
 			baseStyle: {
 				color: 'white',
 				// fontFamily: 'Rubik',
+				fontSize: '$md',
 			},
 		},
 		IconButton: {

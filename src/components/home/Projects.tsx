@@ -10,6 +10,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 	const [hover, setHover] = createSignal(false);
 	const backgroundColor = generateRandomColor(0.1);
 	const boxShadowColor = backgroundColor.replace('0.1', '0.8');
+
 	return (
 		<Box
 			position="relative"

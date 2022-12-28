@@ -402,6 +402,11 @@
   dependencies:
     "@floating-ui/core" "^0.6.1"
 
+"@formkit/auto-animate@^1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@formkit/auto-animate/-/auto-animate-1.0.0-beta.5.tgz#3fe4d520a82909cdcffa8854f26bc26ca4562045"
+  integrity sha512-WoSwyhAZPOe6RB/IgicOtCHtrWwEpfKIZ/H/nxpKfnZL9CB6hhhBGU5bCdMRw7YpAUF2CDlQa+WWh+gCqz5lDg==
+
 "@hope-ui/solid@0.6.7":
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/@hope-ui/solid/-/solid-0.6.7.tgz#52c5a6c72391f6ea3acf7e403ffe196b70af1359"
