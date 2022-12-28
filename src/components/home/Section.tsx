@@ -6,7 +6,7 @@ const Section = (props: ContainerProps) => {
 		<Container
 			css={{
 				p: '2rem',
-				'@lg': { p: '4rem' },
+				'@lg': { px: '4rem', py: '8rem' },
 				...props.css,
 			}}
 			{...props}
