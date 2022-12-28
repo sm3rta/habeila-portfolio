@@ -5,8 +5,9 @@ import { Footer } from './components/Footer';
 import { Stars } from './components/Stars';
 import { HEADER_HEIGHT, colors, theme } from './ui/theme';
 import { lazy } from 'solid-js';
+import Project from './pages/projects';
 
-const Home = lazy(() => import('./components/home'));
+const Home = lazy(() => import('./pages/home'));
 
 const App = () => {
 	return (
@@ -28,6 +29,7 @@ const App = () => {
 
 					<Routes>
 						<Route path="/" component={Home} />
+						<Route path="/projects/:id" component={Project} />
 						<Route path="/resume" element={() => null} />
 					</Routes>
 
