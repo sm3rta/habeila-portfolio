@@ -3,7 +3,7 @@ import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
 
 export const HEADER_HEIGHT = 60;
 export const ICON_SIZE = 30;
-export const TILE_SIZE = 120;
+export const TILE_SIZE = 140;
 
 export const colors = {
 	primary1: '#332b2b',

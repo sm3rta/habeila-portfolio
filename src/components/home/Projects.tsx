@@ -39,7 +39,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			<Button
 				width={TILE_SIZE}
 				height={TILE_SIZE}
-				css={{ transition: 'all 0.2s ease-in-out' }}
+				css={{ transition: 'all 0.2s ease-in-out', whiteSpace: 'normal' }}
 				opacity={hover() ? 1 : 0}
 				position="absolute"
 				top={0}
@@ -48,8 +48,9 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
 				href={`projects/${project.id}`}
+				textAlign="center"
 			>
-				Learn more
+				Learn more about project
 			</Button>
 		</Box>
 	);
