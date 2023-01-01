@@ -26,7 +26,6 @@ export default defineConfig({
 	server: { https: true, port: 3002, host: true },
 	build: {
 		target: 'esnext',
-		outDir: 'build',
 		// change v to true to use source-map-analyzer
 		sourcemap: false,
 		rollupOptions: {

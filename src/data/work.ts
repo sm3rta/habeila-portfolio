@@ -5,6 +5,7 @@ export type Project = {
 	id: string;
 	description?: string | JSX.Element;
 	technologies?: string[];
+	tasks?: { description: string; imageUrl?: string; videoUrl?: string }[];
 	website?: string;
 	responsibilities?: any[];
 };
@@ -22,6 +23,7 @@ export type Workplace = {
 export const work: Workplace[] = [
 	{
 		name: 'Calqulate',
+		website: 'https://calqulate.io/',
 		description:
 			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
 		from: 'November 2020',
@@ -33,7 +35,35 @@ export const work: Workplace[] = [
 				id: 'calqulate',
 				website: 'https://calqulate.io/',
 				description:
-					'A financial tool for modern SaaS organizations that automatically generates reports on finances, growth metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription management and more. Features complex editable tree tables with fixed columns, sticky headers and advanced styles, interactive data rich charts. Collects data from most known major accounting softwares. My biggest responsiblity in this project is to create and maintain different libraries in a monorepo for tables, charts and reusable UI components',
+					'A financial tool for modern SaaS organizations that automatically generates reports on finances,\
+					 growth metrics, cashflow forecasting, cash management, customer growth and churn, \
+					 multi-source subscription management and more.\
+					  Features complex editable tree tables with fixed columns, sticky headers and advanced styles,\
+						 interactive data rich charts.\
+						  Collects data from most known major accounting softwares.\
+							 My biggest responsibility in this project is to create and maintain different libraries in a monorepo for\
+							  tables, charts and reusable UI components',
+
+				tasks: [
+					{
+						description: 'Created an app layout with Atlassian-like collapsible drawer',
+					},
+					{
+						description:
+							'Created time selectors and filters that follow a global state design pattern and sync with the URL',
+					},
+					{
+						description:
+							'Created a library for editable tree tables with fixed columns, sticky headers and advanced styles',
+					},
+					{
+						description:
+							'Created a proprietary charts library using D3 with 10 different types of charts animations,\
+							interactive tooltips, legends, placeholders with randomly generated data',
+						videoUrl: '/calq-charts.webm',
+					},
+				],
+
 				technologies: [
 					'React',
 					'TypeScript',
