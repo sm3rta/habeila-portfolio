@@ -7,7 +7,14 @@ import { colors } from '../../ui/theme';
 import { hexColorWithAlpha } from '../../ui/utils/hexColorWithAlpha';
 import { createSignal, Suspense, Switch, Match, useTransition } from 'solid-js';
 import { render } from 'solid-js/web';
-import { BiSolidChevronLeftSquare, BiSolidChevronRightSquare } from 'solid-icons/bi';
+import {
+	BiRegularChevronsLeft,
+	BiSolidChevronLeft,
+	BiSolidChevronLeftCircle,
+	BiSolidChevronRight,
+} from 'solid-icons/bi';
+import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
+import { HiOutlineChevronLeft, HiSolidChevronLeft } from 'solid-icons/hi';
 
 const transitionDurationMs = 300;
 
@@ -47,8 +54,8 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 			<Box d="flex" justifyContent="space-between">
 				<Text mt="$3">tasks</Text>
 				<Box>
-					<IconButton icon={<BiSolidChevronLeftSquare />} aria-label="Previous" onClick={prevPage} />
-					<IconButton icon={<BiSolidChevronRightSquare />} aria-label="Next" onClick={nextPage} />
+					<IconButton icon={<FaSolidChevronLeft />} aria-label="Previous" onClick={prevPage} />
+					<IconButton icon={<FaSolidChevronRight />} aria-label="Next" onClick={nextPage} />
 				</Box>
 			</Box>
 			<Box
