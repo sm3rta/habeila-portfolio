@@ -1,7 +1,7 @@
 import { Box, Badge, Text, Anchor, List, ListItem, Divider } from '@hope-ui/solid';
 import { ComponentProps, Show, For } from 'solid-js';
 import { ProjectWithCompany, Workplace } from '../../data/work';
-import { ProjectLayout } from '../projects';
+import ProjectSummary from './ProjectSummary';
 
 const renderCompany = (name: string, link?: string) => {
 	const company = <Text fontSize="$sm">{name}</Text>;
@@ -32,7 +32,7 @@ export const CompanyProjects = ({ company }: { company: Workplace }) => {
 				<For each={company.projects}>
 					{(project, index) => (
 						<ListItem pl="$4">
-							<ProjectLayout project={{ ...project, company }} />
+							<ProjectSummary project={{ ...project, company }} />
 							{index() !== company.projects.length - 1 && <Divider my="$4" />}
 						</ListItem>
 					)}
