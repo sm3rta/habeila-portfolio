@@ -11,7 +11,7 @@ const renderProjectTitle = (name: string, link?: string) => {
 
 export const ProjectLayout = ({ project }: { project: ProjectWithCompany }) => {
 	return (
-		<Box h="100%" w="100%" d="flex" flexDirection="column" justifyContent="center">
+		<Box w="100%" d="flex" flexDirection="column" justifyContent="center">
 			<Box>
 				{renderProjectTitle(project.name, project.website)}:{' '}
 				<Text as="span" fontSize="$sm">

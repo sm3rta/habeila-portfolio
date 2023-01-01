@@ -3,7 +3,7 @@ import Parallax from 'rallax.js';
 import { ComponentProps, createSignal, onMount, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { generateRandomColor, randRange, randRangeInt } from '../utils';
-import { zIndexes } from './theme';
+import { HEADER_HEIGHT, zIndexes } from './theme';
 
 const m = 5;
 const clipPath = `polygon(0 50%, \
@@ -42,7 +42,7 @@ export const Star = () => {
 
 	const width = randRangeInt(15, 40);
 
-	const updateTop = () => setTop(`${randRangeInt(0, document.body.scrollHeight)}px`);
+	const updateTop = () => setTop(`${randRangeInt(HEADER_HEIGHT, document.body.scrollHeight)}px`);
 
 	window.addEventListener('resize', updateTop);
 	onCleanup(() => window.removeEventListener('resize', updateTop));

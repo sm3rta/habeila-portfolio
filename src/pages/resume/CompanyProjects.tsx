@@ -31,12 +31,10 @@ export const CompanyProjects = ({ company }: { company: Workplace }) => {
 			<List d="flex" flexDirection="column">
 				<For each={company.projects}>
 					{(project, index) => (
-						<>
-							<ListItem>
-								<ProjectLayout project={{ ...project, company }} />
-							</ListItem>
+						<ListItem pl="$4">
+							<ProjectLayout project={{ ...project, company }} />
 							{index() !== company.projects.length - 1 && <Divider my="$4" />}
-						</>
+						</ListItem>
 					)}
 				</For>
 			</List>
