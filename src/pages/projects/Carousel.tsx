@@ -53,9 +53,14 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 		<Box>
 			<Box d="flex" justifyContent="space-between">
 				<Text mt="$3">tasks</Text>
-				<Box>
-					<IconButton icon={<FaSolidChevronLeft />} aria-label="Previous" onClick={prevPage} />
-					<IconButton icon={<FaSolidChevronRight />} aria-label="Next" onClick={nextPage} />
+				<Box d="flex" gap="$2">
+					<IconButton
+						icon={<FaSolidChevronLeft />}
+						aria-label="Previous"
+						onClick={prevPage}
+						disabled={transitioning()}
+					/>
+					<IconButton icon={<FaSolidChevronRight />} aria-label="Next" onClick={nextPage} disabled={transitioning()} />
 				</Box>
 			</Box>
 			<Box
