@@ -8,4 +8,6 @@ export const randRangeInt = (_a: number, _b = 0) => {
 };
 
 export const generateRandomColor = (alpha = 1) =>
-	`hsla(${randRangeInt(0, 255)}deg ${randRangeInt(20, 40)}% ${randRangeInt(20, 40)}% / ${alpha})`;
+	`hsla(${randRangeInt(0, 359)}deg ${randRangeInt(20, 40)}% ${randRangeInt(20, 40)}% / ${alpha})`;
+// export const generateRandomColor = (alpha = 1) =>
+// 	`hsla(${randRangeInt(191, 360)}deg ${randRangeInt(20, 40)}% ${randRangeInt(10, 40)}% / ${alpha})`;

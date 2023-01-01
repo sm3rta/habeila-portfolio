@@ -1,6 +1,6 @@
 import { Box, List, ListItem } from '@hope-ui/solid';
 import { Link } from '../ui/components/Link';
-import { HEADER_HEIGHT, colors, theme } from '../ui/theme';
+import { HEADER_HEIGHT, colors, theme, zIndexes } from '../ui/theme';
 import { Show, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 
@@ -37,16 +37,16 @@ export const AppBar = () => {
 	return (
 		<Box
 			position="fixed"
-			height={HEADER_HEIGHT}
+			h={HEADER_HEIGHT}
 			backgroundColor={colors.secondary1}
 			top={0}
-			width="100%"
-			display="flex"
+			w="100%"
+			d="flex"
 			justifyContent="center"
 			alignItems="center"
-			zIndex={1}
+			zIndex={zIndexes.appBar}
 		>
-			<List display="flex" columnGap="$4">
+			<List d="flex" columnGap="$4">
 				<Link
 					role="listitem"
 					href="/"

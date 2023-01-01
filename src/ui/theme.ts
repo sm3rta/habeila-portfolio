@@ -1,9 +1,16 @@
 import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
-// import './fonts/fonts.scss';
 
 export const HEADER_HEIGHT = 60;
 export const ICON_SIZE = 30;
 export const TILE_SIZE = 140;
+export const zIndexes = {
+	// above buttons, which are above stars
+	appBar: 100,
+	// above stars, e.g. buttons
+	aboveStar: 2,
+	// star and what's on the same level
+	star: 1,
+};
 
 export const colors = {
 	primary1: '#332b2b',
@@ -77,6 +84,19 @@ export const theme = {
 				},
 				_active: {
 					color: colors.secondary2,
+				},
+			},
+		},
+		Badge: {
+			baseStyle: {
+				color: colors.primary5,
+				backgroundColor: colors.secondary1,
+			},
+		},
+		Button: {
+			baseStyle: {
+				root: {
+					zIndex: zIndexes.aboveStar,
 				},
 			},
 		},

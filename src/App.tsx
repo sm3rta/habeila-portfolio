@@ -6,6 +6,7 @@ import { Stars } from './components/Stars';
 import { HEADER_HEIGHT, colors, theme } from './ui/theme';
 import { lazy } from 'solid-js';
 import Project from './pages/projects';
+import { Resume } from './pages/resume';
 
 const Home = lazy(() => import('./pages/home'));
 
@@ -15,9 +16,9 @@ const App = () => {
 			<HopeProvider config={theme}>
 				<Box
 					as="main"
-					width="100%"
+					w="100%"
 					pt={HEADER_HEIGHT}
-					display="flex"
+					d="flex"
 					flexDirection="column"
 					position="relative"
 					overflow="hidden"
@@ -30,7 +31,7 @@ const App = () => {
 					<Routes>
 						<Route path="/" component={Home} />
 						<Route path="/projects/:id" component={Project} />
-						<Route path="/resume" element={() => null} />
+						<Route path="/resume" element={Resume} />
 					</Routes>
 
 					<Footer />

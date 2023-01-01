@@ -16,9 +16,101 @@ export type Workplace = {
 	description: string;
 	title: string;
 	projects: Project[];
+	website?: string;
 };
 
 export const work: Workplace[] = [
+	{
+		name: 'Calqulate',
+		description:
+			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
+		from: 'November 2020',
+		to: 'January 2022',
+		title: 'Front-end Web Developer',
+		projects: [
+			{
+				name: 'Calqulate',
+				id: 'calqulate',
+				website: 'https://calqulate.io/',
+				description:
+					'A financial tool for modern SaaS organizations that automatically generates reports on finances, growth metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription management and more. Features complex editable tree tables with fixed columns, sticky headers and advanced styles, interactive data rich charts. Collects data from most known major accounting softwares. My biggest responsiblity in this project is to create and maintain different libraries in a monorepo for tables, charts and reusable UI components',
+				technologies: [
+					'React',
+					'TypeScript',
+					'Material UI',
+					'Sass',
+					'Styled components',
+					'react-hook-form',
+					'Zod',
+					'D3',
+					'Hasura',
+					'GraphQL',
+					'Auth0',
+					'Sentry',
+				],
+				responsibilities: ['Front-end Web App'],
+			},
+		],
+	},
+
+	{
+		name: 'Coformatique',
+		website: 'https://www.linkedin.com/company/coformatique/',
+		description:
+			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
+		from: 'May 2020',
+		to: 'November 2020',
+		title: 'Full-stack Web Developer',
+		projects: [
+			{
+				name: 'TwintyThirty',
+				id: 'twentythirty',
+				website: 'https://twentythirty.com/',
+				description:
+					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
+				technologies: ['React', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
+				responsibilities: ['Website (front-end)'],
+			},
+			{
+				name: 'BMW Foundation',
+				id: 'bmw-foundation',
+				website: 'https://bmw-foundation.org/',
+				description:
+					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features, multilanguage routing and",
+				technologies: [
+					'React',
+					'TypeScript',
+					'Material UI',
+					'JSS',
+					'Multilanguage Routing',
+					'Responsive Design',
+					'I18Next',
+					'Axios',
+				],
+				responsibilities: ['Website (front-end)'],
+			},
+			{
+				name: 'Educational platform',
+				id: 'educational-platform',
+				description:
+					"An educational platform where professors can upload and schedule lectures to different classes, create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, an admin dashboard where professors can manage lectures, send emails with grades to students' parents.",
+				technologies: [
+					'Firebase',
+					'Express.js',
+					'TypeScript ',
+					'Sendgrid',
+					'React',
+					'Material UI',
+					'JSS',
+					'Formik',
+					'Yup',
+					'Axios',
+				],
+				responsibilities: ['Back-end (Firebase)', 'Admin Dashboard (front-end)'],
+			},
+		],
+	},
+
 	{
 		name: 'Haya Solutions Inc.',
 		description: '',
@@ -62,96 +154,8 @@ export const work: Workplace[] = [
 			},
 		],
 	},
-	{
-		name: 'Coformatique',
-		description:
-			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
-		from: 'May 2020',
-		to: 'November 2020',
-		title: 'Full-stack Web Developer',
-		projects: [
-			{
-				name: 'BMW Foundation',
-				id: 'bmw-foundation',
-				website: 'https://bmw-foundation.org/',
-				description:
-					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features, multilanguage routing and",
-				technologies: [
-					'React',
-					'TypeScript',
-					'Material UI',
-					'JSS',
-					'Multilanguage Routing',
-					'Responsive Design',
-					'I18Next',
-					'Axios',
-				],
-				responsibilities: ['Website (front-end)'],
-			},
-			{
-				name: 'TwintyThirty',
-				id: 'twentythirty',
-				website: 'https://twentythirty.com/',
-				description:
-					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
-				technologies: ['React', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
-				responsibilities: ['Website (front-end)'],
-			},
-			{
-				name: 'Educational platform',
-				id: 'educational-platform',
-				description:
-					"An educational platform where professors can upload and schedule lectures to different classes, create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, an admin dashboard where professors can manage lectures, send emails with grades to students' parents.",
-				technologies: [
-					'Firebase',
-					'Express.js',
-					'TypeScript ',
-					'Sendgrid',
-					'React',
-					'Material UI',
-					'JSS',
-					'Formik',
-					'Yup',
-					'Axios',
-				],
-				responsibilities: ['Back-end (Firebase)', 'Admin Dashboard (front-end)'],
-			},
-		],
-	},
-	{
-		name: 'Calqulate',
-		description:
-			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
-		from: 'November 2020',
-		to: 'Current',
-		title: 'Front-end Web Developer',
-		projects: [
-			{
-				name: 'Calqulate',
-				id: 'calqulate',
-				website: 'https://calqulate.io/',
-				description:
-					'A financial tool for modern SaaS organizations that automatically generates reports on finances, growth metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription management and more. Features complex editable tree tables with fixed columns, sticky headers and advanced styles, interactive data rich charts. Collects data from most known major accounting softwares. My biggest responsiblity in this project is to create and maintain different libraries in a monorepo for tables, charts and reusable UI components',
-				technologies: [
-					'React',
-					'TypeScript',
-					'Material UI',
-					'Sass',
-					'Styled components',
-					'react-hook-form',
-					'Zod',
-					'D3',
-					'Hasura',
-					'GraphQL',
-					'Auth0',
-					'Sentry',
-				],
-				responsibilities: ['Front-end Web App'],
-			},
-		],
-	},
 ];
 
 export const projects = work.flatMap((w) => w.projects.map((p) => ({ ...p, company: w })));
 
-export type ProjectWithWork = typeof projects[number];
+export type ProjectWithCompany = typeof projects[number];

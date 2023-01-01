@@ -6,7 +6,11 @@ import Projects from './Projects';
 
 const Home = () => {
 	return (
-		<Box>
+		<Box
+			css={{
+				'& > div:nth-child(even)': { background: 'rgb(0 0 0 / 40%)' },
+			}}
+		>
 			<Intro />
 			<Projects />
 			<About />

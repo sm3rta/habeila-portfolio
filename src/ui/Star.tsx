@@ -3,6 +3,7 @@ import Parallax from 'rallax.js';
 import { ComponentProps, createSignal, onMount, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { generateRandomColor, randRange, randRangeInt } from '../utils';
+import { zIndexes } from './theme';
 
 const m = 5;
 const clipPath = `polygon(0 50%, \
@@ -22,11 +23,14 @@ const interactionDelayMs = 500;
 const StarBase = (props: ComponentProps<typeof Box>) => {
 	return (
 		<Box
-			position="absolute"
-			__baseStyle={{ aspectRatio: '1' }}
-			zIndex={1}
-			clipPath={clipPath}
-			cursor="unset"
+			css={{
+				position: 'absolute',
+				aspectRatio: '1',
+				zIndex: zIndexes.star,
+				clipPath: clipPath,
+				cursor: 'unset',
+				mixBlendMode: 'screen',
+			}}
 			{...props}
 		/>
 	);
@@ -36,7 +40,7 @@ export const Star = () => {
 	const [top, setTop] = createSignal('-1000px');
 	const [delay, setDelay] = createSignal(0);
 
-	const width = randRangeInt(10, 40);
+	const width = randRangeInt(15, 40);
 
 	const updateTop = () => setTop(`${randRangeInt(0, document.body.scrollHeight)}px`);
 
@@ -78,7 +82,7 @@ export const Star = () => {
 	return (
 		<Star
 			ref={setRef}
-			width={`${width}px`}
+			w={`${width}px`}
 			top={top()}
 			left={left}
 			backgroundColor={backgroundColor()}

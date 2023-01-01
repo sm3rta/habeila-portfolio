@@ -2,20 +2,20 @@ import { Box, Button, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { For, createSignal } from 'solid-js';
 import { projects } from '../../data/work';
-import { TILE_SIZE } from '../../ui/theme';
+import { TILE_SIZE, zIndexes } from '../../ui/theme';
 import { generateRandomColor } from '../../utils';
 import Section from './Section';
 
 const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 	const [hover, setHover] = createSignal(false);
-	const backgroundColor = generateRandomColor(0.1);
+	const backgroundColor = generateRandomColor(0.3);
 	const boxShadowColor = backgroundColor.replace('0.1', '0.8');
 
 	return (
 		<Box
 			position="relative"
-			width={TILE_SIZE}
-			height={TILE_SIZE}
+			w={TILE_SIZE}
+			h={TILE_SIZE}
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
 			borderRadius="50%"
@@ -24,13 +24,13 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			transition="all 0.2s ease-in-out"
 		>
 			<Box
-				width={TILE_SIZE}
-				height={TILE_SIZE}
-				display="flex"
+				w={TILE_SIZE}
+				h={TILE_SIZE}
+				d="flex"
 				placeContent="center"
 				alignItems="center"
 				textAlign="center"
-				zIndex={1}
+				zIndex={zIndexes.star}
 				backgroundColor={backgroundColor}
 				opacity={hover() ? 0 : 1}
 				css={{ transition: 'all 0.2s ease-in-out' }}
@@ -38,14 +38,13 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				<Text fontSize="$md">{project.name}</Text>
 			</Box>
 			<Button
-				width={TILE_SIZE}
-				height={TILE_SIZE}
+				w={TILE_SIZE}
+				h={TILE_SIZE}
 				css={{ transition: 'all 0.2s ease-in-out', whiteSpace: 'normal' }}
 				opacity={hover() ? 1 : 0}
 				position="absolute"
 				top={0}
 				left={0}
-				zIndex={2}
 				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
 				href={`projects/${project.id}`}
@@ -58,11 +57,9 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 };
 
 const Projects = () => (
-	<Box background="rgb(0 0 0 / 40%)" id="work">
-		<Section flexWrap="wrap" d="flex" gap="$4" justifyContent="center">
-			<For each={projects}>{(project) => <ProjectTile project={project} />}</For>
-		</Section>
-	</Box>
+	<Section flexWrap="wrap" gap="$4" id="work" flexDirection="row">
+		<For each={projects}>{(project) => <ProjectTile project={project} />}</For>
+	</Section>
 );
 
 export default Projects;

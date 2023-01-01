@@ -13,7 +13,7 @@ export default function About() {
 					alt="self image"
 					borderRadius="50%"
 					w={TILE_SIZE}
-					height={TILE_SIZE}
+					h={TILE_SIZE}
 					mx="auto"
 				/>
 				<Text mt="$4">
