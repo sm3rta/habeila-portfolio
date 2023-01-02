@@ -1,9 +1,9 @@
-import { Box, List, ListItem } from '@hope-ui/solid';
-import { Link } from '../ui/components/Link';
-import { HEADER_HEIGHT, colors, theme, zIndexes } from '../ui/theme';
-import { Show, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
+import { Box, List } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
+import { Show, createSignal, onCleanup, onMount } from 'solid-js';
+import { Link } from '../ui/components/Link';
+import { HEADER_HEIGHT, colors, zIndexes } from '../ui/theme';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 

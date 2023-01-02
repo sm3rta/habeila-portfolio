@@ -14,7 +14,7 @@
 		"@hope-ui/solid": "0.6.7",
 		"@solidjs/router": "0.6.0",
 		"@stitches/core": "1.2.8",
-		"lodash.debounce": "^4.0.8",
+		"lodash.debounce": "4.0.8",
 		"rallax.js": "2.0.4",
 		"sass": "1.57.1",
 		"solid-icons": "1.0.4",
@@ -23,10 +23,9 @@
 		"solid-transition-group": "0.0.12"
 	},
 	"devDependencies": {
-		"@types/lodash.debounce": "^4.0.7",
+		"@types/lodash.debounce": "4.0.7",
 		"@types/node": "18.11.18",
-		"prettier-plugin-organize-imports": "3.2.1",
-		"sharp": "^0.31.3",
+		"sharp": "0.31.3",
 		"typescript": "4.9.4",
 		"vite": "4.0.3",
 		"vite-plugin-mkcert": "1.10.1",

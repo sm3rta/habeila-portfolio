@@ -20,22 +20,20 @@ const speedRange = [0.1, 0.7] as const;
 const starAlpha = 0.3;
 const interactionDelayMs = 500;
 
-const StarBase = (props: ComponentProps<typeof Box>) => {
-	return (
-		<Box
-			css={{
-				position: 'absolute',
-				aspectRatio: '1',
-				zIndex: zIndexes.star,
-				clipPath: clipPath,
-				cursor: 'unset',
-				mixBlendMode: 'screen',
-				transition: `background-color ${interactionDelayMs}ms ease-in-out`,
-			}}
-			{...props}
-		/>
-	);
-};
+const StarBase = (props: ComponentProps<typeof Box>) => (
+	<Box
+		css={{
+			position: 'absolute',
+			aspectRatio: '1',
+			zIndex: zIndexes.star,
+			clipPath: clipPath,
+			cursor: 'unset',
+			mixBlendMode: 'screen',
+			transition: `background-color ${interactionDelayMs}ms ease-in-out`,
+		}}
+		{...props}
+	/>
+);
 
 export const Star = () => {
 	const [delay, setDelay] = createSignal(0);

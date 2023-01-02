@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@hope-ui/solid';
+import { Heading, Text } from '@hope-ui/solid';
 import Section from './Section';
 
 export default function Intro() {
