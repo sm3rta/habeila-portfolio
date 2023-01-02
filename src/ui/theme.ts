@@ -89,8 +89,10 @@ export const theme = {
 		},
 		Badge: {
 			baseStyle: {
-				color: colors.primary5,
-				backgroundColor: colors.secondary1,
+				// color: colors.primary5,
+				// backgroundColor: colors.secondary1,
+				color: colors.secondary1,
+				backgroundColor: colors.primary7,
 			},
 		},
 		Button: {
