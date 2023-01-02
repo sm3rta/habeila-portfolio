@@ -42,7 +42,13 @@ export const Star = () => {
 
 	const width = randRangeInt(15, 40);
 
-	const updateTop = () => setTop(`${randRangeInt(HEADER_HEIGHT, document.body.scrollHeight)}px`);
+	const updateTop = () => {
+		// console.log('updating top');
+		const fab = document.getElementById('fab');
+		fab && (fab.textContent = `${document.body.scrollHeight}`);
+
+		return setTop(`${randRangeInt(HEADER_HEIGHT, document.body.scrollHeight)}px`);
+	};
 
 	window.addEventListener('resize', updateTop);
 	onCleanup(() => window.removeEventListener('resize', updateTop));
