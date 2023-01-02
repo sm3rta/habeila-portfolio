@@ -402,11 +402,6 @@
   dependencies:
     "@floating-ui/core" "^0.6.1"
 
-"@formkit/auto-animate@^1.0.0-beta.5":
-  version "1.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@formkit/auto-animate/-/auto-animate-1.0.0-beta.5.tgz#3fe4d520a82909cdcffa8854f26bc26ca4562045"
-  integrity sha512-WoSwyhAZPOe6RB/IgicOtCHtrWwEpfKIZ/H/nxpKfnZL9CB6hhhBGU5bCdMRw7YpAUF2CDlQa+WWh+gCqz5lDg==
-
 "@hope-ui/solid@0.6.7":
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/@hope-ui/solid/-/solid-0.6.7.tgz#52c5a6c72391f6ea3acf7e403ffe196b70af1359"
@@ -892,11 +887,6 @@ json5@^2.2.1:
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.2.tgz#64471c5bdcc564c18f7c1d4df2e2297f2457c5ab"
   integrity sha512-46Tk9JiOL2z7ytNQWFLpj99RZkVgeHf87yGQKsIkaPz1qSH9UczKH1rO7K3wgRselo0tYMUNfecYpm/p1vC7tQ==
 
-klona@^2.0.4:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
-  integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
-
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
@@ -930,11 +920,6 @@ nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
-
-neo-async@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
-  integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 node-fetch@^2.6.7:
   version "2.6.7"
@@ -1016,14 +1001,6 @@ rollup@^3.7.0:
   integrity sha512-4yh9eMW7byOroYcN8DlF9P/2jCpu6txVIHjEqquQVSx7DI0RgyCCN3tjrcy4ra6yVtV336aLBB3v2AarYAxePQ==
   optionalDependencies:
     fsevents "~2.3.2"
-
-sass-loader@13.2.0:
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.2.0.tgz#80195050f58c9aac63b792fa52acb6f5e0f6bdc3"
-  integrity sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==
-  dependencies:
-    klona "^2.0.4"
-    neo-async "^2.6.2"
 
 sass@1.57.1:
   version "1.57.1"
