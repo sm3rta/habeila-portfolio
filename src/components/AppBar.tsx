@@ -29,10 +29,10 @@ export const AppBar = () => {
 	}, 10);
 
 	onMount(() => {
-		window.addEventListener('scroll', onScroll);
+		// window.addEventListener('scroll', onScroll);
 	});
 	onCleanup(() => {
-		window.removeEventListener('scroll', onScroll);
+		// window.removeEventListener('scroll', onScroll);
 	});
 
 	return (
