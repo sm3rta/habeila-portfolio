@@ -1,6 +1,7 @@
 import { Navigate, useParams } from '@solidjs/router';
 import { projects } from '../../data/work';
 import ProjectLayoutDetailed from './ProjectDetails';
+import Fade from '../../ui/components/Fade';
 
 export default function Project() {
 	const params = useParams();
@@ -8,5 +9,9 @@ export default function Project() {
 
 	if (!project) return <Navigate href="/" />;
 
-	return <ProjectLayoutDetailed project={project} />;
+	return (
+		<Fade>
+			<ProjectLayoutDetailed project={project} />;
+		</Fade>
+	);
 }

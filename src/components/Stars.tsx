@@ -14,8 +14,8 @@ export const Stars = () => {
 
 	return (
 		<Show when={show()}>
-			<Box pos="absolute" h="100%" w="100%">
-				<Box pos="relative" h="100%" w="100%">
+			<Box pos="absolute" h="100%" w="100%" pointerEvents="none">
+				<Box pos="relative" h="100%" w="100%" pointerEvents="none">
 					<For each={[...Array(randRangeInt(20, 60))]}>{() => <Star />}</For>
 				</Box>
 			</Box>

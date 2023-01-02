@@ -10,7 +10,7 @@ const Fade = ({ children }: { children: JSX.Element }) => {
 		}, 0);
 	});
 
-	return <Box css={{ opacity: opacity(), transition: 'opacity 0.5s ease-in-out' }}>{children}</Box>;
+	return <Box css={{ opacity: opacity(), transition: 'opacity 0.3s ease-in-out' }}>{children}</Box>;
 };
 
 export default Fade;
