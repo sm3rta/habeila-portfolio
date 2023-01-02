@@ -93,6 +93,7 @@ export const theme = {
 				// backgroundColor: colors.secondary1,
 				color: colors.secondary1,
 				backgroundColor: colors.primary7,
+				textTransform: 'none',
 			},
 		},
 		Button: {

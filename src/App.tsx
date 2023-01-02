@@ -25,7 +25,6 @@ const App = () => {
 					background={`linear-gradient(${colors.secondary1}, ${colors.primary1})`}
 					minHeight="100%"
 				>
-					<Box position="fixed" top={90} left={0} id="fab" background="white" color="black"></Box>
 					<Stars />
 					<AppBar />
 

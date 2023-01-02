@@ -1,15 +1,13 @@
 import { Box, IconButton, Image, Text } from '@hope-ui/solid';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
-import { For, Match, Show, Suspense, Switch, createSignal } from 'solid-js';
+import { For, Match, Show, Suspense, Switch, createSignal, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { Project as ProjectType } from '../../data/work';
 import { colors } from '../../ui/theme';
 import { hexColorWithAlpha } from '../../ui/utils/hexColorWithAlpha';
+import { useLoopingSquareProgressBar } from './useLoopingSquareProgressBar';
 
 const transitionDurationMs = 300;
-const switchSlideAfterMs = 10000;
-const duration = `${switchSlideAfterMs / 1000}s`;
-const max = 300;
 
 const StyledVideo = styled('video')({
 	filter: `drop-shadow(0px 0px 10px ${colors.secondary2})`,
@@ -21,33 +19,12 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 
 	const [transitioning, setTransitioning] = createSignal(false);
 
-	const [value, setValue] = createSignal(0);
-	const [paused, setPaused] = createSignal(false);
-
-	const activateNextTimerTick = () =>
-		setTimeout(() => {
-			if (!paused()) {
-				const currentValue = value();
-				console.log(`🚀 ~ setTimeout ~ currentValue`, currentValue);
-				if (currentValue < max) setValue(value() + 1);
-				else {
-					setValue(0);
-					nextPage();
-				}
-			}
-			activateNextTimerTick();
-		}, switchSlideAfterMs / max);
-	activateNextTimerTick();
-	const resetTimer = () => {
-		setValue(0);
-	};
-
 	const prevPage = () => {
 		setTransitioning(true);
 		setTimeout(() => {
 			setTab(tab() === 0 ? tasks.length - 1 : tab() - 1);
 			setTransitioning(false);
-			resetTimer();
+			resetProgress();
 		}, transitionDurationMs);
 	};
 	const nextPage = () => {
@@ -56,23 +33,16 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 		setTimeout(() => {
 			setTab(tab() === tasks.length - 1 ? 0 : tab() + 1);
 			setTransitioning(false);
-			resetTimer();
+			resetProgress();
 		}, transitionDurationMs);
 	};
 
+	const { progressBar, setPaused, resetProgress } = useLoopingSquareProgressBar(nextPage);
+
 	return (
-		<Box
-			onMouseEnter={() => {
-				console.log('enter');
-				setPaused(true);
-			}}
-			onMouseLeave={() => {
-				console.log('leavne');
-				setPaused(false);
-			}}
-		>
+		<Box mt="$8" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
 			<Box d="flex" justifyContent="space-between">
-				<Text mt="$3">Responsibilities</Text>
+				<Text>Responsibilities</Text>
 				<Box d="flex" gap="$2">
 					<IconButton
 						icon={<FaSolidChevronLeft />}
@@ -88,28 +58,7 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 							disabled={transitioning()}
 							pos="absolute"
 						/>
-						{/* <Box > */}
-						<svg
-							viewBox="0 0 40 40"
-							width="100%"
-							height="100%"
-							style={{
-								position: 'absolute',
-								'pointer-events': 'none',
-							}}
-							fill="none"
-						>
-							<path
-								d="M 20 0 H 40 V 40 H 0 V 0 Z"
-								stroke="white"
-								stroke-width={2}
-								stroke-dasharray="160"
-								stroke-dashoffset={`${((max - value()) * 160) / max}`}
-							>
-								{/* <animate attributeName="stroke-dashoffset" values="0 2000" dur={duration} repeatCount="indefinite" /> */}
-							</path>
-						</svg>
-						{/* </Box> */}
+						{progressBar}
 					</Box>
 				</Box>
 			</Box>

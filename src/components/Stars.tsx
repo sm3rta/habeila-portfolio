@@ -14,8 +14,10 @@ export const Stars = () => {
 
 	return (
 		<Show when={show()}>
-			<Box>
-				<For each={[...Array(randRangeInt(30, 100))]}>{() => <Star />}</For>
+			<Box pos="absolute" h="100%" w="100%">
+				<Box pos="relative" h="100%" w="100%">
+					<For each={[...Array(randRangeInt(30, 100))]}>{() => <Star />}</For>
+				</Box>
 			</Box>
 		</Show>
 	);
