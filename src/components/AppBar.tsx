@@ -3,6 +3,7 @@ import { Link } from '../ui/components/Link';
 import { HEADER_HEIGHT, colors, theme, zIndexes } from '../ui/theme';
 import { Show, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
 import { useLocation, useResolvedPath } from '@solidjs/router';
+import debounce from 'lodash.debounce';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 
@@ -17,7 +18,7 @@ export const AppBar = () => {
 		window.scrollTo({ top: (document.getElementById(section)?.offsetTop ?? 0) - HEADER_HEIGHT, behavior: 'smooth' });
 	};
 
-	const onScroll = () => {
+	const onScroll = debounce(() => {
 		const home = document.getElementById('home')?.getBoundingClientRect().top ?? 0;
 		const work = document.getElementById('work')?.getBoundingClientRect().top ?? 0;
 		const about = document.getElementById('about')?.getBoundingClientRect().top ?? 0;
@@ -25,7 +26,7 @@ export const AppBar = () => {
 		const i = [home, work, about, contact].findIndex((v) => v > 0);
 		if (i === -1) setVisibleElement(undefined);
 		else setVisibleElement(sections[i]);
-	};
+	}, 10);
 
 	onMount(() => {
 		window.addEventListener('scroll', onScroll);
