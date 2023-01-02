@@ -1,0 +1,26 @@
+{
+	"short_name": "Portfolio",
+	"name": "Habeila's Portfolio",
+	"icons": [
+		{
+			"src": "/public/favicon.icon",
+			"type": "image/ico",
+			"sizes": "256x256"
+		}
+	],
+	"id": "/?source=pwa",
+	"start_url": "/?source=pwa",
+	"background_color": "#030c0e",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#332b2b",
+	"shortcuts": [
+		{
+			"name": "Resume",
+			"short_name": "Resume",
+			"description": "Ahmed Habeila's resume",
+			"url": "/resume"
+		}
+	],
+	"description": "Ahmed Habeila's Portfolio"
+}
