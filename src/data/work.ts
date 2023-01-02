@@ -63,7 +63,6 @@ export const work: Workplace[] = [
 						videoUrl: '/calq-charts.webm',
 					},
 				],
-
 				technologies: [
 					'React',
 					'TypeScript',
@@ -78,7 +77,7 @@ export const work: Workplace[] = [
 					'Auth0',
 					'Sentry',
 				],
-				responsibilities: ['Front-end Web App'],
+				// responsibilities: ['Front-end Web App'],
 			},
 		],
 	},
@@ -93,12 +92,12 @@ export const work: Workplace[] = [
 		title: 'Full-stack Web Developer',
 		projects: [
 			{
-				name: 'TwintyThirty',
+				name: 'TwentyThirty',
 				id: 'twentythirty',
 				website: 'https://twentythirty.com/',
 				description:
 					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
-				technologies: ['React', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
+				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
 				responsibilities: ['Website (front-end)'],
 			},
 			{
@@ -109,10 +108,11 @@ export const work: Workplace[] = [
 					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features, multilanguage routing and",
 				technologies: [
 					'React',
+					'Gatsby',
 					'TypeScript',
 					'Material UI',
 					'JSS',
-					'Multilanguage Routing',
+					'Multi-language Routing',
 					'Responsive Design',
 					'I18Next',
 					'Axios',

@@ -1,22 +1,15 @@
-import { Box, Badge, List, ListItem, MenuItem, Text, Anchor, Image, IconButton, Container } from '@hope-ui/solid';
-import { Project as ProjectType, ProjectWithCompany, projects } from '../../data/work';
-import { Show, For, ComponentProps } from 'solid-js';
-import { Navigate, useParams } from '@solidjs/router';
+import { Box, IconButton, Image, Text } from '@hope-ui/solid';
+import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
+import { For, Match, Show, Suspense, Switch, createSignal } from 'solid-js';
 import { styled } from 'solid-styled-components';
+import { Project as ProjectType } from '../../data/work';
 import { colors } from '../../ui/theme';
 import { hexColorWithAlpha } from '../../ui/utils/hexColorWithAlpha';
-import { createSignal, Suspense, Switch, Match, useTransition } from 'solid-js';
-import { render } from 'solid-js/web';
-import {
-	BiRegularChevronsLeft,
-	BiSolidChevronLeft,
-	BiSolidChevronLeftCircle,
-	BiSolidChevronRight,
-} from 'solid-icons/bi';
-import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
-import { HiOutlineChevronLeft, HiSolidChevronLeft } from 'solid-icons/hi';
 
 const transitionDurationMs = 300;
+const switchSlideAfterMs = 10000;
+const duration = `${switchSlideAfterMs / 1000}s`;
+const max = 300;
 
 const StyledVideo = styled('video')({
 	filter: `drop-shadow(0px 0px 10px ${colors.secondary2})`,
@@ -25,34 +18,61 @@ const StyledVideo = styled('video')({
 
 const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 	const [tab, setTab] = createSignal(0);
-	const [pending, start] = useTransition();
-	console.log(`🚀 ~ Carousel ~ pending`, pending());
-	const updateTab = (index: number) => () => start(() => setTab(index));
-	// const prevPage = () => start(() => setTab(tab() === 0 ? tasks.length - 1 : tab() - 1));
-	// const nextPage = () => start(() => setTab(tab() === tasks.length - 1 ? 0 : tab() + 1));
 
 	const [transitioning, setTransitioning] = createSignal(false);
+
+	const [value, setValue] = createSignal(0);
+	const [paused, setPaused] = createSignal(false);
+
+	const activateNextTimerTick = () =>
+		setTimeout(() => {
+			if (!paused()) {
+				const currentValue = value();
+				console.log(`🚀 ~ setTimeout ~ currentValue`, currentValue);
+				if (currentValue < max) setValue(value() + 1);
+				else {
+					setValue(0);
+					nextPage();
+				}
+			}
+			activateNextTimerTick();
+		}, switchSlideAfterMs / max);
+	activateNextTimerTick();
+	const resetTimer = () => {
+		setValue(0);
+	};
+
 	const prevPage = () => {
 		setTransitioning(true);
-
 		setTimeout(() => {
 			setTab(tab() === 0 ? tasks.length - 1 : tab() - 1);
 			setTransitioning(false);
+			resetTimer();
 		}, transitionDurationMs);
 	};
 	const nextPage = () => {
+		// clearTimeout(timer());
 		setTransitioning(true);
-
 		setTimeout(() => {
 			setTab(tab() === tasks.length - 1 ? 0 : tab() + 1);
 			setTransitioning(false);
+			resetTimer();
 		}, transitionDurationMs);
 	};
 
 	return (
-		<Box>
+		<Box
+			onMouseEnter={() => {
+				console.log('enter');
+				setPaused(true);
+			}}
+			onMouseLeave={() => {
+				console.log('leavne');
+				setPaused(false);
+			}}
+		>
 			<Box d="flex" justifyContent="space-between">
-				<Text mt="$3">tasks</Text>
+				<Text mt="$3">Responsibilities</Text>
 				<Box d="flex" gap="$2">
 					<IconButton
 						icon={<FaSolidChevronLeft />}
@@ -60,7 +80,37 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 						onClick={prevPage}
 						disabled={transitioning()}
 					/>
-					<IconButton icon={<FaSolidChevronRight />} aria-label="Next" onClick={nextPage} disabled={transitioning()} />
+					<Box position="relative" w={40}>
+						<IconButton
+							icon={<FaSolidChevronRight />}
+							aria-label="Next"
+							onClick={nextPage}
+							disabled={transitioning()}
+							pos="absolute"
+						/>
+						{/* <Box > */}
+						<svg
+							viewBox="0 0 40 40"
+							width="100%"
+							height="100%"
+							style={{
+								position: 'absolute',
+								'pointer-events': 'none',
+							}}
+							fill="none"
+						>
+							<path
+								d="M 20 0 H 40 V 40 H 0 V 0 Z"
+								stroke="white"
+								stroke-width={2}
+								stroke-dasharray="160"
+								stroke-dashoffset={`${((max - value()) * 160) / max}`}
+							>
+								{/* <animate attributeName="stroke-dashoffset" values="0 2000" dur={duration} repeatCount="indefinite" /> */}
+							</path>
+						</svg>
+						{/* </Box> */}
+					</Box>
 				</Box>
 			</Box>
 			<Box
@@ -83,7 +133,7 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 										w="100%"
 										gap="$8"
 										css={{
-											'@lg': { gridTemplateColumns: '1fr 1fr' },
+											'@lg': { gridTemplateColumns: task.imageUrl || task.videoUrl ? '1fr 1fr' : 'unset' },
 										}}
 									>
 										<Text>{task.description}</Text>
