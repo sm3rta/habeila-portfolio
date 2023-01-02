@@ -3,6 +3,7 @@ import About from './About';
 import Contact from './Contact';
 import Intro from './Intro';
 import Projects from './Projects';
+import Fade from '../../ui/components/Fade';
 
 const Home = () => {
 	return (
@@ -11,10 +12,12 @@ const Home = () => {
 				'& > div:nth-child(even)': { background: 'rgb(0 0 0 / 40%)' },
 			}}
 		>
-			<Intro />
-			<Projects />
-			<About />
-			<Contact />
+			<Fade>
+				<Intro />
+				<Projects />
+				<About />
+				<Contact />
+			</Fade>
 		</Box>
 	);
 };
