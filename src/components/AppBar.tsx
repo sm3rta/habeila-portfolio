@@ -23,7 +23,7 @@ export const AppBar = () => {
 		const work = document.getElementById('work')?.getBoundingClientRect().top ?? 0;
 		const about = document.getElementById('about')?.getBoundingClientRect().top ?? 0;
 		const contact = document.getElementById('contact')?.getBoundingClientRect().top ?? 0;
-		const i = [home, work, about, contact].findIndex((v) => v > 0);
+		const i = [home, work, about, contact].map((v) => v + document.body.offsetHeight / 2).findIndex((v) => v > 0);
 		if (i === -1) setVisibleElement(undefined);
 		else setVisibleElement(sections[i]);
 	}, 10);
@@ -47,7 +47,7 @@ export const AppBar = () => {
 			alignItems="center"
 			zIndex={zIndexes.appBar}
 		>
-			<List d="flex" columnGap="$4">
+			<List d="flex" columnGap="$4" alignItems="baseline">
 				<Link
 					role="listitem"
 					href="/"
@@ -56,14 +56,34 @@ export const AppBar = () => {
 				>
 					Home
 				</Link>
-				<Show when={pathname() === '/'}>
-					<Link role="listitem" href="/" onClick={createScrollHandler('work')} active={visibleElement() === 'work'}>
+				<Box
+					columnGap="$4"
+					maxW={pathname() === '/' ? '200px' : '0px'}
+					mx={pathname() === '/' ? '0' : '-$2'}
+					transition="all 1s ease"
+					display="flex"
+					overflowX="hidden"
+				>
+					<Link
+						small
+						role="listitem"
+						href="/"
+						onClick={createScrollHandler('work')}
+						active={visibleElement() === 'work'}
+					>
 						Work
 					</Link>
-					<Link role="listitem" href="/" onClick={createScrollHandler('about')} active={visibleElement() === 'about'}>
+					<Link
+						small
+						role="listitem"
+						href="/"
+						onClick={createScrollHandler('about')}
+						active={visibleElement() === 'about'}
+					>
 						About
 					</Link>
 					<Link
+						small
 						role="listitem"
 						href="/"
 						onClick={createScrollHandler('contact')}
@@ -71,7 +91,7 @@ export const AppBar = () => {
 					>
 						Contact
 					</Link>
-				</Show>
+				</Box>
 				<Link role="listitem" href="/resume" active={pathname() === '/resume'}>
 					Resume
 				</Link>

@@ -2,11 +2,11 @@ import { Button } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { ComponentProps } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { colors } from '../theme';
+import { colors, theme } from '../theme';
 
-export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean }) => (
+export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean; small?: boolean }) => (
 	<Link title={props.children} role="navigation" size="sm" variant="ghost" as={A} {...props} />
-))(({ active }) => ({
+))(({ active, small }) => ({
 	backgroundColor: 'unset !important',
 	height: '36px',
 	alignItems: 'center',
@@ -24,5 +24,10 @@ export const Link = styled((props: ComponentProps<typeof Button> & { active?: bo
 	backgroundPosition: `bottom left`,
 	...(active && {
 		backgroundSize: '100% 2px',
+	}),
+
+	fontSize: theme.darkTheme.fontSizes.lg,
+	...(small && {
+		fontSize: theme.darkTheme.fontSizes.sm,
 	}),
 }));
