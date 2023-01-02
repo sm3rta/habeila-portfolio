@@ -39,6 +39,7 @@ const StarBase = (props: ComponentProps<typeof Box>) => {
 export const Star = () => {
 	const [top, setTop] = createSignal('-1000px');
 	const [delay, setDelay] = createSignal(0);
+	const [bodyScrollHeight, setBodyScrollHeight] = createSignal<number>();
 
 	const width = randRangeInt(15, 40);
 
@@ -46,12 +47,18 @@ export const Star = () => {
 		// console.log('updating top');
 		const fab = document.getElementById('fab');
 		fab && (fab.textContent = `${document.body.scrollHeight}`);
-
-		return setTop(`${randRangeInt(HEADER_HEIGHT, document.body.scrollHeight)}px`);
+		setBodyScrollHeight(document.body.scrollHeight);
+		return setTop(`${randRangeInt(HEADER_HEIGHT, document.body.scrollHeight - 40 /* footer */)}px`);
 	};
 
-	window.addEventListener('resize', updateTop);
-	onCleanup(() => window.removeEventListener('resize', updateTop));
+	const resizeHandler = () => {
+		if (document.body.scrollHeight !== bodyScrollHeight()) {
+			updateTop();
+		}
+	};
+
+	window.addEventListener('resize', resizeHandler);
+	onCleanup(() => window.removeEventListener('resize', resizeHandler));
 
 	const leftRandom = randRangeInt(...leftRange);
 	const left = `${leftRandom}%`;
