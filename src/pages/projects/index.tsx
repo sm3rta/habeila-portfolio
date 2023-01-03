@@ -11,7 +11,7 @@ export default function Project() {
 
 	return (
 		<Fade>
-			<ProjectLayoutDetailed project={project} />;
+			<ProjectLayoutDetailed project={project} />
 		</Fade>
 	);
 }

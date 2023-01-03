@@ -1,4 +1,4 @@
-import { Box, IconButton, Image, Text } from '@hope-ui/solid';
+import { Box, Flex, IconButton, Image, Text } from '@hope-ui/solid';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
 import { For, Match, Show, Suspense, Switch, createSignal, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
@@ -41,9 +41,9 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 
 	return (
 		<Box mt="$8" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-			<Box d="flex" justifyContent="space-between">
+			<Flex justifyContent="space-between">
 				<Text>Responsibilities</Text>
-				<Box d="flex" gap="$2">
+				<Flex gap="$2">
 					<IconButton
 						icon={<FaSolidChevronLeft />}
 						aria-label="Previous"
@@ -60,8 +60,8 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 						/>
 						{progressBar}
 					</Box>
-				</Box>
-			</Box>
+				</Flex>
+			</Flex>
 			<Box
 				mt="$2"
 				d="flex"

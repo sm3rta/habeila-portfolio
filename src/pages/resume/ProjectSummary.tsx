@@ -1,4 +1,4 @@
-import { Anchor, Badge, Box, Text } from '@hope-ui/solid';
+import { Anchor, Badge, Box, Flex, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
 import { ProjectWithCompany } from '../../data/work';
 
@@ -9,7 +9,7 @@ const renderProjectTitle = (name: string, link?: string) => {
 };
 
 const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
-	<Box w="100%" d="flex" flexDirection="column" justifyContent="center">
+	<Flex w="100%" direction="column" justifyContent="center">
 		<Box>
 			{renderProjectTitle(project.name, project.website)}
 			<Text as="span" fontSize="$sm">
@@ -19,19 +19,19 @@ const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
 		<Box pl="$2">
 			<Show when={project.technologies?.length}>
 				<Text mt="$3">Technologies used</Text>
-				<Box mt="$2" d="flex" gap="$2" flexWrap="wrap">
+				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.technologies}>{(tech) => <Badge>{tech}</Badge>}</For>
-				</Box>
+				</Flex>
 			</Show>
 
 			<Show when={project.responsibilities?.length}>
 				<Text mt="$3">My responsibilities</Text>
-				<Box mt="$2" d="flex" gap="$2" flexWrap="wrap">
+				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
-				</Box>
+				</Flex>
 			</Show>
 		</Box>
-	</Box>
+	</Flex>
 );
 
 export default ProjectSummary;

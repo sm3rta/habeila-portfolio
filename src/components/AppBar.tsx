@@ -1,4 +1,4 @@
-import { Box, List } from '@hope-ui/solid';
+import { Box, Flex, List } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
 import { Show, createSignal, onCleanup, onMount } from 'solid-js';
@@ -36,13 +36,12 @@ export const AppBar = () => {
 	});
 
 	return (
-		<Box
+		<Flex
 			position="fixed"
 			h={HEADER_HEIGHT}
 			backgroundColor={colors.secondary1}
 			top={0}
 			w="100%"
-			d="flex"
 			justifyContent="center"
 			alignItems="center"
 			zIndex={zIndexes.appBar}
@@ -96,6 +95,6 @@ export const AppBar = () => {
 					Resume
 				</Link>
 			</List>
-		</Box>
+		</Flex>
 	);
 };

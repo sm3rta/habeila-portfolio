@@ -1,4 +1,4 @@
-import { Anchor, Box, Divider, List, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, Box, Divider, Flex, List, ListItem, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
 import { Workplace } from '../../data/work';
 import ProjectSummary from './ProjectSummary';
@@ -10,13 +10,13 @@ const renderCompany = (name: string, link?: string) => {
 };
 
 export const CompanyProjects = ({ company }: { company: Workplace }) => (
-	<Box h="100%" w="100%" d="flex" flexDirection="column" justifyContent="center">
-		<Box d="flex" justifyContent="space-between" alignItems="center">
+	<Flex h="100%" w="100%" direction="column" justifyContent="center">
+		<Flex justifyContent="space-between" alignItems="center">
 			<Text fontSize="$lg" color="$primary5" lineHeight="24px">
 				{company.title}
 			</Text>
 			{renderCompany(company.name, company.website)}
-		</Box>
+		</Flex>
 		<Text fontSize="$xs" fontWeight="$bold">
 			{company.from} - {company.to}
 		</Text>
@@ -37,5 +37,5 @@ export const CompanyProjects = ({ company }: { company: Workplace }) => (
 				)}
 			</For>
 		</List>
-	</Box>
+	</Flex>
 );

@@ -1,4 +1,4 @@
-import { Box, Button, Text } from '@hope-ui/solid';
+import { Box, Button, Flex, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { For, createSignal } from 'solid-js';
 import { projects } from '../../data/work';
@@ -23,10 +23,9 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : `0 0 0px 0px ${boxShadowColor}`}
 			transition="all 0.2s ease-in-out"
 		>
-			<Box
+			<Flex
 				w={TILE_SIZE}
 				h={TILE_SIZE}
-				d="flex"
 				placeContent="center"
 				alignItems="center"
 				textAlign="center"
@@ -36,7 +35,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				css={{ transition: 'all 0.2s ease-in-out' }}
 			>
 				<Text fontSize="$md">{project.name}</Text>
-			</Box>
+			</Flex>
 			<Button
 				w={TILE_SIZE}
 				h={TILE_SIZE}
