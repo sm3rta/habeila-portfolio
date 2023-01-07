@@ -12,8 +12,8 @@ const Resume = () => (
 			))}
 		</Timeline>
 
-		<Center mt="$8">
-			<Button as={Anchor} variant="outline" href="/assets/ahmed habeila's cv.pdf" download="Ahmed Habeila's resume">
+		<Center mt="$24">
+			<Button as={Anchor} variant="outline" href="/assets/Ahmed Habeila's CV.pdf" download="Ahmed Habeila's resume">
 				Download resume as PDF
 			</Button>
 		</Center>
