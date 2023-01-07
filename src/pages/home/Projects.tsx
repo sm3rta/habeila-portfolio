@@ -60,7 +60,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 };
 
 const Projects = () => (
-	<Section flexWrap="wrap" gap="$4" id="work" flexDirection="row">
+	<Section flexWrap="wrap" gap="$6" id="work" flexDirection="row">
 		<For each={projects}>{(project) => <ProjectTile project={project} />}</For>
 	</Section>
 );

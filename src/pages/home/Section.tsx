@@ -10,10 +10,9 @@ const Section = (props: ContainerProps) => (
 			alignContent="center"
 			flexDirection="column"
 			w="fit-content"
-			css={{
-				p: '2rem',
-				'@lg': { px: '4rem', py: '8rem' },
-				...props.css,
+			p={{
+				'@initial': '$6',
+				'@lg': '$4 $8',
 			}}
 			{...props}
 		/>

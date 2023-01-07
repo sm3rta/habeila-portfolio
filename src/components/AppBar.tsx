@@ -59,7 +59,7 @@ export const AppBar = () => {
 					columnGap="$4"
 					maxW={pathname() === '/' ? '200px' : '0px'}
 					mx={pathname() === '/' ? '0' : '-$1_5'}
-					transition="all 1s ease-in-out"
+					transition="all 0.5s ease-in-out"
 					display="flex"
 					overflowX="hidden"
 					p={pathname() === '/' ? '$1' : '0'}

@@ -1,12 +1,21 @@
 import { Container, Image, Text } from '@hope-ui/solid';
 import { TILE_SIZE } from '../../ui/theme';
 import Section from './Section';
+import { styled } from 'solid-styled-components';
+import { ComponentProps } from '@stitches/core';
+
+const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...props} />)({
+	'@keyframes anim': {
+		'0%': { boxShadow: 'white 0 0 10px -7px' },
+		'100%': { boxShadow: 'white 0 0 20px -7px' },
+	},
+});
 
 export default function About() {
 	return (
 		<Section id="about">
 			<Container>
-				<Image
+				<StyledImage
 					loading="lazy"
 					fallback={<div />}
 					srcset="./assets/self.webp 990w, ./assets/self-small.webp 140w"
@@ -16,8 +25,9 @@ export default function About() {
 					w={TILE_SIZE}
 					h={TILE_SIZE}
 					mx="auto"
+					animation="anim 5s 0s ease-in-out infinite alternate"
 				/>
-				<Text mt="$4">
+				<Text mt="$10">
 					While my career currently revolves around web development, I love everything programming which includes game
 					development, Python, AHK and more
 				</Text>
