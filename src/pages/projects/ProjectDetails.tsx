@@ -10,7 +10,15 @@ const renderProjectTitle = (name: string, link?: string) => {
 };
 
 const ProjectLayoutDetailed = ({ project }: { project: ProjectWithCompany }) => (
-	<Flex w="100%" direction="column" justifyContent="center" px="$4">
+	<Flex
+		w="100%"
+		direction="column"
+		justifyContent="center"
+		p={{
+			'@initial': '0 $4',
+			'@lg': '$6 $8',
+		}}
+	>
 		<Box>
 			{renderProjectTitle(project.name, project.website)}
 			<Text as="span" fontSize="$sm">
