@@ -15,7 +15,7 @@ export const Timeline = ({ children }: { children: JSX.Element[] }) => (
 							<Box h={side} w={side} borderRadius="50%" border={`4px solid ${colors.secondary3}`}></Box>
 							<Box flex={1} w="2px" bg={colors.secondary2}></Box>
 						</Box>
-						<Box d="flex" flexDirection="column">
+						<Box d="flex" flexDirection="column" flex={1}>
 							<Box pb={index() !== children.length - 1 ? '$4' : 0}>{child}</Box>
 							{index() !== children.length - 1 && <Divider my="$4" />}
 						</Box>

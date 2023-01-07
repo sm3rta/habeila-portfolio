@@ -17,9 +17,11 @@ export const CompanyProjects = ({ company }: { company: Workplace }) => (
 			</Text>
 			{renderCompany(company.name, company.website)}
 		</Flex>
-		<Text fontSize="$xs" fontWeight="$bold">
-			{company.from} - {company.to}
-		</Text>
+		<Show when={company.from && company.to}>
+			<Text fontSize="$xs" fontWeight="$bold">
+				{company.from} - {company.to}
+			</Text>
+		</Show>
 		<Show when={company.description}>
 			<Text mt="$4">{company.description}</Text>
 		</Show>

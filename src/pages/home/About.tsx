@@ -9,7 +9,7 @@ export default function About() {
 				<Image
 					loading="lazy"
 					fallback={<div />}
-					srcset="self.webp 990w, self-small.webp 140w"
+					srcset="./assets/self.webp 990w, ./assets/self-small.webp 140w"
 					sizes="(max-width: 480px) 140px, 990px"
 					alt="self image"
 					borderRadius="50%"

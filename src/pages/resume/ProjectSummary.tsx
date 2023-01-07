@@ -16,7 +16,7 @@ const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
 				: {project.description}
 			</Text>
 		</Box>
-		<Box pl="$2">
+		<Box>
 			<Show when={project.technologies?.length}>
 				<Text mt="$3">Technologies used</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
@@ -25,7 +25,7 @@ const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
 			</Show>
 
 			<Show when={project.responsibilities?.length}>
-				<Text mt="$3">My responsibilities</Text>
+				<Text mt="$3">What I worked on</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
 				</Flex>

@@ -61,7 +61,7 @@ export const AppBar = () => {
 					mx={pathname() === '/' ? '0' : '-$2'}
 					transition="all 1s ease"
 					display="flex"
-					overflowX="hidden"
+					overflowX={pathname() === '/' ? 'unset' : 'hidden'}
 				>
 					<Link
 						small
@@ -69,6 +69,7 @@ export const AppBar = () => {
 						href="/"
 						onClick={createScrollHandler('work')}
 						active={visibleElement() === 'work'}
+						tabIndex={pathname() === '/' ? 0 : -1}
 					>
 						Work
 					</Link>
@@ -78,6 +79,7 @@ export const AppBar = () => {
 						href="/"
 						onClick={createScrollHandler('about')}
 						active={visibleElement() === 'about'}
+						tabIndex={pathname() === '/' ? 0 : -1}
 					>
 						About
 					</Link>
@@ -87,6 +89,7 @@ export const AppBar = () => {
 						href="/"
 						onClick={createScrollHandler('contact')}
 						active={visibleElement() === 'contact'}
+						tabIndex={pathname() === '/' ? 0 : -1}
 					>
 						Contact
 					</Link>

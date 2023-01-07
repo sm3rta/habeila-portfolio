@@ -28,7 +28,6 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 		}, transitionDurationMs);
 	};
 	const nextPage = () => {
-		// clearTimeout(timer());
 		setTransitioning(true);
 		setTimeout(() => {
 			setTab(tab() === tasks.length - 1 ? 0 : tab() + 1);
@@ -37,30 +36,34 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 		}, transitionDurationMs);
 	};
 
-	const { progressBar, setPaused, resetProgress } = useLoopingSquareProgressBar(nextPage);
+	const { progressBar, setPaused, resetProgress } = useLoopingSquareProgressBar(
+		tasks.length > 1 ? nextPage : undefined
+	);
 
 	return (
 		<Box mt="$8" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
 			<Flex justifyContent="space-between">
 				<Text>Responsibilities</Text>
-				<Flex gap="$2">
-					<IconButton
-						icon={<FaSolidChevronLeft />}
-						aria-label="Previous"
-						onClick={prevPage}
-						disabled={transitioning()}
-					/>
-					<Box position="relative" w={40}>
+				<Show when={tasks.length > 1}>
+					<Flex gap="$2">
 						<IconButton
-							icon={<FaSolidChevronRight />}
-							aria-label="Next"
-							onClick={nextPage}
+							icon={<FaSolidChevronLeft />}
+							aria-label="Previous"
+							onClick={prevPage}
 							disabled={transitioning()}
-							pos="absolute"
 						/>
-						{progressBar}
-					</Box>
-				</Flex>
+						<Box position="relative" w={40}>
+							<IconButton
+								icon={<FaSolidChevronRight />}
+								aria-label="Next"
+								onClick={nextPage}
+								disabled={transitioning()}
+								pos="absolute"
+							/>
+							{progressBar}
+						</Box>
+					</Flex>
+				</Show>
 			</Flex>
 			<Box
 				mt="$2"
@@ -87,34 +90,37 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 									>
 										<Text>{task.description}</Text>
 
-										<Show when={task.imageUrl || task.videoUrl}>
-											{/* grid box */}
-											<Box>
-												{/* video container */}
-												<Box pos="relative">
-													<Show when={task.videoUrl}>
-														<StyledVideo autoplay loop>
-															<source src={task.videoUrl} type="video/webm" />
-														</StyledVideo>
-													</Show>
-													<Show when={task.imageUrl}>
-														<Image src={task.imageUrl} />
-													</Show>
-													{/* shadow */}
-													<Box
-														css={{
-															pointerEvents: 'none',
-															position: 'absolute',
-															width: '100%',
-															height: '100%',
-															boxShadow: `${hexColorWithAlpha(colors.secondary1, 0.6)} 0px 0px 20px 0px inset`,
-															top: 0,
-															left: 0,
-														}}
-													/>
-												</Box>
-											</Box>
-										</Show>
+										{/* video/image container */}
+										<Box
+											pos="relative"
+											minH={{
+												'@initial': '50vh',
+												'@lg': 'calc(50vh * 2 / 3)',
+											}}
+										>
+											<Show when={task.videoUrl}>
+												<StyledVideo autoplay loop>
+													<source src={task.videoUrl} type="video/webm" />
+												</StyledVideo>
+											</Show>
+											<Show when={task.imageUrl}>
+												<Image src={task.imageUrl} />
+											</Show>
+											{/* shadow */}
+											<Show when={task.imageUrl || task.videoUrl}>
+												<Box
+													css={{
+														pointerEvents: 'none',
+														position: 'absolute',
+														width: '100%',
+														height: '100%',
+														boxShadow: `${hexColorWithAlpha(colors.secondary1, 0.6)} 0px 0px 20px 0px inset`,
+														top: 0,
+														left: 0,
+													}}
+												/>
+											</Show>
+										</Box>
 									</Box>
 								</Match>
 							)}

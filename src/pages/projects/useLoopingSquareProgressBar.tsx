@@ -8,20 +8,22 @@ const StyledPath = styled('path')({
 	transition: `stroke-dashoffset ${switchSlideAfterMs / sections}ms linear`,
 });
 
-export const useLoopingSquareProgressBar = (callback: () => void) => {
+export const useLoopingSquareProgressBar = (callback?: () => void) => {
 	const [value, setValue] = createSignal(0);
 	const [paused, setPaused] = createSignal(false);
 
-	const timer = setInterval(() => {
-		if (!paused()) {
-			const currentValue = value();
-			if (currentValue < sections) setValue(value() + 1);
-			else {
-				setValue(0);
-				callback();
-			}
-		}
-	}, switchSlideAfterMs / sections);
+	const timer = callback
+		? setInterval(() => {
+				if (!paused()) {
+					const currentValue = value();
+					if (currentValue < sections) setValue(value() + 1);
+					else {
+						setValue(0);
+						callback();
+					}
+				}
+		  }, switchSlideAfterMs / sections)
+		: undefined;
 
 	onCleanup(() => {
 		clearInterval(timer);

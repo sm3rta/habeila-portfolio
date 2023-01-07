@@ -12,22 +12,55 @@ export type Project = {
 
 export type Workplace = {
 	name: string;
-	from: string;
-	to: string;
-	description: string;
-	title: string;
+	from?: string;
+	to?: string;
+	description?: string;
+	title?: string;
 	projects: Project[];
 	website?: string;
 };
 
 export const work: Workplace[] = [
 	{
+		name: 'Self-employed',
+		title: 'Full-stack Web Developer',
+		projects: [
+			{
+				name: 'Portfolio website',
+				id: 'portfolio-website',
+				website: 'https://habeila-portfolio.netlify.app/',
+				description: (
+					<>
+						This portfolio website is built with Solid.js and a lot of love.
+						<br />
+						All animations are vanilla!
+						<br />
+						<br />
+					</>
+				),
+				technologies: ['Solid.js', 'Astro', 'Parallax effect', 'TypeScript', 'Sass', 'Styled components'],
+				tasks: [
+					{
+						description: "It's scored 100 on Google Lighthouse on both mobile and desktop.",
+						imageUrl: '/assets/projects/portfolio/portfolio-lighthouse.webp',
+					},
+					{
+						description:
+							'You can interact with the stars by hovering over (or on mobile, touching) them and they will disappear,\
+							 skip forward and re-appear with a different color.',
+					},
+				],
+			},
+		],
+	},
+
+	{
 		name: 'Calqulate',
 		website: 'https://calqulate.io/',
 		description:
 			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
 		from: 'November 2020',
-		to: 'January 2022',
+		to: 'January 2023',
 		title: 'Front-end Web Developer',
 		projects: [
 			{
@@ -60,7 +93,14 @@ export const work: Workplace[] = [
 						description:
 							'Created a proprietary charts library using D3 with 10 different types of charts animations,\
 							interactive tooltips, legends, placeholders with randomly generated data',
-						videoUrl: '/calq-charts.webm',
+						videoUrl: '/assets/projects/calqulate/calq-charts.webm',
+					},
+					{
+						description: 'Created an integration with Stripe for the users to pay for subscriptions',
+					},
+					{
+						description:
+							'Created a proprietary types SDK used by the back-end, published on NPM and used on the front-end, to ensure API type safety between front-end and back-end',
 					},
 				],
 				technologies: [
@@ -73,11 +113,13 @@ export const work: Workplace[] = [
 					'Zod',
 					'D3',
 					'Hasura',
+					'Stripe Payment Gateway',
 					'GraphQL',
 					'Auth0',
+					'Turborepo',
 					'Sentry',
 				],
-				// responsibilities: ['Front-end Web App'],
+				responsibilities: ['Front-end Web App'],
 			},
 		],
 	},
@@ -105,7 +147,7 @@ export const work: Workplace[] = [
 				id: 'bmw-foundation',
 				website: 'https://bmw-foundation.org/',
 				description:
-					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features, multilanguage routing and",
+					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features and multi-language routing",
 				technologies: [
 					'React',
 					'Gatsby',
@@ -164,7 +206,9 @@ export const work: Workplace[] = [
 				name: 'Netjeek',
 				id: 'netjeek',
 				description:
-					"First project I've worked on that's went live, it's trans-shipping system designed to facilitate the purchase and delivery of goods to countries where customers can’t place an order to international e-retailers directly",
+					"First project I've worked on that's went live,\
+					 it's trans-shipping system designed to facilitate the purchase and delivery of goods\
+					  to countries where customers can’t place an order to international e-retailers directly",
 				technologies: [
 					'React',
 					'Javascript',
@@ -179,6 +223,16 @@ export const work: Workplace[] = [
 					'Google Maps',
 					'JSDoc',
 					'Jest Enzyme',
+				],
+				tasks: [
+					{
+						description:
+							'Created an integration with Google maps where the user can pinpoint their\
+							delivery location on the map with automatic location detection',
+					},
+					{
+						description: 'Created an integration with Stripe for the users to pay for shipments',
+					},
 				],
 				responsibilities: ['eCommerce Website (front-end)', 'System Analysis', 'Mock API creation'],
 			},

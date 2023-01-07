@@ -18,6 +18,9 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			h={TILE_SIZE}
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
+			onFocus={() => setHover(true)}
+			onBlur={() => setHover(false)}
+			tabIndex={0}
 			borderRadius="50%"
 			overflow="hidden"
 			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : `0 0 0px 0px ${boxShadowColor}`}
@@ -37,6 +40,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				<Text fontSize="$md">{project.name}</Text>
 			</Flex>
 			<Button
+				tabIndex={-1}
 				w={TILE_SIZE}
 				h={TILE_SIZE}
 				css={{ transition: 'all 0.2s ease-in-out', whiteSpace: 'normal' }}
