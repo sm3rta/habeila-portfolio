@@ -21,7 +21,7 @@ export default function About() {
 					While my career currently revolves around web development, I love everything programming which includes game
 					development, Python, AHK and more
 				</Text>
-				<Text mt="$4">I like gaming and food. I also love to travel and explore new places.</Text>
+				<Text mt="$4">I like gaming, food and photography. I also love to travel and explore new places.</Text>
 			</Container>
 		</Section>
 	);

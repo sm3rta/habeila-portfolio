@@ -17,7 +17,7 @@ import {
 	ProgressIndicator,
 	AsProp,
 } from '@hope-ui/solid';
-import { introText, work } from '../../data/work';
+import { introText, telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
 import Fade from '../../ui/components/Fade';
 import { CompanyProjects } from '../resume/CompanyProjects';
 import { Timeline } from '../resume/Timeline';
@@ -76,10 +76,10 @@ const ResumeRaw = () => (
 							HabeilaAhmed@gmail.com
 						</Text>
 					</StyledFlexLink>
-					<StyledFlexLink href="tel:+201015178686">
+					<StyledFlexLink href={`tel:+${telephoneNumber}`}>
 						<RiDeviceSmartphoneLine size={ICON_SIZE} color={secondaryTextAndIconColor} />
 						<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
-							+20 (101) 517-8686
+							{telephoneNumberStylized}
 						</Text>
 					</StyledFlexLink>
 				</Flex>

@@ -4,7 +4,7 @@ import { HEADER_HEIGHT } from '../../ui/theme';
 const Section = (props: ContainerProps) => (
 	<Box>
 		<Container
-			height={`calc(100vh - ${HEADER_HEIGHT}px)`}
+			minH={`calc(100vh - ${HEADER_HEIGHT}px)`}
 			d="flex"
 			placeContent="center"
 			alignContent="center"

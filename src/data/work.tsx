@@ -34,8 +34,6 @@ export const work: Workplace[] = [
 						This portfolio website is built with Solid.js and a lot of love.
 						<br />
 						All animations are vanilla!
-						<br />
-						<br />
 					</>
 				),
 				technologies: ['Solid.js', 'Astro', 'Parallax effect', 'TypeScript', 'Sass', 'Styled components'],
@@ -48,6 +46,9 @@ export const work: Workplace[] = [
 						description:
 							'You can interact with the stars by hovering over (or on mobile, touching) them and they will disappear,\
 							 skip forward and re-appear with a different color.',
+					},
+					{
+						description: "It's fully accessible and keyboard tabbable!",
 					},
 				],
 			},
@@ -248,3 +249,6 @@ export const introText =
 	'I am a senior software engineer with 4 years of experience. \
 My work extends from system design and analysis to complete implementation, \
 but front-end web development is where my passion truly lies working with React, Vue and Solid.js.';
+
+export const telephoneNumber = '+201015178686';
+export const telephoneNumberStylized = '+20 (101) 517-8686';

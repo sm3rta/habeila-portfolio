@@ -46,7 +46,7 @@ export const AppBar = () => {
 			alignItems="center"
 			zIndex={zIndexes.appBar}
 		>
-			<List d="flex" columnGap="$4" alignItems="baseline">
+			<List d="flex" columnGap="$3" alignItems="baseline">
 				<Link
 					role="listitem"
 					href="/"
@@ -58,10 +58,11 @@ export const AppBar = () => {
 				<Box
 					columnGap="$4"
 					maxW={pathname() === '/' ? '200px' : '0px'}
-					mx={pathname() === '/' ? '0' : '-$2'}
-					transition="all 1s ease"
+					mx={pathname() === '/' ? '0' : '-$1_5'}
+					transition="all 1s ease-in-out"
 					display="flex"
-					overflowX={pathname() === '/' ? 'unset' : 'hidden'}
+					overflowX="hidden"
+					p={pathname() === '/' ? '$1' : '0'}
 				>
 					<Link
 						small

@@ -84,7 +84,7 @@ export const Star = () => {
 			onMouseEnter={() => {
 				setBackgroundColor('transparent');
 				setTimeout(() => {
-					setDelay(delay() - 4);
+					setDelay(delay() - 8);
 					setBackgroundColor(generateRandomColor(starAlpha));
 				}, interactionDelayMs);
 			}}
