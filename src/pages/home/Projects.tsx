@@ -24,7 +24,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			borderRadius="50%"
 			overflow="hidden"
 			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : `0 0 0px 0px ${boxShadowColor}`}
-			transition="all 0.2s ease-in-out"
+			transition="all 0.3s ease-in-out"
 		>
 			<Flex
 				w={TILE_SIZE}
@@ -35,7 +35,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				zIndex={zIndexes.star}
 				backgroundColor={backgroundColor}
 				opacity={hover() ? 0 : 1}
-				css={{ transition: 'all 0.2s ease-in-out' }}
+				css={{ transition: 'all 0.3s ease-in-out' }}
 			>
 				<Text fontSize="$md">{project.name}</Text>
 			</Flex>
@@ -43,7 +43,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				tabIndex={-1}
 				w={TILE_SIZE}
 				h={TILE_SIZE}
-				css={{ transition: 'all 0.2s ease-in-out', whiteSpace: 'normal' }}
+				css={{ transition: 'all 0.3s ease-in-out', whiteSpace: 'normal' }}
 				opacity={hover() ? 1 : 0}
 				position="absolute"
 				top={0}

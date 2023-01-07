@@ -104,10 +104,10 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 												</StyledVideo>
 											</Show>
 											<Show when={task.imageUrl}>
-												<Image src={task.imageUrl} />
+												<Image src={task.imageUrl} zIndex={2} pos="relative" />
 											</Show>
 											{/* shadow */}
-											<Show when={task.imageUrl || task.videoUrl}>
+											<Show when={task.videoUrl}>
 												<Box
 													css={{
 														pointerEvents: 'none',

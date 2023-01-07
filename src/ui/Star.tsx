@@ -17,7 +17,7 @@ const clipPath = `polygon(0 50%, \
 
 const leftRange = [-50, 150] as const;
 const speedRange = [0.1, 0.7] as const;
-const starAlpha = 0.3;
+const starAlpha = 0.4;
 const interactionDelayMs = 500;
 
 const StarBase = (props: ComponentProps<typeof Box>) => (
