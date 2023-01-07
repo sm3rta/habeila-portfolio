@@ -1,46 +1,36 @@
 import {
-	Center,
-	Button,
-	Anchor,
-	HopeProvider,
-	Flex,
-	Text,
-	IconButton,
+	AsProp,
+	Badge,
 	Box,
-	List,
-	ListItem,
+	Divider,
+	Flex,
 	Grid,
 	GridItem,
-	Divider,
-	Badge,
+	HopeProvider,
 	Progress,
 	ProgressIndicator,
-	AsProp,
+	Text,
 } from '@hope-ui/solid';
-import { introText, telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
-import Fade from '../../ui/components/Fade';
-import { CompanyProjects } from '../resume/CompanyProjects';
-import { Timeline } from '../resume/Timeline';
-import { EmailAndTelephone, socials } from '../home/Contact';
-import { ComponentProps, For } from 'solid-js';
-import { theme } from '../../ui/theme';
+import { AiOutlineGithub } from 'solid-icons/ai';
 import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine } from 'solid-icons/ri';
+import { ComponentProps, For } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { AiOutlineGithub } from 'solid-icons/ai';
+import { introText, telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
+import { theme } from '../../ui/theme';
+import { socials } from '../home/Contact';
+import { CompanyProjects } from '../resume/CompanyProjects';
+import { Timeline } from '../resume/Timeline';
 
 const ICON_SIZE = 20;
 
 const secondaryTextAndIconColor = 'var(--hope-colors-neutral8)';
 
-const StyledDivider = styled((props: any) => <Divider {...props} />)(({ theme }) => {
-	console.log(`🚀 ~ StyledDivider ~ theme`, theme);
-	return {
-		marginBlock: '1rem',
-		backgroundColor: 'var(--hope-colors-info12)',
-		height: '2px',
-	};
-});
+const StyledDivider = styled((props: any) => <Divider {...props} />)(({ theme }) => ({
+	marginBlock: '1rem',
+	backgroundColor: 'var(--hope-colors-info12)',
+	height: '2px',
+}));
 
 const StyledFlexLink = (props: ComponentProps<typeof Flex> & AsProp<'a'>) => (
 	<Flex alignItems="center" as="a" target="_blank" {...props} />
@@ -117,38 +107,6 @@ const ResumeRaw = () => (
 						))}
 					</Timeline>
 				</Box>
-
-				<Flex direction="column" mt="$8">
-					<Text fontSize="$lg" fontWeight="$bold">
-						EDUCATION
-					</Text>
-					<StyledDivider />
-
-					<Text fontWeight="$bold">Computer Science and Automatic Control</Text>
-					<Text>Faculty of Engineering - Tanta University</Text>
-					<Text fontSize="$sm">2014 - 2019</Text>
-				</Flex>
-
-				<Flex direction="column" mt="$8">
-					<Text fontSize="$lg" fontWeight="$bold">
-						GRADUATION PROJECT{' '}
-					</Text>
-					<StyledDivider />
-					<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework">
-						<Text mr="$2" fontWeight="$bold">
-							An Express-like C++ web application framework
-						</Text>
-						<AiOutlineGithub size={ICON_SIZE} color="$primary5" />
-					</StyledFlexLink>
-					<Text>
-						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
-						build full fledged back-end multi-threaded api servers and connect it to the desired database in C++ that
-						also supports middleware
-					</Text>
-					<Flex gap="$2" wrap="wrap" mt="$4">
-						<For each={['C++17', 'CGI', 'Apache', 'Multithreading', 'Linux']}>{(item) => <Badge>{item}</Badge>}</For>
-					</Flex>
-				</Flex>
 			</GridItem>
 			<GridItem flexDirection="column">
 				<Text fontSize="$lg" fontWeight="$bold">
@@ -278,6 +236,38 @@ const ResumeRaw = () => (
 								(Coursera)
 							</Text>
 						</Flex>
+					</Flex>
+				</Flex>
+
+				<Flex direction="column" mt="$8">
+					<Text fontSize="$lg" fontWeight="$bold">
+						EDUCATION
+					</Text>
+					<StyledDivider />
+
+					<Text fontWeight="$bold">Computer Science and Automatic Control</Text>
+					<Text>Faculty of Engineering - Tanta University</Text>
+					<Text fontSize="$sm">2014 - 2019</Text>
+				</Flex>
+
+				<Flex direction="column" mt="$8">
+					<Text fontSize="$lg" fontWeight="$bold">
+						GRADUATION PROJECT{' '}
+					</Text>
+					<StyledDivider />
+					<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="block">
+						<Text mr="$2" fontWeight="$bold" d="contents" as="span">
+							An Express-like C++ web application framework
+						</Text>
+						<AiOutlineGithub size={ICON_SIZE} color="$primary5" style={{ display: 'inline', 'margin-left': '8px' }} />
+					</StyledFlexLink>
+					<Text>
+						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
+						build full fledged back-end multi-threaded api servers and connect it to the desired database in C++ that
+						also supports middleware
+					</Text>
+					<Flex gap="$2" wrap="wrap" mt="$4">
+						<For each={['C++17', 'CGI', 'Apache', 'Multithreading', 'Linux']}>{(item) => <Badge>{item}</Badge>}</For>
 					</Flex>
 				</Flex>
 			</GridItem>

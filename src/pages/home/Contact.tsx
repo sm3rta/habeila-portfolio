@@ -63,7 +63,7 @@ export default function Contact() {
 	return (
 		<Section flexDirection="column" id="contact">
 			<EmailAndTelephone />
-			<Box d="flex" columnGap="$4" mt="$8" justifyContent="space-between">
+			<Box d="flex" columnGap="$4" mt="$8">
 				<For each={socials}>
 					{({ href, Icon }) => (
 						<IconButton as="a" href={href} target="_blank" aria-label={href} icon={<Icon size={ICON_SIZE} />} />
