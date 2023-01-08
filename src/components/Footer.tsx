@@ -1,9 +1,9 @@
 import { Box, Text } from '@hope-ui/solid';
-import { zIndexes } from '../ui/theme';
+import { HEADER_HEIGHT, zIndexes } from '../ui/theme';
 
 export const Footer = () => (
 	<Box
-		minH="100vh"
+		minH={`calc(100vh - ${HEADER_HEIGHT}px)`}
 		display="flex"
 		flexDirection="column"
 		justifyContent="flex-end"
