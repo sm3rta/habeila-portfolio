@@ -88,7 +88,7 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 											'@lg': { gridTemplateColumns: task.imageUrl || task.videoUrl ? '1fr 1fr' : 'unset' },
 										}}
 									>
-										<Text>{task.description}</Text>
+										<Text>{typeof task.description === 'function' ? task.description() : task.description}</Text>
 
 										{/* video/image container */}
 										<Box

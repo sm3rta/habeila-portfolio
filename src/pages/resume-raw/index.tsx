@@ -43,9 +43,16 @@ const ResumeRaw = () => (
 				colors: { primary5: '#00254d' },
 				fontSizes: theme.darkTheme.fontSizes,
 			},
-
 			components: {
-				// Text: { baseStyle: { my: '$2' } },
+				Anchor: {
+					baseStyle: {
+						textDecoration: 'underline',
+						_hover: {
+							color: 'var(--hope-colors-primary11)',
+							'& *': { color: 'var(--hope-colors-primary11)' },
+						},
+					},
+				},
 				Badge: { baseStyle: { textTransform: 'none' } },
 			},
 		}}

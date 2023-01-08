@@ -106,5 +106,16 @@ export const theme = {
 				},
 			},
 		},
+		Anchor: {
+			baseStyle: {
+				textDecoration: 'underline',
+				_hover: {
+					color: colors.secondary5,
+					'& *': {
+						color: colors.secondary5,
+					},
+				},
+			},
+		},
 	},
 } as const satisfies HopeThemeConfig;

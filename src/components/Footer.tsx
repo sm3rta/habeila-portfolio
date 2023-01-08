@@ -21,6 +21,8 @@ export const Footer = () => (
 				pointerEvents: 'none',
 				width: '100vw',
 				aspectRatio: 2,
+				// fix mountains not covering some area from the left
+				marginLeft: '-2px',
 			}}
 		/>
 		<Box

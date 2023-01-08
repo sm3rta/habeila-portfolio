@@ -1,3 +1,4 @@
+import { Anchor } from '@hope-ui/solid';
 import { JSX } from 'solid-js';
 
 export type Project = {
@@ -5,7 +6,7 @@ export type Project = {
 	id: string;
 	description?: string | JSX.Element;
 	technologies?: string[];
-	tasks?: { description: string; imageUrl?: string; videoUrl?: string }[];
+	tasks?: { description: string | (() => JSX.Element); imageUrl?: string; videoUrl?: string }[];
 	website?: string;
 	responsibilities?: any[];
 };
@@ -29,27 +30,33 @@ export const work: Workplace[] = [
 				name: 'Portfolio website',
 				id: 'portfolio-website',
 				website: 'https://habeila-portfolio.netlify.app/',
-				description: (
-					<>
-						This portfolio website is built with Solid.js and a lot of love.
-						<br />
-						All animations are vanilla!
-					</>
-				),
+				description: 'This portfolio website is built with Solid.js and a lot of love.',
 				technologies: ['Solid.js', 'Astro', 'Parallax effect', 'TypeScript', 'Sass', 'Styled components'],
 				tasks: [
 					{
-						description: "It's scored 100 on Google Lighthouse on both mobile and desktop.",
-						imageUrl: '/assets/projects/portfolio/portfolio-lighthouse.webp',
+						description: () => (
+							<>
+								It's fully accessible, keyboard tabbable, responsive and SEO-enabled, scoring{' '}
+								<Anchor
+									// style={{
+									// 	'border-bottom': 'white 1px solid',
+									// }}
+									href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fhabeila-portfolio.netlify.app"
+								>
+									100 on PageSpeed Insights
+								</Anchor>{' '}
+								on both mobile and desktop
+							</>
+						),
+
+						imageUrl: '/assets/projects/portfolio/portfolio-pageSpeedInsights.webp',
 					},
 					{
 						description:
 							'You can interact with the stars by hovering over (or on mobile, touching) them and they will disappear,\
 							 skip forward and re-appear with a different color.',
 					},
-					{
-						description: "It's fully accessible and keyboard tabbable!",
-					},
+					{ description: 'All animations are vanilla' },
 				],
 			},
 		],
@@ -80,29 +87,23 @@ export const work: Workplace[] = [
 
 				tasks: [
 					{
-						description: 'Created an app layout with Atlassian-like collapsible drawer',
+						description:
+							'Created a proprietary charts library using D3 with 10 different types of charts animations,\
+							interactive tooltips, legends, placeholders with randomly generated data',
+						videoUrl: '/assets/projects/calqulate/calqulate-charts.webm',
 					},
+					{
+						description:
+							'Created a library for performant editable tree tables with fixed columns, virtual sticky headers and advanced styles',
+						imageUrl: '/assets/projects/calqulate/calqulate-tables.webp',
+					},
+					{ description: 'Created a responsive app layout with Atlassian-like collapsible drawer and mobile menu' },
 					{
 						description:
 							'Created time selectors and filters that follow a global state design pattern and sync with the URL',
 					},
-					{
-						description:
-							'Created a library for editable tree tables with fixed columns, sticky headers and advanced styles',
-					},
-					{
-						description:
-							'Created a proprietary charts library using D3 with 10 different types of charts animations,\
-							interactive tooltips, legends, placeholders with randomly generated data',
-						videoUrl: '/assets/projects/calqulate/calq-charts.webm',
-					},
-					{
-						description: 'Created an integration with Stripe for the users to pay for subscriptions',
-					},
-					{
-						description:
-							'Created a proprietary types SDK used by the back-end, published on NPM and used on the front-end, to ensure API type safety between front-end and back-end',
-					},
+					{ description: 'Created an integration with Stripe for the users to pay for subscriptions' },
+					{ description: 'Created a proprietary types SDK to ensure API type safety between front-end and back-end' },
 				],
 				technologies: [
 					'React',
@@ -231,9 +232,7 @@ export const work: Workplace[] = [
 							'Created an integration with Google maps where the user can pinpoint their\
 							delivery location on the map with automatic location detection',
 					},
-					{
-						description: 'Created an integration with Stripe for the users to pay for shipments',
-					},
+					{ description: 'Created an integration with Stripe for the users to pay for shipments' },
 				],
 				responsibilities: ['eCommerce Website (front-end)', 'System Analysis', 'Mock API creation'],
 			},
