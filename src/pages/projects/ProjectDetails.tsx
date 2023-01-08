@@ -1,18 +1,22 @@
-import { Anchor, Badge, Box, Flex, Text } from '@hope-ui/solid';
+import { Anchor, Badge, Box, Container, Flex, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
 import { ProjectWithCompany } from '../../data/work';
 import Carousel from './Carousel';
 
 const renderProjectTitle = (name: string, link?: string) => {
-	const company = <Text as="span">{name}</Text>;
-	if (link) return <Anchor href={link}>{company}</Anchor>;
-	else return company;
+	const project = (
+		<Text as="span" fontSize="$lg">
+			{name}
+		</Text>
+	);
+	if (link) return <Anchor href={link}>{project}</Anchor>;
+	else return project;
 };
 
 const ProjectLayoutDetailed = ({ project }: { project: ProjectWithCompany }) => (
-	<Flex
-		w="100%"
-		direction="column"
+	<Container
+		d="flex"
+		flexDirection="column"
 		justifyContent="center"
 		p={{
 			'@initial': '0 $4',
@@ -27,14 +31,18 @@ const ProjectLayoutDetailed = ({ project }: { project: ProjectWithCompany }) => 
 		</Box>
 		<Box>
 			<Show when={project.technologies?.length}>
-				<Text mt="$3">Technologies used</Text>
+				<Text fontWeight="$bold" mt="$3">
+					Technologies used
+				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.technologies}>{(tech) => <Badge>{tech}</Badge>}</For>
 				</Flex>
 			</Show>
 
 			<Show when={project.responsibilities?.length}>
-				<Text mt="$3">What I worked on</Text>
+				<Text fontWeight="$bold" mt="$3">
+					What I worked on
+				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
 				</Flex>
@@ -44,7 +52,7 @@ const ProjectLayoutDetailed = ({ project }: { project: ProjectWithCompany }) => 
 				<Carousel tasks={project.tasks!} />
 			</Show>
 		</Box>
-	</Flex>
+	</Container>
 );
 
 export default ProjectLayoutDetailed;

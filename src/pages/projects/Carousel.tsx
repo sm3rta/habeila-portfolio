@@ -1,17 +1,16 @@
 import { Box, Flex, IconButton, Image, Text } from '@hope-ui/solid';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
-import { For, Match, Show, Suspense, Switch, createSignal, onCleanup } from 'solid-js';
+import { For, Match, Show, Suspense, Switch, createSignal } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { Project as ProjectType } from '../../data/work';
 import { colors } from '../../ui/theme';
-import { hexColorWithAlpha } from '../../ui/utils/hexColorWithAlpha';
 import { useLoopingSquareProgressBar } from './useLoopingSquareProgressBar';
 
 const transitionDurationMs = 300;
 
 const StyledVideo = styled('video')({
-	filter: `drop-shadow(0px 0px 10px ${colors.secondary2})`,
-	width: '100%',
+	filter: `drop-shadow(0px 0px 15px ${colors.secondary5})`,
+	marginLeft: 'auto',
 });
 
 const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
@@ -42,8 +41,8 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 
 	return (
 		<Box mt="$8" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-			<Flex justifyContent="space-between">
-				<Text>Responsibilities</Text>
+			<Flex justifyContent="space-between" align-items="center">
+				<Text fontWeight="$bold">Responsibilities</Text>
 				<Show when={tasks.length > 1}>
 					<Flex gap="$2">
 						<IconButton
@@ -81,46 +80,32 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 							{(task, index) => (
 								<Match when={tab() === index()}>
 									<Box
-										d="grid"
+										d="flex"
 										w="100%"
 										gap="$8"
-										css={{
-											'@lg': { gridTemplateColumns: task.imageUrl || task.videoUrl ? '1fr 1fr' : 'unset' },
-										}}
+										flexDirection={{ '@initial': 'column', '@lg': 'row' }}
+										height="100%"
+										css={{ '@lg': { h: '60vh', maxH: '450px' } }}
 									>
 										<Text>{typeof task.description === 'function' ? task.description() : task.description}</Text>
 
 										{/* video/image container */}
-										<Box
-											pos="relative"
-											minH={{
-												'@initial': '50vh',
-												'@lg': 'calc(50vh * 2 / 3)',
-											}}
-										>
-											<Show when={task.videoUrl}>
-												<StyledVideo autoplay loop>
-													<source src={task.videoUrl} type="video/webm" />
-												</StyledVideo>
-											</Show>
-											<Show when={task.imageUrl}>
-												<Image src={task.imageUrl} zIndex={2} pos="relative" />
-											</Show>
-											{/* shadow */}
-											<Show when={task.videoUrl}>
-												<Box
-													css={{
-														pointerEvents: 'none',
-														position: 'absolute',
-														width: '100%',
-														height: '100%',
-														boxShadow: `${hexColorWithAlpha(colors.secondary1, 0.6)} 0px 0px 20px 0px inset`,
-														top: 0,
-														left: 0,
-													}}
-												/>
-											</Show>
-										</Box>
+										<Show when={task.videoUrl}>
+											<StyledVideo autoplay loop>
+												<source src={task.videoUrl} type="video/webm" />
+											</StyledVideo>
+										</Show>
+										<Show when={task.imageUrl}>
+											<Image
+												src={task.imageUrl}
+												zIndex={2}
+												pos="relative"
+												marginLeft="auto"
+												h={{ '@initial': 'auto', '@lg': '60vh' }}
+												maxH="450px"
+												css={{ filter: `drop-shadow(0px 0px 15px ${colors.secondary6})` }}
+											/>
+										</Show>
 									</Box>
 								</Match>
 							)}

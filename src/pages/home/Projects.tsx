@@ -50,7 +50,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				left={0}
 				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
-				href={`projects/${project.id}`}
+				href={`/projects/${project.id}`}
 				textAlign="center"
 			>
 				Learn more about project
