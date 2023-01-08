@@ -2,7 +2,15 @@ import { Box, Text } from '@hope-ui/solid';
 import { zIndexes } from '../ui/theme';
 
 export const Footer = () => (
-	<Box minH="100vh" position="relative" zIndex={zIndexes.aboveStar} pointerEvents="none">
+	<Box
+		minH="100vh"
+		display="flex"
+		flexDirection="column"
+		justifyContent="flex-end"
+		position="relative"
+		zIndex={zIndexes.aboveStar}
+		pointerEvents="none"
+	>
 		<Box
 			css={{
 				backgroundImage: 'url(/assets/mountains.png)',
