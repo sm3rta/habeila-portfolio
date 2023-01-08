@@ -100,7 +100,8 @@ const Carousel = ({ tasks }: { tasks: NonNullable<ProjectType['tasks']> }) => {
 												src={task.imageUrl}
 												zIndex={2}
 												pos="relative"
-												marginLeft={{ '@initial': 'unset', '@lg': 'auto' }}
+												marginLeft="auto"
+												marginRight={{ '@initial': 'auto', '@lg': 'unset' }}
 												h={{ '@initial': 'auto', '@lg': '60vh' }}
 												maxH="450px"
 												css={{ filter: `drop-shadow(0px 0px 15px ${colors.secondary6})` }}
