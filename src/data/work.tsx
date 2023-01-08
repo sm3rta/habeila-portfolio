@@ -136,15 +136,6 @@ export const work: Workplace[] = [
 		title: 'Full-stack Web Developer',
 		projects: [
 			{
-				name: 'TwentyThirty',
-				id: 'twentythirty',
-				website: 'https://twentythirty.com/',
-				description:
-					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
-				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
-				responsibilities: ['Website (front-end)'],
-			},
-			{
 				name: 'BMW Foundation',
 				id: 'bmw-foundation',
 				website: 'https://bmw-foundation.org/',
@@ -161,6 +152,15 @@ export const work: Workplace[] = [
 					'I18Next',
 					'Axios',
 				],
+				responsibilities: ['Website (front-end)'],
+			},
+			{
+				name: 'TwentyThirty',
+				id: 'twentythirty',
+				website: 'https://twentythirty.com/',
+				description:
+					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
+				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
 				responsibilities: ['Website (front-end)'],
 			},
 			{
