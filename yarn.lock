@@ -554,6 +554,34 @@
   dependencies:
     "@octokit/openapi-types" "^14.0.0"
 
+"@solid-primitives/event-listener@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/event-listener/-/event-listener-2.2.4.tgz#2f571b992359abd01cdfae4efaa0bad204680162"
+  integrity sha512-O/ppM0SpXWtNC7AHv1bQA9Dy6pj3NUM06MhSV9xwVv4N06PmlNYhGLDSPT1Esesm6b0fDgCXB5V+AgCSEzQd/w==
+  dependencies:
+    "@solid-primitives/utils" "^4.0.0"
+
+"@solid-primitives/resize-observer@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/resize-observer/-/resize-observer-2.0.7.tgz#0f909ed58d5fd7ec59b2fee15ddafdd28fdce4c8"
+  integrity sha512-/RtCTs61ACdsCKJodNTgnKA05CI09dkg7usAb5jg14L6mzwTNWWdZbXtbYsUlD+kh1/1j+BKxp6VtkbpgJE5yQ==
+  dependencies:
+    "@solid-primitives/event-listener" "^2.2.4"
+    "@solid-primitives/rootless" "^1.2.1"
+    "@solid-primitives/utils" "^4.0.0"
+
+"@solid-primitives/rootless@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/rootless/-/rootless-1.2.1.tgz#17d3a7428ebc3d2c7fbf2ec96093edad3b7ad217"
+  integrity sha512-8RpdyS1e58PQbDjgjpyCh+IGoX3QEs/2LauMfl94eXJ5d/o1y/c6P61z9XqQm+Bx1Otdgx4nbFCoF7HPqa0mwg==
+  dependencies:
+    "@solid-primitives/utils" "^4.0.0"
+
+"@solid-primitives/utils@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-4.0.0.tgz#3c592287519dc885290d134f8aff3f0f6f4b4720"
+  integrity sha512-fGsJy8Z8YiwogpiezD7TWjI62UCb0JAHJWdoXWGrggrn4bfToZotKkabiB0IVFMkWVE1ZcrkvZT3bkmqGnK0ng==
+
 "@solidjs/router@0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@solidjs/router/-/router-0.6.0.tgz#27583cd0aa81a99482e0e7eddae5e214bd8bf6b6"
