@@ -1,5 +1,8 @@
 import { Anchor } from '@hope-ui/solid';
 import { JSX } from 'solid-js';
+import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
+import { CalqulateLogo } from './logos/CalqulateLogo';
+import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
 
 export type Project = {
 	name: string;
@@ -9,6 +12,7 @@ export type Project = {
 	tasks?: { description: string | (() => JSX.Element); imageUrl?: string; videoUrl?: string }[];
 	website?: string;
 	responsibilities?: any[];
+	Logo?: (props: JSX.SvgSVGAttributes<SVGSVGElement>) => JSX.Element;
 };
 
 export type Workplace = {
@@ -75,6 +79,7 @@ export const work: Workplace[] = [
 				name: 'Calqulate',
 				id: 'calqulate',
 				website: 'https://calqulate.io/',
+				Logo: CalqulateLogo,
 				description:
 					'A financial tool for modern SaaS organizations that automatically generates reports on finances,\
 					 growth metrics, cashflow forecasting, cash management, customer growth and churn, \
@@ -139,6 +144,7 @@ export const work: Workplace[] = [
 				name: 'BMW Foundation',
 				id: 'bmw-foundation',
 				website: 'https://bmw-foundation.org/',
+				Logo: BmwFoundationLogo,
 				description:
 					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features and multi-language routing",
 				technologies: [
@@ -158,6 +164,7 @@ export const work: Workplace[] = [
 				name: 'TwentyThirty',
 				id: 'twentythirty',
 				website: 'https://twentythirty.com/',
+				Logo: TwentyThirtyLogo,
 				description:
 					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
 				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
@@ -240,7 +247,15 @@ export const work: Workplace[] = [
 	},
 ];
 
-export const projects = work.flatMap((w) => w.projects.map((p) => ({ ...p, company: w })));
+export const allProjects = work.flatMap((w) => w.projects.map((p) => ({ ...p, company: w })));
+export const projects = [
+	'calqulate',
+	'bmw-foundation',
+	'twentythirty',
+	'portfolio-website',
+	'educational-platform',
+	'netjeek',
+].map((id) => allProjects.find((p) => p.id === id)) as typeof allProjects;
 
 export type ProjectWithCompany = typeof projects[number];
 

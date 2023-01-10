@@ -7,9 +7,11 @@ import { Timeline } from './Timeline';
 const Resume = () => (
 	<Fade>
 		<Timeline>
-			{work.map((company) => (
-				<CompanyProjects company={company} />
-			))}
+			{work
+				.filter((w) => w.name !== 'Self-employed')
+				.map((company) => (
+					<CompanyProjects company={company} />
+				))}
 		</Timeline>
 
 		<Center mt="$24">

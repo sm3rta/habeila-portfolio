@@ -13,7 +13,7 @@
   - layout: portrait
   - pages: all
   - paper size: A4
-  - scale: 48 (might differ a little with more content)
+  - scale: 51 (might differ a little with more content)
   - pages per sheet: 1
   - margins: none
   - background graphics: true

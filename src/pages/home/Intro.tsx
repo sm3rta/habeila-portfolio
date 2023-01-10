@@ -1,4 +1,4 @@
-import { Badge, BadgeProps, Box, Heading, Text } from '@hope-ui/solid';
+import { Badge, BadgeProps, Box, Container, Flex, Heading, Text } from '@hope-ui/solid';
 import Section from './Section';
 import { introText } from '../../data/work';
 import { For, JSX, createEffect, createSignal, onMount } from 'solid-js';
@@ -6,9 +6,36 @@ import { styled } from 'solid-styled-components';
 import { randRangeInt } from '../../utils';
 import { createElementSize } from '@solid-primitives/resize-observer';
 
+const skills = [
+	'React 18',
+	'TypeScript',
+	'Node.js',
+	'Git',
+	'Material UI',
+	'Jira',
+	'Sass',
+	'JSS',
+	'Styled components',
+	'Data fetching',
+	'Localization',
+	'Forms & validation',
+	'Responsive Design',
+	'Unit Testing',
+	'JSDoc',
+	'Global State Design',
+	'Express.js',
+	'Firebase',
+	'MongoDB',
+	'Authentication',
+	'C++',
+	'Python',
+	'Vue',
+	'Solid JS',
+];
+
 export default function Intro() {
 	return (
-		<Section id="home">
+		<Section id="home" maxW="unset !important">
 			<Box css={{ display: 'unset', '@lg': { display: 'none' } }}>
 				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl">
 					Ahmed Habeila
@@ -16,17 +43,22 @@ export default function Intro() {
 				<Heading level="2" textAlign="center" mb="$6" fontSize="$2xl">
 					Front-end Web Developer
 				</Heading>
+				<Text>{introText}</Text>
+				<Flex wrap="wrap" gap="$4" mt="$8">
+					<For each={skills}>{(skill) => <Badge>{skill}</Badge>}</For>
+				</Flex>
 			</Box>
 			<Box css={{ display: 'none', '@lg': { display: 'unset' } }}>
-				<Skills />
+				<RotatingSkills />
+				<Container>
+					<Text mt="$8">{introText}</Text>
+				</Container>
 			</Box>
-
-			<Text>{introText}</Text>
 		</Section>
 	);
 }
 
-const Skills = () => {
+const RotatingSkills = () => {
 	const [rootRef, setRootRef] = createSignal<HTMLDivElement>();
 	const size = createElementSize(rootRef);
 
@@ -34,12 +66,12 @@ const Skills = () => {
 	const [outerRadius, setOuterRadius] = createSignal(0);
 
 	createEffect(() => {
-		const outerRadius = Math.min(size.width ?? 0, document.body.offsetHeight);
+		const outerRadius = Math.min(size.width ?? 0, document.body.offsetHeight, 550);
 		setOuterRadius(outerRadius);
 		const innerRadius = outerRadius - 50;
 
 		const skillBadges = (
-			<For each={skills}>
+			<For each={skills.sort(() => Math.random() - 0.5)}>
 				{(skill, index) => {
 					const angle = (index() / skills.length) * 2 * Math.PI;
 					const radius = randRangeInt(innerRadius, innerRadius * 0.6);
@@ -52,7 +84,8 @@ const Skills = () => {
 						position: 'absolute',
 						top: '50%',
 						left: '50%',
-						animation: `circle-${index()} ${randRangeInt(40, 60)}s linear infinite`,
+						// animation: `circle-${index()} ${randRangeInt(40, 60)}s linear infinite`,
+						animation: `circle-${index()} 40s linear infinite`,
 						[`@keyframes circle-${index()}`]: {
 							from: { transform: `rotate(0deg) translateX(calc(${x}px)) translateY(calc(${y}px)) rotate(0deg)` },
 							to: { transform: `rotate(360deg) translateX(calc(${x}px)) translateY(calc(${y}px)) rotate(-360deg)` },
@@ -71,33 +104,6 @@ const Skills = () => {
 		setSkillBadges(skillBadges);
 	});
 
-	const skills = [
-		'React 18',
-		'TypeScript',
-		'Node.js',
-		'Git',
-		'Material UI',
-		'Jira',
-		'Sass',
-		'JSS',
-		'Styled components',
-		'Data fetching',
-		'Localization',
-		'Forms & validation',
-		'Responsive Design',
-		'Unit Testing',
-		// 'JSDoc',
-		'Global State Design',
-		// 'Express.js',
-		// 'Firebase',
-		'MongoDB',
-		'Authentication',
-		'C++',
-		'Python',
-		'Vue',
-		'Solid JS',
-	].sort(() => Math.random() - 0.5);
-
 	return (
 		<Box w="100%" ref={setRootRef}>
 			<Box
@@ -105,7 +111,6 @@ const Skills = () => {
 				d="flex"
 				justifyContent="center"
 				alignItems="center"
-				w={outerRadius()}
 				h={outerRadius()}
 				m="auto"
 				css={{ '& > div': { mixBlendMode: 'exclusion' } }}

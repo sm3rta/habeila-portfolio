@@ -1,14 +1,15 @@
-import { Box, Button, Flex, Text } from '@hope-ui/solid';
+import { Box, Button, Flex, Heading, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
-import { For, createSignal } from 'solid-js';
+import { For, Show, createSignal } from 'solid-js';
 import { projects } from '../../data/work';
-import { TILE_SIZE, zIndexes } from '../../ui/theme';
+import { TILE_SIZE, colors, zIndexes } from '../../ui/theme';
 import { generateRandomColor } from '../../utils';
 import Section from './Section';
 
 const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 	const [hover, setHover] = createSignal(false);
 	const backgroundColor = generateRandomColor(0.3);
+	// const backgroundColor = colors.primary1;
 	const boxShadowColor = backgroundColor.replace('0.1', '0.8');
 
 	return (
@@ -36,8 +37,9 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				backgroundColor={backgroundColor}
 				opacity={hover() ? 0 : 1}
 				css={{ transition: 'all 0.3s ease-in-out' }}
+				p="$3"
 			>
-				<Text fontSize="$md">{project.name}</Text>
+				{project.Logo ? <project.Logo /> : <Text fontSize="$md">{project.name}</Text>}
 			</Flex>
 			<Button
 				tabIndex={-1}
@@ -60,8 +62,13 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 };
 
 const Projects = () => (
-	<Section flexWrap="wrap" gap="$6" id="work" flexDirection="row">
-		<For each={projects}>{(project) => <ProjectTile project={project} />}</For>
+	<Section id="work" alignItems="center">
+		<Heading level="2" fontSize="$3xl">
+			Projects
+		</Heading>
+		<Flex wrap="wrap" gap="$6" placeContent="center" mt="$8">
+			<For each={projects}>{(project) => <ProjectTile project={project} />}</For>
+		</Flex>
 	</Section>
 );
 

@@ -13,7 +13,7 @@ import {
 } from '@hope-ui/solid';
 import { AiOutlineGithub } from 'solid-icons/ai';
 import { HiOutlineMail } from 'solid-icons/hi';
-import { RiDeviceSmartphoneLine } from 'solid-icons/ri';
+import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import { ComponentProps, For } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { introText, telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
@@ -21,7 +21,6 @@ import { theme } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { CompanyProjects } from '../resume/CompanyProjects';
 import { Timeline } from '../resume/Timeline';
-
 const ICON_SIZE = 20;
 
 const secondaryTextAndIconColor = 'var(--hope-colors-neutral8)';
@@ -57,32 +56,40 @@ const ResumeRaw = () => (
 			},
 		}}
 	>
-		<Flex background="$info12" justifyContent="space-between" p="$8">
-			<Flex direction="column">
-				<Text color="white" fontSize="$3xl" fontWeight="$extrabold">
-					Ahmed Habeila
-				</Text>
-				<Text color="white" fontSize="$2xl">
-					Front-end web developer
-				</Text>
+		<Flex background="$info12" direction="column" p="$8">
+			<Text color="white" fontSize="$3xl" fontWeight="$extrabold">
+				Ahmed Habeila
+			</Text>
+			<Text color="white" fontSize="$2xl">
+				Front-end web developer
+			</Text>
 
-				<Flex direction="column" rowGap="$4" mt="$4">
-					<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!">
-						<HiOutlineMail size={ICON_SIZE} color={secondaryTextAndIconColor} />
-						<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
-							HabeilaAhmed@gmail.com
-						</Text>
-					</StyledFlexLink>
-					<StyledFlexLink href={`tel:+${telephoneNumber}`}>
-						<RiDeviceSmartphoneLine size={ICON_SIZE} color={secondaryTextAndIconColor} />
-						<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
-							{telephoneNumberStylized}
-						</Text>
-					</StyledFlexLink>
-				</Flex>
+			<Flex direction="column" rowGap="$4" mt="$4">
+				<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!">
+					<HiOutlineMail size={ICON_SIZE} color={secondaryTextAndIconColor} />
+					<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
+						HabeilaAhmed@gmail.com
+					</Text>
+				</StyledFlexLink>
+				<StyledFlexLink href={`tel:+${telephoneNumber}`}>
+					<RiDeviceSmartphoneLine size={ICON_SIZE} color={secondaryTextAndIconColor} />
+					<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
+						{telephoneNumberStylized}
+					</Text>
+				</StyledFlexLink>
 			</Flex>
-			<Flex direction="column" gap="$2">
-				<For each={socials.filter((s) => s.name)}>
+
+			<Flex gap="$8" mt="$4">
+				<For
+					each={[
+						...socials.filter((s) => s.name),
+						{
+							name: 'Portfolio',
+							href: 'https://habeila-portfolio.netlify.app/',
+							Icon: RiDocumentBookMarkFill,
+						},
+					]}
+				>
 					{({ href, Icon, name }) => (
 						<StyledFlexLink gap="$2" href={href}>
 							<Icon size={ICON_SIZE} color={secondaryTextAndIconColor} />
@@ -109,9 +116,11 @@ const ResumeRaw = () => (
 				<StyledDivider />
 				<Box css={{ '&>div': { p: 0 } }}>
 					<Timeline>
-						{work.map((company) => (
-							<CompanyProjects company={company} />
-						))}
+						{work
+							.filter((w) => w.name !== 'Self-employed')
+							.map((company) => (
+								<CompanyProjects company={company} />
+							))}
 					</Timeline>
 				</Box>
 			</GridItem>
