@@ -133,8 +133,8 @@ const ResumeRaw = () => (
 				<Flex direction="column" gap="$2">
 					<For
 						each={[
-							{ name: 'TypeScript', value: 96 },
-							{ name: 'React 18', value: 94 },
+							{ name: 'React 18', value: 96 },
+							{ name: 'TypeScript', value: 94 },
 							{ name: 'Material UI', value: 90 },
 							{ name: 'Node.js', value: 89 },
 							{ name: 'Git', value: 87 },
@@ -284,7 +284,7 @@ const ResumeRaw = () => (
 					<Text>
 						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
 						build full-fledged back-end multi-threaded api servers and connect it to the desired database in C++ that
-						also supports middleware
+						also supports middleware.
 					</Text>
 					<Flex gap="$2" wrap="wrap" mt="$4">
 						<For each={['C++17', 'CGI', 'Apache', 'Multithreading', 'Linux']}>{(item) => <Badge>{item}</Badge>}</For>

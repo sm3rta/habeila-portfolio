@@ -20,7 +20,7 @@ export type Workplace = {
 	name: string;
 	from?: string;
 	to?: string;
-	description?: string;
+	description?: string | JSX.Element;
 	title?: string;
 	projects: Project[];
 	website?: string;
@@ -70,8 +70,13 @@ export const work: Workplace[] = [
 	{
 		name: 'Calqulate',
 		website: 'https://calqulate.io/',
-		description:
-			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
+		description: (
+			<>
+				Working full-time for more than two years on this project, I was able to <b>lead a team</b> of 3 to 4 front-end
+				developers in the process of creating and maintaining features while setting design system standards for the
+				design team to follow.
+			</>
+		),
 		from: 'November 2020',
 		to: 'January 2023',
 		title: 'Front-end Web Developer',
@@ -89,7 +94,7 @@ export const work: Workplace[] = [
 						 interactive data rich charts.\
 						  Collects data from most known major accounting softwares.\
 							 My biggest responsibility in this project is to create and maintain different libraries in a monorepo for\
-							  tables, charts and reusable UI components',
+							  tables, charts and reusable UI components.',
 
 				tasks: [
 					{
@@ -147,7 +152,7 @@ export const work: Workplace[] = [
 				website: 'https://bmw-foundation.org/',
 				Logo: BmwFoundationLogo,
 				description:
-					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features and multi-language routing",
+					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features and multi-language routing.",
 				technologies: [
 					'React',
 					'Gatsby',
@@ -167,7 +172,7 @@ export const work: Workplace[] = [
 				website: 'https://twentythirty.com/',
 				Logo: TwentyThirtyLogo,
 				description:
-					"Built this one also from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
+					"Built this one from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
 				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
 				responsibilities: ['Website (front-end)'],
 			},
@@ -175,7 +180,10 @@ export const work: Workplace[] = [
 				name: 'Educational platform',
 				id: 'educational-platform',
 				description:
-					"An educational platform where professors can upload and schedule lectures to different classes, create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, an admin dashboard where professors can manage lectures, send emails with grades to students' parents.",
+					"An educational platform where professors can upload and schedule lectures to different classes,\
+					automatically create and share Zoom meeting links after a lecture have been seen by all the students to discuss it,\
+					create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, \
+					an admin dashboard where professors can manage lectures, send emails with grades to students' parents.",
 				technologies: [
 					'Firebase',
 					'Express.js',
@@ -220,7 +228,7 @@ export const work: Workplace[] = [
 				description:
 					"First project I've worked on that's went live,\
 					 it's trans-shipping system designed to facilitate the purchase and delivery of goods\
-					  to countries where customers can’t place an order to international e-retailers directly",
+					  to countries where customers can’t place an order to international e-retailers directly.",
 				technologies: [
 					'React',
 					'Javascript',
