@@ -271,11 +271,15 @@ const ResumeRaw = () => (
 						GRADUATION PROJECT{' '}
 					</Text>
 					<StyledDivider />
-					<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="block">
+					<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="block !important">
 						<Text mr="$2" fontWeight="$bold" d="contents" as="span">
 							An Express-like C++ web application framework
 						</Text>
-						<AiOutlineGithub size={ICON_SIZE} color="$primary5" style={{ display: 'inline', 'margin-left': '8px' }} />
+						<AiOutlineGithub
+							size={ICON_SIZE}
+							color="$primary5"
+							style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
+						/>
 					</StyledFlexLink>
 					<Text>
 						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers

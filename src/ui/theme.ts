@@ -2,7 +2,7 @@ import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
 
 export const HEADER_HEIGHT = 60;
 export const ICON_SIZE = 30;
-export const TILE_SIZE = 140;
+export const TILE_SIZE = 160;
 export const zIndexes = {
 	// above buttons, which are above stars
 	appBar: 100,
