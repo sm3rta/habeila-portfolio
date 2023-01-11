@@ -1,5 +1,5 @@
-import { Box, Flex, HopeProvider, Switch } from '@hope-ui/solid';
-import { Outlet, Route, Router, Routes } from '@solidjs/router';
+import { Flex, HopeProvider } from '@hope-ui/solid';
+import { Navigate, Outlet, Route, Router, Routes } from '@solidjs/router';
 import { Suspense, lazy } from 'solid-js';
 import { AppBar } from './components/AppBar';
 import { Footer } from './components/Footer';
@@ -42,9 +42,11 @@ const App = () => (
 				<Route path="/" component={Home} />
 				<Route path="/resume" component={Resume} />
 				<Route path="/projects/:id" component={Project} />
+				<Route path="*" element={<Navigate href="/" />} />
 			</Route>
 
 			<Route path="/resume-raw" component={ResumeRaw} />
+			<Route path="*" element={<Navigate href="/" />} />
 		</Routes>
 	</Router>
 );
