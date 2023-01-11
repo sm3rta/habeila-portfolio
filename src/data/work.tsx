@@ -3,6 +3,7 @@ import { JSX } from 'solid-js';
 import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
 import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
+import { NetjeekLogo } from './logos/NetjeekLogo';
 
 export type Project = {
 	name: string;
@@ -194,6 +195,7 @@ export const work: Workplace[] = [
 
 	{
 		name: 'Haya Solutions Inc.',
+		website: 'https://hayasolutions.com/',
 		description: '',
 		from: 'May 2019',
 		to: 'May 2020',
@@ -214,6 +216,7 @@ export const work: Workplace[] = [
 			{
 				name: 'Netjeek',
 				id: 'netjeek',
+				Logo: NetjeekLogo,
 				description:
 					"First project I've worked on that's went live,\
 					 it's trans-shipping system designed to facilitate the purchase and delivery of goods\

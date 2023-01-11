@@ -1,8 +1,9 @@
 import { Container, Image, Text } from '@hope-ui/solid';
+import { ComponentProps } from '@stitches/core';
+import { styled } from 'solid-styled-components';
+import { introText } from '../../data/work';
 import { TILE_SIZE } from '../../ui/theme';
 import Section from './Section';
-import { styled } from 'solid-styled-components';
-import { ComponentProps } from '@stitches/core';
 
 const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...props} />)({
 	'@keyframes anim': {
@@ -27,7 +28,9 @@ export default function About() {
 					mx="auto"
 					animation="anim 5s 0s ease-in-out infinite alternate"
 				/>
-				<Text mt="$10">
+
+				<Text mt="$10">{introText}</Text>
+				<Text mt="$4">
 					While my career currently revolves around web development, I love everything programming which includes game
 					development, Python, AHK and more
 				</Text>
