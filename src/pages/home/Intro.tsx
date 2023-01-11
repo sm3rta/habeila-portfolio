@@ -1,11 +1,10 @@
-import { Badge, BadgeProps, Box, Container, Flex, Heading, Text } from '@hope-ui/solid';
+import { Badge, Box, Flex, Heading, Text } from '@hope-ui/solid';
 import { createElementSize } from '@solid-primitives/resize-observer';
-import { For, JSX, createEffect, createSignal, onMount } from 'solid-js';
+import { For, JSX, createEffect, createSignal } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { introText } from '../../data/work';
-import { randRange, randRangeInt } from '../../utils';
-import Section from './Section';
 import { colors } from '../../ui/theme';
+import { randRange } from '../../utils';
+import Section from './Section';
 
 const offsetAngle = 20 * (Math.PI / 180);
 const oneTenthOfDeg = 0.1 * (Math.PI / 180);

@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Heading, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
-import { For, Show, createSignal } from 'solid-js';
+import { For, createSignal } from 'solid-js';
 import { projects } from '../../data/work';
-import { TILE_SIZE, colors, zIndexes } from '../../ui/theme';
+import { TILE_SIZE, zIndexes } from '../../ui/theme';
 import { generateRandomColor } from '../../utils';
 import Section from './Section';
 

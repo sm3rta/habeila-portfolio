@@ -1,7 +1,7 @@
 import { Box, Flex, List } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
-import { Show, createSignal, onCleanup, onMount } from 'solid-js';
+import { createSignal, onCleanup, onMount } from 'solid-js';
 import { Link } from '../ui/components/Link';
 import { HEADER_HEIGHT, colors, zIndexes } from '../ui/theme';
 

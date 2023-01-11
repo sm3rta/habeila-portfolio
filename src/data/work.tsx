@@ -2,8 +2,8 @@ import { Anchor } from '@hope-ui/solid';
 import { JSX } from 'solid-js';
 import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
-import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
 import { NetjeekLogo } from './logos/NetjeekLogo';
+import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
 
 export type Project = {
 	name: string;

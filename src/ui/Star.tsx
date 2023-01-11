@@ -1,6 +1,6 @@
 import { Box } from '@hope-ui/solid';
 import Parallax from 'rallax.js';
-import { ComponentProps, createSignal, onMount, onCleanup } from 'solid-js';
+import { ComponentProps, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { generateRandomColor, randRange, randRangeInt } from '../utils';
 import { HEADER_HEIGHT, zIndexes } from './theme';
