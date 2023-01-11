@@ -1,7 +1,7 @@
 import { JSX } from 'solid-js';
 
 export const TwentyThirtyLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
-	<svg viewBox="0 0 300 35" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<svg viewBox="0 0 300 35" version="1.1" xmlns="http://www.w3.org/2000/svg" {...props}>
 		<title>14D9EB79-48B9-4451-BBEF-2FE11A0C4025</title>
 		<g id="Design" stroke="none" stroke-width="1" fill-rule="evenodd">
 			<g

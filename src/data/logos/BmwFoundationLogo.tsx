@@ -2,12 +2,12 @@ import { JSX } from 'solid-js';
 
 export const BmwFoundationLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 	<svg
-		{...props}
 		width="144px"
 		height="28px"
 		viewBox="0 0 144 28"
 		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
+		{...props}
 		// xmlns:link="http://www.w3.org/1999/xlink"
 	>
 		<title>logo_bmwf</title>

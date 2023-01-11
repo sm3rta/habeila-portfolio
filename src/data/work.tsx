@@ -275,5 +275,5 @@ export const introText =
 My work extends from system design and analysis to complete implementation, \
 but front-end web development is where my passion truly lies working with React, Vue and Solid.js.';
 
-export const telephoneNumber = '+201015178686';
-export const telephoneNumberStylized = '+20 (101) 517-8686';
+export const telephoneNumber = '16477186362';
+export const telephoneNumberStylized = '(647) 718-6362';

@@ -22,7 +22,6 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			onFocus={() => setHover(true)}
 			onBlur={() => setHover(false)}
 			tabIndex={0}
-			borderRadius="50%"
 			overflow="hidden"
 			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : `0 0 0px 0px ${boxShadowColor}`}
 			transition="all 0.3s ease-in-out"
@@ -37,9 +36,10 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				backgroundColor={backgroundColor}
 				opacity={hover() ? 0 : 1}
 				css={{ transition: 'all 0.3s ease-in-out' }}
+				borderRadius="50%"
 				p="$3"
 			>
-				{project.Logo ? <project.Logo /> : <Text fontSize="$md">{project.name}</Text>}
+				{project.Logo ? <project.Logo height="100%" /> : <Text fontSize="$md">{project.name}</Text>}
 			</Flex>
 			<Button
 				tabIndex={-1}
@@ -54,6 +54,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				as={A}
 				href={`/projects/${project.id}`}
 				textAlign="center"
+				borderRadius="50%"
 			>
 				Learn more about project
 			</Button>

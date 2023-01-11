@@ -1,7 +1,13 @@
 import { JSX } from 'solid-js';
 
 export const NetjeekLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
-	<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 150" preserveAspectRatio="xMidYMid meet">
+	<svg
+		version="1.0"
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 960 150"
+		preserveAspectRatio="xMidYMid meet"
+		{...props}
+	>
 		<g transform="translate(0,660) scale(0.1,-0.1)" fill="white" stroke="none">
 			<path
 				d="M780 5830 l0 -680 209 0 209 0 6 31 c3 17 6 167 6 333 l1 301 20 -35
