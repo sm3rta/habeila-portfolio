@@ -29,12 +29,30 @@ export default function About() {
 					animation="anim 5s 0s ease-in-out infinite alternate"
 				/>
 
-				<Text mt="$10">{introText}</Text>
-				<Text mt="$4">
+				<Text mt="$10">
+					I have 4 years of professional experience in software engineering, mainly front-end development using{' '}
+					<b>React</b>.
+				</Text>
+				<Text mt="$6">
+					I worked on various projects and dived into a lot of concepts of front-end development, from content-driven
+					websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and
+					tables, reusable UI components and design systems.
+				</Text>
+				<Text mt="$6">
+					I have experience in <b>leading other developers</b>, reviewing their work and enforcing certain patterns,
+					project-specific standards and <b>best practices</b>
+				</Text>
+				<Text mt="$6">
+					I love the process of planning features, splitting them into components and implementing them.
+				</Text>
+				<Text mt="$6">
 					While my career currently revolves around web development, I love everything programming which includes game
 					development, Python, AHK and more
 				</Text>
-				<Text mt="$4">I like gaming, food and photography. I also love to travel and explore new places.</Text>
+				<Text mt="$6">
+					I like <b>gaming</b>, <b>food</b> and <b>photography</b>. I also love to <b>travel</b> and <b>explore</b> new
+					places.
+				</Text>
 			</Container>
 		</Section>
 	);

@@ -72,9 +72,9 @@ export const work: Workplace[] = [
 		website: 'https://calqulate.io/',
 		description: (
 			<>
-				Working full-time for more than two years on this project, I was able to <b>lead a team</b> of 3 to 4 front-end
-				developers in the process of creating and maintaining features while setting design system standards for the
-				design team to follow.
+				Working full-time for more than two years on this project, I led team of 3 to 4 front-end developers in the
+				process of creating and maintaining features while setting design system standards for the design team to
+				follow.
 			</>
 		),
 		from: 'November 2020',

@@ -105,7 +105,17 @@ const ResumeRaw = () => (
 				ABOUT
 			</Text>
 			<StyledDivider />
-			<Text>{introText}</Text>
+			<Text>
+				I am a software engineer with 4 years of professional experience, mainly in front-end development using{' '}
+				<b>React</b>.
+			</Text>
+			<Text mt="$2">
+				I worked on various projects and dived into a lot of concepts of front-end development, from content-driven
+				websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and
+				tables, reusable UI components and design systems. I have experience in <b>leading other developers</b>,
+				reviewing their work and enforcing certain patterns, project-specific standards and <b>best practices</b>.
+			</Text>
+			<Text mt="$2"></Text>
 		</Flex>
 
 		<Grid templateColumns={{ '@lg': '3fr 1fr' }} p="$8" gap="$8">
@@ -261,7 +271,7 @@ const ResumeRaw = () => (
 					</Text>
 					<StyledDivider />
 
-					<Text fontWeight="$bold">Computer Science and Automatic Control</Text>
+					<Text fontWeight="$bold">Bachelor's Degree of Computer Science and Automatic Control</Text>
 					<Text>Faculty of Engineering - Tanta University</Text>
 					<Text fontSize="$sm">2014 - 2019</Text>
 				</Flex>
