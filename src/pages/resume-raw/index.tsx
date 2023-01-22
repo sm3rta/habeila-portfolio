@@ -16,7 +16,7 @@ import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import { ComponentProps, For } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { introText, telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
+import { telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
 import { theme } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { CompanyProjects } from '../resume/CompanyProjects';

@@ -1,7 +1,6 @@
 import { Container, Image, Text } from '@hope-ui/solid';
 import { ComponentProps } from '@stitches/core';
 import { styled } from 'solid-styled-components';
-import { introText } from '../../data/work';
 import { TILE_SIZE } from '../../ui/theme';
 import Section from './Section';
 

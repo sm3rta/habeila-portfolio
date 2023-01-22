@@ -1,0 +1,24 @@
+
+React, TypeScript, Node.js, Git, Jira, Material UI, Sass, JSS, Styled components, Data fetching, Localization, Forms & validation, JSDoc, Unit Testing, Responsive Design, Express.js, Firebase, Global State Design, C++, MongoDB, Authentication, Python, Vue, Solid JS
+
+https://habeila-portfolio.netlify.app/
+https://github.com/sm3rta
+https://www.linkedin.com/in/ahmedhabeila/
+
+Front-end web developer
+Full-stack web developer
+HabeilaAhmed@gmail.com
+(647) 718-6362
+
+
+
+I was recently implementing a complex date range picker component from scratch.
+After I was done, I figured I could improve the animations with a cleaner, simpler straight forward implementation
+I had a very big moment of excitement after re-implementing the animations where I was going back and forth between months just to admire how slick and smooth the new animations were
+
+
+I am a software engineer with 4 years of professional experience, mainly in front-end development using React.
+
+I worked on various projects and dived into a lot of concepts of front-end development, from content-driven websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems. I have experience in leading other developers, reviewing their work and enforcing certain patterns, project-specific standards and best practices.
+
+I led a team of 3 to 4 front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow.
