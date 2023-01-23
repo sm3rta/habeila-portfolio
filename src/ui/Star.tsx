@@ -4,6 +4,9 @@ import { ComponentProps, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { generateRandomColor, randRange, randRangeInt } from '../utils';
 import { HEADER_HEIGHT, zIndexes } from './theme';
+import { mobileCheck } from './isMobileDevice';
+
+const isMobileDevice = mobileCheck();
 
 const m = 5;
 const clipPath = `polygon(0 50%, \
@@ -66,7 +69,7 @@ export const Star = () => {
 	let [ref, setRef] = createSignal<HTMLDivElement>();
 
 	onMount(() => {
-		if (ref()) {
+		if (ref() && !isMobileDevice) {
 			new Parallax(ref(), { speed });
 		}
 	});
