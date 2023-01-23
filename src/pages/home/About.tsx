@@ -18,8 +18,10 @@ export default function About() {
 				<StyledImage
 					loading="lazy"
 					fallback={<div />}
-					srcset={`./assets/self.webp 990w, ./assets/self-small.webp ${TILE_SIZE}w`}
-					sizes={`(max-width: 480px) ${TILE_SIZE}px, 990px`}
+					srcset={`./assets/self-small.webp ${TILE_SIZE}w`}
+					sizes={`(max-width: 480px) ${TILE_SIZE}px`}
+					// srcset={`./assets/self.webp 990w, ./assets/self-small.webp ${TILE_SIZE}w`}
+					// sizes={`(max-width: 480px) ${TILE_SIZE}px, 990px`}
 					alt="self image"
 					borderRadius="50%"
 					w={TILE_SIZE}
