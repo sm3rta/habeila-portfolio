@@ -4,7 +4,7 @@ import Section from './Section';
 import { RotatingSkills, skills } from './RotatingSkills';
 
 // const breakpoint = '@xl'
-const breakpoint = '@md';
+const breakpoint = '@lg';
 
 export default function Intro() {
 	return (
