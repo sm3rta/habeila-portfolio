@@ -6,6 +6,8 @@ import { TILE_SIZE, zIndexes } from '../../ui/theme';
 import { generateRandomColor } from '../../utils';
 import Section from './Section';
 
+const focusBorderThickness = 3;
+
 const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 	const [hover, setHover] = createSignal(false);
 	const backgroundColor = generateRandomColor(0.3);
@@ -43,13 +45,13 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			</Flex>
 			<Button
 				tabIndex={-1}
-				w={TILE_SIZE}
-				h={TILE_SIZE}
+				w={TILE_SIZE - focusBorderThickness * 2}
+				h={TILE_SIZE - focusBorderThickness * 2}
 				css={{ transition: 'all 0.3s ease-in-out', whiteSpace: 'normal' }}
 				opacity={hover() ? 1 : 0}
 				position="absolute"
-				top={0}
-				left={0}
+				top={focusBorderThickness}
+				left={focusBorderThickness}
 				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
 				href={`/projects/${project.id}`}

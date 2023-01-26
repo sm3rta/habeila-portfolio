@@ -1,10 +1,10 @@
-Dear Hiring Manager,
+Dear Hiring Manager at Loblaw Digital,
 
-I am writing to express my interest in the Senior Web Developer role at your company. With four years of experience in front-end web development, I am confident that I have the skills and qualifications necessary to excel in this position.
+I am writing to express my interest in the React JS developer role at your company. With four years of experience in front-end web development, I am confident that I have the skills and qualifications necessary to excel in this position.
 
 I have a strong background in React and TypeScript, and have experience working with UI libraries such as Material UI. Additionally, I have experience with responsive design, localization, forms and validation, and unit testing.
 
-I am particularly interested in the Senior Web Developer role because of my experience leading a team of front-end developers, enforcing project-specific standards and best practices, and creating and maintaining libraries for reusable UI components.
+I am particularly interested in the React JS developer role because of my experience leading a team of front-end developers, enforcing project-specific standards and best practices, and creating and maintaining libraries for reusable UI components.
 
 Most recently, I have been working as a front-end web developer for Calqulate, where I have been responsible for creating and maintaining features, as well as setting design system standards for the design team to follow. My biggest responsibility in this project is to create and maintain different libraries in a monorepo for tables, charts and reusable UI components.
 
