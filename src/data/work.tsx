@@ -246,10 +246,11 @@ export const work: Workplace[] = [
 				id: 'netjeek',
 				Logo: NetjeekLogo,
 				description: (
+					// Here I worked on my
 					<>
-						Here I worked on my first project I've worked on that's went live, it's trans-shipping system designed to
-						facilitate the purchase and delivery of goods to countries where customers can’t place an order to
-						international e-retailers directly.
+						First project I've worked on that's went live, it's trans-shipping system designed to facilitate the
+						purchase and delivery of goods to countries where customers can’t place an order to international
+						e-retailers directly.
 					</>
 				),
 				technologies: [
