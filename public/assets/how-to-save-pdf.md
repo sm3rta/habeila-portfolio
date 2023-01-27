@@ -12,9 +12,11 @@
 - use Edge print with these settings:
   - layout: portrait
   - pages: all
-  - paper size: A4
-  - scale: 51 (might differ a little with more content)
   - pages per sheet: 1
   - margins: none
   - background graphics: true
+  <!-- - paper size: A4
+  - scale: 51 (might differ a little with more content) -->
+  - paper size: Legal
+  - scale: 58 (might differ a little with more content)
 - save and publish new pdf
