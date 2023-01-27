@@ -5,11 +5,11 @@ https://habeila-portfolio.netlify.app/
 https://github.com/sm3rta
 https://www.linkedin.com/in/ahmedhabeila/
 
-Front-end web developer
 Full-stack web developer
 HabeilaAhmed@gmail.com
 (647) 718-6362
 80K CAD/Year
+Faculty of Engineering, Tanta University
 
 
 I was recently implementing a complex date range picker component from scratch.

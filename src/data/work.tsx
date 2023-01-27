@@ -79,7 +79,7 @@ export const work: Workplace[] = [
 		),
 		from: 'November 2020',
 		to: 'January 2023',
-		title: 'Front-end Web Developer',
+		title: 'Full-stack Web Developer',
 		projects: [
 			{
 				name: 'Calqulate',
@@ -99,8 +99,8 @@ export const work: Workplace[] = [
 				tasks: [
 					{
 						description:
-							'Created a proprietary charts library using D3 with 10 different types of charts animations,\
-							interactive tooltips, legends, placeholders with randomly generated data',
+							'Created a proprietary charts library using D3 with 10 different types of charts with animations,\
+							interactive tooltips, legends and placeholders with randomly generated data',
 						videoUrl: '/assets/projects/calqulate/calqulate-charts.webm',
 					},
 					{
@@ -132,7 +132,7 @@ export const work: Workplace[] = [
 					'Turborepo',
 					'Sentry',
 				],
-				responsibilities: ['Front-end Web App'],
+				responsibilities: ['Front-end Web App', 'Back-end API Types SDK'],
 			},
 		],
 	},

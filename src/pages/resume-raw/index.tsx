@@ -14,6 +14,7 @@ import {
 import { AiOutlineGithub } from 'solid-icons/ai';
 import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
+import { FaSolidLocationDot } from 'solid-icons/fa';
 import { ComponentProps, For } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
@@ -61,7 +62,7 @@ const ResumeRaw = () => (
 				Ahmed Habeila
 			</Text>
 			<Text color="white" fontSize="$2xl">
-				Front-end web developer
+				Full-stack Web Developer
 			</Text>
 
 			<Flex direction="column" rowGap="$4" mt="$4">
@@ -77,6 +78,12 @@ const ResumeRaw = () => (
 						{telephoneNumberStylized}
 					</Text>
 				</StyledFlexLink>
+				<Flex alignItems="center">
+					<FaSolidLocationDot size={ICON_SIZE} color={secondaryTextAndIconColor} />
+					<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
+						North York, ON, Canada
+					</Text>
+				</Flex>
 			</Flex>
 
 			<Flex gap="$8" mt="$4">

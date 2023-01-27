@@ -14,7 +14,7 @@ export default function Intro() {
 					Ahmed Habeila
 				</Heading>
 				<Heading level="2" textAlign="center" mb="$6" fontSize="$2xl">
-					Front-end Web Developer
+					Full-stack Web Developer
 				</Heading>
 				<Text fontSize="$lg" mt="$12">
 					Things I consider myself good at
