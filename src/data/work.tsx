@@ -57,9 +57,12 @@ export const work: Workplace[] = [
 						imageUrl: '/assets/projects/portfolio/portfolio-pageSpeedInsights.webp',
 					},
 					{
-						description:
-							'You can interact with the stars by hovering over (or on mobile, touching) them and they will disappear,\
-							 skip forward and re-appear with a different color.',
+						description: () => (
+							<>
+								You can interact with the stars by hovering over (or on mobile, touching) them and they will disappear,
+								skip forward and re-appear with a different color.'
+							</>
+						),
 					},
 					{ description: 'All animations are vanilla' },
 				],
@@ -86,21 +89,24 @@ export const work: Workplace[] = [
 				id: 'calqulate',
 				website: 'https://calqulate.io/',
 				Logo: CalqulateLogo,
-				description:
-					'A financial tool for modern SaaS organizations that automatically generates reports on finances,\
-					 growth metrics, cashflow forecasting, cash management, customer growth and churn, \
-					 multi-source subscription management and more.\
-					  Features complex editable tree tables with fixed columns, sticky headers and advanced styles,\
-						 interactive data rich charts.\
-						  Collects data from most known major accounting softwares.\
-							 My biggest responsibility in this project is to create and maintain different libraries in a monorepo for\
-							  tables, charts and reusable UI components.',
-
+				description: (
+					<>
+						A financial tool for modern SaaS organizations that automatically generates reports on finances, growth
+						metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription
+						management and more. Features complex editable tree tables with fixed columns, sticky headers and advanced
+						styles, interactive data rich charts. Collects data from most known major accounting softwares. My biggest
+						responsibility in this project is to create and maintain different libraries in a monorepo for tables,
+						charts and reusable UI components.
+					</>
+				),
 				tasks: [
 					{
-						description:
-							'Created a proprietary charts library using D3 with 10 different types of charts with animations,\
-							interactive tooltips, legends and placeholders with randomly generated data',
+						description: () => (
+							<>
+								Created a proprietary charts library using D3 with 10 different types of charts with animations,
+								interactive tooltips, legends and placeholders with randomly generated data'
+							</>
+						),
 						videoUrl: '/assets/projects/calqulate/calqulate-charts.webm',
 					},
 					{
@@ -140,8 +146,12 @@ export const work: Workplace[] = [
 	{
 		name: 'Coformatique',
 		website: 'https://www.linkedin.com/company/coformatique/',
-		description:
-			"Working as a full-stack web developer in varying projects using different sets of technologies. I've gained the most experience working here, tackling more challenging problems.",
+		description: (
+			<>
+				Working as a full-stack web developer on varying projects in this warehouse company, using different sets of
+				technologies, I gained experience in accessibility, pixel perfect UI, responsive design and SEO.
+			</>
+		),
 		from: 'May 2020',
 		to: 'November 2020',
 		title: 'Full-stack Web Developer',
@@ -151,8 +161,12 @@ export const work: Workplace[] = [
 				id: 'bmw-foundation',
 				website: 'https://bmw-foundation.org/',
 				Logo: BmwFoundationLogo,
-				description:
-					"Built this website from the ground up until it went live, it's an informative website of the foundation's mission, plans and events. The website features advanced accessibility features and multi-language routing.",
+				description: (
+					<>
+						Built this website from the ground up until it went live, it's an informative website of the foundation's
+						mission, plans and events. The website features advanced accessibility features and multi-language routing.
+					</>
+				),
 				technologies: [
 					'React',
 					'Gatsby',
@@ -171,19 +185,26 @@ export const work: Workplace[] = [
 				id: 'twentythirty',
 				website: 'https://twentythirty.com/',
 				Logo: TwentyThirtyLogo,
-				description:
-					"Built this one from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.",
+				description: (
+					<>
+						Built this one from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just
+						and sustainable future in alignment with the UN 2030 Agenda.
+					</>
+				),
 				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
 				responsibilities: ['Website (front-end)'],
 			},
 			{
 				name: 'Educational platform',
 				id: 'educational-platform',
-				description:
-					"An educational platform where professors can upload and schedule lectures to different classes,\
-					automatically create and share Zoom meeting links after a lecture have been seen by all the students to discuss it,\
-					create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, \
-					an admin dashboard where professors can manage lectures, send emails with grades to students' parents.",
+				description: (
+					<>
+						An educational platform where professors can upload and schedule lectures to different classes,
+						automatically create and share Zoom meeting links after a lecture have been seen by all the students to
+						discuss it, create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, an
+						admin dashboard where professors can manage lectures, send emails with grades to students' parents.
+					</>
+				),
 				technologies: [
 					'Firebase',
 					'Express.js',
@@ -210,25 +231,27 @@ export const work: Workplace[] = [
 		title: 'Full-stack Web Developer',
 		projects: [
 			// {
-			//   description:
-			//     "A web application for an asset tracking system designed to manage, track and generate statistics about equipment and their status",
-			//   technologies: [
-			//     "React",
-			//     "Javascript",
-			//     "Material UI",
-			//     "Feathers.js",
-			//     "MongoDB",
-			//     "JSON Web Token",
-			//   ],
+			// 	name: "NACG",
+			// 	id: "nacg",
+			// 	description: (
+			// 		<>
+			// 			A web application for an asset tracking system designed to manage, track and generate statistics about
+			// 			equipment and their status
+			// 		</>
+			// 	),
+			// 	technologies: ['React', 'Javascript', 'Material UI', 'Feathers.js', 'MongoDB', 'JSON Web Token'],
 			// },
 			{
 				name: 'Netjeek',
 				id: 'netjeek',
 				Logo: NetjeekLogo,
-				description:
-					"First project I've worked on that's went live,\
-					 it's trans-shipping system designed to facilitate the purchase and delivery of goods\
-					  to countries where customers can’t place an order to international e-retailers directly.",
+				description: (
+					<>
+						Here I worked on my first project I've worked on that's went live, it's trans-shipping system designed to
+						facilitate the purchase and delivery of goods to countries where customers can’t place an order to
+						international e-retailers directly.
+					</>
+				),
 				technologies: [
 					'React',
 					'Javascript',
@@ -246,9 +269,12 @@ export const work: Workplace[] = [
 				],
 				tasks: [
 					{
-						description:
-							'Created an integration with Google maps where the user can pinpoint their\
-							delivery location on the map with automatic location detection',
+						description: () => (
+							<>
+								Created an integration with Google maps where the user can pinpoint their delivery location on the map
+								with automatic location detection
+							</>
+						),
 					},
 					{ description: 'Created an integration with Stripe for the users to pay for shipments' },
 				],
@@ -270,10 +296,13 @@ export const projects = [
 
 export type ProjectWithCompany = typeof projects[number];
 
-export const introText =
-	'I am a senior software engineer with 4 years of experience. \
-My work extends from system design and analysis to complete implementation, \
-but front-end web development is where my passion truly lies working with React, Vue and Solid.js.';
+// export const introText = (
+// 	<>
+// 		I am a senior software engineer with 4 years of experience. My work extends from system design and analysis to
+// 		complete implementation, but front-end web development is where my passion truly lies working with React, Vue and
+// 		Solid.js.
+// 	</>
+// );
 
 export const telephoneNumber = '16479790872';
 export const telephoneNumberStylized = '(647) 797-0872';

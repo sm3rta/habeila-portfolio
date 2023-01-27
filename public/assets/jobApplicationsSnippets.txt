@@ -1,5 +1,5 @@
 
-React, TypeScript, Node.js, Git, Jira, Material UI, Sass, JSS, Styled components, Data fetching, Localization, Forms & validation, JSDoc, Unit Testing, Responsive Design, Express.js, Firebase, Global State Design, C++, MongoDB, Authentication, Python, Vue, Solid JS
+React, Javascript, TypeScript, Node.js, Git, Jira, Material UI, Sass, JSS, Styled components, Data fetching, Localization, Forms & validation, JSDoc, Unit Testing, Responsive Design, Express.js, Firebase, Global State Design, C++, MongoDB, Authentication, Python, Vue, Solid JS
 
 https://habeila-portfolio.netlify.app/
 https://github.com/sm3rta
