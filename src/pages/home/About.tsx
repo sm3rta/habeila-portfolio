@@ -31,7 +31,7 @@ export default function About() {
 				/>
 
 				<Text mt="$10">
-					I have 4 years of professional experience in software engineering, mainly front-end development using{' '}
+					I have 5 years of professional experience in software engineering, mainly front-end development using{' '}
 					<b>React</b>.
 				</Text>
 				<Text mt="$6">

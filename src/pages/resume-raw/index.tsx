@@ -113,7 +113,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 			</Text>
 			<StyledDivider />
 			<Text>
-				I am a software engineer with strong analytical and problem-solving skills. I have 4 years of professional
+				I am a software engineer with strong analytical and problem-solving skills. I have 5 years of professional
 				experience, mainly in front-end development using <b>React</b>.
 			</Text>
 			<Text mt="$2">
