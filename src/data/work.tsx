@@ -78,13 +78,16 @@ export const work: Workplace[] = [
 				Working full-time for more than two years on this project, I led a team of 3 to 4 front-end developers in the
 				process of creating and maintaining features while setting design system standards for the design team to
 				follow.
-				<br /> I have had experience in <b>leading other developers</b>, performing code reviews and enforcing certain
-				patterns, project-specific standards and <b>best practices</b>.
+				<br />I have led other developers, performing code reviews and enforcing certain patterns, project-specific
+				standards and <b>best practices</b>.
+				<br />
+				My biggest responsibility in this project was to create and maintain different libraries in a monorepo for
+				tables, charts and reusable UI components.
 			</>
 		),
 		from: 'November 2020',
-		// to: 'January 2023',
-		to: 'Current',
+		to: 'January 2023',
+		// to: 'Current',
 		title: 'Front-end Web Developer',
 		projects: [
 			{
@@ -97,9 +100,7 @@ export const work: Workplace[] = [
 						A financial tool for modern SaaS organizations that automatically generates reports on finances, growth
 						metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription
 						management and more. Features complex editable tree tables with fixed columns, sticky headers and advanced
-						styles, interactive data rich charts. Collects data from most known major accounting softwares. My biggest
-						responsibility in this project is to create and maintain different libraries in a monorepo for tables,
-						charts and reusable UI components.
+						styles, interactive data rich charts. Collects data from most known major accounting softwares.
 					</>
 				),
 				tasks: [
