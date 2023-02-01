@@ -1,15 +1,11 @@
 import { JSX } from 'solid-js';
+import { darkMode } from '../../App';
 
 export const TwentyThirtyLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 	<svg viewBox="0 0 300 35" version="1.1" xmlns="http://www.w3.org/2000/svg" {...props}>
 		<title>14D9EB79-48B9-4451-BBEF-2FE11A0C4025</title>
 		<g id="Design" stroke="none" stroke-width="1" fill-rule="evenodd">
-			<g
-				id="D03-Category"
-				transform="translate(-160.000000, -118.000000)"
-				//  fill="#333333"
-				fill="white"
-			>
+			<g id="D03-Category" transform="translate(-160.000000, -118.000000)" fill={darkMode() ? 'white' : '#333333'}>
 				<g id="Navi/Desktop-Header---Basic" transform="translate(0.000000, 48.000000)">
 					<g id="Logo-/-TwentyThirty-(no-margin)" transform="translate(160.000000, 70.000000)">
 						<path

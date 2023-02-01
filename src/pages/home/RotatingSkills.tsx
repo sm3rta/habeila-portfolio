@@ -15,11 +15,11 @@ const fSections = 3;
 const fMax = 1;
 const fMin = 0.4;
 
-const transitionTimeMs = 1000;
+const transitionTimeMs = 750;
 const transitionTimeSec = transitionTimeMs / 1000;
 
 export const skills = [
-	'React 18',
+	'React',
 	'TypeScript',
 	'Node.js',
 	'Git',
@@ -59,7 +59,7 @@ const BadgeAndLine = ({
 	// index
 	// fSections
 	// skills.length
-	const cycleTime = transitionTimeMs / fSections;
+	// const cycleTime = transitionTimeMs / fSections;
 	// const delay = (index % fSections) * cycleTime + (index / (skills.length / fSections)) * cycleTime;
 	// const itemTransitionTime = transitionTimeMs / skills.length;
 	const delay = (index * transitionTimeMs) / 8;

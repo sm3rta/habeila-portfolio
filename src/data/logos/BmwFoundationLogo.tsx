@@ -1,4 +1,5 @@
 import { JSX } from 'solid-js';
+import { darkMode } from '../../App';
 
 export const BmwFoundationLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 	<svg
@@ -13,7 +14,7 @@ export const BmwFoundationLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) =>
 		<title>logo_bmwf</title>
 		<desc>Created with Sketch.</desc>
 		<defs></defs>
-		<g id="Page-1" stroke="none" stroke-width="1" fill="white" fill-rule="evenodd">
+		<g id="Page-1" stroke="none" stroke-width="1" fill={darkMode() ? 'white' : 'black'} fill-rule="evenodd">
 			<g id="Artboard" transform="translate(-1.000000, -1.000000)" fill-rule="nonzero">
 				<g id="logo_bmwf" transform="translate(1.000000, 1.000000)">
 					<g id="hq" transform="translate(0.000000, 17.000000)">

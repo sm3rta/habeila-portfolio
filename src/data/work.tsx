@@ -78,11 +78,14 @@ export const work: Workplace[] = [
 				Working full-time for more than two years on this project, I led a team of 3 to 4 front-end developers in the
 				process of creating and maintaining features while setting design system standards for the design team to
 				follow.
+				<br /> I have had experience in <b>leading other developers</b>, performing code reviews and enforcing certain
+				patterns, project-specific standards and <b>best practices</b>.
 			</>
 		),
 		from: 'November 2020',
-		to: 'January 2023',
-		title: 'Full-stack Web Developer',
+		// to: 'January 2023',
+		to: 'Current',
+		title: 'Front-end Web Developer',
 		projects: [
 			{
 				name: 'Calqulate',
@@ -137,6 +140,8 @@ export const work: Workplace[] = [
 					'Auth0',
 					'Turborepo',
 					'Sentry',
+					'Hasura',
+					'AWS',
 				],
 				responsibilities: ['Front-end Web App', 'Back-end API Types SDK'],
 			},
@@ -163,8 +168,9 @@ export const work: Workplace[] = [
 				Logo: BmwFoundationLogo,
 				description: (
 					<>
-						Built this website from the ground up until it went live, it's an informative website of the foundation's
-						mission, plans and events. The website features advanced accessibility features and multi-language routing.
+						I built this website from the ground up until it went live, it's an informative website of the BMW
+						Foundation's mission, plans and events. The website features advanced accessibility features and
+						multi-language routing.
 					</>
 				),
 				technologies: [
@@ -187,8 +193,8 @@ export const work: Workplace[] = [
 				Logo: TwentyThirtyLogo,
 				description: (
 					<>
-						Built this one from the ground up, it's an online magazine managed by the BMW Foundation inspiring a just
-						and sustainable future in alignment with the UN 2030 Agenda.
+						An online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with
+						the UN 2030 Agenda.
 					</>
 				),
 				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
@@ -248,9 +254,9 @@ export const work: Workplace[] = [
 				description: (
 					// Here I worked on my
 					<>
-						First project I've worked on that's went live, it's trans-shipping system designed to facilitate the
-						purchase and delivery of goods to countries where customers can’t place an order to international
-						e-retailers directly.
+						First project I've worked on that's went live, it's an eCommerce trans-shipping system designed to
+						facilitate the purchase and delivery of goods to countries where customers can’t place an order to
+						international e-retailers directly.
 					</>
 				),
 				technologies: [
@@ -267,6 +273,7 @@ export const work: Workplace[] = [
 					'Google Maps',
 					'JSDoc',
 					'Jest Enzyme',
+					'Python',
 				],
 				tasks: [
 					{

@@ -2,6 +2,8 @@ import { Anchor, Divider, Flex, List, ListItem, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
 import { Workplace } from '../../data/work';
 import ProjectSummary from './ProjectSummary';
+import { darkMode } from '../../App';
+import { colors } from '../../ui/theme';
 
 const renderCompany = (name: string, link?: string) => {
 	const company = <Text fontSize="$sm">{name}</Text>;
@@ -12,7 +14,7 @@ const renderCompany = (name: string, link?: string) => {
 export const CompanyProjects = ({ company }: { company: Workplace }) => (
 	<Flex h="100%" w="100%" direction="column" justifyContent="center">
 		<Flex justifyContent="space-between" alignItems="center">
-			<Text fontSize="$lg" color="$primary5" lineHeight="24px">
+			<Text fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
 				{company.title}
 			</Text>
 			{renderCompany(company.name, company.website)}
@@ -26,7 +28,7 @@ export const CompanyProjects = ({ company }: { company: Workplace }) => (
 			<Text mt="$4">{company.description}</Text>
 		</Show>
 
-		<Text fontWeight="$bold" color="$primary5" my="$4">
+		<Text fontWeight="$bold" color={darkMode() ? '$primary5' : colors.primary1} my="$4">
 			Projects:
 		</Text>
 		<List d="flex" flexDirection="column">

@@ -18,7 +18,7 @@ import { FaSolidLocationDot } from 'solid-icons/fa';
 import { ComponentProps, For } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
-import { theme } from '../../ui/theme';
+import { darkTheme as theme } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { CompanyProjects } from '../resume/CompanyProjects';
 import { Timeline } from '../resume/Timeline';
@@ -26,17 +26,17 @@ const ICON_SIZE = 20;
 
 const secondaryTextAndIconColor = 'var(--hope-colors-neutral8)';
 
-const StyledDivider = styled((props: any) => <Divider {...props} />)(({ theme }) => ({
+const StyledDivider = styled((props: any) => <Divider {...props} />)({
 	marginBlock: '1rem',
 	backgroundColor: 'var(--hope-colors-info12)',
 	height: '2px',
-}));
+});
 
 const StyledFlexLink = (props: ComponentProps<typeof Flex> & AsProp<'a'>) => (
 	<Flex alignItems="center" as="a" target="_blank" {...props} />
 );
 
-const ResumeRaw = () => (
+const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist' }) => (
 	<HopeProvider
 		config={{
 			lightTheme: {
@@ -62,7 +62,7 @@ const ResumeRaw = () => (
 				Ahmed Habeila
 			</Text>
 			<Text color="white" fontSize="$2xl">
-				Full-stack Web Developer
+				{type === 'generalist' ? 'Full-stack Web Developer' : 'Front-end Web Developer'}
 			</Text>
 
 			<Flex direction="column" rowGap="$4" mt="$4">
@@ -113,14 +113,13 @@ const ResumeRaw = () => (
 			</Text>
 			<StyledDivider />
 			<Text>
-				I am a software engineer with 4 years of professional experience, mainly in front-end development using{' '}
-				<b>React</b>.
+				I am a software engineer with strong analytical and problem-solving skills. I have 4 years of professional
+				experience, mainly in front-end development using <b>React</b>.
 			</Text>
 			<Text mt="$2">
 				I worked on various projects and dived into a lot of concepts of front-end development, from content-driven
 				websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and
-				tables, reusable UI components and design systems. I have experience in <b>leading other developers</b>,
-				reviewing their work and enforcing certain patterns, project-specific standards and <b>best practices</b>.
+				tables, reusable UI components and design systems.
 			</Text>
 			<Text mt="$2"></Text>
 		</Flex>
@@ -150,9 +149,9 @@ const ResumeRaw = () => (
 				<Flex direction="column" gap="$2">
 					<For
 						each={[
-							{ name: 'React 18', value: 96 },
+							{ name: 'React', value: 96 },
 							{ name: 'TypeScript', value: 94 },
-							{ name: 'Material UI', value: 90 },
+							{ name: 'CSS', value: 90 },
 							{ name: 'Node.js', value: 89 },
 							{ name: 'Git', value: 87 },
 						]}
@@ -170,29 +169,35 @@ const ResumeRaw = () => (
 
 				<Flex gap="$4" direction="column" mt="$8">
 					<Flex gap="$2" wrap="wrap">
+						{/* web dev */}
+						<For each={['HTML', 'Javascript', 'Express.js', 'Responsive Design', 'GraphQL']}>
+							{(item) => <Badge>{item}</Badge>}
+						</For>
+					</Flex>
+					{/* soft skills, other web dev */}
+					<Flex gap="$2" wrap="wrap">
 						<For
 							each={[
 								'Jira',
+								'Next.js',
 								'JSS/Styled components',
 								'Data fetching',
 								'Localization',
 								'Forms & validation',
-								'Responsive Design',
-								'Unit Testing',
-								'JSDoc',
 								'Global State Design',
+								'Code documentation',
 							]}
 						>
 							{(item) => <Badge>{item}</Badge>}
 						</For>
 					</Flex>
-
+					{/* others */}
 					<Flex gap="$2" wrap="wrap">
-						<For each={['Express.js', 'Firebase', 'MongoDB', 'JWT']}>{(item) => <Badge>{item}</Badge>}</For>
+						<For each={['Firebase', 'MongoDB', 'Postgres', 'Unit Testing']}>{(item) => <Badge>{item}</Badge>}</For>
 					</Flex>
-
+					{/* others */}
 					<Flex gap="$2" wrap="wrap">
-						<For each={['JS/HTML/CSS', 'Python', 'C++', 'Vue', 'Solid JS']}>{(item) => <Badge>{item}</Badge>}</For>
+						<For each={['Solid JS', 'Vue', 'Python', 'C++']}>{(item) => <Badge>{item}</Badge>}</For>
 					</Flex>
 				</Flex>
 
@@ -203,19 +208,19 @@ const ResumeRaw = () => (
 					<StyledDivider />
 					<Flex direction="column">
 						<Flex>
-							<Text d="contents">Arabic</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
-								{' '}
-								(Native)
-							</Text>
-						</Flex>
-						<Flex>
 							<Text d="contents">English</Text>
 							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
 								{' '}
 								(Fluent)
 							</Text>
 						</Flex>
+					</Flex>
+					<Flex>
+						<Text d="contents">Arabic</Text>
+						<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							{' '}
+							(Native)
+						</Text>
 					</Flex>
 				</Flex>
 

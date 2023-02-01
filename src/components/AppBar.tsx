@@ -1,9 +1,10 @@
-import { Box, Flex, List } from '@hope-ui/solid';
+import { Box, Flex, List, Switch } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
 import { createSignal, onCleanup, onMount } from 'solid-js';
 import { Link } from '../ui/components/Link';
 import { HEADER_HEIGHT, colors, zIndexes } from '../ui/theme';
+import { darkMode, setDarkMode } from '../App';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 
@@ -39,7 +40,7 @@ export const AppBar = () => {
 		<Flex
 			position="fixed"
 			h={HEADER_HEIGHT}
-			backgroundColor={colors.secondary1}
+			backgroundColor={darkMode() ? colors.secondary1 : colors.secondary7}
 			top={0}
 			w="100%"
 			justifyContent="center"
@@ -99,6 +100,17 @@ export const AppBar = () => {
 					Resume
 				</Link>
 			</List>
+
+			{/* <Switch
+				defaultChecked={darkMode()}
+				onChange={(e) => {
+					const newValue = (e.target as unknown as { checked: boolean }).checked;
+					setDarkMode(newValue);
+					localStorage.setItem('darkMode', newValue ? 'true' : 'false');
+				}}
+				colorScheme="neutral"
+				css={{ float: 'right' }}
+			/> */}
 		</Flex>
 	);
 };

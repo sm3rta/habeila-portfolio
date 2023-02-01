@@ -18,7 +18,11 @@ I had a very big moment of excitement after re-implementing the animations where
 
 
 I am a software engineer with 4 years of professional experience, mainly in front-end development using React.
-
 I worked on various projects and dived into a lot of concepts of front-end development, from content-driven websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems. I have experience in leading other developers, reviewing their work and enforcing certain patterns, project-specific standards and best practices.
+Please consider taking a look at my portfolio: https://habeila-portfolio.netlify.app/
 
-I led a team of 3 to 4 front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow.
+// I led a team of 3 to 4 front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow.
+
+AssemblyAI has a reputation for being a great place to work, with a strong culture and a team of talented and dedicated individuals so I think it's going to be a great learning experience for me. And in return, I'm a very motivated and dedicated engineer who likes to get the job done.
+
+Strong analytical and problem-solving skills

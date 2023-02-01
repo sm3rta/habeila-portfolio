@@ -40,7 +40,7 @@ export const colors = {
 	secondary12: '#ffffff',
 } as const satisfies NonNullable<HopeThemeConfig['darkTheme']>['colors'];
 
-export const theme = {
+export const darkTheme = {
 	initialColorMode: 'dark',
 
 	darkTheme: {
@@ -96,6 +96,89 @@ export const theme = {
 				// backgroundColor: colors.secondary1,
 				color: colors.secondary1,
 				backgroundColor: colors.primary7,
+				textTransform: 'none',
+			},
+		},
+		Button: {
+			baseStyle: {
+				root: {
+					zIndex: zIndexes.aboveStar,
+				},
+			},
+		},
+		Anchor: {
+			baseStyle: {
+				textDecoration: 'underline',
+				_hover: {
+					color: colors.secondary5,
+					'& *': {
+						color: colors.secondary5,
+					},
+				},
+			},
+		},
+	},
+} as const satisfies HopeThemeConfig;
+
+export const lightTheme = {
+	initialColorMode: 'light',
+
+	darkTheme: {
+		colors,
+		fontSizes: {
+			'9xl': '9vw',
+			'8xl': '8rem',
+			'7xl': '7rem',
+			'6xl': '6rem',
+			'5xl': '5rem',
+			'4xl': '4rem',
+			'3xl': '3rem',
+			'2xl': '2rem',
+			xl: '1.5rem',
+			lg: '1.25rem',
+			md: '1rem',
+			sm: '0.875rem',
+			// lg: 'calc(0.75em + 1vw)',
+			// md: 'calc(0.75em + 0.5vw)',
+			// sm: 'calc(0.75em + 0.25vw)',
+			xs: '0.75rem',
+		},
+	},
+	components: {
+		Heading: {
+			baseStyle: {
+				// fontFamily: 'Rubik',
+				fontSize: '$md',
+			},
+		},
+		Text: {
+			baseStyle: {
+				color: 'black',
+				// fontFamily: 'Rubik',
+				fontSize: '$md',
+			},
+		},
+		IconButton: {
+			baseStyle: {
+				color: 'black',
+				background: 'unset',
+				_hover: {
+					background: 'unset',
+					color: colors.secondary6,
+				},
+				_active: {
+					color: colors.secondary2,
+				},
+			},
+		},
+		Badge: {
+			baseStyle: {
+				// color: colors.primary5,
+				// backgroundColor: colors.secondary1,
+				// color: colors.secondary1,
+				// backgroundColor: colors.primary7,
+				color: colors.primary7,
+				backgroundColor: colors.secondary1,
 				textTransform: 'none',
 			},
 		},

@@ -2,7 +2,7 @@ import { Button } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { ComponentProps } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { colors, theme } from '../theme';
+import { colors, darkTheme as theme } from '../theme';
 
 export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean; small?: boolean }) => (
 	<Link title={props.children} role="navigation" size="sm" variant="ghost" as={A} {...props} />

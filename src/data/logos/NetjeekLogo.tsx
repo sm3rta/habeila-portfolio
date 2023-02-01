@@ -1,4 +1,5 @@
 import { JSX } from 'solid-js';
+import { darkMode } from '../../App';
 
 export const NetjeekLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 	<svg
@@ -8,7 +9,7 @@ export const NetjeekLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 		preserveAspectRatio="xMidYMid meet"
 		{...props}
 	>
-		<g transform="translate(0,660) scale(0.1,-0.1)" fill="white" stroke="none">
+		<g transform="translate(0,660) scale(0.1,-0.1)" fill={darkMode() ? 'white' : 'black'} stroke="none">
 			<path
 				d="M780 5830 l0 -680 209 0 209 0 6 31 c3 17 6 167 6 333 l1 301 20 -35
 c11 -19 33 -57 49 -85 17 -27 49 -81 71 -120 22 -38 56 -95 74 -125 18 -30 46
