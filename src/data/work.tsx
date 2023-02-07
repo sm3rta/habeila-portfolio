@@ -314,4 +314,4 @@ export type ProjectWithCompany = typeof projects[number];
 // );
 
 export const telephoneNumber = '16479790872';
-export const telephoneNumberStylized = '(647) 797-0872';
+export const telephoneNumberStylized = '(647) 979-0872';
