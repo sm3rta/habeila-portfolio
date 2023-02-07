@@ -1,4 +1,4 @@
-import { Anchor } from '@hope-ui/solid';
+import { Anchor, Box, List, ListItem } from '@hope-ui/solid';
 import { JSX } from 'solid-js';
 import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
@@ -94,10 +94,22 @@ export const work: Workplace[] = [
 				Logo: CalqulateLogo,
 				description: (
 					<>
-						A financial tool for modern SaaS organizations that automatically generates reports on finances, growth
-						metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription
-						management and more. Features complex editable tree tables with fixed columns, sticky headers and advanced
-						styles, interactive data rich charts. Collects data from most known major accounting softwares.
+						A financial tool for modern SaaS organizations that
+						<ul>
+							<ListItem>
+								Collects data from multiple sources and automatically generates reports on finances, growth metrics,
+								cashflow forecasting, cash management, customer growth and churn, multi-source subscription management
+								and more.
+							</ListItem>
+							<ListItem>
+								Features complex editable tree tables with fixed columns, sticky headers and advanced styles,
+								interactive data rich charts.
+							</ListItem>
+							<ListItem>
+								Integrates with most known major accounting and subscription software like Stripe, Procountor,
+								QuickBooks and Xero.
+							</ListItem>
+						</ul>
 					</>
 				),
 				tasks: [
@@ -178,7 +190,7 @@ export const work: Workplace[] = [
 					'Material UI',
 					'JSS',
 					'Multi-language Routing',
-					'Responsive Design',
+					'Responsive UI',
 					'I18Next',
 					'Axios',
 				],
@@ -195,7 +207,7 @@ export const work: Workplace[] = [
 						the UN 2030 Agenda.
 					</>
 				),
-				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive Design', 'JSS', 'Axios'],
+				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive UI', 'JSS', 'Axios'],
 				responsibilities: ['Website (front-end)'],
 			},
 			{
@@ -251,10 +263,10 @@ export const work: Workplace[] = [
 				Logo: NetjeekLogo,
 				description: (
 					// Here I worked on my
+					// First project I've worked on that's went live, it's an
 					<>
-						First project I've worked on that's went live, it's an eCommerce trans-shipping system designed to
-						facilitate the purchase and delivery of goods to countries where customers can’t place an order to
-						international e-retailers directly.
+						Built an eCommerce trans-shipping system designed to facilitate the purchase and delivery of goods to
+						countries where customers can’t place an order to international e-retailers directly.
 					</>
 				),
 				technologies: [

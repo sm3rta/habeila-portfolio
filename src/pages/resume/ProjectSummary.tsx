@@ -12,20 +12,22 @@ const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
 	<Flex w="100%" direction="column" justifyContent="center">
 		<Box>
 			{renderProjectTitle(project.name, project.website)}
-			<Text as="span" fontSize="$sm">
-				: {project.description}
-			</Text>
+			<Text as="span">: {project.description}</Text>
 		</Box>
 		<Box>
 			<Show when={project.technologies?.length}>
-				<Text mt="$3">Technologies used</Text>
+				<Text mt="$3" fontWeight="$semibold" fontSize="$sm">
+					Technologies used
+				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.technologies}>{(tech) => <Badge>{tech}</Badge>}</For>
 				</Flex>
 			</Show>
 
 			<Show when={project.responsibilities?.length}>
-				<Text mt="$3">What I worked on</Text>
+				<Text mt="$3" fontWeight="$semibold" fontSize="$sm">
+					What I worked on
+				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
 				</Flex>

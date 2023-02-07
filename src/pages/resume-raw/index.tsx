@@ -22,6 +22,7 @@ import { darkTheme as theme } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { CompanyProjects } from '../resume/CompanyProjects';
 import { Timeline } from '../resume/Timeline';
+
 const ICON_SIZE = 20;
 
 const secondaryTextAndIconColor = 'var(--hope-colors-neutral8)';
@@ -107,7 +108,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 			</Flex>
 		</Flex>
 
-		<Flex direction="column" p="$8">
+		<Flex direction="column" m="$8">
 			<Text fontSize="$lg" fontWeight="$bold">
 				ABOUT
 			</Text>
@@ -121,10 +122,13 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 				websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and
 				tables, reusable UI components and design systems.
 			</Text>
-			<Text mt="$2"></Text>
 		</Flex>
 
-		<Grid templateColumns={{ '@lg': '3fr 1fr' }} p="$8" gap="$8">
+		<Grid
+			// templateColumns={{ '@lg': '3fr 1fr' }}
+			m="$8"
+			gap="$8"
+		>
 			<GridItem flexDirection="column">
 				<Text fontSize="$lg" fontWeight="$bold">
 					WORK EXPERIENCE
@@ -227,6 +231,41 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 
 				<Flex direction="column" mt="$8">
 					<Text fontSize="$lg" fontWeight="$bold">
+						EDUCATION
+					</Text>
+					<StyledDivider />
+					<Text fontWeight="$bold">Bachelor's Degree of Computer Science and Automatic Control</Text>
+					<Text>Faculty of Engineering - Tanta University</Text>
+					<Text fontSize="$sm">2014 - 2019</Text>
+				</Flex>
+
+				<Flex direction="column" mt="$8">
+					<Text fontSize="$lg" fontWeight="$bold">
+						GRADUATION PROJECT{' '}
+					</Text>
+					<StyledDivider />
+					<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="block !important">
+						<Text mr="$2" fontWeight="$bold" d="contents" as="span">
+							An Express-like C++ web application framework
+						</Text>
+						<AiOutlineGithub
+							size={ICON_SIZE}
+							color="$primary5"
+							style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
+						/>
+					</StyledFlexLink>
+					<Text>
+						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
+						build full-fledged back-end multi-threaded API servers and connect it to the desired database in C++ that
+						also supports middleware.
+					</Text>
+					<Flex gap="$2" wrap="wrap" mt="$4">
+						<For each={['C++17', 'CGI', 'Apache', 'Multithreading', 'Linux']}>{(item) => <Badge>{item}</Badge>}</For>
+					</Flex>
+				</Flex>
+
+				<Flex direction="column" mt="$8">
+					<Text fontSize="$lg" fontWeight="$bold">
 						SELF-TAUGHT COURSES
 					</Text>
 					<StyledDivider />
@@ -275,42 +314,6 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 								(Coursera)
 							</Text>
 						</Flex>
-					</Flex>
-				</Flex>
-
-				<Flex direction="column" mt="$8">
-					<Text fontSize="$lg" fontWeight="$bold">
-						EDUCATION
-					</Text>
-					<StyledDivider />
-
-					<Text fontWeight="$bold">Bachelor's Degree of Computer Science and Automatic Control</Text>
-					<Text>Faculty of Engineering - Tanta University</Text>
-					<Text fontSize="$sm">2014 - 2019</Text>
-				</Flex>
-
-				<Flex direction="column" mt="$8">
-					<Text fontSize="$lg" fontWeight="$bold">
-						GRADUATION PROJECT{' '}
-					</Text>
-					<StyledDivider />
-					<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="block !important">
-						<Text mr="$2" fontWeight="$bold" d="contents" as="span">
-							An Express-like C++ web application framework
-						</Text>
-						<AiOutlineGithub
-							size={ICON_SIZE}
-							color="$primary5"
-							style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
-						/>
-					</StyledFlexLink>
-					<Text>
-						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
-						build full-fledged back-end multi-threaded API servers and connect it to the desired database in C++ that
-						also supports middleware.
-					</Text>
-					<Flex gap="$2" wrap="wrap" mt="$4">
-						<For each={['C++17', 'CGI', 'Apache', 'Multithreading', 'Linux']}>{(item) => <Badge>{item}</Badge>}</For>
 					</Flex>
 				</Flex>
 			</GridItem>
