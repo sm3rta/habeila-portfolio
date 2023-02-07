@@ -306,7 +306,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 					</StyledFlexLink>
 					<Text>
 						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
-						build full-fledged back-end multi-threaded api servers and connect it to the desired database in C++ that
+						build full-fledged back-end multi-threaded API servers and connect it to the desired database in C++ that
 						also supports middleware.
 					</Text>
 					<Flex gap="$2" wrap="wrap" mt="$4">

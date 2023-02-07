@@ -75,11 +75,8 @@ export const work: Workplace[] = [
 		website: 'https://calqulate.io/',
 		description: (
 			<>
-				Working full-time for more than two years on this project, I led a team of 3 to 4 front-end developers in the
-				process of creating and maintaining features while setting design system standards for the design team to
-				follow.
-				<br />I have led other developers, performing code reviews and enforcing certain patterns, project-specific
-				standards and <b>best practices</b>.
+				Working full-time for more than two years on this project, I led a team of 5 front-end developers in the process
+				of creating and maintaining features while setting design system standards for the design team to follow.
 				<br />
 				My biggest responsibility in this project was to create and maintain different libraries in a monorepo for
 				tables, charts and reusable UI components.
@@ -169,7 +166,7 @@ export const work: Workplace[] = [
 				Logo: BmwFoundationLogo,
 				description: (
 					<>
-						I built this website from the ground up until it went live, it's an informative website of the BMW
+						Built this website from the ground up until it went live, it's an informative website of the BMW
 						Foundation's mission, plans and events. The website features advanced accessibility features and
 						multi-language routing.
 					</>
