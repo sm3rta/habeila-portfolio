@@ -10,13 +10,10 @@
 
 - go to localhost:3002/resume-raw
 - use Edge print with these settings:
+  - printer: Save as pdf (necessary for links to work)
   - layout: portrait
-  - pages: all
-  - pages per sheet: 1
   - margins: none
   - background graphics: true
-  <!-- - paper size: A4
-  - scale: 51 (might differ a little with more content) -->
   - paper size: Legal
-  - scale: 58 (might differ a little with more content)
+  - scale: 42 (might differ a little with more content)
 - save and publish new pdf
