@@ -25,7 +25,7 @@ import { Timeline } from '../resume/Timeline';
 
 const ICON_SIZE = 20;
 
-const secondaryTextAndIconColor = 'var(--hope-colors-neutral8)';
+const secondaryTextAndIconColor = 'var(--hope-colors-neutral9)';
 
 const StyledDivider = styled((props: any) => <Divider {...props} />)({
 	marginBlock: '1rem',
