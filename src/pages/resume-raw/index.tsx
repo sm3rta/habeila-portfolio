@@ -180,7 +180,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 						<For
 							each={[
 								'SCSS/Sass',
-								'Styled-components',
+								'Styled components',
 								'JSS',
 								'Material UI',
 								'Ant Design',
@@ -193,7 +193,30 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 					</Flex>
 					{/* front end tools and frameworks */}
 					<Flex gap="$2" wrap="wrap">
-						<For each={['Webpack', 'D3.js', 'DevExpress', 'i18next', 'Code documentation']}>
+						<For
+							each={[
+								'Webpack',
+								'D3.js',
+								'DevExpress',
+								'i18next',
+								'JSDoc',
+
+								// Forms & validation,
+								// 'Formik',
+								// 'Yup',
+								// 'react-hook-form',
+								// 'zod',
+
+								//  Global State Design,
+								'Redux',
+								'Redux-Toolkit',
+								'Zustand',
+								'react-query',
+
+								// Authentication
+								'Auth0',
+							]}
+						>
 							{(item) => <Badge>{item}</Badge>}
 						</For>
 					</Flex>

@@ -116,7 +116,7 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Built a proprietary charts library using D3 with 10 different types of charts with animations,
+								Built a proprietary charts library using D3.js with 10 different types of charts with animations,
 								interactive tooltips, legends and placeholders with randomly generated data'
 							</>
 						),
@@ -144,11 +144,12 @@ export const work: Workplace[] = [
 					'Styled components',
 					'react-hook-form',
 					'Zod',
-					'D3',
+					'D3.js',
 					'Storybook',
 					'Hasura',
-					'Stripe Payment Gateway',
+					'Stripe API',
 					'GraphQL',
+					'react-query',
 					'Auth0',
 					'Turborepo',
 					'Sentry',
@@ -193,7 +194,7 @@ export const work: Workplace[] = [
 					'JSS',
 					'Multi-language Routing',
 					'Responsive UI',
-					'I18Next',
+					'i18next',
 					'Axios',
 				],
 				responsibilities: ['Website (front-end)'],
@@ -223,6 +224,14 @@ export const work: Workplace[] = [
 						admin dashboard where professors can manage lectures, send emails with grades to students' parents.
 					</>
 				),
+				// tasks:[
+				// 	{
+				// 		description: "Created a Zoom integration that automatically creates a meeting link for each lecture and sends it to the students' emails"
+				// 	},
+				// 	{
+				// 		description: "Built a custom email template for the emails sent to students' parents"
+				// 	}
+				// ],
 				technologies: [
 					'Firebase',
 					'Express.js',
@@ -257,7 +266,7 @@ export const work: Workplace[] = [
 			// 			equipment and their status
 			// 		</>
 			// 	),
-			// 	technologies: ['React', 'Javascript', 'Material UI', 'Feathers.js', 'MongoDB', 'JSON Web Token'],
+			// 	technologies: ['React', 'JavaScript', 'Material UI', 'Feathers.js', 'MongoDB', 'JWT'],
 			// },
 			{
 				name: 'Netjeek',
@@ -273,18 +282,18 @@ export const work: Workplace[] = [
 				),
 				technologies: [
 					'React',
-					'Javascript',
+					'JavaScript',
 					'Material UI',
 					'JSS',
 					'Express.js',
 					'Global State with React hooks ',
-					'Stripe Payment Gateway',
-					'I18Next',
+					'Stripe API',
+					'i18next',
 					'Axios',
-					'JSON Web Token',
+					'JWT',
 					'Google Maps',
 					'JSDoc',
-					'Jest Enzyme',
+					'Enzyme',
 					'Python',
 				],
 				tasks: [
@@ -297,8 +306,14 @@ export const work: Workplace[] = [
 						),
 					},
 					{ description: 'Built an integration with Stripe for the users to pay for shipments' },
+					{ description: 'Built the front-end app' },
+					{ description: 'Did a system analysis defining APIs with all the possible responses' },
+					{
+						description:
+							'Created a mock API with example responses for each end point, with a configurable front end to change between possible status codes',
+					},
 				],
-				responsibilities: ['eCommerce Website (front-end)', 'System Analysis', 'Mock API creation'],
+				responsibilities: ['eCommerce Website (front end)', 'System Analysis', 'Mock API creation'],
 			},
 		],
 	},
