@@ -25,7 +25,8 @@ import { Timeline } from '../resume/Timeline';
 
 const ICON_SIZE = 20;
 
-const secondaryTextAndIconColor = 'var(--hope-colors-neutral9)';
+const secondaryTextAndIconColorHeader = 'var(--hope-colors-neutral8)';
+const secondaryTextColor = 'var(--hope-colors-neutral9)';
 
 const StyledDivider = styled((props: any) => <Divider {...props} />)({
 	marginBlock: '1rem',
@@ -68,20 +69,20 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 
 			<Flex direction="column" rowGap="$4" mt="$4">
 				<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!">
-					<HiOutlineMail size={ICON_SIZE} color={secondaryTextAndIconColor} />
-					<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
+					<HiOutlineMail size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
+					<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
 						HabeilaAhmed@gmail.com
 					</Text>
 				</StyledFlexLink>
 				<StyledFlexLink href={`tel:+${telephoneNumber}`}>
-					<RiDeviceSmartphoneLine size={ICON_SIZE} color={secondaryTextAndIconColor} />
-					<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
+					<RiDeviceSmartphoneLine size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
+					<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
 						{telephoneNumberStylized}
 					</Text>
 				</StyledFlexLink>
 				<Flex alignItems="center">
-					<FaSolidLocationDot size={ICON_SIZE} color={secondaryTextAndIconColor} />
-					<Text ml="$2" color={secondaryTextAndIconColor} fontSize="$md">
+					<FaSolidLocationDot size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
+					<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
 						North York, ON, Canada
 					</Text>
 				</Flex>
@@ -100,8 +101,8 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 				>
 					{({ href, Icon, name }) => (
 						<StyledFlexLink gap="$2" href={href}>
-							<Icon size={ICON_SIZE} color={secondaryTextAndIconColor} />
-							<Text color={secondaryTextAndIconColor}>{name}</Text>
+							<Icon size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
+							<Text color={secondaryTextAndIconColorHeader}>{name}</Text>
 						</StyledFlexLink>
 					)}
 				</For>
@@ -153,8 +154,10 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 				<Flex direction="column" gap="$2">
 					<For
 						each={[
-							{ name: 'React', value: 96 },
+							{ name: 'React', value: 95 },
+							{ name: 'JavaScript', value: 95 },
 							{ name: 'TypeScript', value: 94 },
+							{ name: 'HTML', value: 93 },
 							{ name: 'CSS', value: 90 },
 							{ name: 'Node.js', value: 89 },
 							{ name: 'Git', value: 87 },
@@ -173,36 +176,40 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 
 				<Flex gap="$4" direction="column" mt="$8">
 					<Flex gap="$2" wrap="wrap">
-						{/* web dev */}
-						<For each={['HTML', 'Javascript', 'Express.js', 'Responsive Design', 'GraphQL']}>
-							{(item) => <Badge>{item}</Badge>}
-						</For>
-					</Flex>
-					{/* soft skills, other web dev */}
-					<Flex gap="$2" wrap="wrap">
+						{/* front end theming */}
 						<For
 							each={[
-								'Jira',
-								'Next.js',
-								'JSS/Styled components',
-								'Data fetching',
-								'Localization',
-								'Forms & validation',
-								'Global State Design',
-								'Code documentation',
-								'CI/CD',
+								'SCSS/Sass',
+								'Styled-components',
+								'JSS',
+								'Material UI',
+								'Ant Design',
+								'Tailwind CSS',
+								'Responsive Design',
 							]}
 						>
 							{(item) => <Badge>{item}</Badge>}
 						</For>
 					</Flex>
-					{/* others */}
+					{/* front end tools and frameworks */}
 					<Flex gap="$2" wrap="wrap">
-						<For each={['Firebase', 'MongoDB', 'Postgres', 'Unit Testing']}>{(item) => <Badge>{item}</Badge>}</For>
+						<For each={['Webpack', 'D3.js', 'DevExpress', 'i18next', 'Code documentation']}>
+							{(item) => <Badge>{item}</Badge>}
+						</For>
 					</Flex>
-					{/* others */}
+					{/* backend */}
 					<Flex gap="$2" wrap="wrap">
-						<For each={['Solid JS', 'Vue', 'Python', 'C++']}>{(item) => <Badge>{item}</Badge>}</For>
+						<For each={['PostgreSQL', 'GraphQL/Apollo', 'Express.js', 'MongoDB', 'Firebase', 'Unit Testing']}>
+							{(item) => <Badge>{item}</Badge>}
+						</For>
+					</Flex>
+					{/* version control */}
+					<Flex gap="$2" wrap="wrap">
+						<For each={['GitHub', 'BitBucket', 'Agile', 'Jira', 'CI/CD ']}>{(item) => <Badge>{item}</Badge>}</For>
+					</Flex>
+					{/* other */}
+					<Flex gap="$2" wrap="wrap">
+						<For each={['Python', 'Solid JS', 'C++', 'Vue.js', 'Next.js']}>{(item) => <Badge>{item}</Badge>}</For>
 					</Flex>
 				</Flex>
 
@@ -214,7 +221,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 					<Flex direction="column">
 						<Flex>
 							<Text d="contents">English</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 								{' '}
 								(Fluent)
 							</Text>
@@ -222,7 +229,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 					</Flex>
 					<Flex>
 						<Text d="contents">Arabic</Text>
-						<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+						<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 							{' '}
 							(Native)
 						</Text>
@@ -272,28 +279,28 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 					<Flex direction="column">
 						<Flex>
 							<Text d="contents">Mastering React</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 								{' '}
 								(by Mosh Hamedani)
 							</Text>
 						</Flex>
 						<Flex>
 							<Text d="contents">Node.js - The Complete Guide to Build RESTful APIs</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 								{' '}
 								(by Mosh Hamedani)
 							</Text>
 						</Flex>
 						<Flex>
 							<Text d="contents">Vue - The Complete Guide (w/ Router, Vuex, Composition API)</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 								{' '}
 								(by Maximilian Schwarzmüller)
 							</Text>
 						</Flex>
 						<Flex>
 							<Text d="contents">CSS - The Complete Guide</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 								{' '}
 								(by Maximilian Schwarzmüller)
 							</Text>
@@ -301,7 +308,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 
 						<Flex>
 							<Text d="contents">Master C++ and OOP</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 								{' '}
 								(Learncpp.com)
 							</Text>
@@ -309,7 +316,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 
 						<Flex>
 							<Text d="contents">Introduction to Game Development Specialization</Text>
-							<Text d="contents" fontSize="$sm" color={secondaryTextAndIconColor}>
+							<Text d="contents" fontSize="$sm" color={secondaryTextColor}>
 								{' '}
 								(Coursera)
 							</Text>

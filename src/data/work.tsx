@@ -96,16 +96,16 @@ export const work: Workplace[] = [
 					<>
 						A financial tool for modern SaaS organizations that
 						<ul>
-							<ListItem>
+							<ListItem ml="$6" fontSize="$sm">
 								Collects data from multiple sources and automatically generates reports on finances, growth metrics,
 								cashflow forecasting, cash management, customer growth and churn, multi-source subscription management
 								and more.
 							</ListItem>
-							<ListItem>
+							<ListItem ml="$6" fontSize="$sm">
 								Features complex editable tree tables with fixed columns, sticky headers and advanced styles,
 								interactive data rich charts.
 							</ListItem>
-							<ListItem>
+							<ListItem ml="$6" fontSize="$sm">
 								Integrates with most known major accounting and subscription software like Stripe, Procountor,
 								QuickBooks and Xero.
 							</ListItem>
@@ -116,24 +116,25 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Created a proprietary charts library using D3 with 10 different types of charts with animations,
+								Built a proprietary charts library using D3 with 10 different types of charts with animations,
 								interactive tooltips, legends and placeholders with randomly generated data'
 							</>
 						),
 						videoUrl: '/assets/projects/calqulate/calqulate-charts.webm',
 					},
+					{ description: 'Created front-end monorepo architecture, including 2 apps and 5 independent libraries' },
 					{
 						description:
-							'Created a library for performant editable tree tables with fixed columns, virtual sticky headers and advanced styles',
+							'Built a library for performant editable tree tables with fixed columns, virtual sticky headers and advanced styles',
 						imageUrl: '/assets/projects/calqulate/calqulate-tables.webp',
 					},
-					{ description: 'Created a responsive app layout with Atlassian-like collapsible drawer and mobile menu' },
+					{ description: 'Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu' },
 					{
 						description:
-							'Created time selectors and filters that follow a global state design pattern and sync with the URL',
+							'Built time selectors and filters that follow a global state design pattern and sync with the URL',
 					},
-					{ description: 'Created an integration with Stripe for the users to pay for subscriptions' },
-					{ description: 'Created a proprietary types SDK to ensure API type safety between front-end and back-end' },
+					{ description: 'Built an integration with Stripe for the users to pay for subscriptions' },
+					{ description: 'Built a proprietary types SDK to ensure API type safety between front-end and back-end' },
 				],
 				technologies: [
 					'React',
@@ -144,6 +145,7 @@ export const work: Workplace[] = [
 					'react-hook-form',
 					'Zod',
 					'D3',
+					'Storybook',
 					'Hasura',
 					'Stripe Payment Gateway',
 					'GraphQL',
@@ -185,7 +187,7 @@ export const work: Workplace[] = [
 				),
 				technologies: [
 					'React',
-					'Gatsby',
+					'Gatsby.js',
 					'TypeScript',
 					'Material UI',
 					'JSS',
@@ -207,7 +209,7 @@ export const work: Workplace[] = [
 						the UN 2030 Agenda.
 					</>
 				),
-				technologies: ['React', 'Gatsby', 'TypeScript', 'Material UI', 'Responsive UI', 'JSS', 'Axios'],
+				technologies: ['React', 'Gatsby.js', 'TypeScript', 'Material UI', 'Responsive UI', 'JSS', 'Axios'],
 				responsibilities: ['Website (front-end)'],
 			},
 			{
@@ -289,12 +291,12 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Created an integration with Google maps where the user can pinpoint their delivery location on the map
+								Built an integration with Google maps where the user can pinpoint their delivery location on the map
 								with automatic location detection
 							</>
 						),
 					},
-					{ description: 'Created an integration with Stripe for the users to pay for shipments' },
+					{ description: 'Built an integration with Stripe for the users to pay for shipments' },
 				],
 				responsibilities: ['eCommerce Website (front-end)', 'System Analysis', 'Mock API creation'],
 			},

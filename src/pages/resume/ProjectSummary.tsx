@@ -1,4 +1,4 @@
-import { Anchor, Badge, Box, Flex, Text } from '@hope-ui/solid';
+import { Anchor, Badge, Box, Flex, ListItem, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
 import { ProjectWithCompany } from '../../data/work';
 
@@ -15,8 +15,23 @@ const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
 			<Text as="span">: {project.description}</Text>
 		</Box>
 		<Box>
+			<Show when={project.tasks?.length}>
+				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
+					Achievements
+				</Text>
+				<Flex mt="$2" direction="column" as="ul">
+					<For each={project.tasks}>
+						{(task) => (
+							<ListItem ml="$6" fontSize="$sm">
+								{task.description}
+							</ListItem>
+						)}
+					</For>
+				</Flex>
+			</Show>
+
 			<Show when={project.technologies?.length}>
-				<Text mt="$3" fontWeight="$semibold" fontSize="$sm">
+				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
 					Technologies used
 				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
@@ -25,8 +40,8 @@ const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
 			</Show>
 
 			<Show when={project.responsibilities?.length}>
-				<Text mt="$3" fontWeight="$semibold" fontSize="$sm">
-					What I worked on
+				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
+					My responsibilities
 				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
