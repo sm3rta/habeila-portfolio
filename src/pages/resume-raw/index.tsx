@@ -185,7 +185,7 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 								'Material UI',
 								'Ant Design',
 								'Tailwind CSS',
-								'Responsive Design',
+								'Responsive UI',
 							]}
 						>
 							{(item) => <Badge>{item}</Badge>}
