@@ -91,12 +91,14 @@ const ResumeRaw = ({ type = 'specialist' }: { type?: 'generalist' | 'specialist'
 			<Flex gap="$8" mt="$4">
 				<For
 					each={[
-						...socials.filter((s) => s.name),
 						{
 							name: 'Portfolio',
 							href: 'https://habeila-portfolio.netlify.app/',
 							Icon: RiDocumentBookMarkFill,
 						},
+						socials.find((s) => s.name === 'LinkedIn')!,
+						socials.find((s) => s.name === 'Github')!,
+						// ...socials.filter((s) => s.name).reverse(),
 					]}
 				>
 					{({ href, Icon, name }) => (

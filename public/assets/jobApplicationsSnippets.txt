@@ -13,63 +13,28 @@ Faculty of Engineering, Tanta University
 
 
 -Skills:
-Agile
-Ant Design
-Auth0
-AWS
-Axios
-BitBucket
-C++
-CI/CD
-CSS
-D3.js
-DevExpress
-Enzyme
-Express.js
-Firebase
-Formik
-Gatsby.js
-Git
-GitHub
-Google Maps
-GraphQL
-GraphQL/Apollo
-Hasura
-HTML
-i18next
-JavaScript
-Jira
-JSDoc
-JSS
-Material UI
-MongoDB
-Next.js
-Node.js
-PostgreSQL
-Python
-React
-react-hook-form
-react-query
-Redux
-Redux-Toolkit
-Responsive Design
-Responsive UI
-Sass
-Sendgrid
-Sentry
-Solid JS
-Storybook
-Stripe API
-Styled components
-Tailwind CSS
-Turborepo
-TypeScript
-Unit Testing
-Vue.js
-Webpack
-Yup
-Zod
-Zustand
+[
+  'Agile',       'Ant Design',             'Auth0',
+  'AWS',         'Axios',                  'BitBucket',
+  'C++',         'CI/CD',                  'CSS',
+  'D3.js',       'DevExpress',             'Enzyme',
+  'Express.js',  'Firebase',               'Formik',
+  'Gatsby.js',   'Git',                    'GitHub',
+  'Google Maps', 'GraphQL',                'GraphQL/Apollo',
+  'Hasura',      'HTML',                   'i18next',
+  'JavaScript',  'Jira',                   'JSDoc',
+  'JSS',         'JWT',                    'Material UI',
+  'MongoDB',     'Multi-language Routing', 'Next.js',
+  'Node.js',     'PostgreSQL',             'Python',
+  'React',       'react-hook-form',        'react-query',
+  'Redux',       'Redux-Toolkit',          'Responsive UI',
+  'Sass',        'SCSS/Sass',              'Sendgrid',
+  'Sentry',      'Solid JS',               'Storybook',
+  'Stripe API',  'Styled components',      'Tailwind CSS',
+  'Turborepo',   'TypeScript',             'Unit Testing',
+  'Vue.js',      'Webpack',                'Yup',
+  'Zod',         'Zustand'
+]
 
 
 -Tell me about yourself:

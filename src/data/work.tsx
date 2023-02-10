@@ -196,6 +196,7 @@ export const work: Workplace[] = [
 					'Responsive UI',
 					'i18next',
 					'Axios',
+					'Wordpress',
 				],
 				responsibilities: ['Website (front-end)'],
 			},
@@ -210,7 +211,7 @@ export const work: Workplace[] = [
 						the UN 2030 Agenda.
 					</>
 				),
-				technologies: ['React', 'Gatsby.js', 'TypeScript', 'Material UI', 'Responsive UI', 'JSS', 'Axios'],
+				technologies: ['React', 'Gatsby.js', 'TypeScript', 'Material UI', 'Responsive UI', 'JSS', 'Axios', 'Wordpress'],
 				responsibilities: ['Website (front-end)'],
 			},
 			{
