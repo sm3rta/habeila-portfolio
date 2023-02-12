@@ -13,7 +13,7 @@ const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...p
 
 export default function About() {
 	return (
-		<Section id="about">
+		<Section id="about" upperBubble bottomBubble>
 			<Container>
 				<StyledImage
 					loading="lazy"

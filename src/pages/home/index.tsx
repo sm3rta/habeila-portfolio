@@ -5,6 +5,7 @@ import Contact from './Contact';
 import Intro from './Intro';
 import Projects from './Projects';
 import { darkMode } from '../../App';
+import Section from './Section';
 
 const Home = () => (
 	<Fade>
@@ -17,6 +18,7 @@ const Home = () => (
 			<Projects />
 			<About />
 			<Contact />
+			<Section minH="unset" upperBubble />
 		</Box>
 	</Fade>
 );

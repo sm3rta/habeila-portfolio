@@ -8,7 +8,7 @@ const breakpoint = '@xl';
 
 export default function Intro() {
 	return (
-		<Section id="home" maxW={{ [breakpoint]: 'unset !important' }} w={{ [breakpoint]: '100%' }}>
+		<Section id="home" maxW={{ [breakpoint]: 'unset !important' }} w={{ [breakpoint]: '100%' }} bottomBubble>
 			<Box css={{ display: 'unset', [breakpoint]: { display: 'none' } }}>
 				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl">
 					Ahmed Habeila
