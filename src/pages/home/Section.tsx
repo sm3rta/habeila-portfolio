@@ -60,10 +60,11 @@ const Section = ({
 			alignContent="center"
 			flexDirection="column"
 			w="fit-content"
-			p={{
+			px={{
 				'@initial': '$6',
 				'@lg': '$4 $8',
 			}}
+			py="120px !important"
 			{...props}
 		/>
 		<Show when={upperBubble}>

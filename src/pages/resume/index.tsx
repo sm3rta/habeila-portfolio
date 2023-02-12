@@ -1,4 +1,5 @@
-import { Anchor, Button, Center } from '@hope-ui/solid';
+import { Button, Center, Flex } from '@hope-ui/solid';
+import { A } from '@solidjs/router';
 import { work } from '../../data/work';
 import Fade from '../../ui/components/Fade';
 import { CompanyProjects } from './CompanyProjects';
@@ -15,9 +16,14 @@ const Resume = () => (
 		</Timeline>
 
 		<Center mt="$24">
-			<Button as={Anchor} variant="outline" href="/assets/AhmedHabeilaResume.pdf" download="Ahmed Habeila's resume">
-				Download resume as PDF
-			</Button>
+			<Flex gap="$4">
+				<Button as={A} variant="outline" href="/resume-raw">
+					Go to raw resume
+				</Button>
+				<Button as={A} variant="outline" href="/assets/AhmedHabeilaResume.pdf" download="Ahmed Habeila's resume">
+					Download resume as PDF
+				</Button>
+			</Flex>
 		</Center>
 	</Fade>
 );

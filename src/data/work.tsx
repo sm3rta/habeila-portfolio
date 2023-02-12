@@ -254,21 +254,28 @@ export const work: Workplace[] = [
 		name: 'Haya Solutions Inc.',
 		website: 'https://hayasolutions.com/',
 		description: '',
-		from: 'May 2019',
+		from: 'May 2018',
 		to: 'May 2020',
 		title: 'Full-stack Web Developer',
 		projects: [
-			// {
-			// 	name: "NACG",
-			// 	id: "nacg",
-			// 	description: (
-			// 		<>
-			// 			A web application for an asset tracking system designed to manage, track and generate statistics about
-			// 			equipment and their status
-			// 		</>
-			// 	),
-			// 	technologies: ['React', 'JavaScript', 'Material UI', 'Feathers.js', 'MongoDB', 'JWT'],
-			// },
+			{
+				name: 'Asset Tracking System',
+				id: 'asset-tracking-system',
+				// id: "nacg",
+				description: (
+					<>
+						A web application for an asset tracking system designed to manage, track and generate statistics about
+						equipment and their status
+					</>
+				),
+				technologies: ['React', 'JavaScript', 'Material UI', 'Feathers.js', 'MongoDB', 'JWT'],
+				tasks: [
+					{
+						description: 'Optimized API response time by 200% by using MongoDB caching with Redis',
+					},
+				],
+				responsibilities: ['Front-end Web App'],
+			},
 			{
 				name: 'Netjeek',
 				id: 'netjeek',
