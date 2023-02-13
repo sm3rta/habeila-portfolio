@@ -129,9 +129,14 @@ const ResumeRaw = () => {
 				onClick={() => setShowControls(!showControls())}
 			/>
 			<Flex background="$info12" direction="column" p="$8">
-				<Text color="white" fontSize="$3xl" fontWeight="$extrabold">
-					Ahmed Habeila
-				</Text>
+				<Flex alignItems="baseline">
+					<Text color="white" fontSize="$3xl" fontWeight="$extrabold">
+						Ahmed Habeila
+					</Text>
+					<Text color={secondaryTextAndIconColorHeader} fontSize="$md" css={{ whiteSpace: 'pre' }}>
+						{' (He/Him)'}
+					</Text>
+				</Flex>
 				<Text color="white" fontSize="$2xl">
 					{jobType() === 'full-stack' ? 'Full-stack Web Developer' : 'Front-end Web Developer'}
 				</Text>
@@ -219,7 +224,7 @@ const ResumeRaw = () => {
 							{work
 								.filter((w) => w.name !== 'Self-employed')
 								.map((company) => (
-									<CompanyProjects forceGeneralist={jobType() === 'full-stack'} company={company} />
+									<CompanyProjects forceGeneralist={() => jobType() === 'full-stack'} company={company} />
 								))}
 						</Timeline>
 					</Box>
