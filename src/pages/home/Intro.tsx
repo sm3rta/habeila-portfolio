@@ -3,12 +3,11 @@ import { For } from 'solid-js';
 import Section from './Section';
 import { RotatingSkills, skills } from './RotatingSkills';
 
-// const breakpoint = '@xl'
 const breakpoint = '@xl';
 
 export default function Intro() {
 	return (
-		<Section id="home" maxW={{ [breakpoint]: 'unset !important' }} w={{ [breakpoint]: '100%' }} bottomBubble>
+		<Section id="home" maxW={{ [breakpoint]: 'unset !important' }} w={{ [breakpoint]: '100%' }} bottomSectionDivider>
 			<Box css={{ display: 'unset', [breakpoint]: { display: 'none' } }}>
 				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl">
 					Ahmed Habeila

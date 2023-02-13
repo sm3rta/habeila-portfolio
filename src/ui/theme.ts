@@ -11,6 +11,8 @@ export const zIndexes = {
 	// star and what's on the same level
 	star: 1,
 };
+export const createOctagonalClipPathWithMargin = (m: number) =>
+	`polygon(${m}% 0, ${100 - m}% 0, 100% ${m}%, 100% ${100 - m}%, ${100 - m}% 100%, ${m}% 100%, 0 ${100 - m}%, 0 ${m}%)`;
 
 export const colors = {
 	primary1: '#332b2b',
@@ -97,6 +99,7 @@ export const darkTheme = {
 				color: colors.secondary1,
 				backgroundColor: colors.primary7,
 				textTransform: 'none',
+				borderRadius: 0,
 			},
 		},
 		Button: {
@@ -180,6 +183,7 @@ export const lightTheme = {
 				color: colors.primary7,
 				backgroundColor: colors.secondary1,
 				textTransform: 'none',
+				borderRadius: 0,
 			},
 		},
 		Button: {

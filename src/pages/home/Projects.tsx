@@ -2,11 +2,9 @@ import { Box, Button, Flex, Heading, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { For, createSignal } from 'solid-js';
 import { projects } from '../../data/work';
-import { TILE_SIZE, zIndexes } from '../../ui/theme';
+import { TILE_SIZE, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
 import { generateRandomColor } from '../../utils';
 import Section from './Section';
-
-const focusBorderThickness = 3;
 
 const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 	const [hover, setHover] = createSignal(false);
@@ -21,9 +19,6 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			h={TILE_SIZE}
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
-			onFocus={() => setHover(true)}
-			onBlur={() => setHover(false)}
-			tabIndex={0}
 			overflow="hidden"
 			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : `0 0 0px 0px ${boxShadowColor}`}
 			transition="all 0.3s ease-in-out"
@@ -37,26 +32,32 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				zIndex={zIndexes.star}
 				backgroundColor={backgroundColor}
 				opacity={hover() ? 0 : 1}
-				css={{ transition: 'all 0.3s ease-in-out' }}
-				borderRadius="50%"
+				css={{
+					transition: 'all 0.3s ease-in-out',
+					clipPath: createOctagonalClipPathWithMargin(5),
+				}}
 				p="$3"
 			>
 				{project.Logo ? <project.Logo height="100%" /> : <Text fontSize="$md">{project.name}</Text>}
 			</Flex>
 			<Button
-				tabIndex={-1}
-				w={TILE_SIZE - focusBorderThickness * 2}
-				h={TILE_SIZE - focusBorderThickness * 2}
-				css={{ transition: 'all 0.3s ease-in-out', whiteSpace: 'normal' }}
+				w={TILE_SIZE}
+				h={TILE_SIZE}
+				css={{
+					transition: 'all 0.3s ease-in-out',
+					whiteSpace: 'normal',
+					clipPath: createOctagonalClipPathWithMargin(5),
+				}}
+				onFocus={() => setHover(true)}
+				onBlur={() => setHover(false)}
 				opacity={hover() ? 1 : 0}
 				position="absolute"
-				top={focusBorderThickness}
-				left={focusBorderThickness}
+				top={0}
+				left={0}
 				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
 				href={`/projects/${project.id}`}
 				textAlign="center"
-				borderRadius="50%"
 			>
 				Learn more about project
 			</Button>

@@ -6,4 +6,5 @@ body > div#root {
 
 html {
 	scroll-behavior: smooth;
+	scroll-padding-top: 60px; /* header height */
 }

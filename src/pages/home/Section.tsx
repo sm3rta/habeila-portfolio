@@ -3,13 +3,20 @@ import { HEADER_HEIGHT } from '../../ui/theme';
 import { styled } from 'solid-styled-components';
 import { Show } from 'solid-js';
 
-const BubbleSvg = (props: any) => (
+const sectionDividerPaths = [
+	'M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z',
+	'M 321 56 L 493 14 L 743 14 L 985 92 L 1200 95 V 0 H 0 V 27 L 154 49 Z',
+	'M 321 56 L 493 0 L 743 0 L 985 92 L 1200 95 V 0 H 0 V 27 L 143 56 Z',
+	'M 321 56 L 493 0 L 743 0 L 985 92 L 1200 0 V 0 H 0 V 27 L 143 56 Z',
+	'M 250 70 L 500 0 L 966 100 L 1200 0 V 0 H 0 V 27 Z',
+];
+
+const getRandomDividerPath = () => sectionDividerPaths[Math.floor(Math.random() * sectionDividerPaths.length)];
+
+const SectionDividerSvg = (props: any) => (
 	<div {...props}>
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-			<path
-				d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-				class="shape-fill"
-			></path>
+			<path class="shape-fill" d={getRandomDividerPath()} />
 		</svg>
 	</div>
 );
@@ -34,24 +41,22 @@ const commonStyles = `
 	}
 `;
 
-const UpperBubble = styled(BubbleSvg)`
+export const UpperSectionDivider = styled(SectionDividerSvg)`
 	top: 0;
-
 	${commonStyles}
 `;
 
-const BottomBubble = styled(BubbleSvg)`
+export const BottomSectionDivider = styled(SectionDividerSvg)`
 	bottom: 0;
 	transform: rotate(180deg);
-
 	${commonStyles}
 `;
 
 const Section = ({
-	bottomBubble,
-	upperBubble,
+	bottomSectionDivider,
+	upperSectionDivider,
 	...props
-}: ContainerProps & { upperBubble?: boolean; bottomBubble?: boolean }) => (
+}: ContainerProps & { upperSectionDivider?: boolean; bottomSectionDivider?: boolean }) => (
 	<Box position="relative">
 		<Container
 			minH={`calc(100vh - ${HEADER_HEIGHT}px)`}
@@ -60,18 +65,17 @@ const Section = ({
 			alignContent="center"
 			flexDirection="column"
 			w="fit-content"
-			px={{
-				'@initial': '$6',
-				'@lg': '$4 $8',
+			p={{
+				'@initial': '120px $6',
+				'@lg': '120px $8',
 			}}
-			py="120px !important"
 			{...props}
 		/>
-		<Show when={upperBubble}>
-			<UpperBubble />
+		<Show when={upperSectionDivider}>
+			<UpperSectionDivider />
 		</Show>
-		<Show when={bottomBubble}>
-			<BottomBubble />
+		<Show when={bottomSectionDivider}>
+			<BottomSectionDivider />
 		</Show>
 	</Box>
 );

@@ -1,34 +1,35 @@
-import { Container, Image, Text } from '@hope-ui/solid';
+import { Box, Container, Image, Text } from '@hope-ui/solid';
 import { ComponentProps } from '@stitches/core';
 import { styled } from 'solid-styled-components';
-import { TILE_SIZE } from '../../ui/theme';
+import { TILE_SIZE, createOctagonalClipPathWithMargin } from '../../ui/theme';
 import Section from './Section';
 
 const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...props} />)({
+	clipPath: createOctagonalClipPathWithMargin(5),
+});
+
+const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes anim': {
-		'0%': { boxShadow: 'white 0 0 10px -7px' },
-		'100%': { boxShadow: 'white 0 0 20px -7px' },
+		'0%': { filter: 'drop-shadow(0px 0px 0px white)' },
+		'100%': { filter: 'drop-shadow(0px 0px 10px white)' },
 	},
 });
 
 export default function About() {
 	return (
-		<Section id="about" upperBubble bottomBubble>
+		<Section id="about" upperSectionDivider bottomSectionDivider>
 			<Container>
-				<StyledImage
-					loading="lazy"
-					fallback={<div />}
-					srcset={`./assets/self-small.webp ${TILE_SIZE}w`}
-					sizes={`(max-width: 480px) ${TILE_SIZE}px`}
-					// srcset={`./assets/self.webp 990w, ./assets/self-small.webp ${TILE_SIZE}w`}
-					// sizes={`(max-width: 480px) ${TILE_SIZE}px, 990px`}
-					alt="self image"
-					borderRadius="50%"
-					w={TILE_SIZE}
-					h={TILE_SIZE}
-					mx="auto"
-					animation="anim 5s 0s ease-in-out infinite alternate"
-				/>
+				<ImageContainer animation="anim 5s 0s ease-in-out infinite alternate" mx="auto" w={TILE_SIZE} h={TILE_SIZE}>
+					<StyledImage
+						loading="lazy"
+						fallback={<div />}
+						srcset={`./assets/self-small.webp ${TILE_SIZE}w`}
+						sizes={`(max-width: 480px) ${TILE_SIZE}px`}
+						// srcset={`./assets/self.webp 990w, ./assets/self-small.webp ${TILE_SIZE}w`}
+						// sizes={`(max-width: 480px) ${TILE_SIZE}px, 990px`}
+						alt="self image"
+					/>
+				</ImageContainer>
 
 				<Text mt="$10">
 					I have 5 years of professional experience in software engineering, mainly front-end development using{' '}

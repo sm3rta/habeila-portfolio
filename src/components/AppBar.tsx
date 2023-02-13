@@ -1,10 +1,10 @@
-import { Box, Flex, List, Switch } from '@hope-ui/solid';
+import { Box, Flex, List } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
 import { createSignal, onCleanup, onMount } from 'solid-js';
+import { darkMode } from '../App';
 import { Link } from '../ui/components/Link';
 import { HEADER_HEIGHT, colors, zIndexes } from '../ui/theme';
-import { darkMode, setDarkMode } from '../App';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 
@@ -16,7 +16,12 @@ export const AppBar = () => {
 	const sections: Array<HomeSection> = ['home', 'work', 'about', 'contact'];
 
 	const createScrollHandler = (section: HomeSection) => () => {
-		window.scrollTo({ top: (document.getElementById(section)?.offsetTop ?? 0) - HEADER_HEIGHT, behavior: 'smooth' });
+		const element = document.getElementById(section);
+		if (!element) return;
+		const bodyRect = document.body.getBoundingClientRect(),
+			elemRect = element.getBoundingClientRect(),
+			offset = elemRect.top - bodyRect.top;
+		window.scrollTo({ top: offset - HEADER_HEIGHT, behavior: 'smooth' });
 	};
 
 	const onScroll = debounce(() => {
@@ -50,6 +55,7 @@ export const AppBar = () => {
 			<List d="flex" columnGap="$3" alignItems="baseline">
 				<Link
 					role="listitem"
+					// href="/#home"
 					href="/"
 					onClick={createScrollHandler('home')}
 					active={pathname() === '/' && visibleElement() === 'home'}
@@ -68,6 +74,7 @@ export const AppBar = () => {
 					<Link
 						small
 						role="listitem"
+						// href="/#work"
 						href="/"
 						onClick={createScrollHandler('work')}
 						active={visibleElement() === 'work'}
@@ -78,6 +85,7 @@ export const AppBar = () => {
 					<Link
 						small
 						role="listitem"
+						// href="/#about"
 						href="/"
 						onClick={createScrollHandler('about')}
 						active={visibleElement() === 'about'}
@@ -88,6 +96,7 @@ export const AppBar = () => {
 					<Link
 						small
 						role="listitem"
+						// href="/#contact"
 						href="/"
 						onClick={createScrollHandler('contact')}
 						active={visibleElement() === 'contact'}

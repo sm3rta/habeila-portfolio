@@ -18,7 +18,6 @@ const Home = () => (
 			<Projects />
 			<About />
 			<Contact />
-			<Section minH="unset" upperBubble />
 		</Box>
 	</Fade>
 );
