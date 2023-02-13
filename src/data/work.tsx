@@ -258,24 +258,24 @@ export const work: Workplace[] = [
 		to: 'May 2020',
 		title: 'Full-stack Web Developer',
 		projects: [
-			{
-				name: 'Asset Tracking System',
-				id: 'asset-tracking-system',
-				// id: "nacg",
-				description: (
-					<>
-						A web application for an asset tracking system designed to manage, track and generate statistics about
-						equipment and their status
-					</>
-				),
-				technologies: ['React', 'JavaScript', 'Material UI', 'Feathers.js', 'MongoDB', 'JWT'],
-				tasks: [
-					{
-						description: 'Optimized API response time by 200% by using MongoDB caching with Redis',
-					},
-				],
-				responsibilities: ['Front-end Web App'],
-			},
+			// {
+			// 	name: 'Asset Tracking System',
+			// 	id: 'asset-tracking-system',
+			// 	// id: "nacg",
+			// 	description: (
+			// 		<>
+			// 			A web application for an asset tracking system designed to manage, track and generate statistics about
+			// 			equipment and their status
+			// 		</>
+			// 	),
+			// 	technologies: ['React', 'JavaScript', 'Material UI', 'Feathers.js', 'MongoDB', 'JWT'],
+			// 	tasks: [
+			// 		{
+			// 			description: 'Optimized API response time by 200% by using MongoDB caching with Redis',
+			// 		},
+			// 	],
+			// 	responsibilities: ['Front-end Web App'],
+			// },
 			{
 				name: 'Netjeek',
 				id: 'netjeek',
