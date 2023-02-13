@@ -8,7 +8,7 @@ https://www.linkedin.com/in/ahmedhabeila/
 Full-stack web developer
 HabeilaAhmed@gmail.com
 (647) 718-6362
-80,000 CAD/Year
+80,000 CAD/Year -> 42 CAD/Hour
 Faculty of Engineering, Tanta University
 
 
@@ -20,7 +20,7 @@ Faculty of Engineering, Tanta University
   'D3.js',       'DevExpress',             'Enzyme',
   'Express.js',  'Firebase',               'Formik',
   'Gatsby.js',   'Git',                    'GitHub',
-  'Google Maps', 'GraphQL',                'GraphQL/Apollo',
+  'Google Maps', 'GraphQL',                'GraphQL Apollo Client',
   'Hasura',      'HTML',                   'i18next',
   'JavaScript',  'Jira',                   'JSDoc',
   'JSS',         'JWT',                    'Material UI',
@@ -28,7 +28,7 @@ Faculty of Engineering, Tanta University
   'Node.js',     'PostgreSQL',             'Python',
   'React',       'react-hook-form',        'react-query',
   'Redux',       'Redux-Toolkit',          'Responsive UI',
-  'Sass',        'SCSS/Sass',              'Sendgrid',
+  'Sass',        'SCSS',                   'Sendgrid',
   'Sentry',      'Solid JS',               'Storybook',
   'Stripe API',  'Styled components',      'Tailwind CSS',
   'Turborepo',   'TypeScript',             'Unit Testing',
@@ -79,6 +79,31 @@ Achievements:
 - Built time selectors and filters that follow a global state design pattern and sync with the URL
 - Built an integration with Stripe for the users to pay for subscriptions
 - Built a proprietary types SDK to ensure API type safety between front-end and back-end
+
+Technologies used:
+- React
+- TypeScript
+- Material UI
+- Sass
+- Styled components
+- react-hook-form
+- Zod
+- D3.js
+- Storybook
+- Hasura
+- Stripe API
+- GraphQL
+- react-query
+- Auth0
+- Turborepo
+- Sentry
+- Hasura
+- AWS
+
+My responsibilities:
+- Front-end Web App
+- Back-end API Types SDK
+
 ================================================================
 Coformatique
 Full-stack web developer
