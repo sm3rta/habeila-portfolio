@@ -11,11 +11,17 @@ const renderCompany = (name: string, link?: string) => {
 	else return company;
 };
 
-export const CompanyProjects = ({ company, forceGeneralist }: { company: Workplace; forceGeneralist?: boolean }) => (
+export const CompanyProjects = ({
+	company,
+	forceGeneralist,
+}: {
+	company: Workplace;
+	forceGeneralist?: () => boolean;
+}) => (
 	<Flex h="100%" w="100%" direction="column" justifyContent="center">
 		<Flex justifyContent="space-between" alignItems="center">
 			<Text fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
-				{forceGeneralist ? 'Full-stack Web Developer' : company.title}
+				{forceGeneralist?.() ? 'Full-stack Web Developer' : company.title}
 			</Text>
 			{renderCompany(company.name, company.website)}
 		</Flex>
