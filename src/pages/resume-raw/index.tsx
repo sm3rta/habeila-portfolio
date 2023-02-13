@@ -47,7 +47,8 @@ const ResumeRaw = () => {
 	const [skill1, setSkill1] = createSignal('React');
 	const [skill2, setSkill2] = createSignal('Typescript');
 	const [skill3, setSkill3] = createSignal('HTML/CSS');
-	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end'>('front-end');
+	// TODO: software engineer option
+	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>('front-end');
 	const [orgType, setOrgType] = createSignal<'startup' | 'organization'>('organization');
 
 	const handleKeyDown = (e: KeyboardEvent) => {
@@ -191,8 +192,8 @@ const ResumeRaw = () => {
 				</Text>
 				<StyledDivider />
 				<Text>
-					Passionate software engineer with 5 years of professional experience as a web developer and flexibility to
-					work on any stack. Strong understanding of <b>{skill1()}</b>, <b>{skill2()}</b>
+					Highly motivated software engineer with 5 years of professional experience as a web developer and flexibility
+					to work on any stack. Strong understanding of <b>{skill1()}</b>, <b>{skill2()}</b>
 					{skill3() && (
 						<>
 							, <b>{skill3()}</b>{' '}

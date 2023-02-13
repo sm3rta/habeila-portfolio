@@ -75,17 +75,16 @@ export const work: Workplace[] = [
 		website: 'https://calqulate.io/',
 		description: (
 			<>
-				Working full-time for more than two years on this project, I led a team of 5 front-end developers in the process
-				of creating and maintaining features while setting design system standards for the design team to follow.
+				Led a team of 5 front-end developers in the process of creating and maintaining features while setting design
+				system standards for the design team to follow.
 				<br />
-				My biggest responsibility in this project was to create and maintain different libraries in a monorepo for
-				tables, charts and reusable UI components.
+				Built and maintained different libraries in a monorepo for tables, charts and reusable UI components.
 			</>
 		),
 		from: 'November 2020',
 		to: 'January 2023',
 		// to: 'Current',
-		title: 'Front-end Web Developer',
+		title: 'Senior Front-end Web Developer',
 		projects: [
 			{
 				name: 'Calqulate',
@@ -166,8 +165,8 @@ export const work: Workplace[] = [
 		website: 'https://www.linkedin.com/company/coformatique/',
 		description: (
 			<>
-				Working as a full-stack web developer on varying projects in this warehouse company, using different sets of
-				technologies, I gained experience in accessibility, pixel perfect UI, responsive design and SEO.
+				Worked as a full-stack web developer on varying projects in this warehouse company, using different sets of
+				technologies. Gained experience in accessibility, pixel perfect UI, responsive design and SEO.
 			</>
 		),
 		from: 'May 2020',
