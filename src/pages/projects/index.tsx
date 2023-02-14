@@ -7,6 +7,7 @@ import ProjectLayoutDetailed from './ProjectDetails';
 import { Accessor, createEffect, createSignal } from 'solid-js';
 import { JSX } from 'solid-js';
 import { getAsteriskSectionColor } from '../../ui/theme';
+import { BottomSectionDivider, UpperSectionDivider, sectionDividerHeight } from '../home/SectionDivider';
 
 export default function Project() {
 	const project = () => projects.find((p) => p.id === useParams().id);
@@ -23,8 +24,14 @@ export default function Project() {
 	return (
 		<Fade>
 			{projectNode}
-			<Box background={getAsteriskSectionColor()} mt="$16">
+			<Box pos="relative" mt="$16" height={sectionDividerHeight}>
+				<BottomSectionDivider />
+			</Box>
+			<Box background={getAsteriskSectionColor()}>
 				<Projects />
+			</Box>
+			<Box pos="relative">
+				<UpperSectionDivider />
 			</Box>
 		</Fade>
 	);

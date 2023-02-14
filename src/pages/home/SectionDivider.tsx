@@ -19,6 +19,8 @@ const SectionDividerSvg = (props: any) => (
 	</div>
 );
 
+export const sectionDividerHeight = 150;
+
 const commonStyles = `
 	position: absolute;
 	left: 0;
@@ -30,7 +32,7 @@ const commonStyles = `
 		position: relative;
 		display: block;
 		width: calc(100% + 1.3px);
-		height: 150px;
+		height: ${sectionDividerHeight}px;
 		transform: rotateY(180deg);
 	}
 `;

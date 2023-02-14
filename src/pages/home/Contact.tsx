@@ -41,14 +41,14 @@ export const socials: Array<{
 	name?: string;
 }> = [
 	{
-		Icon: AiOutlineGithub,
-		href: 'https://github.com/sm3rta/',
-		name: 'Github',
-	},
-	{
 		Icon: FaBrandsLinkedinIn,
 		href: 'https://www.linkedin.com/in/ahmedhabeila/',
 		name: 'LinkedIn',
+	},
+	{
+		Icon: AiOutlineGithub,
+		href: 'https://github.com/sm3rta/',
+		name: 'Github',
 	},
 	{
 		Icon: BiLogosDiscordAlt,
