@@ -1,4 +1,6 @@
 import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
+import { darkMode } from '../App';
+import merge from 'lodash.merge';
 
 export const HEADER_HEIGHT = 60;
 export const ICON_SIZE = 30;
@@ -13,6 +15,8 @@ export const zIndexes = {
 };
 export const createOctagonalClipPathWithMargin = (m: number) =>
 	`polygon(${m}% 0, ${100 - m}% 0, 100% ${m}%, 100% ${100 - m}%, ${100 - m}% 100%, ${m}% 100%, 0 ${100 - m}%, 0 ${m}%)`;
+
+export const getAsteriskSectionColor = () => (darkMode() ? 'rgb(0 0 0 / 40%)' : 'rgb(255 255 255 / 40%)');
 
 export const colors = {
 	primary1: '#332b2b',
@@ -42,29 +46,30 @@ export const colors = {
 	secondary12: '#ffffff',
 } as const satisfies NonNullable<HopeThemeConfig['darkTheme']>['colors'];
 
+export const fontSizes = {
+	'9xl': '9vw',
+	'8xl': '8rem',
+	'7xl': '7rem',
+	'6xl': '6rem',
+	'5xl': '5rem',
+	'4xl': '4rem',
+	'3xl': '3rem',
+	'2xl': '2rem',
+	xl: '1.5rem',
+	lg: '1.25rem',
+	md: '1rem',
+	sm: '0.875rem',
+	// lg: 'calc(0.75em + 1vw)',
+	// md: 'calc(0.75em + 0.5vw)',
+	// sm: 'calc(0.75em + 0.25vw)',
+	xs: '0.75rem',
+} as const satisfies NonNullable<HopeThemeConfig['darkTheme']>['fontSizes'];
+
 export const darkTheme = {
 	initialColorMode: 'dark',
-
 	darkTheme: {
 		colors,
-		fontSizes: {
-			'9xl': '9vw',
-			'8xl': '8rem',
-			'7xl': '7rem',
-			'6xl': '6rem',
-			'5xl': '5rem',
-			'4xl': '4rem',
-			'3xl': '3rem',
-			'2xl': '2rem',
-			xl: '1.5rem',
-			lg: '1.25rem',
-			md: '1rem',
-			sm: '0.875rem',
-			// lg: 'calc(0.75em + 1vw)',
-			// md: 'calc(0.75em + 0.5vw)',
-			// sm: 'calc(0.75em + 0.25vw)',
-			xs: '0.75rem',
-		},
+		fontSizes,
 	},
 	components: {
 		Heading: {
@@ -123,29 +128,11 @@ export const darkTheme = {
 	},
 } as const satisfies HopeThemeConfig;
 
-export const lightTheme = {
+export const lightTheme = merge({}, darkTheme, {
 	initialColorMode: 'light',
-
-	darkTheme: {
+	lightTheme: {
 		colors,
-		fontSizes: {
-			'9xl': '9vw',
-			'8xl': '8rem',
-			'7xl': '7rem',
-			'6xl': '6rem',
-			'5xl': '5rem',
-			'4xl': '4rem',
-			'3xl': '3rem',
-			'2xl': '2rem',
-			xl: '1.5rem',
-			lg: '1.25rem',
-			md: '1rem',
-			sm: '0.875rem',
-			// lg: 'calc(0.75em + 1vw)',
-			// md: 'calc(0.75em + 0.5vw)',
-			// sm: 'calc(0.75em + 0.25vw)',
-			xs: '0.75rem',
-		},
+		fontSizes,
 	},
 	components: {
 		Heading: {
@@ -205,4 +192,4 @@ export const lightTheme = {
 			},
 		},
 	},
-} as const satisfies HopeThemeConfig;
+}) as typeof darkTheme;

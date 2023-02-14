@@ -3,12 +3,20 @@ import { ComponentProps } from '@stitches/core';
 import { styled } from 'solid-styled-components';
 import { TILE_SIZE, createOctagonalClipPathWithMargin } from '../../ui/theme';
 import Section from './Section';
+import { darkMode } from '../../App';
 
 const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...props} />)({
 	clipPath: createOctagonalClipPathWithMargin(5),
 });
 
-const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
+const ImageContainerLight = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
+	'@keyframes anim': {
+		'0%': { filter: 'drop-shadow(0px 0px 0px black)' },
+		'100%': { filter: 'drop-shadow(0px 0px 10px black)' },
+	},
+});
+
+const ImageContainerDark = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes anim': {
 		'0%': { filter: 'drop-shadow(0px 0px 0px white)' },
 		'100%': { filter: 'drop-shadow(0px 0px 10px white)' },
@@ -16,6 +24,7 @@ const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...pr
 });
 
 export default function About() {
+	const ImageContainer = darkMode() ? ImageContainerDark : ImageContainerLight;
 	return (
 		<Section id="about" upperSectionDivider bottomSectionDivider>
 			<Container>

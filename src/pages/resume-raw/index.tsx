@@ -22,7 +22,7 @@ import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import { ComponentProps, For, Show, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
-import { darkTheme as theme } from '../../ui/theme';
+import { colors, darkTheme as theme } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { CompanyProjects } from '../resume/CompanyProjects';
 import { Timeline } from '../resume/Timeline';
@@ -122,7 +122,9 @@ const ResumeRaw = () => {
 			</Show>
 			<Button
 				background="none"
-				pos="absolute"
+				pos="fixed"
+				borderRadius={0}
+				_hover={{ background: colors.primary5 }}
 				top="0"
 				right="0"
 				height={40}

@@ -1,4 +1,4 @@
-import { Flex, HopeProvider } from '@hope-ui/solid';
+import { Box, Flex, HopeProvider, Switch } from '@hope-ui/solid';
 import { Navigate, Outlet, Route, Router, Routes } from '@solidjs/router';
 import { JSX, Suspense, createSignal, lazy } from 'solid-js';
 import { AppBar } from './components/AppBar';
@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { Stars } from './components/Stars';
 import Loader from './ui/components/Loader';
 import { HEADER_HEIGHT, colors, darkTheme, lightTheme } from './ui/theme';
+import { DarkModeSwitch } from './ui/DarkModeSwitch';
 
 const Home = lazy(() => import('./pages/home'));
 const Project = lazy(() => import('./pages/projects'));
@@ -13,10 +14,10 @@ const Resume = lazy(() => import('./pages/resume'));
 const ResumeRaw = lazy(() => import('./pages/resume-raw'));
 
 export const [darkMode, setDarkMode] = createSignal(
-	// 	localStorage.getItem('darkMode')
-	// 		? localStorage.getItem('darkMode') === 'true'
-	// 		: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-	true
+	localStorage.getItem('darkMode')
+		? localStorage.getItem('darkMode') === 'true'
+		: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+	// true
 );
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
 			minHeight="100%"
 		>
 			<Stars />
+			<DarkModeSwitch />
 			<AppBar />
 			<Suspense fallback={<Loader />}>
 				<Outlet />

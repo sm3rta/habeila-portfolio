@@ -109,17 +109,6 @@ export const AppBar = () => {
 					Resume
 				</Link>
 			</List>
-
-			{/* <Switch
-				defaultChecked={darkMode()}
-				onChange={(e) => {
-					const newValue = (e.target as unknown as { checked: boolean }).checked;
-					setDarkMode(newValue);
-					localStorage.setItem('darkMode', newValue ? 'true' : 'false');
-				}}
-				colorScheme="neutral"
-				css={{ float: 'right' }}
-			/> */}
 		</Flex>
 	);
 };

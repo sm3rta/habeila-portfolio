@@ -6,6 +6,7 @@ import Projects from '../home/Projects';
 import ProjectLayoutDetailed from './ProjectDetails';
 import { Accessor, createEffect, createSignal } from 'solid-js';
 import { JSX } from 'solid-js';
+import { getAsteriskSectionColor } from '../../ui/theme';
 
 export default function Project() {
 	const project = () => projects.find((p) => p.id === useParams().id);
@@ -22,7 +23,7 @@ export default function Project() {
 	return (
 		<Fade>
 			{projectNode}
-			<Box background="rgb(0 0 0 / 40%)" mt="$16">
+			<Box background={getAsteriskSectionColor()} mt="$16">
 				<Projects />
 			</Box>
 		</Fade>
