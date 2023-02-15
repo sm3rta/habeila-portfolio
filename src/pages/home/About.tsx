@@ -9,29 +9,27 @@ const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...p
 	clipPath: createOctagonalClipPathWithMargin(5),
 });
 
-const ImageContainerLight = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
-	'@keyframes anim': {
+const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
+	'@keyframes animLight': {
 		'0%': { filter: 'drop-shadow(0px 0px 5px black)' },
 		'100%': { filter: 'drop-shadow(0px 0px 15px black)' },
 	},
-});
-
-const ImageContainerDark = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
-	'@keyframes anim': {
+	'@keyframes animDark': {
 		'0%': { filter: 'drop-shadow(0px 0px 5px white)' },
 		'100%': { filter: 'drop-shadow(0px 0px 15px white)' },
 	},
 });
 
+
 export default function About() {
-	const ImageContainer = darkMode() ? ImageContainerDark : ImageContainerLight;
+	
 	return (
 		<Section id="about" upperSectionDivider bottomSectionDivider>
 			<Container>
 				<ImageContainer
 					zIndex={zIndexes.aboveStar}
 					pos="relative"
-					animation="anim 3s 0s ease-in-out infinite alternate"
+					animation={`${darkMode()?"animDark": "animLight"} 3s 0s ease-in-out infinite alternate`}
 					mx="auto"
 					w={TILE_SIZE}
 					h={TILE_SIZE}
