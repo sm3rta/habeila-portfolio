@@ -9,7 +9,7 @@ export const Stars = () => {
 	onMount(() => {
 		setTimeout(() => {
 			setShow(true);
-		}, 5000);
+		}, 3000);
 	});
 
 	return (

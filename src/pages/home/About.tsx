@@ -1,7 +1,7 @@
 import { Box, Container, Image, Text } from '@hope-ui/solid';
 import { ComponentProps } from '@stitches/core';
 import { styled } from 'solid-styled-components';
-import { TILE_SIZE, createOctagonalClipPathWithMargin } from '../../ui/theme';
+import { TILE_SIZE, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
 import Section from './Section';
 import { darkMode } from '../../App';
 
@@ -11,15 +11,15 @@ const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...p
 
 const ImageContainerLight = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes anim': {
-		'0%': { filter: 'drop-shadow(0px 0px 0px black)' },
-		'100%': { filter: 'drop-shadow(0px 0px 10px black)' },
+		'0%': { filter: 'drop-shadow(0px 0px 5px black)' },
+		'100%': { filter: 'drop-shadow(0px 0px 15px black)' },
 	},
 });
 
 const ImageContainerDark = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes anim': {
-		'0%': { filter: 'drop-shadow(0px 0px 0px white)' },
-		'100%': { filter: 'drop-shadow(0px 0px 10px white)' },
+		'0%': { filter: 'drop-shadow(0px 0px 5px white)' },
+		'100%': { filter: 'drop-shadow(0px 0px 15px white)' },
 	},
 });
 
@@ -28,7 +28,14 @@ export default function About() {
 	return (
 		<Section id="about" upperSectionDivider bottomSectionDivider>
 			<Container>
-				<ImageContainer animation="anim 5s 0s ease-in-out infinite alternate" mx="auto" w={TILE_SIZE} h={TILE_SIZE}>
+				<ImageContainer
+					zIndex={zIndexes.aboveStar}
+					pos="relative"
+					animation="anim 3s 0s ease-in-out infinite alternate"
+					mx="auto"
+					w={TILE_SIZE}
+					h={TILE_SIZE}
+				>
 					<StyledImage
 						loading="lazy"
 						fallback={<div />}

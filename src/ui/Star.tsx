@@ -1,10 +1,11 @@
 import { Box } from '@hope-ui/solid';
 import Parallax from 'rallax.js';
-import { ComponentProps, createSignal, onMount } from 'solid-js';
+import { ComponentProps, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { generateRandomColor, randRange, randRangeInt } from '../utils';
+import { generateRandomColor, generateRandomColorLight, randRange, randRangeInt } from '../utils';
 import { HEADER_HEIGHT, zIndexes } from './theme';
 import { mobileCheck } from './isMobileDevice';
+import { darkMode } from '../App';
 
 const isMobileDevice = mobileCheck();
 
@@ -20,7 +21,6 @@ const clipPath = `polygon(0 50%, \
 
 const leftRange = [-50, 150] as const;
 const speedRange = [0.1, 0.7] as const;
-const starAlpha = 0.4;
 const interactionDelayMs = 500;
 
 const StarBase = (props: ComponentProps<typeof Box>) => (
@@ -52,7 +52,16 @@ export const Star = () => {
 	const translateX = randRangeInt(1000) * (animationDirection === 'left' ? -1 : 1);
 	const boxShadow = `0 0 ${(width * 4) / 5}px ${-width / 3}px #ffffff1f`;
 
-	const [backgroundColor, setBackgroundColor] = createSignal(generateRandomColor(starAlpha));
+	const [backgroundColor, setBackgroundColor] = createSignal<string>('transparent');
+
+	const updateBackgroundColor = () => {
+		if (darkMode()) setBackgroundColor(generateRandomColor(0.4));
+		else setBackgroundColor(generateRandomColorLight(0.6));
+	};
+
+	createEffect(() => {
+		updateBackgroundColor();
+	});
 
 	const animationDuration = randRangeInt(80, 120);
 	const animation = () => `${animationDirection} ${animationDuration}s ${delay()}s ease-in-out infinite alternate`;
@@ -88,7 +97,7 @@ export const Star = () => {
 				setBackgroundColor('transparent');
 				setTimeout(() => {
 					setDelay(delay() - 8);
-					setBackgroundColor(generateRandomColor(starAlpha));
+					updateBackgroundColor();
 				}, interactionDelayMs);
 			}}
 		/>
