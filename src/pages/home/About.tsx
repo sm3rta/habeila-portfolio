@@ -74,6 +74,8 @@ export default function About() {
 						srcset={`./assets/self.webp 990w, ./assets/self-small.webp ${TILE_SIZE}w`}
 						sizes={`(max-width: 480px) ${TILE_SIZE}px, 990px`}
 						alt="self image"
+						w={TILE_SIZE}
+						h={TILE_SIZE}
 					/>
 				</ImageContainer>
 
