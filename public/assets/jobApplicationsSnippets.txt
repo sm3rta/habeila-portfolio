@@ -1,10 +1,14 @@
+================================================================
 -Links:
+================================================================
 https://habeila-portfolio.netlify.app/
 https://github.com/sm3rta
 https://www.linkedin.com/in/ahmedhabeila/
 
 
+================================================================
 -Info:
+================================================================
 Full-stack web developer
 HabeilaAhmed@gmail.com
 (647) 718-6362
@@ -12,7 +16,9 @@ HabeilaAhmed@gmail.com
 Faculty of Engineering, Tanta University
 
 
+================================================================
 -Skills:
+================================================================
 [
   'Agile',       'Ant Design',             'Auth0',
   'AWS',         'Axios',                  'BitBucket',
@@ -37,27 +43,49 @@ Faculty of Engineering, Tanta University
 ]
 
 
+================================================================
 -Tell me about yourself:
+================================================================
 I am a software engineer with strong analytical and problem-solving skills. I have 5 years of professional experience, mainly in front-end development using React.
-I worked on various projects and dived into a lot of concepts of front-end development, from content-driven websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
+I worked on various projects and dived into a lot of concepts of front-end development, from content-driven websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
 I have experience in leading other developers, performing code reviews and enforcing certain patterns, project-specific standards and best practices.
 Please consider taking a look at my portfolio: https://habeila-portfolio.netlify.app/
 
 
+================================================================
 -Achievements/Recent achievement:
-I led a team of 3 to 4 front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow.
+================================================================
+I led a team of 4 front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow.
 
 
+================================================================
+-Why do you want to work here?
+-Why are you interested in this position?
 -What excites you about this company?
-{Company name} has a reputation for being a great place to work, with a strong culture and a team of talented and dedicated individuals so I think it's going to be a great learning experience for me. And in return, I'm a very motivated and dedicated engineer who likes to get the job done.
+-What value can you bring to this company?
+================
+# my experience
+================
+I am a software engineer with strong analytical and problem-solving skills. I have a bachelor's degree in computer science and I have 5 years of professional experience as a web developer. I've worked on various projects and dived into a lot of concepts of web development, from content-driven websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
+I am very passionate and committed and I'm always willing to learn more.
+================
+# How did you meet or exceed your employers’ expectations in previous jobs
+================
+In my last job, I stepped up and showed leadership by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks until I was promoted to lead a team of 4 of my peer front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow, reviewing their code and enforcing certain patterns, project-specific standards and best practices.
 
+================
+# How I'm going to make the company succeed
+================
+I am very excited about this position and I believe I can bring a lot of value to this company as my skills are particularly well-suited to this position
 
+================================================================
 -Something excited you recently:
 I was recently implementing a complex date range picker component from scratch.
 After I was done, I figured I could improve the animations with a cleaner, simpler straight forward implementation
 I had a very big moment of excitement after re-implementing the animations where I was going back and forth between months just to admire how slick and smooth the new animations were
 
 
+================================================================
 Work experience
 ================================================================
 1. Calqulate

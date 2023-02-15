@@ -211,8 +211,8 @@ const ResumeRaw = () => {
 				<Text mt="$2">
 					Worked on various projects and dived into a lot of concepts of{' '}
 					{jobType() === 'front-end' ? 'front-end' : 'web'} development, from content-driven websites focused on
-					accessibility and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI
-					components and design systems.
+					accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and
+					tables, reusable UI components and design systems.
 				</Text>
 			</Flex>
 

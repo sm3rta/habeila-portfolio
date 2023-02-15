@@ -46,8 +46,8 @@ export default function About() {
 				</Text>
 				<Text mt="$6">
 					I worked on various projects and dived into a lot of concepts of front-end development, from content-driven
-					websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and
-					tables, reusable UI components and design systems.
+					websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms,
+					data-rich charts and tables, reusable UI components and design systems.
 				</Text>
 				<Text mt="$6">
 					I have experience in <b>leading other developers</b>, reviewing their work and enforcing certain patterns,
