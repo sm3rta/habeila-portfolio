@@ -12,6 +12,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@hope-ui/solid": "0.6.7",
+		"@solid-primitives/media": "^2.1.0",
 		"@solid-primitives/resize-observer": "^2.0.7",
 		"@solidjs/router": "0.6.0",
 		"@stitches/core": "1.2.8",

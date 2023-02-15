@@ -132,14 +132,14 @@ const ResumeRaw = () => {
 				onClick={() => setShowControls(!showControls())}
 			/>
 			<Flex background="$info12" direction="column" p="$8">
-				<Flex alignItems="baseline">
-					<Text color="white" fontSize="$3xl" fontWeight="$extrabold">
+				<Box>
+					<Text color="white" fontSize="$3xl" fontWeight="$extrabold" as="span">
 						Ahmed Habeila
 					</Text>
-					<Text color={secondaryTextAndIconColorHeader} fontSize="$md" css={{ whiteSpace: 'pre' }}>
+					<Text color={secondaryTextAndIconColorHeader} fontSize="$md" as="span">
 						{' (He/Him)'}
 					</Text>
-				</Flex>
+				</Box>
 				<Text color="white" fontSize="$2xl">
 					{jobType() === 'full-stack' ? 'Full-stack Web Developer' : 'Front-end Web Developer'}
 				</Text>

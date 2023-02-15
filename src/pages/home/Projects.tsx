@@ -2,15 +2,17 @@ import { Box, Button, Flex, Heading, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { For, createSignal } from 'solid-js';
 import { projects } from '../../data/work';
-import { TILE_SIZE, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
+import { TILE_SIZE, colors, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
 import { generateRandomColor } from '../../utils';
 import Section from './Section';
+import { darkMode } from '../../App';
 
 const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 	const [hover, setHover] = createSignal(false);
-	const backgroundColor = generateRandomColor(0.3);
-	// const backgroundColor = colors.primary1;
-	const boxShadowColor = backgroundColor.replace('0.1', '0.8');
+	// const backgroundColor = generateRandomColor(0.3);
+	// const boxShadowColor = backgroundColor.replace('0.1', '0.8');
+	const backgroundColor = darkMode() ? colors.primary1 : colors.primary8;
+	const boxShadowColor = backgroundColor;
 
 	return (
 		<Box
@@ -24,6 +26,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 			transition="all 0.3s ease-in-out"
 		>
 			<Flex
+				position="relative"
 				w={TILE_SIZE}
 				h={TILE_SIZE}
 				placeContent="center"
@@ -59,7 +62,7 @@ const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
 				href={`/projects/${project.id}`}
 				textAlign="center"
 			>
-				Learn more about project
+				See project details
 			</Button>
 		</Box>
 	);

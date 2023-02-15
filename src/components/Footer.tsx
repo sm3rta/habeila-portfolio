@@ -2,13 +2,15 @@ import { Box, Text } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import { HEADER_HEIGHT, getAsteriskSectionColor, zIndexes } from '../ui/theme';
 import { UpperSectionDivider, BottomSectionDivider } from '../pages/home/SectionDivider';
+import { Show } from 'solid-js';
 
 export const Footer = () => {
 	const location = useLocation();
 	const pathname = useResolvedPath(() => location.pathname);
 	return (
 		<Box
-			minH={`calc(100vh - ${HEADER_HEIGHT}px)`}
+			// minH={`calc(100vh - ${HEADER_HEIGHT}px)`}
+			minH={`300px`}
 			display="flex"
 			flexDirection="column"
 			justifyContent="flex-end"
@@ -16,18 +18,15 @@ export const Footer = () => {
 			zIndex={zIndexes.aboveStar}
 			pointerEvents="none"
 		>
-			{pathname() === '/' && <UpperSectionDivider />}
+			<Show when={pathname() === '/'}>
+				<UpperSectionDivider />
+			</Show>
 
-			<Box
-				height="100px"
-				w="100%"
-				pos="relative"
-				// css={{
-				// 	'& path': { fill: 'black !important' },
-				// }}
-			>
-				<BottomSectionDivider />
-			</Box>
+			<Show when={pathname() === '/resume'}>
+				<Box height="100px" w="100%" pos="relative">
+					<BottomSectionDivider />
+				</Box>
+			</Show>
 
 			<Box
 				css={{

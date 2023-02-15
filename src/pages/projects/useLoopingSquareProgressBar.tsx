@@ -1,5 +1,6 @@
 import { createSignal, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
+import { darkMode } from '../../App';
 
 const switchSlideAfterMs = 10000;
 const sections = 20;
@@ -46,7 +47,7 @@ export const useLoopingSquareProgressBar = (callback?: () => void) => {
 		>
 			<StyledPath
 				d="M 20 0 H 40 V 40 H 0 V 0 Z"
-				stroke="white"
+				stroke={darkMode() ? 'white' : 'black'}
 				stroke-width={2}
 				stroke-dasharray="160"
 				stroke-dashoffset={`${((sections - value()) * 160) / sections}`}

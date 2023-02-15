@@ -561,6 +561,22 @@
   dependencies:
     "@solid-primitives/utils" "^4.0.0"
 
+"@solid-primitives/event-listener@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/event-listener/-/event-listener-2.2.6.tgz#d5a3ff4fc63bff46586cd1f1ca4ab7798f656d77"
+  integrity sha512-Lb2q888Apv8wqgZ3WvPlt8ic2rEmHx6QT8d3pgi+JRSIRNwAysE6PZDmbwT6/hzzP1TIQG0IRZwh5tomfuqlaQ==
+  dependencies:
+    "@solid-primitives/utils" "^5.0.0"
+
+"@solid-primitives/media@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/media/-/media-2.1.0.tgz#c172d256bba3d752a2b66e29654c1c18c22e8a55"
+  integrity sha512-5+EaG1AipBN4dv+w+gaqXIGCUw6zBltEVLx8DhD0uJt79r0egBUPwVK+PiIoM1vsoYESfz2NAT9c5QxKaXj6mg==
+  dependencies:
+    "@solid-primitives/event-listener" "^2.2.6"
+    "@solid-primitives/rootless" "^1.2.3"
+    "@solid-primitives/utils" "^5.0.0"
+
 "@solid-primitives/resize-observer@^2.0.7":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@solid-primitives/resize-observer/-/resize-observer-2.0.7.tgz#0f909ed58d5fd7ec59b2fee15ddafdd28fdce4c8"
@@ -577,10 +593,22 @@
   dependencies:
     "@solid-primitives/utils" "^4.0.0"
 
+"@solid-primitives/rootless@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/rootless/-/rootless-1.2.3.tgz#ed3315e8b2698afe60668e9350b14cf9e9913ae9"
+  integrity sha512-g6sKTQt8onmyWAh92q/+7ZwAZwVQx5qCDBEo7c0+yWZbFK81t6jWCPIYDWXpI1QJ/xxLg41iuN6Eb3fJL5IDHA==
+  dependencies:
+    "@solid-primitives/utils" "^5.0.0"
+
 "@solid-primitives/utils@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-4.0.0.tgz#3c592287519dc885290d134f8aff3f0f6f4b4720"
   integrity sha512-fGsJy8Z8YiwogpiezD7TWjI62UCb0JAHJWdoXWGrggrn4bfToZotKkabiB0IVFMkWVE1ZcrkvZT3bkmqGnK0ng==
+
+"@solid-primitives/utils@^5.0.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/utils/-/utils-5.1.0.tgz#e1295ec3d091012795c02c8e8aa8916f40177185"
+  integrity sha512-1qmY9VaHWbEolBGhszqq7ziPJpXOXtcsQ14I7j8o/57bvfBQtwZ64idJrSdPBPIGzKSyPVZ1olYWz4yfitTBrA==
 
 "@solidjs/router@0.6.0":
   version "0.6.0"

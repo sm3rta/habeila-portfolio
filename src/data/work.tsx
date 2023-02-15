@@ -46,7 +46,7 @@ export const work: Workplace[] = [
 									// style={{
 									// 	'border-bottom': 'white 1px solid',
 									// }}
-									href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fhabeila-portfolio.netlify.app"
+									href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fhabeila-portfolio.netlify.app&form_factor=desktop"
 								>
 									100 on PageSpeed Insights
 								</Anchor>{' '}

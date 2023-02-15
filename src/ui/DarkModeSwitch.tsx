@@ -3,8 +3,19 @@ import { darkMode, setDarkMode } from '../App';
 import { IoSunny } from 'solid-icons/io';
 import { BsMoonStarsFill } from 'solid-icons/bs';
 import { getAsteriskSectionColor } from './theme';
+import { createSignal, onMount, onCleanup } from 'solid-js';
 
 export const DarkModeSwitch = () => {
+	const [scrolledToEnd, setScrolledToEnd] = createSignal(false);
+	const updateScrolledToEnd = () =>
+		setScrolledToEnd(window.innerHeight + window.scrollY >= document.body.scrollHeight - 10);
+	onMount(() => {
+		window.onscroll = updateScrolledToEnd;
+	});
+	onCleanup(() => {
+		window.onscroll = null;
+	});
+
 	return (
 		<Box
 			position="fixed"
@@ -17,7 +28,8 @@ export const DarkModeSwitch = () => {
 			height={40}
 			zIndex={5}
 			// boxShadow={`${getAsteriskSectionColor()} 0 0 11px 20px`}
-			background={`${getAsteriskSectionColor()}`}
+			background={scrolledToEnd() ? 'transparent' : getAsteriskSectionColor()}
+			transition="all 0.3s ease-in-out"
 		>
 			<IoSunny />
 			<Switch
@@ -28,6 +40,7 @@ export const DarkModeSwitch = () => {
 					localStorage.setItem('darkMode', newValue ? 'true' : 'false');
 				}}
 				colorScheme="neutral"
+				{...{ 'aria-label': 'Dark mode switch' }}
 				css={{
 					'&>.hope-switch__label': {
 						display: 'none',
