@@ -152,7 +152,6 @@ export const work: Workplace[] = [
 					'Auth0',
 					'Turborepo',
 					'Sentry',
-					'Hasura',
 					'AWS',
 				],
 				responsibilities: ['Front-end Web App', 'Back-end API Types SDK'],
@@ -180,9 +179,8 @@ export const work: Workplace[] = [
 				Logo: BmwFoundationLogo,
 				description: (
 					<>
-						Built this website from the ground up until it went live, it's an informative website of the BMW
-						Foundation's mission, plans and events. The website features advanced accessibility features and
-						multi-language routing.
+						An informative website of the BMW Foundation's mission, plans and events. The website features advanced
+						accessibility features and multi-language routing.
 					</>
 				),
 				technologies: [
@@ -198,6 +196,15 @@ export const work: Workplace[] = [
 					'Wordpress',
 				],
 				responsibilities: ['Website (front-end)'],
+				tasks: [
+					{ description: 'Built this website from the ground up until it went live' },
+					{ description: 'Fully responsive, supports keyboard navigation and screen readers' },
+					{
+						description:
+							'Created an accessibility menu which features high contrast mode, dyslexia-friendly font and animations toggle',
+					},
+					{ description: 'Integrated Google Tag Manager along with following the best SEO practices' },
+				],
 			},
 			{
 				name: 'TwentyThirty',
@@ -212,6 +219,11 @@ export const work: Workplace[] = [
 				),
 				technologies: ['React', 'Gatsby.js', 'TypeScript', 'Material UI', 'Responsive UI', 'JSS', 'Axios', 'Wordpress'],
 				responsibilities: ['Website (front-end)'],
+				tasks: [
+					{ description: 'Built this website from the ground up until it went live' },
+					{ description: 'Fully responsive, supports keyboard navigation and screen readers' },
+					{ description: 'Integrated Google Tag Manager along with following the best SEO practices' },
+				],
 			},
 			{
 				name: 'Educational platform',
@@ -224,14 +236,20 @@ export const work: Workplace[] = [
 						admin dashboard where professors can manage lectures, send emails with grades to students' parents.
 					</>
 				),
-				// tasks:[
-				// 	{
-				// 		description: "Created a Zoom integration that automatically creates a meeting link for each lecture and sends it to the students' emails"
-				// 	},
-				// 	{
-				// 		description: "Built a custom email template for the emails sent to students' parents"
-				// 	}
-				// ],
+				tasks: [
+					{
+						description:
+							"Created a Zoom integration that automatically creates a meeting link for each lecture and sends it to the students' emails",
+					},
+					{
+						description:
+							"Built an admin dashboard where professors can manage lectures, send emails with grades to students' parents.",
+					},
+					{
+						description:
+							'Created a library for creating and managing quizzes with multiple choice, true/false and fill-in-the-blank questions',
+					},
+				],
 				technologies: [
 					'Firebase',
 					'Express.js',

@@ -194,8 +194,11 @@ const ResumeRaw = () => {
 				</Text>
 				<StyledDivider />
 				<Text>
-					Highly motivated software engineer with 5 years of professional experience as a web developer and flexibility
-					to work on any stack. Strong understanding of <b>{skill1()}</b>, <b>{skill2()}</b>
+					Highly motivated software engineer with 5 years of professional experience as a web developer{' '}
+					{jobType() === 'front-end'
+						? 'mainly in front-end development using React.'
+						: 'and flexibility to work on any stack.'}{' '}
+					Strong understanding of <b>{skill1()}</b>, <b>{skill2()}</b>
 					{skill3() && (
 						<>
 							, <b>{skill3()}</b>{' '}
@@ -204,8 +207,7 @@ const ResumeRaw = () => {
 					and web development fundamentals. Excellent interpersonal skills to work with a team and clients. Looking to
 					secure a position in a{' '}
 					{orgType() === 'organization' ? 'reputable progressive organization' : 'progressive startup'} to expand my
-					learnings, knowledge, and skills in web development
-					{jobType() === 'front-end' ? ', mainly in front-end development using React.' : '.'}
+					learnings, knowledge, and skills in web development.
 				</Text>
 
 				<Text mt="$2">
