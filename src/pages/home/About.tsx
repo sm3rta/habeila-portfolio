@@ -1,4 +1,4 @@
-import { Box, Container, Divider, Flex, Grid, Image, Text } from '@hope-ui/solid';
+import { Box, Container, Divider, Flex, Grid, Image, Text, hope } from '@hope-ui/solid';
 import { ComponentProps } from '@stitches/core';
 import { styled } from 'solid-styled-components';
 import { darkMode } from '../../App';
@@ -6,9 +6,14 @@ import { TILE_SIZE, colors, createOctagonalClipPathWithMargin, zIndexes } from '
 import Section from './Section';
 import { createMediaQuery } from '@solid-primitives/media';
 
-const StyledImage = styled((props: ComponentProps<typeof Image>) => <Image {...props} />)({
-	clipPath: createOctagonalClipPathWithMargin(5),
+const StyledImage = hope((props: any) => <img {...props} type="image/webp" height={TILE_SIZE} width={TILE_SIZE} />, {
+	baseStyle: {
+		clipPath: createOctagonalClipPathWithMargin(5),
+	},
 });
+//  styled((props: ComponentProps<typeof Image>) => <img {...props} />)({
+// 	clipPath: createOctagonalClipPathWithMargin(5),
+// });
 
 const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes animLight': {
@@ -68,14 +73,14 @@ export default function About() {
 				>
 					<StyledImage
 						loading="lazy"
-						fallback={<div />}
+						// fallback={<div />}
 						// srcset={`./assets/self-small.webp ${TILE_SIZE}w`}
 						// sizes={`(max-width: 480px) ${TILE_SIZE}px`}
 						srcset={`./assets/self.webp 990w, ./assets/self-small.webp ${TILE_SIZE}w`}
 						sizes={`(max-width: 480px) ${TILE_SIZE}px, 990px`}
 						alt="self image"
-						w={TILE_SIZE}
-						h={TILE_SIZE}
+						width={TILE_SIZE}
+						height={TILE_SIZE}
 					/>
 				</ImageContainer>
 
