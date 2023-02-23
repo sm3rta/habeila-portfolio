@@ -48,7 +48,10 @@ const ResumeRaw = () => {
 	const [skill2, setSkill2] = createSignal('Typescript');
 	const [skill3, setSkill3] = createSignal('HTML/CSS');
 	// TODO: software engineer option
-	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>('front-end');
+	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>(
+		'full-stack'
+		// 'front-end'
+	);
 	const [orgType, setOrgType] = createSignal<'startup' | 'organization'>('organization');
 
 	const handleKeyDown = (e: KeyboardEvent) => {
