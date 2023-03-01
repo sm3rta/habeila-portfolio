@@ -5,3 +5,5 @@ yarn-error.log
 
 # all ad-hoc resumes
 public/assets/ad-hoc-resumes/*
+
+~$*.docx
