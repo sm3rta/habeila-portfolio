@@ -6,7 +6,7 @@ const Fade = ({ children, ...rest }: { children: JSX.Element; in: boolean | Acce
 
 	createEffect(() => {
 		setTimeout(() => {
-			console.log(opacity());
+			// console.log(opacity());
 			setOpacity((typeof rest.in === 'boolean' ? rest.in : rest.in()) ? 1 : 0);
 		}, 0);
 	});

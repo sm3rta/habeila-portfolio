@@ -1,0 +1,3 @@
+Name                        Phone                     Email                                             Company
+Mostafa Gamal               +1 647-395-0236           -                                                 Haya Solutions
+Noha Abdelmoghni            -                         noha.abdelmoghni@coformatique.com                 Calqulate
