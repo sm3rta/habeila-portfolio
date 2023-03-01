@@ -1,16 +1,26 @@
 import { Box } from '@hope-ui/solid';
-import { JSX, createSignal, onMount } from 'solid-js';
+import { Accessor, JSX, createEffect, createSignal, onMount } from 'solid-js';
 
-const Fade = ({ children }: { children: JSX.Element }) => {
+const Fade = ({ children, ...rest }: { children: JSX.Element; in: boolean | Accessor<boolean> }) => {
 	const [opacity, setOpacity] = createSignal(0);
 
-	onMount(() => {
+	createEffect(() => {
 		setTimeout(() => {
-			setOpacity(1);
+			console.log(opacity());
+			setOpacity((typeof rest.in === 'boolean' ? rest.in : rest.in()) ? 1 : 0);
 		}, 0);
 	});
 
-	return <Box css={{ opacity: opacity(), transition: 'opacity 0.3s ease-in-out' }}>{children}</Box>;
+	return (
+		<Box
+			css={{
+				opacity: opacity(),
+				transition: 'opacity 1s ease-in-out',
+			}}
+		>
+			{children}
+		</Box>
+	);
 };
 
 export default Fade;

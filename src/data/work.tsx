@@ -194,6 +194,11 @@ export const work: Workplace[] = [
 					'i18next',
 					'Axios',
 					'Wordpress',
+					'Twitter API',
+					'Instagram API',
+					'Facebook API',
+					'YouTube API',
+					'Google Tag Manager',
 				],
 				responsibilities: ['Website (front-end)'],
 				tasks: [
@@ -217,7 +222,21 @@ export const work: Workplace[] = [
 						the UN 2030 Agenda.
 					</>
 				),
-				technologies: ['React', 'Gatsby.js', 'TypeScript', 'Material UI', 'Responsive UI', 'JSS', 'Axios', 'Wordpress'],
+				technologies: [
+					'React',
+					'Gatsby.js',
+					'TypeScript',
+					'Material UI',
+					'Responsive UI',
+					'JSS',
+					'Axios',
+					'Wordpress',
+					'Twitter API',
+					'Instagram API',
+					'Facebook API',
+					'YouTube API',
+					'Google Tag Manager',
+				],
 				responsibilities: ['Website (front-end)'],
 				tasks: [
 					{ description: 'Built this website from the ground up until it went live' },

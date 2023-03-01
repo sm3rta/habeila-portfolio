@@ -8,7 +8,7 @@ import { getAsteriskSectionColor } from '../../ui/theme';
 
 const Home = () => {
 	return (
-		<Fade>
+		<Fade in={() => true}>
 			<Box
 				css={{
 					'& > div:nth-child(even)': { background: getAsteriskSectionColor() },

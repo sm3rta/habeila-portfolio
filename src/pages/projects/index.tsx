@@ -22,7 +22,7 @@ export default function Project() {
 	});
 
 	return (
-		<Fade>
+		<Fade in={() => true}>
 			{projectNode}
 			<Box pos="relative" mt="$16" height={sectionDividerHeight}>
 				<BottomSectionDivider />

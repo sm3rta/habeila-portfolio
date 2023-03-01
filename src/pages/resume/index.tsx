@@ -6,7 +6,7 @@ import { CompanyProjects } from './CompanyProjects';
 import { Timeline } from './Timeline';
 
 const Resume = () => (
-	<Fade>
+	<Fade in={() => true}>
 		<Timeline>
 			{work
 				.filter((w) => w.name !== 'Self-employed')

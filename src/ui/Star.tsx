@@ -59,9 +59,7 @@ export const Star = () => {
 		else setBackgroundColor(generateRandomColorLight(0.6));
 	};
 
-	createEffect(() => {
-		updateBackgroundColor();
-	});
+	createEffect(updateBackgroundColor);
 
 	const animationDuration = randRangeInt(80, 120);
 	const animation = () => `${animationDirection} ${animationDuration}s ${delay()}s ease-in-out infinite alternate`;
