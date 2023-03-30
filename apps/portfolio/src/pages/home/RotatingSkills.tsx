@@ -1,49 +1,74 @@
-import { Badge, Box, Heading } from '@hope-ui/solid';
+import { Box, Heading } from '@hope-ui/solid';
 import { createElementSize } from '@solid-primitives/resize-observer';
-import { For, JSX, Show, createEffect, createSignal } from 'solid-js';
+import {
+	SiAstro,
+	SiAuth0,
+	SiCplusplus,
+	SiExpress,
+	SiFirebase,
+	SiGit,
+	SiI18next,
+	SiJira,
+	SiJss,
+	SiNextdotjs,
+	SiNodedotjs,
+	SiPython,
+	SiReact,
+	SiReacthookform,
+	SiRedux,
+	SiSass,
+	SiSolid,
+	SiTailwindcss,
+	SiTestinglibrary,
+	SiTypescript,
+} from 'solid-icons/si';
+import { For, JSX, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { colors } from '../../ui/theme';
-import { randRange } from '../../utils';
+import { randRange, randRangeInt } from '../../utils';
+import { SkillBadge } from './SkillBadge';
 
-const offsetAngle = 20 * (Math.PI / 180);
-const oneTenthOfDeg = 0.1 * (Math.PI / 180);
-const m = (Math.PI - 2 * offsetAngle) / Math.PI;
 const StyledSvg = styled('svg')({ position: 'absolute', width: '100%', height: '100%' });
-const aToBRatio = 0.4;
 
-const fSections = 3;
-const fMax = 1;
+export const skills: {
+	name: string;
+	Icon: ((props: any) => JSX.Element) | null;
+}[] = [
+	{ name: 'React', Icon: SiReact },
+	{ name: 'TypeScript', Icon: SiTypescript },
+	{ name: 'Astro', Icon: SiAstro },
+	{ name: 'Next.js', Icon: SiNextdotjs },
+	{ name: 'Tailwind CSS', Icon: SiTailwindcss },
+	{ name: 'Node.js', Icon: SiNodedotjs },
+	{ name: 'Git', Icon: SiGit },
+	{ name: 'Jira', Icon: SiJira },
+	{ name: 'Material UI', Icon: null },
+	{ name: 'Radix UI', Icon: null },
+	{ name: 'Sass', Icon: SiSass },
+	{ name: 'JSS', Icon: SiJss },
+	{ name: 'Localization', Icon: SiI18next },
+	{ name: 'Forms & validation', Icon: SiReacthookform },
+	{ name: 'Express.js', Icon: SiExpress },
+	{ name: 'C++', Icon: SiCplusplus },
+	{ name: 'Responsive Design', Icon: null },
+	{ name: 'Authentication', Icon: SiAuth0 },
+	{ name: 'JSDoc', Icon: null },
+	{ name: 'Firebase', Icon: SiFirebase },
+	{ name: 'Unit Testing', Icon: SiTestinglibrary },
+	{ name: 'Redux', Icon: SiRedux },
+	{ name: 'Python', Icon: SiPython },
+	{ name: 'Solid JS', Icon: SiSolid },
+];
+
+// constants
+const fMax = 1.1;
 const fMin = 0.4;
-
+const randMin = 0.9;
+const randMax = 1.05;
+const aToBRatio = 0.45;
+const oneTenthOfDeg = 0.1 * (Math.PI / 180);
 const transitionTimeMs = 750;
 const transitionTimeSec = transitionTimeMs / 1000;
-
-export const skills = [
-	'React',
-	'TypeScript',
-	'Node.js',
-	'Git',
-	'Jira',
-	'Material UI',
-	'Sass',
-	'JSS',
-	'Styled components',
-	'Data fetching',
-	'Localization',
-	'Forms & validation',
-	'JSDoc',
-	'Unit Testing',
-	'Responsive Design',
-	'Express.js',
-	'Firebase',
-	'Redux',
-	'C++',
-	'MongoDB',
-	'Authentication',
-	'Python',
-	'Vue',
-	'Solid JS',
-];
 
 const BadgeAndLine = ({
 	index,
@@ -51,30 +76,27 @@ const BadgeAndLine = ({
 	skill,
 	outerRadius,
 }: {
-	skill: string;
+	skill: { name: string; Icon: ((props: any) => JSX.Element) | null };
 	index: number;
 	innerRadius: number;
 	outerRadius: number;
 }) => {
-	// index
-	// fSections
-	// skills.length
-	// const cycleTime = transitionTimeMs / fSections;
-	// const delay = (index % fSections) * cycleTime + (index / (skills.length / fSections)) * cycleTime;
-	// const itemTransitionTime = transitionTimeMs / skills.length;
+	// const fSections = 3;
+	const fSections = randRangeInt(3, 4);
+	const offsetAngle = randRange(15, 20) * (Math.PI / 180);
+	const m = (Math.PI - 2 * offsetAngle) / Math.PI;
+
 	const delay = (index * transitionTimeMs) / 8;
-	// console.log(`🚀 ~ delay`, delay);
 
 	const [firstRender, setFirstRender] = createSignal(true);
-	createEffect(() => {
-		if (firstRender()) {
-			setTimeout(() => {
-				setFirstRender(false);
-			}, delay);
-		}
+	onMount(() => {
+		setTimeout(() => {
+			setFirstRender(false);
+		}, delay);
 	});
 
-	const a = (innerRadius / 2) * ((index % fSections) * ((fMax - fMin) / fSections) + fMin) * randRange(0.9, 1.05);
+	const a =
+		(innerRadius / 2) * ((index % fSections) * ((fMax - fMin) / fSections) + fMin) * randRange(randMin, randMax);
 	const b = a * aToBRatio;
 	const circleAngle = (index / (skills.length - 1)) * 2 * Math.PI;
 
@@ -126,17 +148,16 @@ const BadgeAndLine = ({
 					/>
 				</StyledSvg>
 			</RenderAfterDelay>
-			<Badge
+			<SkillBadge
+				skill={skill}
 				position="absolute"
 				top="50%"
 				left="50%"
 				zIndex={1}
-				opacity={firstRender() ? 0 : 1}
-				transform={firstRender() ? 'translate(0px, 0px)' : `translate(calc(${x}px - 50%), calc(${y}px - 50%))`}
+				opacity={() => (firstRender() ? 0 : 1)}
+				transform={() => (firstRender() ? 'translate(0px, 0px)' : `translate(calc(${x}px - 50%), calc(${y}px - 50%))`)}
 				transition={`transform ${transitionTimeSec}s cubic-bezier(0.3, 0.41, 0.56, 0.78), opacity ${transitionTimeSec}s cubic-bezier(1, 0, 1, 1)`}
-			>
-				{skill}
-			</Badge>
+			/>
 		</>
 	);
 };
@@ -176,7 +197,7 @@ export const RotatingSkills = () => {
 				m="auto"
 			>
 				{skillBadges()}
-				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl" zIndex={1}>
+				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl" zIndex={1} fontWeight="$hairline">
 					Ahmed Habeila
 				</Heading>
 			</Box>
@@ -187,12 +208,10 @@ export const RotatingSkills = () => {
 const RenderAfterDelay = ({ delay, children }: { delay: number; children: JSX.Element }) => {
 	const [show, setShow] = createSignal(false);
 
-	createEffect(() => {
-		if (!show()) {
-			setTimeout(() => {
-				setShow(true);
-			}, delay);
-		}
+	onMount(() => {
+		setTimeout(() => {
+			setShow(true);
+		}, delay);
 	});
 
 	return <Show when={show()}>{children}</Show>;

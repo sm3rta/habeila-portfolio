@@ -18,7 +18,7 @@ const Section = ({
 			w="fit-content"
 			p={{
 				'@initial': '120px $6',
-				'@lg': '120px $16',
+				'@xl': '60px $16',
 			}}
 			{...props}
 		/>

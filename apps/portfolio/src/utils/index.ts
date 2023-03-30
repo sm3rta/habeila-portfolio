@@ -1,9 +1,9 @@
 export const randRange = (_a: number, _b = 0) => {
-	const [a, b] = [_a, _b].sort((a, b) => a - b).reverse();
+	const [a, b] = [_a, _b].sort((a, b) => b - a);
 	return Math.random() * (b - a) + a;
 };
 export const randRangeInt = (_a: number, _b = 0) => {
-	const [a, b] = [_a, _b].sort((a, b) => a - b).reverse();
+	const [a, b] = [_a, _b].sort((a, b) => b - a);
 	return Math.floor(Math.random() * (b - a)) + a;
 };
 

@@ -1,7 +1,8 @@
-import { Badge, Box, Flex, Heading, Text } from '@hope-ui/solid';
+import { Box, Flex, Heading, Text } from '@hope-ui/solid';
 import { For } from 'solid-js';
-import Section from './Section';
 import { RotatingSkills, skills } from './RotatingSkills';
+import Section from './Section';
+import { SkillBadge } from './SkillBadge';
 
 const breakpoint = '@xl';
 
@@ -9,7 +10,7 @@ export default function Intro() {
 	return (
 		<Section id="home" maxW={{ [breakpoint]: 'unset !important' }} w={{ [breakpoint]: '100%' }} bottomSectionDivider>
 			<Box css={{ display: 'unset', [breakpoint]: { display: 'none' } }}>
-				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl">
+				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl" fontWeight="$hairline">
 					Ahmed Habeila
 				</Heading>
 				<Heading level="2" textAlign="center" mb="$6" fontSize="$2xl">
@@ -19,7 +20,7 @@ export default function Intro() {
 					Things I consider myself good at
 				</Text>
 				<Flex wrap="wrap" gap="$4" mt="$6">
-					<For each={skills}>{(skill) => <Badge>{skill}</Badge>}</For>
+					<For each={skills}>{(skill) => <SkillBadge skill={skill} />}</For>
 				</Flex>
 			</Box>
 			<Box css={{ display: 'none', [breakpoint]: { display: 'unset' } }}>
