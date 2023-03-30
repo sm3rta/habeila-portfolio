@@ -1,20 +1,21 @@
 {
-	"cSpell.words": [
-		"Astro",
-		"calq",
-		"Calqulate",
-		"Coformatique",
-		"Formik",
-		"Hamedani",
-		"Hasura",
-		"Haya",
-		"Learncpp",
-		"mkcert",
-		"Netjeek",
-		"Schwarzmüller",
-		"Sendgrid",
-		"Turborepo",
-		"twentythirty",
-		"webm"
-	]
+  "cSpell.words": [
+    "Astro",
+    "calq",
+    "Calqulate",
+    "Coformatique",
+    "Disqus",
+    "Formik",
+    "Hamedani",
+    "Hasura",
+    "Haya",
+    "Learncpp",
+    "mkcert",
+    "Netjeek",
+    "Schwarzmüller",
+    "Sendgrid",
+    "Turborepo",
+    "twentythirty",
+    "webm"
+  ]
 }

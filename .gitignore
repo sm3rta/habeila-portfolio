@@ -3,7 +3,7 @@ dist
 yarn-error.log
 
 # all ad-hoc resumes
-apps/portfolio/public/assets/ad-hoc-resumes/*
+resumes/*
 ~$*.docx
 
 # misc

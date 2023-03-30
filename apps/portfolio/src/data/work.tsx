@@ -38,19 +38,36 @@ export const work: Workplace[] = [
 			senior: true,
 		},
 		from: 'January 2023',
-		to: 'Current',
+		to: 'March 2023',
 		website: 'https://quint.io/',
 		projects: [
 			{
-				name: 'Quint',
-				id: 'quint',
-				website: 'https://quint.io/',
+				name: 'Quint Blog',
+				id: 'quint-blog',
+				website: 'https://blog.quint.io/',
 				Logo: QuintLogo,
 				description: 'A web 3 platform for the Quint cryptocurrency.',
-				technologies: ['React', 'Typescript', 'Radix UI', 'Tailwind CSS', 'Next.js', 'Web 3', 'Astro'],
+				technologies: ['Astro', 'Solid.js', 'Typescript', 'Tailwind CSS', 'Next.js', 'Disqus'],
 				achievements: [
 					{
-						description: 'Built the website from the ground up with a team of 4 in 5 days',
+						description: 'Built the website from the ground up with a team of 2 in 5 days',
+					},
+					{
+						description: 'Fully accessible, responsive and supports light and dark modes',
+					},
+				],
+				responsibilities: ['Website (front-end)'],
+			},
+			{
+				name: 'Quint Staking Web App',
+				id: 'quint-staking',
+				website: 'https://stake.quint.io/',
+				Logo: QuintLogo,
+				description: 'A web 3 staking platform for the Quint cryptocurrency.',
+				technologies: ['React', 'Next.js', 'Typescript', 'Radix UI', 'Tailwind CSS', 'Web 3'],
+				achievements: [
+					{
+						description: 'Quickly built a UI component library that follows a design system based on Radix UI',
 					},
 					{
 						description: 'Fully accessible, responsive and supports light and dark modes',
@@ -72,7 +89,7 @@ export const work: Workplace[] = [
 				id: 'portfolio-website',
 				website: 'https://habeila-portfolio.netlify.app/',
 				description: 'This portfolio website is built with Solid.js and a lot of love.',
-				technologies: ['Solid.js', 'Astro', 'Parallax effect', 'TypeScript', 'Sass', 'Styled components'],
+				technologies: ['Solid.js', 'Parallax effect', 'TypeScript', 'Sass', 'Styled components'],
 				achievements: [
 					{
 						description: () => (
@@ -105,7 +122,6 @@ export const work: Workplace[] = [
 			},
 		],
 	},
-
 	{
 		name: 'Calqulate',
 		website: 'https://calqulate.io/',
@@ -418,7 +434,7 @@ export const projects = [
 	'asset-tracking-system',
 ].map((id) => allProjects.find((p) => p.id === id)) as typeof allProjects;
 
-export type ProjectWithCompany = typeof projects[number];
+export type ProjectWithCompany = (typeof projects)[number];
 
 // export const introText = (
 // 	<>

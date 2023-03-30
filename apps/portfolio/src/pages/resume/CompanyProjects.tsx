@@ -1,4 +1,4 @@
-import { Anchor, Divider, Flex, List, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, Box, Divider, Flex, List, ListItem, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
 import { darkMode } from '../../App';
 import { Workplace } from '../../data/work';
@@ -7,8 +7,17 @@ import { getTitle } from '../../utils/getTitle';
 import ProjectSummary from './ProjectSummary';
 
 const renderCompany = (name: string, link?: string) => {
-	const company = <Text fontSize="$sm">{name}</Text>;
-	if (link) return <Anchor href={link}>{company}</Anchor>;
+	const company = (
+		<Text as="span" fontSize="$lg">
+			{name}
+		</Text>
+	);
+	if (link)
+		return (
+			<Anchor fontSize="$lg" href={link}>
+				{company}
+			</Anchor>
+		);
 	else return company;
 };
 
@@ -22,14 +31,14 @@ export const CompanyProjects = ({
 	forceNonSenior?: () => boolean | undefined;
 }) => (
 	<Flex h="100%" w="100%" direction="column" justifyContent="center">
-		<Flex justifyContent="space-between" alignItems="center">
+		<Box>
 			{company.title && (
-				<Text fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
+				<Text as="span" fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
 					{getTitle(forceRole?.() ?? company.title.role, forceNonSenior?.() ? !forceNonSenior() : company.title.senior)}
 				</Text>
-			)}
-			{renderCompany(company.name, company.website)}
-		</Flex>
+			)}{' '}
+			at {renderCompany(company.name, company.website)}
+		</Box>
 		<Show when={company.from && company.to}>
 			<Text fontSize="$xs" fontWeight="$bold">
 				{company.from} - {company.to}
