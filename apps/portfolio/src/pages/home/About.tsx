@@ -1,10 +1,10 @@
-import { Box, Container, Divider, Flex, Grid, Image, Text, hope } from '@hope-ui/solid';
+import { Box, Container, Divider, Flex, Grid, Text, hope } from '@hope-ui/solid';
+import { createMediaQuery } from '@solid-primitives/media';
 import { ComponentProps } from '@stitches/core';
 import { styled } from 'solid-styled-components';
 import { darkMode } from '../../App';
 import { TILE_SIZE, colors, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
 import Section from './Section';
-import { createMediaQuery } from '@solid-primitives/media';
 
 const StyledImage = hope((props: any) => <img {...props} type="image/webp" height={TILE_SIZE} width={TILE_SIZE} />, {
 	baseStyle: {
@@ -73,11 +73,10 @@ export default function About() {
 				>
 					<StyledImage
 						loading="lazy"
-						// fallback={<div />}
-						// srcset={`./assets/self-small.webp ${TILE_SIZE}w`}
-						// sizes={`(max-width: 480px) ${TILE_SIZE}px`}
-						srcset={`./assets/self.webp 990w, ./assets/self-small.webp ${TILE_SIZE}w`}
-						sizes={`(max-width: 480px) ${TILE_SIZE}px, 990px`}
+						srcset="/assets/self-small.webp 160w, /assets/self.webp 990w"
+						sizes="(max-width: 600px) 160px,
+									 990px"
+						src="/assets/self.webp"
 						alt="self image"
 						width={TILE_SIZE}
 						height={TILE_SIZE}
