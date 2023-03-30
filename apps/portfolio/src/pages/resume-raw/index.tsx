@@ -116,26 +116,40 @@ const ResumeRaw = () => {
 			height,
 		};
 
-		const req = await fetch('http://localhost:3001/', {
+		await fetch('http://localhost:3001/', {
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			method: 'post',
 			body: JSON.stringify(body),
-		});
-
-		if (req.status === 200) {
-			notificationService.show({
-				title: 'Printed successfully',
-				status: 'success',
+		})
+			.then((res) => {
+				if (res.status === 200) {
+					notificationService.show({
+						title: 'Printed successfully',
+						status: 'success',
+					});
+					return res.blob();
+				} else {
+					notificationService.show({
+						title: 'Print failed',
+						status: 'danger',
+					});
+				}
+			})
+			// to download file
+			// .then((blob) => {
+			// 	if (blob) {
+			// 		var file = window.URL.createObjectURL(blob);
+			// 		window.location.assign(file);
+			// 	}
+			// })
+			.catch((e) => {
+				notificationService.show({
+					title: 'Print failed',
+					status: 'danger',
+				});
 			});
-			// notificationService.success()
-		} else {
-			notificationService.show({
-				title: 'Print failed',
-				status: 'danger',
-			});
-		}
 	};
 
 	const iconButtonProps = {

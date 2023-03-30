@@ -1,4 +1,5 @@
 import express from "express";
+import stream from "stream";
 import { printWidth } from "../../portfolio/src/utils";
 
 const router = express.Router();
@@ -20,8 +21,10 @@ router.post("/", async (req, res, next) => {
       senior ? "senior" : "junior"
     }_${jobType}_${orgType}.pdf`.replace("/", "_");
 
-    await page.pdf({
-      path: `../../resumes/${fileName}`,
+    const path = `../../resumes/${fileName}`;
+
+    const file = await page.pdf({
+      path,
       // format: '',
       printBackground: true,
       width: printWidth,
@@ -30,7 +33,14 @@ router.post("/", async (req, res, next) => {
     });
 
     await browser.close();
-    res.status(200).send({ message: "success" });
+
+    var readStream = new stream.PassThrough();
+    readStream.end(file);
+
+    res.set("Content-disposition", "attachment; filename=" + fileName);
+    res.set("Content-Type", "application/pdf");
+    res.status(200);
+    readStream.pipe(res);
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: "error happened" });
