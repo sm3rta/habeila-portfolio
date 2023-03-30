@@ -425,13 +425,13 @@ export const work: Workplace[] = [
 export const allProjects = work.flatMap((w) => w.projects.map((p) => ({ ...p, company: w })));
 export const projects = [
 	'calqulate',
-	'quint',
+	'quint-blog',
+	'quint-staking',
 	'bmw-foundation',
 	'twentythirty',
 	'portfolio-website',
 	'educational-platform',
 	'netjeek',
-	'asset-tracking-system',
 ].map((id) => allProjects.find((p) => p.id === id)) as typeof allProjects;
 
 export type ProjectWithCompany = (typeof projects)[number];

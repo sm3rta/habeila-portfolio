@@ -1,7 +1,7 @@
 import { Box, Container, ContainerProps } from '@hope-ui/solid';
 import { Show } from 'solid-js';
 import { HEADER_HEIGHT } from '../../ui/theme';
-import { UpperSectionDivider, BottomSectionDivider } from './SectionDivider';
+import { BottomSectionDivider, UpperSectionDivider } from './SectionDivider';
 
 const Section = ({
 	bottomSectionDivider,
@@ -18,7 +18,7 @@ const Section = ({
 			w="fit-content"
 			p={{
 				'@initial': '120px $6',
-				'@lg': '120px $8',
+				'@lg': '120px $16',
 			}}
 			{...props}
 		/>
