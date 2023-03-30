@@ -8,3 +8,7 @@ html {
 	scroll-behavior: smooth;
 	scroll-padding-top: 60px; /* header height */
 }
+
+.hope-notification__list {
+	top: 60px;
+}
