@@ -1,37 +1,26 @@
 {
-	"name": "vite-template-solid",
-	"version": "0.0.0",
-	"description": "",
-	"scripts": {
-		"start": "vite",
-		"dev": "vite",
-		"build": "vite build",
-		"serve": "vite preview",
-		"clean": "npx rimraf yarn.lock && npx rimraf **/node_modules && npx rimraf **/.build && yarn"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"@hope-ui/solid": "0.6.7",
-		"@solid-primitives/media": "^2.1.0",
-		"@solid-primitives/resize-observer": "^2.0.7",
-		"@solidjs/router": "0.6.0",
-		"@stitches/core": "1.2.8",
-		"lodash.debounce": "4.0.8",
-		"lodash.merge": "^4.6.2",
-		"rallax.js": "2.0.4",
-		"solid-icons": "1.0.4",
-		"solid-js": "1.6.6",
-		"solid-styled-components": "0.28.5",
-		"solid-transition-group": "0.0.12"
-	},
-	"devDependencies": {
-		"@types/lodash.debounce": "4.0.7",
-		"@types/lodash.merge": "^4.6.7",
-		"@types/node": "18.11.18",
-		"sharp": "0.31.3",
-		"typescript": "4.9.4",
-		"vite": "4.0.3",
-		"vite-plugin-mkcert": "1.10.1",
-		"vite-plugin-solid": "2.5.0"
-	}
+  "name": "my-turborepo",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "build:portfolio": "yarn workspace portfolio build",
+    "start": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "packageManager": "yarn@1.22.19"
 }

@@ -1,0 +1,18 @@
+Dear Hiring Manager at Flashfood,
+
+I am writing to express my interest in the Senior Software Engineer role. With five years of experience in web development (mainly in React), I am confident that I have the skills and qualifications necessary to excel in this position.
+
+I have a strong background in React, TypeScript and GraphQL. I also have experience with responsive design, HTML5/CSS3 and animations, global state management libraries like Redux.
+I’ve worked on various projects and dived into a lot of concepts of front-end development, from content-driven websites focused on accessibility and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
+On the back end, I have experience with Express.js, Firebase and AWS.
+
+Most recently, I have been working as a front-end web developer for Calqulate which uses GraphQL and Postgres, where I have been responsible for creating and maintaining libraries for tables, charts and reusable UI components, as well as setting design system standards for the design team to follow. I also led my peer developers, monitoring and reviewing their code and pointing out bad code performance.
+
+I am excited about the opportunity to bring my skills and experience to your company and contribute to the continued success of your web development team. Thank you so much for considering my application.
+
+Please also consider taking a look at my portfolio: https://habeila-portfolio.netlify.app/
+
+Sincerely,
+Ahmed Habeila
+(647) 979-0872
+HabeilaAhmed@gmail.com
