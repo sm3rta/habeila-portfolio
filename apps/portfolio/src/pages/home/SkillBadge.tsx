@@ -1,5 +1,6 @@
 import { Badge, BadgeProps, Box } from '@hope-ui/solid';
-import { Accessor, JSX } from 'solid-js';
+import { IconTypes } from 'solid-icons';
+import { Accessor } from 'solid-js';
 
 export const SkillBadge = ({
 	skill,
@@ -9,7 +10,7 @@ export const SkillBadge = ({
 }: Omit<BadgeProps, 'opacity' | 'transform'> & {
 	skill: {
 		name: string;
-		Icon: ((props: any) => JSX.Element) | null;
+		Icon: IconTypes | null;
 	};
 	opacity?: Accessor<number>;
 	transform?: Accessor<string>;

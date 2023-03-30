@@ -1,5 +1,6 @@
 import { Box, Heading } from '@hope-ui/solid';
 import { createElementSize } from '@solid-primitives/resize-observer';
+import { IconTypes } from 'solid-icons';
 import {
 	SiAstro,
 	SiAuth0,
@@ -32,7 +33,7 @@ const StyledSvg = styled('svg')({ position: 'absolute', width: '100%', height: '
 
 export const skills: {
 	name: string;
-	Icon: ((props: any) => JSX.Element) | null;
+	Icon: IconTypes | null;
 }[] = [
 	{ name: 'React', Icon: SiReact },
 	{ name: 'TypeScript', Icon: SiTypescript },
@@ -76,7 +77,7 @@ const BadgeAndLine = ({
 	skill,
 	outerRadius,
 }: {
-	skill: { name: string; Icon: ((props: any) => JSX.Element) | null };
+	skill: { name: string; Icon: IconTypes | null };
 	index: number;
 	innerRadius: number;
 	outerRadius: number;

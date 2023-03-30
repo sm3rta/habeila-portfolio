@@ -1,10 +1,10 @@
 import { Box, IconButton, List, ListItem, Text } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
-import { AiOutlineGithub } from 'solid-icons/ai';
 import { BiLogosDiscordAlt } from 'solid-icons/bi';
 import { FaBrandsLinkedinIn } from 'solid-icons/fa';
 import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine } from 'solid-icons/ri';
+import { SiGithub } from 'solid-icons/si';
 import { For } from 'solid-js';
 import { telephoneNumber, telephoneNumberStylized } from '../../data/work';
 import { ICON_SIZE } from '../../ui/theme';
@@ -46,7 +46,7 @@ export const socials: Array<{
 		name: 'LinkedIn',
 	},
 	{
-		Icon: AiOutlineGithub,
+		Icon: SiGithub,
 		href: 'https://github.com/sm3rta/',
 		name: 'Github',
 	},

@@ -1,6 +1,7 @@
 import { Anchor, Badge, Box, Container, Flex, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
 import { ProjectWithCompany } from '../../data/work';
+import { SkillBadge } from '../home/SkillBadge';
 import Carousel from './Carousel';
 
 const renderProjectTitle = (name: string, link?: string) => {
@@ -35,7 +36,7 @@ const ProjectLayoutDetailed = ({ project }: { project: ProjectWithCompany }) => 
 					Technologies used
 				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
-					<For each={project.technologies}>{(tech) => <Badge>{tech}</Badge>}</For>
+					<For each={project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
 				</Flex>
 			</Show>
 

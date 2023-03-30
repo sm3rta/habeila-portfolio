@@ -1,12 +1,17 @@
 {
   "cSpell.words": [
+    "Apollographql",
     "Astro",
     "calq",
     "Calqulate",
     "Coformatique",
     "Cplusplus",
+    "Devexpress",
     "Disqus",
+    "dotjs",
     "Formik",
+    "Googlemaps",
+    "Googletagmanager",
     "Hamedani",
     "Hasura",
     "Haya",
@@ -16,12 +21,16 @@
     "Nextdotjs",
     "Nodedotjs",
     "Reacthookform",
+    "Reactquery",
     "Schwarzmüller",
     "Sendgrid",
+    "Styledcomponents",
     "Tailwindcss",
     "Testinglibrary",
     "Turborepo",
     "twentythirty",
+    "Vuedotjs",
+    "Vuex",
     "webm"
   ]
 }

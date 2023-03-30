@@ -1,6 +1,5 @@
 import {
 	AsProp,
-	Badge,
 	Box,
 	Divider,
 	Flex,
@@ -17,11 +16,41 @@ import {
 	notificationService,
 } from '@hope-ui/solid';
 import { useSearchParams } from '@solidjs/router';
-import { AiOutlineGithub } from 'solid-icons/ai';
 import { BsPrinter } from 'solid-icons/bs';
 import { FaSolidLocationDot } from 'solid-icons/fa';
 import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
+import {
+	SiApache,
+	SiApollographql,
+	SiAuth0,
+	SiBitbucket,
+	SiCplusplus,
+	SiD3dotjs,
+	SiDevexpress,
+	SiExpress,
+	SiFirebase,
+	SiGithub,
+	SiGitlab,
+	SiGraphql,
+	SiI18next,
+	SiJest,
+	SiJira,
+	SiJss,
+	SiLinux,
+	SiMongodb,
+	SiNextdotjs,
+	SiPostgresql,
+	SiPython,
+	SiReactquery,
+	SiRedux,
+	SiSass,
+	SiSolid,
+	SiStyledcomponents,
+	SiTailwindcss,
+	SiVuedotjs,
+	SiWebpack,
+} from 'solid-icons/si';
 import { TbStackPop } from 'solid-icons/tb';
 import { ComponentProps, For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
@@ -29,6 +58,7 @@ import { telephoneNumber, telephoneNumberStylized, work } from '../../data/work'
 import { colors, darkTheme as theme } from '../../ui/theme';
 import { printWidth } from '../../utils';
 import { socials } from '../home/Contact';
+import { SkillBadge } from '../home/SkillBadge';
 import { CompanyProjects } from '../resume/CompanyProjects';
 import { Timeline } from '../resume/Timeline';
 
@@ -393,27 +423,26 @@ const ResumeRaw = () => {
 							{/* front end theming */}
 							<For
 								each={[
-									'SCSS/Sass',
-									'Styled components',
-									'JSS',
-									'Material UI',
-									'Ant Design',
-									'Tailwind CSS',
-									'Responsive UI',
+									{ name: 'SCSS/Sass', Icon: SiSass },
+									{ name: 'Styled components', Icon: SiStyledcomponents },
+									{ name: 'JSS', Icon: SiJss },
+									{ name: 'Material UI', Icon: null },
+									{ name: 'Tailwind CSS', Icon: SiTailwindcss },
+									{ name: 'Responsive UI', Icon: null },
 								]}
 							>
-								{(item) => <Badge>{item}</Badge>}
+								{(skill) => <SkillBadge skill={skill} />}
 							</For>
 						</Flex>
 						{/* front end tools and frameworks */}
 						<Flex gap="$2" wrap="wrap">
 							<For
 								each={[
-									'Webpack',
-									'D3.js',
-									'DevExpress',
-									'i18next',
-									'JSDoc',
+									{ name: 'Webpack', Icon: SiWebpack },
+									{ name: 'D3.js', Icon: SiD3dotjs },
+									{ name: 'DevExpress', Icon: SiDevexpress },
+									{ name: 'i18next', Icon: SiI18next },
+									{ name: 'JSDoc', Icon: null },
 
 									// Forms & validation,
 									// 'Formik',
@@ -421,31 +450,64 @@ const ResumeRaw = () => {
 									// 'react-hook-form',
 									// 'zod',
 									//  Global State Design,
-									'Redux',
-									'Redux-Toolkit',
-									'Zustand',
-									'react-query',
+									{ name: 'Redux', Icon: SiRedux },
+									{ name: 'Redux-Toolkit', Icon: SiRedux },
+									{ name: 'Zustand', Icon: null },
+									{ name: 'react-query', Icon: SiReactquery },
 
 									// Authentication
-									'Auth0',
+									{ name: 'Auth0', Icon: SiAuth0 },
 								]}
 							>
-								{(item) => <Badge>{item}</Badge>}
+								{(skill) => <SkillBadge skill={skill} />}
 							</For>
 						</Flex>
 						{/* backend */}
 						<Flex gap="$2" wrap="wrap">
-							<For each={['PostgreSQL', 'GraphQL/Apollo', 'Express.js', 'MongoDB', 'Firebase', 'Unit Testing']}>
-								{(item) => <Badge>{item}</Badge>}
+							<For
+								each={[
+									{ name: 'PostgreSQL', Icon: SiPostgresql },
+									{ name: 'GraphQL', Icon: SiGraphql },
+									{ name: 'Apollo', Icon: SiApollographql },
+									{ name: 'Express.js', Icon: SiExpress },
+									{ name: 'MongoDB', Icon: SiMongodb },
+									{ name: 'Firebase', Icon: SiFirebase },
+									{ name: 'Unit Testing', Icon: SiJest },
+								]}
+							>
+								{(skill) => <SkillBadge skill={skill} />}
 							</For>
 						</Flex>
 						{/* version control */}
 						<Flex gap="$2" wrap="wrap">
-							<For each={['GitHub', 'BitBucket', 'Agile', 'Jira', 'CI/CD ']}>{(item) => <Badge>{item}</Badge>}</For>
+							<For
+								each={[
+									//
+									{ name: 'GitHub', Icon: SiGithub },
+									{ name: 'GitLab', Icon: SiGitlab },
+									{ name: 'BitBucket', Icon: SiBitbucket },
+									{ name: 'Agile', Icon: null },
+									{ name: 'Jira', Icon: SiJira },
+									{ name: 'CI/CD ', Icon: null },
+								]}
+							>
+								{(skill) => <SkillBadge skill={skill} />}
+							</For>
 						</Flex>
 						{/* other */}
 						<Flex gap="$2" wrap="wrap">
-							<For each={['Python', 'Solid JS', 'C++', 'Vue.js', 'Next.js']}>{(item) => <Badge>{item}</Badge>}</For>
+							<For
+								each={[
+									//
+									{ name: 'Python', Icon: SiPython },
+									{ name: 'Solid JS', Icon: SiSolid },
+									{ name: 'C++', Icon: SiCplusplus },
+									{ name: 'Vue.js', Icon: SiVuedotjs },
+									{ name: 'Next.js', Icon: SiNextdotjs },
+								]}
+							>
+								{(skill) => <SkillBadge skill={skill} />}
+							</For>
 						</Flex>
 					</Flex>
 
@@ -491,7 +553,7 @@ const ResumeRaw = () => {
 							<Text mr="$2" fontWeight="$bold" d="contents" as="span">
 								An Express-like C++ web application framework
 							</Text>
-							<AiOutlineGithub
+							<SiGithub
 								size={ICON_SIZE}
 								color="$primary5"
 								style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
@@ -503,7 +565,18 @@ const ResumeRaw = () => {
 							also supports middleware.
 						</Text>
 						<Flex gap="$2" wrap="wrap" mt="$4">
-							<For each={['C++17', 'CGI', 'Apache', 'Multithreading', 'Linux']}>{(item) => <Badge>{item}</Badge>}</For>
+							<For
+								each={[
+									//
+									{ name: 'C++17', Icon: SiCplusplus },
+									{ name: 'CGI', Icon: null },
+									{ name: 'Apache', Icon: SiApache },
+									{ name: 'Multithreading', Icon: null },
+									{ name: 'Linux', Icon: SiLinux },
+								]}
+							>
+								{(skill) => <SkillBadge skill={skill} />}
+							</For>
 						</Flex>
 					</Flex>
 
