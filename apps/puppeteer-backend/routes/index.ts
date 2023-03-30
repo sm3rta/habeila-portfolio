@@ -17,9 +17,7 @@ router.post("/", async (req, res, next) => {
       waitUntil: "networkidle2",
     });
 
-    const fileName = `AhmedHabeilaResume_${skill1}_${skill2}_${skill3}_${
-      senior ? "senior" : "junior"
-    }_${jobType}_${orgType}.pdf`.replace("/", "_");
+    const fileName = `AhmedHabeilaResume_${jobType}pdf`;
 
     const path = `../../resumes/${fileName}`;
 

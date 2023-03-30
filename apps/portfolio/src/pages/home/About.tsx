@@ -11,9 +11,6 @@ const StyledImage = hope((props: any) => <img {...props} type="image/webp" heigh
 		clipPath: createOctagonalClipPathWithMargin(5),
 	},
 });
-//  styled((props: ComponentProps<typeof Image>) => <img {...props} />)({
-// 	clipPath: createOctagonalClipPathWithMargin(5),
-// });
 
 const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes animLight': {
