@@ -5,7 +5,7 @@ import { SkillBadge } from '../home/SkillBadge';
 
 const renderProjectTitle = ({ name, website, renderTitle }: Project) => {
 	if (renderTitle) return renderTitle();
-	const project = <Text>{name}:</Text>;
+	const project = <Text>{name}</Text>;
 	if (website) return <Anchor href={website}>{project}</Anchor>;
 	else return project;
 };

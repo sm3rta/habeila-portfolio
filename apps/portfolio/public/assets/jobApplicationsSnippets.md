@@ -48,7 +48,6 @@
 - Jira
 - JSDoc
 - JSS
-- JWT
 - Material UI
 - MongoDB
 - Multi-language Routing
@@ -277,7 +276,6 @@ Technologies used
 - Redux
 - Stripe API
 - i18next
-- JWT
 - Google Maps
 - JSDoc
 - React Testing Library

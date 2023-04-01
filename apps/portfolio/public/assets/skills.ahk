@@ -70,8 +70,6 @@ Return
   delayAndPressEnter()
   Send, JSS
   delayAndPressEnter()
-  Send, JWT
-  delayAndPressEnter()
   Send, Material UI
   delayAndPressEnter()
   Send, MongoDB

@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
       path,
       printBackground: true,
       width: printWidth,
-      height,
+      height: Number(height) + 4,
     });
 
     const promises: Array<() => Promise<any>> = jobTypes.map((jobType) => {
@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
           path,
           printBackground: true,
           width: printWidth,
-          height,
+          height: Number(height) + 4,
         });
 
         if (jobType === "front-end") {
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
             path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
             printBackground: true,
             width: printWidth,
-            height,
+            height: Number(height) + 4,
           });
         }
       };
