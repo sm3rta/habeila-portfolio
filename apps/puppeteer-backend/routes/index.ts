@@ -31,13 +31,13 @@ router.post("/", async (req, res) => {
       height,
     });
 
-    const promises: Array<() => Promise<any>> = jobTypes.flatMap((jobType) => {
-      return [true, false].map((senior) => async () => {
+    const promises: Array<() => Promise<any>> = jobTypes.map((jobType) => {
+      return async () => {
         const page = await browser.newPage();
-        const url = `${baseUrl}?jobType=${jobType}&senior=${senior}`;
+        const url = `${baseUrl}?jobType=${jobType}`;
         await page.goto(url, { waitUntil: "networkidle2" });
 
-        const fileName = `AhmedHabeilaResume_${senior ? "Senior" : ""}${jobTypesMap[jobType]}.pdf`;
+        const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
         const path = `../../resumes/${fileName}`;
 
         await page.pdf({
@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
           height,
         });
 
-        if (senior && jobType === "front-end") {
+        if (jobType === "front-end") {
           await page.pdf({
             path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
             printBackground: true,
@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {
             height,
           });
         }
-      });
+      };
     });
 
     await Promise.all(promises.map((p) => p()));
