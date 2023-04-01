@@ -261,23 +261,24 @@ Full-stack web developer
 
 Netjeek
 
-- Achievements
-  - Conducted system analysis to define APIs with possible responses
-  - Designed and implemented eCommerce website for international customers
-  - Integrated Google Maps for delivery location pinpointing and detection
-  - Integrated Stripe for shipment payments
-  - Created mock API with configurable front end for each endpoint status code
-- Technologies used
-  - React
-  - JavaScript
-  - Material UI
-  - JSS
-  - Express.js
-  - Redux
-  - Stripe API
-  - i18next
-  - JWT
-  - Google Maps
-  - JSDoc
-  - React Testing Library
-  - Python
+- Conducted system analysis to define APIs with possible responses
+- Designed and implemented eCommerce website for international customers
+- Integrated Google Maps for delivery location pinpointing and detection
+- Integrated Stripe for shipment payments
+- Created mock API with configurable front end for each endpoint status code
+
+Technologies used
+
+- React
+- JavaScript
+- Material UI
+- JSS
+- Express.js
+- Redux
+- Stripe API
+- i18next
+- JWT
+- Google Maps
+- JSDoc
+- React Testing Library
+- Python
