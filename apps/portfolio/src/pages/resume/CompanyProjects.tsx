@@ -42,7 +42,7 @@ export const CompanyProjects = ({
 						)}
 					</Text>
 				)}{' '}
-				at {renderCompany(company.name, company.website)}
+				– {renderCompany(company.name, company.website)}
 			</Box>
 			<Show when={company.from && company.to}>
 				<Text fontSize="$xs" fontWeight="$bold">

@@ -104,7 +104,7 @@ export const work: Workplace[] = [
 			{
 				name: 'Quint Blog',
 				id: 'quint-blog',
-				// website: 'https://blog.quint.io/',
+				website: 'https://blog.quint.io/',
 				Logo: QuintLogo,
 				description: 'A web 3 platform for the Quint cryptocurrency',
 				technologies: [
@@ -126,7 +126,7 @@ export const work: Workplace[] = [
 			{
 				name: 'Quint Staking Web App',
 				id: 'quint-staking',
-				// website: 'https://stake.quint.io/',
+				website: 'https://stake.quint.io/',
 				Logo: QuintLogo,
 				description: 'A web 3 staking platform for the Quint cryptocurrency',
 				technologies: [
