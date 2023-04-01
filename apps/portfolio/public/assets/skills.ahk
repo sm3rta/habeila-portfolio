@@ -24,8 +24,6 @@ Return
   delayAndPressEnter()
   Send, AWS
   delayAndPressEnter()
-  Send, Axios
-  delayAndPressEnter()
   Send, BitBucket
   delayAndPressEnter()
   Send, C++

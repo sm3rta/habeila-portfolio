@@ -29,39 +29,43 @@ export const CompanyProjects = ({
 	company: Workplace;
 	forceRole?: () => 'full' | 'se' | undefined;
 	forceNonSenior?: () => boolean | undefined;
-}) => (
-	<Flex h="100%" w="100%" direction="column" justifyContent="center">
-		<Box>
-			{company.title && (
-				<Text as="span" fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
-					{getTitle(forceRole?.() ?? company.title.role, forceNonSenior?.() ? !forceNonSenior() : company.title.senior)}
-				</Text>
-			)}{' '}
-			at {renderCompany(company.name, company.website)}
-		</Box>
-		<Show when={company.from && company.to}>
-			<Text fontSize="$xs" fontWeight="$bold">
-				{company.from} - {company.to}
-			</Text>
-		</Show>
-		<Show when={company.description}>
-			<Text mt="$4">{company.description}</Text>
-		</Show>
-
-		<Text fontWeight="$bold" color={darkMode() ? '$primary5' : colors.primary1} my="$4">
-			Projects:
-		</Text>
-		<List d="flex" flexDirection="column">
-			<For each={company.projects.filter((project) => project.id !== 'asset-tracking-system')}>
-				{(project, index) => (
-					<ListItem pl="$4">
-						<ProjectSummary project={{ ...project, company }} />
-						{index() !== company.projects.filter((project) => project.id !== 'asset-tracking-system').length - 1 && (
-							<Divider my="$4" />
+}) => {
+	const projects = company.projects.filter((project) => !project.hideOnResume);
+	return (
+		<Flex h="100%" w="100%" direction="column" justifyContent="center">
+			<Box>
+				{company.title && (
+					<Text as="span" fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
+						{getTitle(
+							forceRole?.() ?? company.title.role,
+							forceNonSenior?.() ? !forceNonSenior() : company.title.senior
 						)}
-					</ListItem>
-				)}
-			</For>
-		</List>
-	</Flex>
-);
+					</Text>
+				)}{' '}
+				at {renderCompany(company.name, company.website)}
+			</Box>
+			<Show when={company.from && company.to}>
+				<Text fontSize="$xs" fontWeight="$bold">
+					{company.from} - {company.to}
+				</Text>
+			</Show>
+			{/* <Show when={company.description}>
+                <Text mt="$4">{company.description}</Text>
+            </Show> */}
+
+			{/* <Text fontWeight="$bold" color={darkMode() ? '$primary5' : colors.primary1} my="$4">
+				Projects:
+			</Text> */}
+			<List d="flex" flexDirection="column" mt="$4">
+				<For each={projects}>
+					{(project, index) => (
+						<ListItem>
+							<ProjectSummary project={project} />
+							{index() !== projects.length - 1 && <Divider my="$4" />}
+						</ListItem>
+					)}
+				</For>
+			</List>
+		</Flex>
+	);
+};

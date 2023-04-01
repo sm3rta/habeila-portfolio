@@ -25,7 +25,6 @@
 - Ant Design
 - Auth0
 - AWS
-- Axios
 - BitBucket
 - C++
 - CI/CD
@@ -41,7 +40,7 @@
 - GitHub
 - Google Maps
 - GraphQL
-- GraphQL Apollo Client
+- Apollo
 - Hasura
 - HTML
 - i18next
@@ -75,9 +74,7 @@
 - Turborepo
 - TypeScript
 - Unit Testing
-- Vue.js
 - Webpack
-- Yup
 - Zod
 - Zustand
 
@@ -94,7 +91,7 @@ Please consider taking a look at my portfolio: <https://habeila-portfolio.netlif
 
 ## Achievements/Recent achievement
 
-I led a team of 4 front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow.
+I led a team of 4 front-end developers in the process of creating and maintaining features while setting clear design system standards for the design team to follow.
 
 ---
 
@@ -113,7 +110,7 @@ I led a team of 4 front-end developers in the process of creating and maintainin
 
 - How did you meet or exceed your employers’ expectations in previous jobs
 
-      In my last job, I stepped up by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks. I also showed leadership be leading a team of 4 of my peer front-end developers in the process of creating and maintaining features, reviewing their code and enforcing project-specific standards and best practices, while also setting design system standards for the design team to follow
+      In my last job, I stepped up by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks. I also showed leadership be leading a team of 4 of my peer front-end developers in the process of creating and maintaining features, reviewing their code and enforcing project-specific standards and best practices, while also setting clear design system standards for the design team to follow
 
 - How I'm going to make the company succeed
 
@@ -140,26 +137,34 @@ Senior Full-stack Web Developer
 
 01/2023 - Current
 
-A web 3 platform for the Quint cryptocurrency.
+1. Quint Blog
 
-Achievements
+   - Achievements
+     - Collaborated with a team of 4 to launch blog website in 1 week
+     - Achieved 100% Lighthouse score with optimized SEO and accessibility
+   - Technologies used
+     - Astro
+     - Solid.js
+     - Typescript
+     - Tailwind CSS
+     - Next.js
+     - Disqus
+     - GitLab
 
-- Built the website from the ground up with a team of 4 in 5 days
-- Fully accessible, responsive and supports light and dark modes
+2. Quint Staking Web App
 
-Technologies used
-
-- React
-- Typescript
-- Radix UI
-- Tailwind CSS
-- Next.js
-- Web 3
-- Astro
-
-My responsibilities
-
-- Website (front-end)
+   - Achievements
+     - Built fully accessible, responsive website with light/dark themes
+     - Created UI component library based on Radix UI design system and documented on Storybook
+   - Technologies used
+     - React
+     - Next.js
+     - Typescript
+     - Radix UI
+     - Tailwind CSS
+     - Web 3
+     - Storybook
+     - GitLab
 
 ---
 
@@ -169,26 +174,17 @@ Front-end web developer
 
 11/2020 - 01/2023
 
-Working full-time for more than two years on this project, I led a team of 5 front-end developers in the process of creating and maintaining features while setting design system standards for the design team to follow.
-My biggest responsibility in this project was to create and maintain different libraries in a monorepo for tables, charts and reusable UI components.
+Calqulate
 
-Calqulate is A financial tool for modern SaaS organizations that
-
-- Collects data from multiple sources and automatically generates reports on finances, growth metrics, cashflow forecasting, cash management, customer growth and churn, multi-source subscription management and more.
-- Features complex editable tree tables with fixed columns, sticky headers and advanced styles, interactive data rich charts.
-- Integrates with most known major accounting and subscription software like Stripe, Procountor, QuickBooks and Xero.
-
-Achievements:
-
-- Built a proprietary charts library using D3 with 10 different types of charts with animations, interactive tooltips, legends and placeholders with randomly generated data'
-- Created front-end monorepo architecture, including 2 apps and 5 independent libraries
-- Built a library for performant editable tree tables with fixed columns, virtual sticky headers and advanced styles
-- Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu
+- Led team of 4 front-end developers to create and maintain features and set clear design system standards
+- Developed front-end monorepo architecture with 2 apps and 5 independent libraries
+- Developed a proprietary charts library using D3.js with 10 different types of charts with animations, interactive tooltips, legends and placeholders with randomly generated data
+- Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles
 - Built time selectors and filters that follow a global state design pattern and sync with the URL
-- Built an integration with Stripe for the users to pay for subscriptions
-- Built a proprietary types SDK to ensure API type safety between front-end and back-end
+- Integrated Stripe for subscription payments
+- Developed proprietary types SDK for API type safety
 
-Technologies used:
+Technologies used
 
 - React
 - TypeScript
@@ -198,6 +194,7 @@ Technologies used:
 - react-hook-form
 - Zod
 - D3.js
+- Devexpress
 - Storybook
 - Hasura
 - Stripe API
@@ -206,13 +203,7 @@ Technologies used:
 - Auth0
 - Turborepo
 - Sentry
-- Hasura
 - AWS
-
-My responsibilities:
-
-- Front-end Web App
-- Back-end API Types SDK
 
 ---
 
@@ -222,13 +213,13 @@ Full-stack web developer
 
 05/2020 - 11/2020
 
-Working as a full-stack web developer on varying projects in this warehouse company, using different sets of technologies, I gained experience in accessibility, pixel perfect UI, responsive design and SEO.
+1. BMW Foundation and TwentyThirty
 
-Projects:
-
-1. BMW Foundation: Built this website from the ground up until it went live, it's an informative website of the BMW Foundation's mission, plans and events. The website features advanced accessibility features and multi-language routing.
-
-   - Technologies used:
+   - Achievements
+     - Launched two responsive websites with keyboard navigation and screen reader support
+     - Created accessibility menu with high contrast mode, dyslexia-friendly font, and animations toggle
+     - Integrated Google Tag Manager and followed SEO best practices
+   - Technologies used
      - React
      - Gatsby.js
      - TypeScript
@@ -237,25 +228,19 @@ Projects:
      - Multi-language Routing
      - Responsive UI
      - i18next
-     - Axios
-   - My responsibilities:
-     - Website (front-end)
+     - Wordpress
+     - Twitter API
+     - Instagram API
+     - Facebook API
+     - YouTube API
+     - Google Tag Manager
 
-2. TwentyThirty: An online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with the UN 2030 Agenda.
-
-   - Technologies used:
-     - React
-     - Gatsby.js
-     - TypeScript
-     - Material UI
-     - Responsive UI
-     - JSS
-     - Axios
-   - My responsibilities:
-     - Website (front-end)
-
-3. Educational platform: An educational platform where professors can upload and schedule lectures to different classes, automatically create and share Zoom meeting links after a lecture have been seen by all the students to discuss it, create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, an admin dashboard where professors can manage lectures, send emails with grades to students' parents.
-   - Technologies used:
+1. Educational platform
+   - Achievements
+     - Built back-end API with Express.js and Firebase for authentication, file uploads, emails, and database queries
+     - Integrated Zoom for automatic meeting link creation and email sending to students
+     - Built admin dashboard for lecture management and grade emailing to parents
+   - Technologies used
      - Firebase
      - Express.js
      - TypeScript
@@ -265,10 +250,6 @@ Projects:
      - JSS
      - Formik
      - Yup
-     - Axios
-   - My responsibilities:
-     - Back-end (Firebase)
-     - Admin Dashboard (front-end)
 
 ---
 
@@ -278,32 +259,25 @@ Full-stack web developer
 
 05/2018 - 05/2020
 
-Built an eCommerce trans-shipping system designed to facilitate the purchase and delivery of goods to countries where customers can’t place an order to international e-retailers directly.
+Netjeek
 
-- Achievements:
-  - Built an integration with Google maps where the user can pinpoint their delivery location on the map with automatic location detection
-  - Built an integration with Stripe for the users to pay for shipments
-  - Built the front-end app
-  - Did a system analysis defining APIs with all the possible responses
-  - Created a mock API with example responses for each end point, with a configurable front end to change between possible status codes
-- Technologies used:
-
+- Achievements
+  - Conducted system analysis to define APIs with possible responses
+  - Designed and implemented eCommerce website for international customers
+  - Integrated Google Maps for delivery location pinpointing and detection
+  - Integrated Stripe for shipment payments
+  - Created mock API with configurable front end for each endpoint status code
+- Technologies used
   - React
   - JavaScript
   - Material UI
   - JSS
   - Express.js
   - Redux
-  - Stripe Payment Gateway
+  - Stripe API
   - i18next
-  - Axios
   - JWT
   - Google Maps
   - JSDoc
-  - Enzyme
+  - React Testing Library
   - Python
-
-- My responsibilities:
-  - eCommerce Website (front-end)
-  - System Analysis
-  - Mock API creation

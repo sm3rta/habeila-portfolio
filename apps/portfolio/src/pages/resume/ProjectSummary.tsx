@@ -1,53 +1,53 @@
-import { Anchor, Badge, Box, Flex, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, Box, Flex, ListItem, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
-import { ProjectWithCompany } from '../../data/work';
+import { Project } from '../../data/work';
 import { SkillBadge } from '../home/SkillBadge';
 
-const renderProjectTitle = (name: string, link?: string) => {
-	const company = <Text as="span">{name}</Text>;
-	if (link) return <Anchor href={link}>{company}</Anchor>;
-	else return company;
+const renderProjectTitle = ({ name, website, renderTitle }: Project) => {
+	if (renderTitle) return renderTitle();
+	const project = <Text>{name}:</Text>;
+	if (website) return <Anchor href={website}>{project}</Anchor>;
+	else return project;
 };
 
-const ProjectSummary = ({ project }: { project: ProjectWithCompany }) => (
+const ProjectSummary = ({ project }: { project: Project }) => (
 	<Flex w="100%" direction="column" justifyContent="center">
 		<Box>
-			{renderProjectTitle(project.name, project.website)}
-			<Text as="span">: {project.description}</Text>
+			{renderProjectTitle(project)}
+
+			{/* <Text as="span">: {project.description}</Text> */}
 		</Box>
 		<Box>
-			<Show when={project.achievements?.length}>
-				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
+			{/* <Text mt="$4" fontWeight="$semibold" fontSize="$sm">
 					Achievements
-				</Text>
-				<Flex mt="$2" direction="column" as="ul">
-					<For each={project.achievements}>
-						{(achievement) => (
-							<ListItem ml="$6" fontSize="$sm">
-								{achievement.description}
-							</ListItem>
-						)}
-					</For>
-				</Flex>
-			</Show>
+				</Text> */}
+			<Flex mt="$2" direction="column" as="ul">
+				<For each={project.achievements}>
+					{(achievement) => (
+						<ListItem ml="$6" fontSize="$sm">
+							{achievement.description}
+						</ListItem>
+					)}
+				</For>
+			</Flex>
 
 			<Show when={project.technologies?.length}>
-				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
+				{/* <Text mt="$4" fontWeight="$semibold" fontSize="$sm">
 					Technologies used
-				</Text>
+				</Text> */}
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
 				</Flex>
 			</Show>
 
-			<Show when={project.responsibilities?.length}>
+			{/* <Show when={project.responsibilities?.length}>
 				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
 					My responsibilities
 				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
 				</Flex>
-			</Show>
+			</Show> */}
 		</Box>
 	</Flex>
 );

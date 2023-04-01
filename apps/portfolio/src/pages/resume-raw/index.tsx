@@ -1,5 +1,5 @@
 import {
-	AsProp,
+	Anchor,
 	Box,
 	Divider,
 	Flex,
@@ -8,8 +8,6 @@ import {
 	IconButton,
 	Input,
 	NotificationsProvider,
-	Progress,
-	ProgressIndicator,
 	Radio,
 	RadioGroup,
 	Text,
@@ -17,7 +15,6 @@ import {
 } from '@hope-ui/solid';
 import { useSearchParams } from '@solidjs/router';
 import { BsPrinter } from 'solid-icons/bs';
-import { FaSolidLocationDot } from 'solid-icons/fa';
 import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import {
@@ -73,30 +70,32 @@ const StyledDivider = styled((props: any) => <Divider {...props} />)({
 	height: '2px',
 });
 
-const StyledFlexLink = (props: ComponentProps<typeof Flex> & AsProp<'a'>) => (
-	<Flex alignItems="center" as="a" target="_blank" w="fit-content" {...props} />
+const StyledFlexLink = (props: ComponentProps<typeof Flex>) => (
+	<Anchor d="flex" target="_blank" alignItems="center" w="fit-content" {...props} />
 );
+
+export type Params = {
+	skill1: string;
+	skill2: string;
+	skill3: string;
+	senior: string;
+	jobType: 'full-stack' | 'front-end' | 'softwareEngineer';
+	// orgType: 'startup' | 'organization';
+};
 
 const ResumeRaw = () => {
 	const [showControls, setShowControls] = createSignal(false);
 
-	const [params, setParams] = useSearchParams<{
-		skill1: string;
-		skill2: string;
-		skill3: string;
-		senior: string;
-		jobType: 'full-stack' | 'front-end' | 'softwareEngineer';
-		orgType: 'startup' | 'organization';
-	}>();
+	const [params, setParams] = useSearchParams<Params>();
 
 	const [skill1, setSkill1] = createSignal(params.skill1 ?? 'React');
 	const [skill2, setSkill2] = createSignal(params.skill2 ?? 'Typescript');
-	const [skill3, setSkill3] = createSignal(params.skill3 ?? 'HTML/CSS');
+	const [skill3, setSkill3] = createSignal(params.skill3 ?? undefined);
 	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : false);
 	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>(
 		params.jobType ?? 'front-end'
 	);
-	const [orgType, setOrgType] = createSignal<'startup' | 'organization'>(params.orgType ?? 'organization');
+	// const [orgType, setOrgType] = createSignal<'startup' | 'organization'>(params.orgType ?? 'organization');
 
 	createEffect(() => {
 		setParams({
@@ -105,7 +104,7 @@ const ResumeRaw = () => {
 			skill3: skill3(),
 			senior: senior().toString(),
 			jobType: jobType(),
-			orgType: orgType(),
+			// orgType: orgType(),
 		});
 	});
 
@@ -135,14 +134,15 @@ const ResumeRaw = () => {
 
 		const body = {
 			url: window.location.href,
-			params: {
-				skill1: skill1(),
-				skill2: skill2(),
-				skill3: skill3(),
-				senior: senior().toString(),
-				jobType: jobType(),
-				orgType: orgType(),
-			},
+			baseUrl: window.location.origin + window.location.pathname,
+			// params: {
+			// 	skill1: skill1(),
+			// 	skill2: skill2(),
+			// 	skill3: skill3(),
+			// 	senior: senior().toString(),
+			// 	jobType: jobType(),
+			// 	// orgType: orgType(),
+			// },
 			height,
 		};
 
@@ -235,7 +235,7 @@ const ResumeRaw = () => {
 								</Radio>
 							</Flex>
 						</RadioGroup>
-						<Text>Organization type</Text>
+						{/* <Text>Organization type</Text>
 						<RadioGroup defaultValue={orgType()}>
 							<Flex direction="column" gap="$4">
 								<Radio value="organization" onChange={() => setOrgType('organization')}>
@@ -245,7 +245,7 @@ const ResumeRaw = () => {
 									Startup
 								</Radio>
 							</Flex>
-						</RadioGroup>
+						</RadioGroup> */}
 						<Text>Seniority</Text>
 						<RadioGroup defaultValue={senior().toString()}>
 							<Flex direction="column" gap="$4">
@@ -278,12 +278,12 @@ const ResumeRaw = () => {
 
 				<Flex background="$info12" direction="column" p="$8">
 					<Box>
-						<Text color="white" fontSize="$3xl" fontWeight="$extrabold" as="span">
+						<Text color="white" fontSize="$3xl" lineHeight="normal" fontWeight="$extrabold" as="span">
 							Ahmed Habeila
 						</Text>
-						<Text color={secondaryTextAndIconColorHeader} fontSize="$md" as="span">
+						{/* <Text color={secondaryTextAndIconColorHeader} fontSize="$md" as="span">
 							{' (He/Him)'}
-						</Text>
+						</Text> */}
 					</Box>
 					<Text color="white" fontSize="$2xl">
 						{jobType() === 'full-stack'
@@ -294,24 +294,24 @@ const ResumeRaw = () => {
 					</Text>
 
 					<Flex direction="column" rowGap="$4" mt="$4">
-						<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!">
+						<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!" textDecoration="none">
 							<HiOutlineMail size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
 							<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
 								HabeilaAhmed@gmail.com
 							</Text>
 						</StyledFlexLink>
-						<StyledFlexLink href={`tel:+${telephoneNumber}`}>
+						<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
 							<RiDeviceSmartphoneLine size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
 							<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
 								{telephoneNumberStylized}
 							</Text>
 						</StyledFlexLink>
-						<Flex alignItems="center">
+						{/* <Flex alignItems="center">
 							<FaSolidLocationDot size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
 							<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
 								North York, ON, Canada
 							</Text>
-						</Flex>
+						</Flex> */}
 					</Flex>
 
 					<Flex gap="$8" mt="$4">
@@ -328,7 +328,14 @@ const ResumeRaw = () => {
 							]}
 						>
 							{({ href, Icon, name }) => (
-								<StyledFlexLink gap="$2" href={href}>
+								<StyledFlexLink
+									gap="$2"
+									href={href}
+									as={Anchor}
+									css={{
+										textDecorationColor: `${secondaryTextAndIconColorHeader} !important`,
+									}}
+								>
 									<Icon size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
 									<Text color={secondaryTextAndIconColorHeader}>{name}</Text>
 								</StyledFlexLink>
@@ -337,35 +344,39 @@ const ResumeRaw = () => {
 					</Flex>
 				</Flex>
 
-				<Flex direction="column" m="$8">
-					<Text fontSize="$lg" fontWeight="$bold">
-						CAREER OBJECTIVE
-					</Text>
-					<StyledDivider />
-					<Text>
-						Highly motivated software engineer with 5 years of professional experience as a web developer{' '}
-						{jobType() === 'front-end'
-							? 'mainly in front-end development using React.'
-							: 'and flexibility to work on any stack.'}{' '}
-						Strong understanding of <b>{skill1()}</b>, <b>{skill2()}</b>
-						{skill3() && (
-							<>
-								, <b>{skill3()}</b>{' '}
-							</>
-						)}
-						and web development fundamentals. Excellent interpersonal skills to work with a team and clients. Looking to
+				<Show when={skill1()}>
+					<Flex direction="column" m="$8">
+						<Text fontSize="$lg" fontWeight="$bold">
+							SUMMARY
+						</Text>
+						<StyledDivider />
+						<Text>
+							Highly motivated software engineer with 5 years of professional experience as a{' '}
+							{jobType() === 'front-end'
+								? 'front-end web developer.'
+								: 'web developer with flexibility to work on any stack.'}{' '}
+							Strong understanding of{' '}
+							{[skill1(), skill2(), skill3()].filter(Boolean).map((skill, i, arr) => (
+								<>
+									<b>{skill}</b>
+									{i < arr.length - 1 && ', '}
+								</>
+							))}{' '}
+							and web development fundamentals.
+							{/* Excellent interpersonal skills to work with a team and clients. Looking to
 						secure a position in a{' '}
 						{orgType() === 'organization' ? 'reputable progressive organization' : 'progressive startup'} to expand my
-						learnings, knowledge, and skills in web development.
-					</Text>
+					learnings, knowledge, and skills in web development. */}
+						</Text>
 
-					<Text mt="$2">
+						{/* <Text mt="$2">
 						Worked on various projects and dived into a lot of concepts of{' '}
 						{jobType() === 'front-end' ? 'front-end' : 'web'} development, from content-driven websites focused on
 						accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and
 						tables, reusable UI components and design systems.
-					</Text>
-				</Flex>
+					</Text> */}
+					</Flex>
+				</Show>
 
 				<Grid m="$8">
 					<Text fontSize="$lg" fontWeight="$bold">
@@ -389,8 +400,8 @@ const ResumeRaw = () => {
 					</Box>
 				</Grid>
 
-				<Grid m="$8">
-					<Text fontSize="$lg" fontWeight="$bold">
+				<Grid m="$8" pb="$4">
+					{/* <Text fontSize="$lg" fontWeight="$bold">
 						SKILLS & TOOLS
 					</Text>
 					<StyledDivider />
@@ -416,9 +427,9 @@ const ResumeRaw = () => {
 								</Flex>
 							)}
 						</For>
-					</Flex>
+					</Flex> */}
 
-					<Flex gap="$4" direction="column" mt="$8">
+					<Flex gap="$4" direction="column" mt="$8" d="none !important">
 						<Flex gap="$2" wrap="wrap">
 							{/* front end theming */}
 							<For
@@ -511,7 +522,7 @@ const ResumeRaw = () => {
 						</Flex>
 					</Flex>
 
-					<Flex direction="column" mt="$8">
+					{/* <Flex direction="column" mt="$8">
 						<Text fontSize="$lg" fontWeight="$bold">
 							LANGUAGES
 						</Text>
@@ -532,9 +543,9 @@ const ResumeRaw = () => {
 								(Native)
 							</Text>
 						</Flex>
-					</Flex>
+					</Flex> */}
 
-					<Flex direction="column" mt="$8">
+					<Flex direction="column">
 						<Text fontSize="$lg" fontWeight="$bold">
 							EDUCATION
 						</Text>
@@ -561,8 +572,8 @@ const ResumeRaw = () => {
 						</StyledFlexLink>
 						<Text>
 							A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
-							build full-fledged back-end multi-threaded API servers and connect it to the desired database in C++ that
-							also supports middleware.
+							build full-fledged back-end multi-threaded API servers with middleware support and connect it to the
+							desired database in C++
 						</Text>
 						<Flex gap="$2" wrap="wrap" mt="$4">
 							<For

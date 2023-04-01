@@ -1,20 +1,21 @@
 import { Anchor, Badge, Box, Container, Flex, Text } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
-import { ProjectWithCompany } from '../../data/work';
+import { Project } from '../../data/work';
 import { SkillBadge } from '../home/SkillBadge';
 import Carousel from './Carousel';
 
-const renderProjectTitle = (name: string, link?: string) => {
+const renderProjectTitle = ({ name, website, renderTitle }: Project) => {
+	if (renderTitle) return renderTitle();
 	const project = (
 		<Text as="span" fontSize="$lg">
 			{name}
 		</Text>
 	);
-	if (link) return <Anchor href={link}>{project}</Anchor>;
+	if (website) return <Anchor href={website}>{project}</Anchor>;
 	else return project;
 };
 
-const ProjectLayoutDetailed = ({ project }: { project: ProjectWithCompany }) => (
+const ProjectLayoutDetailed = ({ project }: { project: Project }) => (
 	<Container
 		d="flex"
 		flexDirection="column"
@@ -25,7 +26,7 @@ const ProjectLayoutDetailed = ({ project }: { project: ProjectWithCompany }) => 
 		}}
 	>
 		<Box>
-			{renderProjectTitle(project.name, project.website)}
+			{renderProjectTitle(project)}
 			<Text as="span" fontSize="$sm">
 				: {project.description}
 			</Text>

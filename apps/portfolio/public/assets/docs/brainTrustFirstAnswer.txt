@@ -5,13 +5,13 @@ Collects data from multiple sources and automatically generates reports on finan
 Integrates with most known major accounting and subscription software like Stripe, Procountor, QuickBooks and Xero.
 
 
-Built a proprietary charts library using D3 with 10 different types of charts with animations, interactive tooltips, legends and placeholders with randomly generated data'
+Developed a proprietary charts library using D3 with 10 different types of charts with animations, interactive tooltips, legends and placeholders with randomly generated data'
 Created front-end monorepo architecture, including 2 apps and 5 independent libraries
 Built a library for performant editable tree tables with fixed columns, virtual sticky headers and advanced styles
 Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu
 Built time selectors and filters that follow a global state design pattern and sync with the URL
-Built an integration with Stripe for the users to pay for subscriptions
-Built a proprietary types SDK to ensure API type safety between front-end and back-end
+Integrated with Stripe for the users to pay for subscriptions
+Developed a proprietary types SDK to ensure API type safety between front-end and back-end
 
 
-I stepped up by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks. I also showed leadership be leading a team of 4 of my peer front-end developers in the process of creating and maintaining features, reviewing their code and enforcing project-specific standards and best practices, while also setting design system standards for the design team to follow
+I stepped up by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks. I also showed leadership be leading a team of 4 of my peer front-end developers in the process of creating and maintaining features, reviewing their code and enforcing project-specific standards and best practices, while also setting clear design system standards for the design team to follow

@@ -1,44 +1,73 @@
 import express from "express";
-import stream from "stream";
+import { Params } from "../../portfolio/src/pages/resume-raw";
 import { printWidth } from "../../portfolio/src/utils";
 
 const router = express.Router();
 
+const jobTypesMap: Record<Params["jobType"], string> = {
+  "full-stack": "Fullstack",
+  "front-end": "Frontend",
+  softwareEngineer: "SoftwareEngineer",
+};
+
+const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end", "softwareEngineer"];
+
 /* GET home page. */
-router.post("/", async (req, res, next) => {
+router.post("/", async (req, res) => {
   try {
     const puppeteer = require("puppeteer");
     const { body } = req;
-    const { url, params, height = 2000 } = body;
-    const { skill1, skill2, skill3, senior, jobType, orgType } = params;
+    const { url, baseUrl, height = 2000 } = body;
     const browser = await puppeteer.launch();
+
     const page = await browser.newPage();
-    await page.goto(url, {
-      waitUntil: "networkidle2",
-    });
-
-    const fileName = `AhmedHabeilaResume_${jobType}pdf`;
-
+    await page.goto(url, { waitUntil: "networkidle2" });
+    const fileName = `AhmedHabeilaResume.pdf`;
     const path = `../../resumes/${fileName}`;
-
-    const file = await page.pdf({
+    await page.pdf({
       path,
-      // format: '',
       printBackground: true,
       width: printWidth,
-      height: Number(height) + 16,
-      // scale
+      height,
     });
 
+    const promises: Array<() => Promise<any>> = jobTypes.flatMap((jobType) => {
+      return [true, false].map((senior) => async () => {
+        const page = await browser.newPage();
+        const url = `${baseUrl}?jobType=${jobType}&senior=${senior}`;
+        await page.goto(url, { waitUntil: "networkidle2" });
+
+        const fileName = `AhmedHabeilaResume_${senior ? "Senior" : ""}${jobTypesMap[jobType]}.pdf`;
+        const path = `../../resumes/${fileName}`;
+
+        await page.pdf({
+          path,
+          printBackground: true,
+          width: printWidth,
+          height,
+        });
+
+        if (senior && jobType === "front-end") {
+          await page.pdf({
+            path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
+            printBackground: true,
+            width: printWidth,
+            height,
+          });
+        }
+      });
+    });
+
+    await Promise.all(promises.map((p) => p()));
     await browser.close();
 
-    var readStream = new stream.PassThrough();
-    readStream.end(file);
+    // var readStream = new stream.PassThrough();
+    // readStream.end(file);
 
-    res.set("Content-disposition", "attachment; filename=" + fileName);
-    res.set("Content-Type", "application/pdf");
-    res.status(200);
-    readStream.pipe(res);
+    // res.set("Content-disposition", "attachment; filename=" + fileName);
+    // res.set("Content-Type", "application/pdf");
+    res.status(200).send({ message: "printed successfully" });
+    // readStream.pipe(res);
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: "error happened" });

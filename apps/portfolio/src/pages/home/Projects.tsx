@@ -1,13 +1,16 @@
 import { Box, Button, Flex, Heading, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { For, createSignal } from 'solid-js';
-import { projects } from '../../data/work';
-import { TILE_SIZE, colors, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
-import { generateRandomColor } from '../../utils';
-import Section from './Section';
 import { darkMode } from '../../App';
+import { allProjects, projectPriority } from '../../data/work';
+import { TILE_SIZE, colors, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
+import Section from './Section';
 
-const ProjectTile = ({ project }: { project: typeof projects[0] }) => {
+const projects = allProjects
+	.filter((project) => !project.hideOnHomepage)
+	.sort((a, b) => projectPriority[a.id] - projectPriority[b.id]);
+
+const ProjectTile = ({ project }: { project: (typeof projects)[0] }) => {
 	const [hover, setHover] = createSignal(false);
 	// const backgroundColor = generateRandomColor(0.3);
 	// const boxShadowColor = backgroundColor.replace('0.1', '0.8');

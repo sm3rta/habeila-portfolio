@@ -1,16 +1,15 @@
 import { Box } from '@hope-ui/solid';
 import { Navigate, useParams } from '@solidjs/router';
-import { projects } from '../../data/work';
+import { JSX, createEffect, createSignal } from 'solid-js';
+import { allProjects } from '../../data/work';
 import Fade from '../../ui/components/Fade';
-import Projects from '../home/Projects';
-import ProjectLayoutDetailed from './ProjectDetails';
-import { Accessor, createEffect, createSignal } from 'solid-js';
-import { JSX } from 'solid-js';
 import { getAsteriskSectionColor } from '../../ui/theme';
+import Projects from '../home/Projects';
 import { BottomSectionDivider, UpperSectionDivider, sectionDividerHeight } from '../home/SectionDivider';
+import ProjectLayoutDetailed from './ProjectDetails';
 
 export default function Project() {
-	const project = () => projects.find((p) => p.id === useParams().id);
+	const project = () => allProjects.find((p) => p.id === useParams().id);
 
 	if (!project) return <Navigate href="/" />;
 
