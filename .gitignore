@@ -3,7 +3,7 @@ dist
 yarn-error.log
 
 # all ad-hoc resumes
-resumes/*
+resumes/AhmedHabeilaResume.pdf
 ~$*.docx
 
 # misc

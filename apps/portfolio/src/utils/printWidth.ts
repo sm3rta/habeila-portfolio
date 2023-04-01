@@ -1,1 +1,1 @@
-export const printWidth = 1400;
+export const printWidth = 1300;
