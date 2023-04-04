@@ -1,6 +1,6 @@
 Quint Blog              https://blog.quint.io/
 Quint Staking App       https://stake.quint.io/
-my portfolio            https://habeila-portfolio.netlify.app/
+my portfolio            https://habeila.dev/
 Calqulate               https://www.calqulate.io/
 BMW Foundation          https://bmw-foundation.org/
 TwentyThirty            https://twentythirty.com/

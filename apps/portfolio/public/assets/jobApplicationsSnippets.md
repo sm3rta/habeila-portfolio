@@ -2,7 +2,7 @@
 
 ## Links
 
-- <https://habeila-portfolio.netlify.app/>
+- <https://habeila.dev/>
 - <https://github.com/sm3rta>
 - <https://www.linkedin.com/in/ahmedhabeila/>
 
@@ -84,7 +84,7 @@
 I am a software engineer with strong analytical and problem-solving skills. I have 5 years of professional experience, mainly in front-end development using React.
 I worked on various projects and dived into a lot of concepts of front-end development, from content-driven websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
 I have experience in leading other developers, performing code reviews and enforcing certain patterns, project-specific standards and best practices.
-Please consider taking a look at my portfolio: <https://habeila-portfolio.netlify.app/>
+Please consider taking a look at my portfolio: <https://habeila.dev/>
 
 ---
 

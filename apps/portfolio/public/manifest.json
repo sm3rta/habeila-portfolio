@@ -9,7 +9,7 @@
 		}
 	],
 	"id": "/?source=pwa",
-	"start_url": "https://habeila-portfolio.netlify.app/",
+	"start_url": "https://habeila.dev/",
 	"background_color": "#030f11",
 	"display": "standalone",
 	"scope": "/",
