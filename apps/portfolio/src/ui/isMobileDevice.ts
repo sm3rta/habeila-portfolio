@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const mobileCheck = function () {
 	let check = false;
 	(function (a) {
@@ -11,6 +10,6 @@ export const mobileCheck = function () {
 			)
 		)
 			check = true;
-	})(navigator.userAgent || navigator.vendor || window.opera);
+	})(navigator.userAgent || navigator.vendor || (window as unknown as { opera: any }).opera);
 	return check;
 };

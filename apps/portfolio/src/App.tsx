@@ -1,17 +1,18 @@
-import { Box, Flex, HopeProvider, Switch } from '@hope-ui/solid';
+import { Flex, HopeProvider } from '@hope-ui/solid';
 import { Navigate, Outlet, Route, Router, Routes } from '@solidjs/router';
-import { JSX, Suspense, createSignal, lazy } from 'solid-js';
+import { Suspense, createSignal, lazy } from 'solid-js';
 import { AppBar } from './components/AppBar';
 import { Footer } from './components/Footer';
 import { Stars } from './components/Stars';
+import { DarkModeSwitch } from './ui/DarkModeSwitch';
 import Loader from './ui/components/Loader';
 import { HEADER_HEIGHT, colors, darkTheme, lightTheme } from './ui/theme';
-import { DarkModeSwitch } from './ui/DarkModeSwitch';
 
 const Home = lazy(() => import('./pages/home'));
 const Project = lazy(() => import('./pages/projects'));
 const Resume = lazy(() => import('./pages/resume'));
 const ResumeRaw = lazy(() => import('./pages/resume-raw'));
+const CoverLetter = lazy(() => import('./pages/cover-letter'));
 
 export const [darkMode, setDarkMode] = createSignal(
 	localStorage.getItem('darkMode')
@@ -66,6 +67,7 @@ const App = () => {
 				</Route>
 
 				<Route path="/resume-raw" component={ResumeRaw} />
+				<Route path="/cover" component={CoverLetter} />
 				<Route path="*" element={<Navigate href="/" />} />
 			</Routes>
 		</Router>

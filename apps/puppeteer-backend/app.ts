@@ -1,14 +1,16 @@
 import cors from "cors";
 import express from "express";
 import createError from "http-errors";
-import indexRouter from "./routes/index";
+import coverRouter from "./routes/cover";
+import resumeRouter from "./routes/resume";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/", indexRouter);
+app.use("/", resumeRouter);
+app.use("/", coverRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

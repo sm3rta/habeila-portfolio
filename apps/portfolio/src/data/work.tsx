@@ -3,31 +3,27 @@ import { IconTypes } from 'solid-icons';
 import {
 	SiAmazonaws,
 	SiAstro,
-	SiAuth0,
+	SiAwsamplify,
 	SiD3dotjs,
 	SiDevexpress,
 	SiDisqus,
+	SiDjango,
 	SiExpress,
 	SiFacebook,
 	SiFirebase,
 	SiGatsby,
-	SiGitlab,
 	SiGooglemaps,
-	SiGoogletagmanager,
 	SiGraphql,
 	SiHasura,
-	SiI18next,
 	SiInstagram,
 	SiJavascript,
 	SiJss,
 	SiMongodb,
+	SiNetlify,
 	SiNextdotjs,
 	SiPython,
 	SiReact,
-	SiReacthookform,
-	SiReactquery,
 	SiRedux,
-	SiSass,
 	SiSentry,
 	SiSolid,
 	SiStorybook,
@@ -50,9 +46,12 @@ import { NetjeekLogo } from './logos/NetjeekLogo';
 import { QuintLogo } from './logos/QuintLogo';
 import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
 
+export const website = 'https://habeila.dev';
+
 const projectIds = [
 	'quint-blog',
 	'quint-staking',
+	'quint-blog-staking',
 	'portfolio-website',
 	'calqulate',
 	'bmw-foundation',
@@ -102,6 +101,47 @@ export const work: Workplace[] = [
 		website: 'https://quint.io/',
 		projects: [
 			{
+				hideOnHomepage: true,
+				name: 'Quint Blog and Staking',
+				id: 'quint-blog-staking',
+				renderTitle: () => (
+					<>
+						<Anchor href="https://blog.quint.io/">
+							<Text as="span">Quint blog</Text>
+						</Anchor>{' '}
+						and{' '}
+						<Anchor href="https://stake.quint.io/">
+							<Text as="span">Quint Staking App</Text>
+						</Anchor>
+					</>
+				),
+				description: 'A web 3 platform for the Quint cryptocurrency',
+				technologies: [
+					{ name: 'Astro', Icon: SiAstro },
+					{ name: 'Solid.js', Icon: SiSolid },
+					{ name: 'Typescript', Icon: SiTypescript },
+					{ name: 'Tailwind CSS', Icon: SiTailwindcss },
+					{ name: 'Disqus', Icon: SiDisqus },
+					{ name: 'AWS Amplify', Icon: SiAwsamplify },
+					{ name: 'React', Icon: SiReact },
+					{ name: 'Next.js', Icon: SiNextdotjs },
+					{ name: 'Radix UI', Icon: null },
+					{ name: 'Web 3', Icon: SiWeb3dotjs },
+					{ name: 'Storybook', Icon: SiStorybook },
+				],
+				achievements: [
+					{
+						description:
+							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week',
+					},
+					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
+					{ description: 'Created UI component library based on Radix UI design system and documented on Storybook' },
+				],
+
+				responsibilities: ['Website (front-end)'],
+			},
+			{
+				hideOnResume: true,
 				name: 'Quint Blog',
 				id: 'quint-blog',
 				website: 'https://blog.quint.io/',
@@ -114,8 +154,9 @@ export const work: Workplace[] = [
 					{ name: 'Tailwind CSS', Icon: SiTailwindcss },
 					{ name: 'Next.js', Icon: SiNextdotjs },
 					{ name: 'Disqus', Icon: SiDisqus },
-					{ name: 'GitLab', Icon: SiGitlab },
-					{ name: 'RDFa', Icon: null },
+					// { name: 'GitLab', Icon: SiGitlab },
+					// { name: 'RDFa', Icon: null },
+					{ name: 'AWS Amplify', Icon: SiAwsamplify },
 				],
 				achievements: [
 					{ description: 'Collaborated with a team of 4 to launch blog website in 1 week' },
@@ -124,6 +165,7 @@ export const work: Workplace[] = [
 				responsibilities: ['Website (front-end)'],
 			},
 			{
+				hideOnResume: true,
 				name: 'Quint Staking Web App',
 				id: 'quint-staking',
 				website: 'https://stake.quint.io/',
@@ -137,7 +179,8 @@ export const work: Workplace[] = [
 					{ name: 'Tailwind CSS', Icon: SiTailwindcss },
 					{ name: 'Web 3', Icon: SiWeb3dotjs },
 					{ name: 'Storybook', Icon: SiStorybook },
-					{ name: 'GitLab', Icon: SiGitlab },
+					// { name: 'GitLab', Icon: SiGitlab },
+					{ name: 'AWS Amplify', Icon: SiAwsamplify },
 				],
 				achievements: [
 					{ description: 'Built fully accessible, responsive website with light/dark themes' },
@@ -158,14 +201,15 @@ export const work: Workplace[] = [
 				name: 'Portfolio website',
 				id: 'portfolio-website',
 				hideOnResume: true,
-				website: 'https://habeila-portfolio.netlify.app/',
+				website,
 				description: 'This portfolio website is built with Solid.js and a lot of love',
 				technologies: [
 					{ name: 'Solid.js', Icon: SiSolid },
 					{ name: 'TypeScript', Icon: SiTypescript },
-					{ name: 'Sass', Icon: SiSass },
+					// { name: 'Sass', Icon: SiSass },
 					{ name: 'Styled components', Icon: SiStyledcomponents },
 					{ name: 'Parallax effect', Icon: null },
+					{ name: 'Netlify', Icon: SiNetlify },
 				],
 				achievements: [
 					{
@@ -176,7 +220,7 @@ export const work: Workplace[] = [
 									// style={{
 									// 	'border-bottom': 'white 1px solid',
 									// }}
-									href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fhabeila-portfolio.netlify.app&form_factor=desktop"
+									href={`https://pagespeed.web.dev/report?url=https%3A%2F%${website}&form_factor=desktop`}
 								>
 									100 on PageSpeed Insights
 								</Anchor>{' '}
@@ -257,17 +301,17 @@ export const work: Workplace[] = [
 						),
 						videoUrl: '/assets/projects/calqulate/calqulate-charts.webm',
 					},
-					{
-						description:
-							'Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles',
-						imageUrl: '/assets/projects/calqulate/calqulate-tables.webp',
-					},
+					// {
+					// 	description:
+					// 		'Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles',
+					// 	imageUrl: '/assets/projects/calqulate/calqulate-tables.webp',
+					// },
 					// { description: 'Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu' },
 					{
 						description:
 							'Built time selectors and filters that follow a global state design pattern and sync with the URL',
 					},
-					{ description: 'Integrated Stripe for subscription payments' },
+					// { description: 'Integrated Stripe for subscription payments' },
 					{ description: 'Developed proprietary types SDK for API type safety' },
 				],
 				technologies: [
@@ -277,18 +321,18 @@ export const work: Workplace[] = [
 					{ name: 'Turborepo', Icon: SiTurborepo },
 					{ name: 'Sentry', Icon: SiSentry },
 					{ name: 'AWS', Icon: SiAmazonaws },
-					{ name: 'Sass', Icon: SiSass },
-					{ name: 'Styled components', Icon: SiStyledcomponents },
-					{ name: 'react-hook-form', Icon: SiReacthookform },
-					{ name: 'Zod', Icon: null },
+					// { name: 'Sass', Icon: SiSass },
+					// { name: 'Styled components', Icon: SiStyledcomponents },
+					// { name: 'react-hook-form', Icon: SiReacthookform },
+					// { name: 'Zod', Icon: null },
 					{ name: 'D3.js', Icon: SiD3dotjs },
 					{ name: 'Devexpress', Icon: SiDevexpress },
 					{ name: 'Storybook', Icon: SiStorybook },
 					{ name: 'Hasura', Icon: SiHasura },
 					{ name: 'Stripe API', Icon: SiStripe },
 					{ name: 'GraphQL', Icon: SiGraphql },
-					{ name: 'react-query', Icon: SiReactquery },
-					{ name: 'Auth0', Icon: SiAuth0 },
+					// { name: 'react-query', Icon: SiReactquery },
+					// { name: 'Auth0', Icon: SiAuth0 },
 				],
 				responsibilities: ['Front-end Web App', 'Back-end API Types SDK'],
 			},
@@ -330,13 +374,13 @@ export const work: Workplace[] = [
 					{ name: 'JSS', Icon: SiJss },
 					{ name: 'Multi-language Routing', Icon: null },
 					{ name: 'Responsive UI', Icon: null },
-					{ name: 'i18next', Icon: SiI18next },
+					// { name: 'i18next', Icon: SiI18next },
 					{ name: 'Wordpress', Icon: SiWordpress },
-					{ name: 'Twitter API', Icon: SiTwitter },
+					// { name: 'Twitter API', Icon: SiTwitter },
+					// { name: 'Google Tag Manager', Icon: SiGoogletagmanager },
 					{ name: 'Instagram API', Icon: SiInstagram },
 					{ name: 'Facebook API', Icon: SiFacebook },
 					{ name: 'YouTube API', Icon: SiYoutube },
-					{ name: 'Google Tag Manager', Icon: SiGoogletagmanager },
 				],
 				responsibilities: ['Website (front-end)'],
 				achievements: [
@@ -367,13 +411,13 @@ export const work: Workplace[] = [
 					{ name: 'Material UI', Icon: null },
 					{ name: 'JSS', Icon: SiJss },
 					{ name: 'Multi-language Routing', Icon: null },
-					{ name: 'i18next', Icon: SiI18next },
+					// { name: 'i18next', Icon: SiI18next },
 					{ name: 'Wordpress', Icon: SiWordpress },
 					{ name: 'Twitter API', Icon: SiTwitter },
 					{ name: 'Instagram API', Icon: SiInstagram },
 					{ name: 'Facebook API', Icon: SiFacebook },
 					{ name: 'YouTube API', Icon: SiYoutube },
-					{ name: 'Google Tag Manager', Icon: SiGoogletagmanager },
+					// { name: 'Google Tag Manager', Icon: SiGoogletagmanager },
 				],
 				responsibilities: ['Website (front-end)'],
 				achievements: [
@@ -411,15 +455,15 @@ export const work: Workplace[] = [
 					{ name: 'TypeScript', Icon: SiTypescript },
 					{ name: 'Material UI', Icon: null },
 					{ name: 'JSS', Icon: SiJss },
-					{ name: 'Multi-language Routing', Icon: null },
-					{ name: 'Responsive UI', Icon: null },
-					{ name: 'i18next', Icon: SiI18next },
+					// { name: 'Multi-language Routing', Icon: null },
+					// { name: 'Responsive UI', Icon: null },
+					// { name: 'i18next', Icon: SiI18next },
 					{ name: 'Wordpress', Icon: SiWordpress },
 					{ name: 'Twitter API', Icon: SiTwitter },
 					{ name: 'Instagram API', Icon: SiInstagram },
 					{ name: 'Facebook API', Icon: SiFacebook },
 					{ name: 'YouTube API', Icon: SiYoutube },
-					{ name: 'Google Tag Manager', Icon: SiGoogletagmanager },
+					// { name: 'Google Tag Manager', Icon: SiGoogletagmanager },
 				],
 				responsibilities: ['Website (front-end)'],
 				achievements: [
@@ -456,10 +500,10 @@ export const work: Workplace[] = [
 					{ name: 'TypeScript ', Icon: SiTypescript },
 					{ name: 'Sendgrid', Icon: null },
 					{ name: 'React', Icon: SiReact },
-					{ name: 'Material UI', Icon: null },
+					// { name: 'Material UI', Icon: null },
 					{ name: 'JSS', Icon: SiJss },
-					{ name: 'Formik', Icon: null },
-					{ name: 'Yup', Icon: null },
+					// { name: 'Formik', Icon: null },
+					// { name: 'Yup', Icon: null },
 					{ name: 'Zoom API', Icon: SiZoom },
 				],
 				responsibilities: ['Back-end (Firebase)', 'Admin Dashboard (front-end)'],
@@ -513,21 +557,22 @@ export const work: Workplace[] = [
 					{ name: 'React', Icon: SiReact },
 					{ name: 'JavaScript', Icon: SiJavascript },
 					{ name: 'Material UI', Icon: null },
-					{ name: 'JSS', Icon: SiJss },
-					{ name: 'Express.js', Icon: SiExpress },
+					// { name: 'JSS', Icon: SiJss },
+					{ name: 'Python', Icon: SiPython },
+					{ name: 'Django', Icon: SiDjango },
+					// { name: 'Express.js', Icon: SiExpress },
 					{ name: 'Redux ', Icon: SiRedux },
 					{ name: 'Stripe API', Icon: SiStripe },
-					{ name: 'i18next', Icon: SiI18next },
+					// { name: 'i18next', Icon: SiI18next },
 					{ name: 'Google Maps', Icon: SiGooglemaps },
-					{ name: 'JSDoc', Icon: null },
+					// { name: 'JSDoc', Icon: null },
 					{ name: 'React Testing Library', Icon: SiTestinglibrary },
-					{ name: 'Python', Icon: SiPython },
 				],
 				achievements: [
 					{ description: 'Conducted system analysis to define APIs with possible responses' },
 					{ description: 'Designed and implemented eCommerce website for international customers' },
 					{ description: 'Integrated Google Maps for delivery location pinpointing and detection' },
-					{ description: 'Integrated Stripe for shipment payments' },
+					// { description: 'Integrated Stripe for shipment payments' },
 					{ description: 'Created mock API with configurable front end for each endpoint status code' },
 				],
 				responsibilities: ['eCommerce Website (front end)', 'System Analysis', 'Mock API creation'],
@@ -550,6 +595,7 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 
 	'bmw-foundation-tt': 100,
 	'asset-tracking-system': 101,
+	'quint-blog-staking': 102,
 };
 
 // export const introText = (

@@ -56,7 +56,7 @@ export const CompanyProjects = ({
 			{/* <Text fontWeight="$bold" color={darkMode() ? '$primary5' : colors.primary1} my="$4">
 				Projects:
 			</Text> */}
-			<List d="flex" flexDirection="column" mt="$4">
+			<List d="flex" flexDirection="column" mt="$2">
 				<For each={projects}>
 					{(project, index) => (
 						<ListItem>

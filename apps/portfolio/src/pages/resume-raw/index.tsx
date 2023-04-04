@@ -51,7 +51,7 @@ import {
 import { TbStackPop } from 'solid-icons/tb';
 import { ComponentProps, For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { telephoneNumber, telephoneNumberStylized, work } from '../../data/work';
+import { telephoneNumber, telephoneNumberStylized, website, work } from '../../data/work';
 import { colors, darkTheme as theme } from '../../ui/theme';
 import { printWidth } from '../../utils';
 import { socials } from '../home/Contact';
@@ -80,7 +80,6 @@ export type Params = {
 	skill3: string;
 	senior: string;
 	jobType: 'full-stack' | 'front-end' | 'softwareEngineer';
-	// orgType: 'startup' | 'organization';
 };
 
 const ResumeRaw = () => {
@@ -88,14 +87,13 @@ const ResumeRaw = () => {
 
 	const [params, setParams] = useSearchParams<Params>();
 
-	const [skill1, setSkill1] = createSignal(params.skill1 ?? 'React');
-	const [skill2, setSkill2] = createSignal(params.skill2 ?? 'Typescript');
+	const [skill1, setSkill1] = createSignal(params.skill1 ?? undefined);
+	const [skill2, setSkill2] = createSignal(params.skill2 ?? undefined);
 	const [skill3, setSkill3] = createSignal(params.skill3 ?? undefined);
 	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : false);
 	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>(
 		params.jobType ?? 'front-end'
 	);
-	// const [orgType, setOrgType] = createSignal<'startup' | 'organization'>(params.orgType ?? 'organization');
 
 	createEffect(() => {
 		setParams({
@@ -104,7 +102,6 @@ const ResumeRaw = () => {
 			skill3: skill3(),
 			senior: senior().toString(),
 			jobType: jobType(),
-			// orgType: orgType(),
 		});
 	});
 
@@ -135,14 +132,6 @@ const ResumeRaw = () => {
 		const body = {
 			url: window.location.href,
 			baseUrl: window.location.origin + window.location.pathname,
-			// params: {
-			// 	skill1: skill1(),
-			// 	skill2: skill2(),
-			// 	skill3: skill3(),
-			// 	senior: senior().toString(),
-			// 	jobType: jobType(),
-			// 	// orgType: orgType(),
-			// },
 			height,
 		};
 
@@ -319,12 +308,11 @@ const ResumeRaw = () => {
 							each={[
 								{
 									name: 'Portfolio',
-									href: 'https://habeila-portfolio.netlify.app/',
+									href: website,
 									Icon: RiDocumentBookMarkFill,
 								},
 								socials.find((s) => s.name === 'LinkedIn')!,
 								socials.find((s) => s.name === 'Github')!,
-								// ...socials.filter((s) => s.name).reverse(),
 							]}
 						>
 							{({ href, Icon, name }) => (
@@ -493,7 +481,6 @@ const ResumeRaw = () => {
 						<Flex gap="$2" wrap="wrap">
 							<For
 								each={[
-									//
 									{ name: 'GitHub', Icon: SiGithub },
 									{ name: 'GitLab', Icon: SiGitlab },
 									{ name: 'BitBucket', Icon: SiBitbucket },
@@ -509,7 +496,6 @@ const ResumeRaw = () => {
 						<Flex gap="$2" wrap="wrap">
 							<For
 								each={[
-									//
 									{ name: 'Python', Icon: SiPython },
 									{ name: 'Solid JS', Icon: SiSolid },
 									{ name: 'C++', Icon: SiCplusplus },
@@ -551,7 +537,7 @@ const ResumeRaw = () => {
 						</Text>
 						<StyledDivider />
 						<Text fontWeight="$bold">Bachelor's Degree of Computer Science and Automatic Control</Text>
-						<Text>Faculty of Engineering - Tanta University</Text>
+						<Text>Tanta University of Engineering</Text>
 						<Text fontSize="$sm">2014 - 2019</Text>
 					</Flex>
 
@@ -578,7 +564,6 @@ const ResumeRaw = () => {
 						<Flex gap="$2" wrap="wrap" mt="$4">
 							<For
 								each={[
-									//
 									{ name: 'C++17', Icon: SiCplusplus },
 									{ name: 'CGI', Icon: null },
 									{ name: 'Apache', Icon: SiApache },

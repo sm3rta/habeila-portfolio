@@ -15,64 +15,64 @@
 - (647) 979-0872
 - 80,000 CAD/Year -> 42 CAD/Hour
 - Bachelor's Degree of Computer Science and Automatic Control
-- Faculty of Engineering, Tanta University
+- Tanta University of Engineering
 
 ---
 
 ## Skills
 
-- Agile
-- Ant Design
-- Auth0
 - AWS
-- BitBucket
 - C++
-- CI/CD
 - CSS
 - D3.js
 - DevExpress
-- Enzyme
 - Express.js
 - Firebase
-- Formik
-- Gatsby.js
 - Git
-- GitHub
-- Google Maps
 - GraphQL
-- Apollo
-- Hasura
 - HTML
-- i18next
 - JavaScript
-- Jira
-- JSDoc
-- JSS
 - Material UI
 - MongoDB
-- Multi-language Routing
 - Next.js
 - Node.js
 - PostgreSQL
 - Python
 - React
+- Redux
+- Sass
+- Storybook
+- Tailwind CSS
+- TypeScript
+- Unit Testing
+
+---
+
+## Other Skills
+
+- Auth0
+- Formik
+- Gatsby.js
+- GitHub
+- Google Maps
+- Apollo
+- Hasura
+- i18next
+- JSDoc
+- JSS
+- Multi-language Routing
+- React Testing Library
 - react-hook-form
 - react-query
-- Redux
 - Redux-Toolkit
 - Responsive UI
-- Sass
 - SCSS
 - Sendgrid
 - Sentry
 - Solid JS
-- Storybook
 - Stripe API
 - Styled components
-- Tailwind CSS
 - Turborepo
-- TypeScript
-- Unit Testing
 - Webpack
 - Zod
 - Zustand
@@ -234,7 +234,7 @@ Full-stack web developer
      - YouTube API
      - Google Tag Manager
 
-1. Educational platform
+2. Educational platform
    - Achievements
      - Built back-end API with Express.js and Firebase for authentication, file uploads, emails, and database queries
      - Integrated Zoom for automatic meeting link creation and email sending to students

@@ -3,131 +3,53 @@
 #SingleInstance FORCE
 CoordMode, Mouse, Screen
 
+Array := []
+Array.Push("AWS")
+Array.Push("C++")
+Array.Push("CSS")
+Array.Push("D3.js")
+Array.Push("DevExpress")
+Array.Push("Express.js")
+Array.Push("Firebase")
+Array.Push("Git")
+Array.Push("GraphQL")
+Array.Push("HTML")
+Array.Push("JavaScript")
+Array.Push("Material UI")
+Array.Push("MongoDB")
+Array.Push("Next.js")
+Array.Push("Node.js")
+Array.Push("PostgreSQL")
+Array.Push("Python")
+Array.Push("React")
+Array.Push("Redux")
+Array.Push("Sass")
+Array.Push("Storybook")
+Array.Push("Tailwind CSS")
+Array.Push("TypeScript")
+Array.Push("Unit Testing")
+
 Esc::
   Suspend
   Pause,, 1
 Return
 
-delayAndPressEnter() {
+delayAndPressEnter(skill) {
+  Send, %skill%
   Sleep, 200
   Send, {Enter}
-  Sleep, 1200
+  Sleep, 2000
 Return	
 }
 
 !s::
-  Send, Agile
-  delayAndPressEnter()
-  Send, Ant Design
-  delayAndPressEnter()
-  Send, Auth0
-  delayAndPressEnter()
-  Send, AWS
-  delayAndPressEnter()
-  Send, BitBucket
-  delayAndPressEnter()
-  Send, C++
-  delayAndPressEnter()
-  Send, CI/CD
-  delayAndPressEnter()
-  Send, CSS
-  delayAndPressEnter()
-  Send, D3.js
-  delayAndPressEnter()
-  Send, DevExpress
-  delayAndPressEnter()
-  Send, Enzyme
-  delayAndPressEnter()
-  Send, Express.js
-  delayAndPressEnter()
-  Send, Firebase
-  delayAndPressEnter()
-  Send, Formik
-  delayAndPressEnter()
-  Send, Gatsby.js
-  delayAndPressEnter()
-  Send, Git
-  delayAndPressEnter()
-  Send, GitHub
-  delayAndPressEnter()
-  Send, Google Maps
-  delayAndPressEnter()
-  Send, GraphQL
-  delayAndPressEnter()
-  Send, GraphQL Apollo Client
-  delayAndPressEnter()
-  Send, Hasura
-  delayAndPressEnter()
-  Send, HTML
-  delayAndPressEnter()
-  Send, i18next
-  delayAndPressEnter()
-  Send, JavaScript
-  delayAndPressEnter()
-  Send, Jira
-  delayAndPressEnter()
-  Send, JSDoc
-  delayAndPressEnter()
-  Send, JSS
-  delayAndPressEnter()
-  Send, Material UI
-  delayAndPressEnter()
-  Send, MongoDB
-  delayAndPressEnter()
-  Send, Multi-language Routing
-  delayAndPressEnter()
-  Send, Next.js
-  delayAndPressEnter()
-  Send, Node.js
-  delayAndPressEnter()
-  Send, PostgreSQL
-  delayAndPressEnter()
-  Send, Python
-  delayAndPressEnter()
-  Send, React
-  delayAndPressEnter()
-  Send, react-hook-form
-  delayAndPressEnter()
-  Send, react-query
-  delayAndPressEnter()
-  Send, Redux
-  delayAndPressEnter()
-  Send, Redux-Toolkit
-  delayAndPressEnter()
-  Send, Responsive UI
-  delayAndPressEnter()
-  Send, Sass
-  delayAndPressEnter()
-  Send, SCSS
-  delayAndPressEnter()
-  Send, Sendgrid
-  delayAndPressEnter()
-  Send, Sentry
-  delayAndPressEnter()
-  Send, Solid JS
-  delayAndPressEnter()
-  Send, Storybook
-  delayAndPressEnter()
-  Send, Stripe API
-  delayAndPressEnter()
-  Send, Styled components
-  delayAndPressEnter()
-  Send, Tailwind CSS
-  delayAndPressEnter()
-  Send, Turborepo
-  delayAndPressEnter()
-  Send, TypeScript
-  delayAndPressEnter()
-  Send, Unit Testing
-  delayAndPressEnter()
-  Send, Vue.js
-  delayAndPressEnter()
-  Send, Webpack
-  delayAndPressEnter()
-  Send, Yup
-  delayAndPressEnter()
-  Send, Zod
-  delayAndPressEnter()
-  Send, Zustand
-  delayAndPressEnter()
+  for index, element in Array ; Enumeration is the recommended approach in most cases.
+  {
+    ; Using "Loop", indices must be consecutive numbers from 1 to the number
+    ; of elements in the array (or they must be calculated within the loop).
+    ; MsgBox % "Element number " . A_Index . " is " . Array[A_Index]
 
+    ; Using "for", both the index (or "key") and its associated value
+    ; are provided, and the index can be *any* value of your choosing.
+    delayAndPressEnter(element)
+  }
