@@ -12,7 +12,7 @@ router.post("/cover", async (req, res) => {
 
     const page = await browser.newPage();
     await page.goto(url + "&pdf=true", { waitUntil: "networkidle2" });
-    const path = "../portfolio/public/assets/AhmedHabeilaCoverLetter.pdf";
+    const path = "../../resumes/AhmedHabeilaCoverLetter.pdf";
 
     await page.pdf({
       path,

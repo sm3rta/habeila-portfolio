@@ -10,7 +10,7 @@ import {
 	notificationService,
 } from '@hope-ui/solid';
 import { useSearchParams } from '@solidjs/router';
-import { Show, createEffect, createSignal } from 'solid-js';
+import { Show, createEffect, createSignal, onMount } from 'solid-js';
 import { website } from '../../data/work';
 import { darkTheme as theme } from '../../ui/theme';
 import { coverPrintWidth } from '../../utils';
@@ -33,6 +33,22 @@ const CoverLetter = () => {
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
 	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Web Developer');
 	const [pdf, setPdf] = createSignal<Params['pdf']>(params.pdf ?? 'false');
+
+	onMount(() => {
+		document.body.addEventListener('keydown', (e) => {
+			if (e.key === 'a' && e.ctrlKey) {
+				if (document.activeElement?.nodeName === 'INPUT') return;
+				const cover = document.getElementById('cover');
+				if (!cover) return;
+				setTimeout(() => {
+					var range = document.createRange();
+					range.selectNode(cover);
+					window.getSelection()?.removeAllRanges();
+					window.getSelection()?.addRange(range);
+				}, 0);
+			}
+		});
+	});
 
 	createEffect(() => {
 		setParams({
@@ -58,7 +74,9 @@ const CoverLetter = () => {
 
 		const height = root.scrollHeight;
 		root.style.width = '';
-		setPdf('false');
+		setTimeout(() => {
+			setPdf('false');
+		}, 0);
 
 		const body = {
 			url: window.location.href,
@@ -157,7 +175,7 @@ const CoverLetter = () => {
 					</Box>
 				</Show>
 
-				<Flex direction="column" p="$20">
+				<Flex direction="column" p="$20" id="cover">
 					<Text as="span">
 						Dear Hiring Manager at <b>{companyName()}</b>,
 					</Text>
