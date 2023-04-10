@@ -87,7 +87,7 @@ export default function About() {
 						<Box mt="$4">{aboutMePersonal}</Box>
 					</Flex>
 				) : (
-					<Grid mt="$10" gridAutoFlow="column">
+					<Grid mt="$16" gridAutoFlow="column">
 						<Box>{aboutProfessionalExperience}</Box>
 						<Divider mx="$8" orientation="vertical" color={!darkMode() ? 'var(--hope-colors-neutral11)' : undefined} />
 						<Box>{aboutMePersonal}</Box>

@@ -22,7 +22,7 @@ const ProjectSummary = ({ project }: { project: Project }) => (
 					Achievements
 				</Text> */}
 			<Flex mt="$2" direction="column" as="ul">
-				<For each={project.achievements}>
+				<For each={project.achievements.filter((achievement) => !achievement.hideOnResume)}>
 					{(achievement) => (
 						<ListItem ml="$6" fontSize="$sm">
 							{achievement.description}

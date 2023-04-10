@@ -1,22 +1,20 @@
 import { Box, Text } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
-import { HEADER_HEIGHT, getAsteriskSectionColor, zIndexes } from '../ui/theme';
-import { UpperSectionDivider, BottomSectionDivider } from '../pages/home/SectionDivider';
 import { Show } from 'solid-js';
+import { BottomSectionDivider, UpperSectionDivider } from '../pages/home/SectionDivider';
+import { getAsteriskSectionColor, zIndexes } from '../ui/theme';
 
 export const Footer = () => {
 	const location = useLocation();
 	const pathname = useResolvedPath(() => location.pathname);
 	return (
 		<Box
-			// minH={`calc(100vh - ${HEADER_HEIGHT}px)`}
 			minH={`300px`}
 			display="flex"
 			flexDirection="column"
 			justifyContent="flex-end"
 			position="relative"
 			zIndex={zIndexes.aboveStar}
-			pointerEvents="none"
 		>
 			<Show when={pathname() === '/'}>
 				<UpperSectionDivider />
@@ -37,7 +35,7 @@ export const Footer = () => {
 					placeContent: 'center',
 				}}
 			>
-				<Text textAlign="center" alignSelf="center" verticalAlign="middle" fontSize="$md">
+				<Text textAlign="center" alignSelf="center" verticalAlign="middle">
 					@ {new Date().getFullYear()} Ahmed Habeila
 				</Text>
 			</Box>

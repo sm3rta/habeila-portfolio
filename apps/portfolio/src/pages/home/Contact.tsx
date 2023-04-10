@@ -20,7 +20,7 @@ export const EmailAndTelephone = () => (
 				aria-label="mail"
 				icon={<HiOutlineMail size={ICON_SIZE} />}
 			/>
-			<Text fontSize="$md">HabeilaAhmed@gmail.com</Text>
+			<Text>HabeilaAhmed@gmail.com</Text>
 		</ListItem>
 		<ListItem d="flex" columnGap="$4" alignItems="center">
 			<IconButton
@@ -30,7 +30,7 @@ export const EmailAndTelephone = () => (
 				aria-label="telephone"
 				icon={<RiDeviceSmartphoneLine size={ICON_SIZE} />}
 			/>
-			<Text fontSize="$md">{telephoneNumberStylized}</Text>
+			<Text>{telephoneNumberStylized}</Text>
 		</ListItem>
 	</List>
 );

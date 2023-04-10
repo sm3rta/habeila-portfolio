@@ -22,7 +22,6 @@
 ## Skills
 
 - AWS
-- C++
 - CSS
 - D3.js
 - DevExpress
@@ -126,6 +125,16 @@ I had a very big moment of excitement after re-implementing the animations where
 
 ---
 
+## Message to the hiring manager/Summary why you're a good fit
+
+Hi! I'm Ahmed, a full-stack engineer with 5 years of experience of building performant and beautiful user experiences. I'm skilled in React & TypeScript.
+
+Please check my portfolio at <https://habeila.dev>
+
+Looking forward to hearing back from you!
+
+---
+
 ## Work experience
 
 ---
@@ -136,34 +145,29 @@ Senior Full-stack Web Developer
 
 01/2023 - Current
 
-1. Quint Blog
+Quint
 
-   - Achievements
-     - Collaborated with a team of 4 to launch blog website in 1 week
-     - Achieved 100% Lighthouse score with optimized SEO and accessibility
-   - Technologies used
-     - Astro
-     - Solid.js
-     - Typescript
-     - Tailwind CSS
-     - Next.js
-     - Disqus
-     - GitLab
+- Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week
+- Achieved 100% Lighthouse score with optimized SEO and accessibility
+- Created UI component library based on Radix UI design system and documented on Storybook
 
-2. Quint Staking Web App
+Technologies used
 
-   - Achievements
-     - Built fully accessible, responsive website with light/dark themes
-     - Created UI component library based on Radix UI design system and documented on Storybook
-   - Technologies used
-     - React
-     - Next.js
-     - Typescript
-     - Radix UI
-     - Tailwind CSS
-     - Web 3
-     - Storybook
-     - GitLab
+- Astro
+- Solid.js
+- Typescript
+- Tailwind CSS
+- Next.js
+- Disqus
+- GitLab
+- React
+- Next.js
+- Typescript
+- Radix UI
+- Tailwind CSS
+- Web 3
+- Storybook
+- GitLab
 
 ---
 

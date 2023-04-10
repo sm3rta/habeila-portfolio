@@ -177,7 +177,14 @@ const CoverLetter = () => {
 
 				<Flex direction="column" p="$20" id="cover">
 					<Text as="span">
-						Dear Hiring Manager at <b>{companyName()}</b>,
+						Dear Hiring Manager
+						{companyName() && (
+							<>
+								{' '}
+								at <b>{companyName()}</b>
+							</>
+						)}
+						,
 					</Text>
 					{lineBreak()}
 					<Text as="span">

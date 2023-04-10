@@ -270,7 +270,7 @@ const ResumeRaw = () => {
 						<Text color="white" fontSize="$3xl" lineHeight="normal" fontWeight="$extrabold" as="span">
 							Ahmed Habeila
 						</Text>
-						{/* <Text color={secondaryTextAndIconColorHeader} fontSize="$md" as="span">
+						{/* <Text color={secondaryTextAndIconColorHeader} as="span">
 							{' (He/Him)'}
 						</Text> */}
 					</Box>
@@ -285,19 +285,19 @@ const ResumeRaw = () => {
 					<Flex direction="column" rowGap="$4" mt="$4">
 						<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!" textDecoration="none">
 							<HiOutlineMail size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
-							<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
+							<Text ml="$2" color={secondaryTextAndIconColorHeader}>
 								HabeilaAhmed@gmail.com
 							</Text>
 						</StyledFlexLink>
 						<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
 							<RiDeviceSmartphoneLine size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
-							<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
+							<Text ml="$2" color={secondaryTextAndIconColorHeader}>
 								{telephoneNumberStylized}
 							</Text>
 						</StyledFlexLink>
 						{/* <Flex alignItems="center">
 							<FaSolidLocationDot size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
-							<Text ml="$2" color={secondaryTextAndIconColorHeader} fontSize="$md">
+							<Text ml="$2" color={secondaryTextAndIconColorHeader}>
 								North York, ON, Canada
 							</Text>
 						</Flex> */}
@@ -374,7 +374,7 @@ const ResumeRaw = () => {
 					<Box css={{ '&>div': { p: 0 } }}>
 						<Timeline>
 							{work
-								.filter((w) => w.name !== 'Self-employed')
+								// .filter((w) => w.name !== 'Self-employed')
 								.map((company) => (
 									<CompanyProjects
 										forceRole={() =>

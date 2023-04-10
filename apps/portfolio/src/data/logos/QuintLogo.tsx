@@ -1,8 +1,8 @@
+import { Box, Text } from '@hope-ui/solid';
 import { JSX } from 'solid-js';
-import { darkMode } from '../../App';
 
-export const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
-	<svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
+	<svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
 		<mask
 			id="mask0_1966_78523"
 			style="mask-type:luminance"
@@ -199,4 +199,22 @@ export const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 			</linearGradient>
 		</defs>
 	</svg>
+);
+
+export const QuintLogoBlog = () => (
+	<Box d="grid" justifyItems="center">
+		<QuintLogo />
+		<Text mt="$2" fontWeight="bold">
+			Blog
+		</Text>
+	</Box>
+);
+
+export const QuintLogoStaking = () => (
+	<Box d="grid" justifyItems="center">
+		<QuintLogo />
+		<Text mt="$2" fontWeight="bold">
+			Staking
+		</Text>
+	</Box>
 );

@@ -80,12 +80,15 @@ const Carousel = ({ achievements }: { achievements: NonNullable<ProjectType['ach
 							{(task, index) => (
 								<Match when={tab() === index()}>
 									<Box
-										d="flex"
+										d="grid"
 										w="100%"
 										gap="$8"
-										flexDirection={{ '@initial': 'column', '@lg': 'row' }}
-										height="100%"
-										css={{ '@lg': { h: '60vh', maxH: '450px' } }}
+										gridTemplateColumns={{
+											'@initial': 'unset',
+											'@lg': 'minmax(300px, 1fr) minmax(auto, 1fr)',
+										}}
+										height={{ '@initial': 'auto', '@lg': 'unset' }}
+										// maxH={{ '@initial': '450px', '@lg': 'unset' }}
 									>
 										<Text>{typeof task.description === 'function' ? task.description() : task.description}</Text>
 
@@ -100,11 +103,10 @@ const Carousel = ({ achievements }: { achievements: NonNullable<ProjectType['ach
 												src={task.imageUrl}
 												zIndex={2}
 												pos="relative"
-												marginLeft="auto"
-												marginRight={{ '@initial': 'auto', '@lg': 'unset' }}
-												h={{ '@initial': 'auto', '@lg': '60vh' }}
-												maxH="450px"
+												mx="auto"
+												maxH={600}
 												css={{ filter: `drop-shadow(0px 0px 15px ${colors.secondary6})` }}
+												maxW="100%"
 											/>
 										</Show>
 									</Box>

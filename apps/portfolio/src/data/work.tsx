@@ -43,7 +43,7 @@ import { JSX } from 'solid-js';
 import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
 import { NetjeekLogo } from './logos/NetjeekLogo';
-import { QuintLogo } from './logos/QuintLogo';
+import { QuintLogoBlog, QuintLogoStaking } from './logos/QuintLogo';
 import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
 
 export const website = 'https://habeila.dev';
@@ -67,7 +67,12 @@ export type Project = {
 	id: (typeof projectIds)[number];
 	description?: string | JSX.Element;
 	technologies?: { name: string; Icon: IconTypes | null }[];
-	achievements: { description: string | (() => JSX.Element); imageUrl?: string; videoUrl?: string }[];
+	achievements: {
+		description: string | (() => JSX.Element);
+		imageUrl?: string;
+		videoUrl?: string;
+		hideOnResume?: boolean;
+	}[];
 	website?: string;
 	responsibilities?: string[];
 	Logo?: (props: JSX.SvgSVGAttributes<SVGSVGElement>) => JSX.Element;
@@ -91,15 +96,52 @@ export type Workplace = {
 
 export const work: Workplace[] = [
 	{
-		name: 'Quint',
+		name: 'Self-employed',
 		title: {
 			role: 'front',
 			senior: true,
 		},
 		from: 'January 2023',
-		to: 'March 2023',
-		website: 'https://quint.io/',
+		to: 'Present',
+		// website: 'https://quint.io/',
 		projects: [
+			{
+				name: 'Portfolio website',
+				id: 'portfolio-website',
+				hideOnResume: true,
+				website,
+				description: 'This portfolio website is built with Solid.js and a lot of love',
+				technologies: [
+					{ name: 'Solid.js', Icon: SiSolid },
+					{ name: 'TypeScript', Icon: SiTypescript },
+					{ name: 'Styled components', Icon: SiStyledcomponents },
+					{ name: 'Parallax effect', Icon: null },
+					{ name: 'Netlify', Icon: SiNetlify },
+				],
+				achievements: [
+					{
+						description: () => (
+							<>
+								It's fully accessible, keyboard tabbable, responsive and SEO-enabled, scoring{' '}
+								<Anchor href={`https://pagespeed.web.dev/report?url=https%3A%2F%${website}&form_factor=desktop`}>
+									100 on PageSpeed Insights
+								</Anchor>{' '}
+								on both mobile and desktop
+							</>
+						),
+						imageUrl: '/assets/projects/portfolio/PortfolioPageSpeedInsights.webp',
+					},
+					{
+						description: () => (
+							<>
+								You can interact with the stars in the background by hovering over (or on mobile, touching) them and
+								they will disappear, skip forward and re-appear with a different color. Try it, it's fun!
+							</>
+						),
+					},
+					{ description: 'All animations are vanilla' },
+				],
+			},
 			{
 				hideOnHomepage: true,
 				name: 'Quint Blog and Staking',
@@ -145,8 +187,8 @@ export const work: Workplace[] = [
 				name: 'Quint Blog',
 				id: 'quint-blog',
 				website: 'https://blog.quint.io/',
-				Logo: QuintLogo,
-				description: 'A web 3 platform for the Quint cryptocurrency',
+				Logo: QuintLogoBlog,
+				description: 'A news blog website for the Quint cryptocurrency',
 				technologies: [
 					{ name: 'Astro', Icon: SiAstro },
 					{ name: 'Solid.js', Icon: SiSolid },
@@ -159,8 +201,14 @@ export const work: Workplace[] = [
 					{ name: 'AWS Amplify', Icon: SiAwsamplify },
 				],
 				achievements: [
-					{ description: 'Collaborated with a team of 4 to launch blog website in 1 week' },
-					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
+					{
+						description: 'Collaborated with a team of 4 to launch blog website in 1 week',
+						imageUrl: '/assets/projects/quint/QuintBlogLightDark.png',
+					},
+					{
+						description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility',
+						imageUrl: '/assets/projects/quint/BlogPageSpeed.png',
+					},
 				],
 				responsibilities: ['Website (front-end)'],
 			},
@@ -169,7 +217,7 @@ export const work: Workplace[] = [
 				name: 'Quint Staking Web App',
 				id: 'quint-staking',
 				website: 'https://stake.quint.io/',
-				Logo: QuintLogo,
+				Logo: QuintLogoStaking,
 				description: 'A web 3 staking platform for the Quint cryptocurrency',
 				technologies: [
 					{ name: 'React', Icon: SiReact },
@@ -183,7 +231,10 @@ export const work: Workplace[] = [
 					{ name: 'AWS Amplify', Icon: SiAwsamplify },
 				],
 				achievements: [
-					{ description: 'Built fully accessible, responsive website with light/dark themes' },
+					{
+						description: 'Built fully accessible, responsive website with light/dark themes',
+						imageUrl: '/assets/projects/quint/QuintStakingLightDark.png',
+					},
 					{ description: 'Created UI component library based on Radix UI design system and documented on Storybook' },
 				],
 				responsibilities: ['Website (front-end)'],
@@ -191,61 +242,8 @@ export const work: Workplace[] = [
 		],
 	},
 	{
-		name: 'Self-employed',
-		title: {
-			role: 'full',
-			senior: true,
-		},
-		projects: [
-			{
-				name: 'Portfolio website',
-				id: 'portfolio-website',
-				hideOnResume: true,
-				website,
-				description: 'This portfolio website is built with Solid.js and a lot of love',
-				technologies: [
-					{ name: 'Solid.js', Icon: SiSolid },
-					{ name: 'TypeScript', Icon: SiTypescript },
-					// { name: 'Sass', Icon: SiSass },
-					{ name: 'Styled components', Icon: SiStyledcomponents },
-					{ name: 'Parallax effect', Icon: null },
-					{ name: 'Netlify', Icon: SiNetlify },
-				],
-				achievements: [
-					{
-						description: () => (
-							<>
-								It's fully accessible, keyboard tabbable, responsive and SEO-enabled, scoring{' '}
-								<Anchor
-									// style={{
-									// 	'border-bottom': 'white 1px solid',
-									// }}
-									href={`https://pagespeed.web.dev/report?url=https%3A%2F%${website}&form_factor=desktop`}
-								>
-									100 on PageSpeed Insights
-								</Anchor>{' '}
-								on both mobile and desktop
-							</>
-						),
-
-						imageUrl: '/assets/projects/portfolio/portfolio-pageSpeedInsights.webp',
-					},
-					{
-						description: () => (
-							<>
-								You can interact with the stars by hovering over (or on mobile, touching) them and they will disappear,
-								skip forward and re-appear with a different color
-							</>
-						),
-					},
-					{ description: 'All animations are vanilla' },
-				],
-			},
-		],
-	},
-	{
 		name: 'Calqulate',
-		website: 'https://calqulate.io/',
+		// website: 'https://calqulate.io/',
 		description: (
 			<>
 				Led a team of 4 front-end developers in the process of creating and maintaining features while setting clear
@@ -299,19 +297,23 @@ export const work: Workplace[] = [
 								interactive tooltips, legends and placeholders with randomly generated data
 							</>
 						),
-						videoUrl: '/assets/projects/calqulate/calqulate-charts.webm',
+						videoUrl: '/assets/projects/calqulate/CalqulateCharts.webm',
 					},
-					// {
-					// 	description:
-					// 		'Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles',
-					// 	imageUrl: '/assets/projects/calqulate/calqulate-tables.webp',
-					// },
-					// { description: 'Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu' },
+					{
+						description:
+							'Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles',
+						imageUrl: '/assets/projects/calqulate/CalqulateTables.webp',
+						hideOnResume: true,
+					},
+					{
+						description: 'Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu',
+						hideOnResume: true,
+					},
 					{
 						description:
 							'Built time selectors and filters that follow a global state design pattern and sync with the URL',
 					},
-					// { description: 'Integrated Stripe for subscription payments' },
+					{ description: 'Integrated Stripe for subscription payments', hideOnResume: true },
 					{ description: 'Developed proprietary types SDK for API type safety' },
 				],
 				technologies: [
@@ -384,11 +386,18 @@ export const work: Workplace[] = [
 				],
 				responsibilities: ['Website (front-end)'],
 				achievements: [
-					{ description: 'Built this website from the ground up until it went live' },
-					{ description: 'Fully responsive, supports keyboard navigation and screen readers' },
+					{
+						description: 'Built this website from the ground up until it went live',
+						imageUrl: '/assets/projects/bmwf/BMWF.png',
+					},
+					{
+						description: 'Fully responsive, supports keyboard navigation and screen readers',
+						imageUrl: '/assets/projects/bmwf/BMWF-Mobile.png',
+					},
 					{
 						description:
 							'Created an accessibility menu which features high contrast mode, dyslexia-friendly font and animations toggle',
+						imageUrl: '/assets/projects/bmwf/AccessibilityMenu.png',
 					},
 					{ description: 'Integrated Google Tag Manager along with following the best SEO practices' },
 				],
@@ -421,8 +430,14 @@ export const work: Workplace[] = [
 				],
 				responsibilities: ['Website (front-end)'],
 				achievements: [
-					{ description: 'Built this website from the ground up until it went live' },
-					{ description: 'Fully responsive, supports keyboard navigation and screen readers' },
+					{
+						description: 'Built this website from the ground up until it went live',
+						imageUrl: '/assets/projects/tt/TT.png',
+					},
+					{
+						description: 'Fully responsive, supports keyboard navigation and screen readers',
+						imageUrl: '/assets/projects/tt/TT-Mobile.png',
+					},
 					{ description: 'Integrated Google Tag Manager along with following the best SEO practices' },
 				],
 			},
@@ -430,7 +445,6 @@ export const work: Workplace[] = [
 				hideOnHomepage: true,
 				name: 'BMW Foundation',
 				id: 'bmw-foundation-tt',
-
 				renderTitle: () => (
 					<>
 						<Anchor href="https://bmw-foundation.org/">
@@ -572,7 +586,7 @@ export const work: Workplace[] = [
 					{ description: 'Conducted system analysis to define APIs with possible responses' },
 					{ description: 'Designed and implemented eCommerce website for international customers' },
 					{ description: 'Integrated Google Maps for delivery location pinpointing and detection' },
-					// { description: 'Integrated Stripe for shipment payments' },
+					{ description: 'Integrated Stripe for shipment payments', hideOnResume: true },
 					{ description: 'Created mock API with configurable front end for each endpoint status code' },
 				],
 				responsibilities: ['eCommerce Website (front end)', 'System Analysis', 'Mock API creation'],

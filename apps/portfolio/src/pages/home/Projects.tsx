@@ -44,7 +44,7 @@ const ProjectTile = ({ project }: { project: (typeof projects)[0] }) => {
 				}}
 				p="$3"
 			>
-				{project.Logo ? <project.Logo height="100%" /> : <Text fontSize="$md">{project.name}</Text>}
+				{project.Logo ? <project.Logo height="100%" /> : <Text fontWeight="bold">{project.name}</Text>}
 			</Flex>
 			<Button
 				w={TILE_SIZE}
@@ -76,7 +76,7 @@ const Projects = () => (
 		<Heading level="2" fontSize="$3xl">
 			Projects
 		</Heading>
-		<Flex wrap="wrap" gap="$6" placeContent="center" mt="$8">
+		<Flex wrap="wrap" gap="$6" placeContent="center" mt={{ '@initial': '$8', '@lg': '$16' }}>
 			<For each={projects}>{(project) => <ProjectTile project={project} />}</For>
 		</Flex>
 	</Section>
