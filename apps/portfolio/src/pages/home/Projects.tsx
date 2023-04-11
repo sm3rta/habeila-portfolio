@@ -54,6 +54,7 @@ const ProjectTile = ({ project }: { project: (typeof projects)[0] }) => {
 					whiteSpace: 'normal',
 					clipPath: createOctagonalClipPathWithMargin(5),
 				}}
+				onClick={() => setTimeout(() => window.scrollTo(0, 0), 0)}
 				onFocus={() => setHover(true)}
 				onBlur={() => setHover(false)}
 				opacity={hover() ? 1 : 0}

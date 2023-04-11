@@ -206,7 +206,15 @@ export const work: Workplace[] = [
 						imageUrl: '/assets/projects/quint/QuintBlogLightDark.png',
 					},
 					{
-						description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility',
+						description: () => (
+							<>
+								Achieved{' '}
+								<Anchor href="https://pagespeed.web.dev/analysis/https-blog-quint-io/h260dtvci1?form_factor=mobile">
+									100 on PageSpeed Insights
+								</Anchor>{' '}
+								with optimized SEO and accessibility
+							</>
+						),
 						imageUrl: '/assets/projects/quint/BlogPageSpeed.png',
 					},
 				],

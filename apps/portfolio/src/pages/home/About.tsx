@@ -14,8 +14,8 @@ const StyledImage = hope((props: any) => <img {...props} type="image/webp" heigh
 
 const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes animLight': {
-		'0%': { filter: `drop-shadow(0px 0px 5px ${colors.primary2})` },
-		'100%': { filter: `drop-shadow(0px 0px 15px ${colors.primary2})` },
+		'0%': { filter: `drop-shadow(0px 0px 5px ${colors.primary5})` },
+		'100%': { filter: `drop-shadow(0px 0px 20px ${colors.primary2})` },
 	},
 	'@keyframes animDark': {
 		'0%': { filter: `drop-shadow(0px 0px 5px ${colors.primary3})` },

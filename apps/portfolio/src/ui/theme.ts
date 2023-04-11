@@ -1,6 +1,6 @@
 import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
-import { darkMode } from '../App';
 import merge from 'lodash.merge';
+import { darkMode } from '../App';
 
 export const HEADER_HEIGHT = 60;
 export const ICON_SIZE = 30;
