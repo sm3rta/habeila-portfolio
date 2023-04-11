@@ -2,6 +2,7 @@ import { Button } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { ComponentProps } from 'solid-js';
 import { styled } from 'solid-styled-components';
+import { darkMode } from '../../App';
 import { colors, darkTheme as theme } from '../theme';
 
 export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean; small?: boolean }) => (
@@ -22,7 +23,7 @@ export const Link = styled((props: ComponentProps<typeof Button> & { active?: bo
 	},
 	backgroundSize: '0% 2px',
 	backgroundRepeat: 'no-repeat',
-	backgroundImage: 'linear-gradient(white, white)',
+	backgroundImage: darkMode() ? 'linear-gradient(white, white)' : 'linear-gradient(black, black)',
 	backgroundPosition: 'bottom left',
 	...(active && {
 		backgroundSize: '100% 2px',
