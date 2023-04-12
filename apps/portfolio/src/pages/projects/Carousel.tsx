@@ -1,6 +1,6 @@
 import { Box, Flex, IconButton, Image, Text } from '@hope-ui/solid';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
-import { For, Match, Show, Suspense, Switch, createSignal } from 'solid-js';
+import { For, Match, Show, Suspense, Switch, createEffect, createSignal } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { Project as ProjectType } from '../../data/work';
 import { colors } from '../../ui/theme';
@@ -13,10 +13,16 @@ const StyledVideo = styled('video')({
 	marginLeft: 'auto',
 });
 
-const Carousel = (props: { achievements: NonNullable<ProjectType['achievements']> }) => {
+const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectType['achievements']> }) => {
 	const [tab, setTab] = createSignal(0);
-
 	const [transitioning, setTransitioning] = createSignal(false);
+
+	createEffect(() => {
+		if (props.projectId) {
+			setTab(0);
+			resetProgress();
+		}
+	});
 
 	const prevPage = () => {
 		setTransitioning(true);

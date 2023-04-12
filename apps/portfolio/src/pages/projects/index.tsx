@@ -1,7 +1,7 @@
 import { Box } from '@hope-ui/solid';
 import { Navigate, useParams } from '@solidjs/router';
-import { JSX, Match, Switch, createEffect, createSignal } from 'solid-js';
-import { allProjects } from '../../data/work';
+import { Match, Show, Switch, createEffect, createSignal } from 'solid-js';
+import { Project as ProjectType, allProjects } from '../../data/work';
 import Fade from '../../ui/components/Fade';
 import { getAsteriskSectionColor } from '../../ui/theme';
 import Projects from '../home/Projects';
@@ -9,13 +9,10 @@ import { BottomSectionDivider, UpperSectionDivider, sectionDividerHeight } from 
 import ProjectLayoutDetailed from './ProjectDetails';
 
 export default function Project() {
-	const project = () => allProjects.find((p) => p.id === useParams().id);
-
-	const [projectNode, setProjectNode] = createSignal<JSX.Element | null>(null);
+	const [project, setProject] = createSignal<ProjectType | undefined>(undefined);
 
 	createEffect(() => {
-		console.log('project()', project());
-		setProjectNode(<ProjectLayoutDetailed project={project()!} />);
+		setProject(allProjects.find((p) => p.id === useParams().id));
 	});
 
 	return (
@@ -25,7 +22,9 @@ export default function Project() {
 			</Match>
 			<Match when={project}>
 				<Fade in={() => true}>
-					{projectNode()}
+					<Show when={project()}>
+						<ProjectLayoutDetailed project={project()!} />
+					</Show>
 					<Box pos="relative" mt="$16" height={sectionDividerHeight}>
 						<BottomSectionDivider />
 					</Box>

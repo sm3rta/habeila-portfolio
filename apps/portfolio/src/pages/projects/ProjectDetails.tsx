@@ -62,7 +62,7 @@ const ProjectLayoutDetailed = (props: { project: Project }) => (
 			</Show>
 
 			<Show when={props.project.achievements?.length}>
-				<Carousel achievements={props.project.achievements!} />
+				<Carousel projectId={props.project.id} achievements={props.project.achievements} />
 			</Show>
 		</Box>
 	</Container>

@@ -3,13 +3,11 @@ module.exports = {
   plugins: ["solid", "jsx-a11y", "@typescript-eslint"],
 
   rules: {
-    // "solid/reactivity": "warn",
-    // "solid/no-destructure": "warn",
-    // "solid/jsx-no-undef": "error",
     "no-mixed-spaces-and-tabs": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "no-debugger": "off",
   },
   extends: [
     "eslint:recommended",

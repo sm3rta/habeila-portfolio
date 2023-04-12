@@ -1,4 +1,3 @@
-import { For } from "solid-js";
 import { Button, Center, Flex } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { work } from '../../data/work';
@@ -8,11 +7,11 @@ import { Timeline } from './Timeline';
 
 const Resume = () => (
 	<Fade in={() => true}>
-		<Timeline>
-			<For each={work}>{(company) => (
+		<Timeline
+			children={work.map((company) => (
 				<CompanyProjects company={company} />
-			)}</For>
-		</Timeline>
+			))}
+		/>
 
 		<Center mt="$24">
 			<Flex gap="$4">
