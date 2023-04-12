@@ -7,7 +7,8 @@
 		"dev": "vite",
 		"build": "vite build",
 		"serve": "vite preview",
-		"clean": "npx rimraf yarn.lock && npx rimraf **/node_modules && npx rimraf **/.build && yarn"
+		"clean": "npx rimraf yarn.lock && npx rimraf **/node_modules && npx rimraf **/.build && yarn",
+		"lint": "eslint ./src/**/*.ts*"
 	},
 	"license": "MIT",
 	"dependencies": {
@@ -30,9 +31,15 @@
 		"@types/lodash.debounce": "4.0.7",
 		"@types/lodash.merge": "4.6.7",
 		"@types/node": "18.11.18",
+		"@typescript-eslint/eslint-plugin": "^5.58.0",
+		"@typescript-eslint/parser": "5.58.0",
+		"eslint": "8.0.0",
+		"eslint-plugin-jsx-a11y": "6.7.1",
+		"eslint-plugin-solid": "0.9.0",
 		"sharp": "0.31.3",
 		"typescript": "4.9.4",
 		"vite": "4.0.3",
+		"vite-plugin-eslint": "1.8.1",
 		"vite-plugin-mkcert": "1.10.1",
 		"vite-plugin-solid": "2.5.0"
 	}

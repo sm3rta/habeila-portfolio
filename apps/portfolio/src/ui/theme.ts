@@ -128,7 +128,7 @@ export const darkTheme = {
 	},
 } as const satisfies HopeThemeConfig;
 
-export const lightTheme = merge({}, darkTheme, {
+const lightThemeOverrides = {
 	initialColorMode: 'light',
 	lightTheme: {
 		colors,
@@ -192,4 +192,29 @@ export const lightTheme = merge({}, darkTheme, {
 			},
 		},
 	},
-}) as typeof darkTheme;
+} satisfies HopeThemeConfig;
+
+export const lightTheme = merge({}, darkTheme, lightThemeOverrides) as Override<
+	typeof darkTheme,
+	typeof lightThemeOverrides
+>;
+
+type Flat<T> = T extends object ? { [K in keyof T]: Flat<T[K]> } : T;
+
+type Override<T1 extends object, T2 extends object> = Flat<
+	{
+		[K in keyof T1]: K extends keyof T2
+			? // T2[K] exists, override T1[K] with T2[K]
+			  T1[K] extends object
+				? // T1[K] is object
+				  T2[K] extends object
+					? // T2[K] is also an object
+					  Override<T1[K], T2[K]>
+					: // T2[K] is not object
+					  T2[K]
+				: // T1[K] is not object
+				  T2[K]
+			: // T2[K] does not exist, keep T1[K]
+			  T1[K];
+	} & Omit<T2, keyof T1>
+>;

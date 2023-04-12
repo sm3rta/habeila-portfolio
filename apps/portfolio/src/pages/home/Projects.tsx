@@ -10,7 +10,7 @@ const projects = allProjects
 	.filter((project) => !project.hideOnHomepage)
 	.sort((a, b) => projectPriority[a.id] - projectPriority[b.id]);
 
-const ProjectTile = ({ project }: { project: (typeof projects)[0] }) => {
+const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 	const [hover, setHover] = createSignal(false);
 	// const backgroundColor = generateRandomColor(0.3);
 	// const boxShadowColor = backgroundColor.replace('0.1', '0.8');
@@ -44,7 +44,11 @@ const ProjectTile = ({ project }: { project: (typeof projects)[0] }) => {
 				}}
 				p="$3"
 			>
-				{project.Logo ? <project.Logo height="100%" /> : <Text fontWeight="bold">{project.name}</Text>}
+				{props.project.Logo ? (
+					<props.project.Logo height="100%" />
+				) : (
+					<Text fontWeight="bold">{props.project.name}</Text>
+				)}
 			</Flex>
 			<Button
 				w={TILE_SIZE}
@@ -63,7 +67,7 @@ const ProjectTile = ({ project }: { project: (typeof projects)[0] }) => {
 				left={0}
 				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
-				href={`/projects/${project.id}`}
+				href={`/projects/${props.project.id}`}
 				textAlign="center"
 			>
 				See project details

@@ -1,5 +1,5 @@
 import { Anchor, Box, Divider, Flex, List, ListItem, Text } from '@hope-ui/solid';
-import { For, Show } from 'solid-js';
+import { For, Match, Show, Switch } from 'solid-js';
 import { darkMode } from '../../App';
 import { Workplace } from '../../data/work';
 import { colors } from '../../ui/theme';
@@ -12,41 +12,41 @@ const renderCompany = (name: string, link?: string) => {
 			{name}
 		</Text>
 	);
-	if (link)
-		return (
-			<Anchor fontSize="$lg" href={link}>
-				{company}
-			</Anchor>
-		);
-	else return company;
+
+	return (
+		<Switch>
+			<Match when={link}>
+				<Anchor fontSize="$lg" href={link}>
+					{company}
+				</Anchor>
+			</Match>
+			<Match when={!link}>{company}</Match>
+		</Switch>
+	);
 };
 
-export const CompanyProjects = ({
-	company,
-	forceRole,
-	forceNonSenior,
-}: {
+export const CompanyProjects = (props: {
 	company: Workplace;
 	forceRole?: () => 'full' | 'se' | undefined;
 	forceNonSenior?: () => boolean | undefined;
 }) => {
-	const projects = company.projects.filter((project) => !project.hideOnResume);
+	const projects = () => props.company.projects.filter((project) => !project.hideOnResume);
 	return (
 		<Flex h="100%" w="100%" direction="column" justifyContent="center">
 			<Box>
-				{company.title && (
+				{props.company.title && (
 					<Text as="span" fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
 						{getTitle(
-							forceRole?.() ?? company.title.role,
-							forceNonSenior?.() ? !forceNonSenior() : company.title.senior
+							props.forceRole?.() ?? props.company.title.role,
+							props.forceNonSenior?.() ? !props.forceNonSenior() : props.company.title.senior
 						)}
 					</Text>
 				)}{' '}
-				– {renderCompany(company.name, company.website)}
+				– {renderCompany(props.company.name, props.company.website)}
 			</Box>
-			<Show when={company.from && company.to}>
+			<Show when={props.company.from && props.company.to}>
 				<Text fontSize="$xs" fontWeight="$bold">
-					{company.from} - {company.to}
+					{props.company.from} - {props.company.to}
 				</Text>
 			</Show>
 			{/* <Show when={company.description}>
@@ -57,11 +57,11 @@ export const CompanyProjects = ({
 				Projects:
 			</Text> */}
 			<List d="flex" flexDirection="column" mt="$2">
-				<For each={projects}>
+				<For each={projects()}>
 					{(project, index) => (
 						<ListItem>
 							<ProjectSummary project={project} />
-							{index() !== projects.length - 1 && <Divider my="$4" />}
+							{index() !== projects().length - 1 && <Divider my="$4" />}
 						</ListItem>
 					)}
 				</For>

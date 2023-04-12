@@ -2,11 +2,11 @@ import { Box, Divider } from '@hope-ui/solid';
 import { For } from 'solid-js';
 import { JSX } from 'solid-js/web/types/jsx';
 
-const side = 24;
+// const side = 24;
 
-export const Timeline = ({ children }: { children: JSX.Element[] }) => (
+export const Timeline = (props: { children: JSX.Element[] }) => (
 	<Box d="flex" flexDirection="column" p="$8">
-		<For each={children}>
+		<For each={props.children}>
 			{(child, index) => (
 				<>
 					<Box d="flex" gap="$8">
@@ -15,8 +15,8 @@ export const Timeline = ({ children }: { children: JSX.Element[] }) => (
 							<Box flex={1} w="2px" bg={colors.secondary2}></Box>
 						</Box> */}
 						<Box d="flex" flexDirection="column" flex={1}>
-							<Box pb={index() !== children.length - 1 ? '$4' : 0}>{child}</Box>
-							{index() !== children.length - 1 && <Divider my="$4" />}
+							<Box pb={index() !== props.children.length - 1 ? '$4' : 0}>{child}</Box>
+							{index() !== props.children.length - 1 && <Divider my="$4" />}
 						</Box>
 					</Box>
 				</>

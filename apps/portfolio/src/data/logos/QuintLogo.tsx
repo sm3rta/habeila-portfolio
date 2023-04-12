@@ -5,7 +5,7 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 	<svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
 		<mask
 			id="mask0_1966_78523"
-			style="mask-type:luminance"
+			style={{ 'mask-type': 'luminance' }}
 			maskUnits="userSpaceOnUse"
 			x="0"
 			y="0"
@@ -22,7 +22,7 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask1_1966_78523"
-			style="mask-type:luminance"
+			style={{ 'mask-type': 'luminance' }}
 			maskUnits="userSpaceOnUse"
 			x="3"
 			y="4"
@@ -36,7 +36,7 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask2_1966_78523"
-			style="mask-type:luminance"
+			style={{ 'mask-type': 'luminance' }}
 			maskUnits="userSpaceOnUse"
 			x="3"
 			y="4"
@@ -50,7 +50,7 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask3_1966_78523"
-			style="mask-type:luminance"
+			style={{ 'mask-type': 'luminance' }}
 			maskUnits="userSpaceOnUse"
 			x="3"
 			y="4"
@@ -64,7 +64,7 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask4_1966_78523"
-			style="mask-type:luminance"
+			style={{ 'mask-type': 'luminance' }}
 			maskUnits="userSpaceOnUse"
 			x="3"
 			y="23"
@@ -81,7 +81,7 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask5_1966_78523"
-			style="mask-type:luminance"
+			style={{ 'mask-type': 'luminance' }}
 			maskUnits="userSpaceOnUse"
 			x="22"
 			y="4"
@@ -95,7 +95,7 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 		</g>
 		<mask
 			id="mask6_1966_78523"
-			style="mask-type:luminance"
+			style={{ 'mask-type': 'luminance' }}
 			maskUnits="userSpaceOnUse"
 			x="27"
 			y="32"

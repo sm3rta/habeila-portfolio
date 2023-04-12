@@ -1,21 +1,18 @@
 import { Badge, BadgeProps, Box } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
-import { Accessor } from 'solid-js';
+import { Accessor, splitProps } from 'solid-js';
 
-export const SkillBadge = ({
-	skill,
-	opacity,
-	transform,
-	...badgeProps
-}: Omit<BadgeProps, 'opacity' | 'transform'> & {
-	skill: {
-		name: string;
-		Icon: IconTypes | null;
-	};
-	opacity?: Accessor<number>;
-	transform?: Accessor<string>;
-}) => {
-	const { name, Icon } = skill;
+export const SkillBadge = (
+	_props: Omit<BadgeProps, 'opacity' | 'transform'> & {
+		skill: {
+			name: string;
+			Icon: IconTypes | null;
+		};
+		opacity?: Accessor<number>;
+		transform?: Accessor<string>;
+	}
+) => {
+	const [props, badgeProps] = splitProps(_props, ['skill', 'opacity', 'transform']);
 
 	return (
 		<Badge
@@ -23,15 +20,15 @@ export const SkillBadge = ({
 			h={22}
 			d="flex"
 			alignItems="center"
-			opacity={opacity?.() ?? 1}
-			transform={transform?.() ?? 'unset'}
+			opacity={props.opacity?.() ?? 1}
+			transform={props.transform?.() ?? 'unset'}
 		>
-			{Icon && (
+			{props.skill.Icon && (
 				<Box mr="$2">
-					<Icon />
+					<props.skill.Icon />
 				</Box>
 			)}
-			{name}
+			{props.skill.name}
 		</Badge>
 	);
 };

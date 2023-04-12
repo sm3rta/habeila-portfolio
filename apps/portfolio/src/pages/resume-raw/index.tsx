@@ -8,6 +8,7 @@ import {
 	IconButton,
 	Input,
 	NotificationsProvider,
+	PropsOf,
 	Radio,
 	RadioGroup,
 	Text,
@@ -64,7 +65,7 @@ const ICON_SIZE = 20;
 const secondaryTextAndIconColorHeader = 'var(--hope-colors-neutral8)';
 const secondaryTextColor = 'var(--hope-colors-neutral9)';
 
-const StyledDivider = styled((props: any) => <Divider {...props} />)({
+const StyledDivider = styled((props: PropsOf<typeof Divider>) => <Divider {...props} />)({
 	marginBlock: '1rem',
 	backgroundColor: 'var(--hope-colors-info12)',
 	height: '2px',
@@ -163,7 +164,7 @@ const ResumeRaw = () => {
 			// 		window.location.assign(file);
 			// 	}
 			// })
-			.catch((e) => {
+			.catch(() => {
 				notificationService.show({
 					title: 'Print failed',
 					status: 'danger',
@@ -179,6 +180,10 @@ const ResumeRaw = () => {
 		css: { '&>svg': { opacity: 0, transition: 'opacity 0.3s ease' } },
 		_hover: { background: colors.primary5, '&>svg': { opacity: 1 } },
 	};
+
+	const skills = () => [skill1(), skill2(), skill3()].filter(Boolean);
+	const forceRole = () => (jobType() === 'full-stack' ? 'full' : jobType() === 'softwareEngineer' ? 'se' : undefined);
+	const forceNonSenior = () => (senior() ? undefined : true);
 
 	return (
 		<HopeProvider
@@ -205,11 +210,11 @@ const ResumeRaw = () => {
 				<Show when={showControls()}>
 					<Box display="grid" gridTemplateColumns="1fr 1fr" maxW="500px" p="$4" rowGap="$8">
 						<Text>Skill 1</Text>
-						<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)}></Input>
+						<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)} />
 						<Text>Skill 2</Text>
-						<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)}></Input>
+						<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)} />
 						<Text>Skill 3</Text>
-						<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)}></Input>
+						<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)} />
 						<Text>Type</Text>
 						<RadioGroup defaultValue={jobType()}>
 							<Flex direction="column" gap="$4">
@@ -344,12 +349,14 @@ const ResumeRaw = () => {
 								? 'front-end web developer.'
 								: 'web developer with flexibility to work on any stack.'}{' '}
 							Strong understanding of{' '}
-							{[skill1(), skill2(), skill3()].filter(Boolean).map((skill, i, arr) => (
-								<>
-									<b>{skill}</b>
-									{i < arr.length - 1 && ', '}
-								</>
-							))}{' '}
+							<For each={skills()}>
+								{(skill, i) => (
+									<>
+										<b>{skill}</b>
+										{i() < skills().length - 1 && ', '}
+									</>
+								)}
+							</For>{' '}
 							and web development fundamentals.
 							{/* Excellent interpersonal skills to work with a team and clients. Looking to
 						secure a position in a{' '}
@@ -372,19 +379,11 @@ const ResumeRaw = () => {
 					</Text>
 					<StyledDivider />
 					<Box css={{ '&>div': { p: 0 } }}>
-						<Timeline>
-							{work
-								// .filter((w) => w.name !== 'Self-employed')
-								.map((company) => (
-									<CompanyProjects
-										forceRole={() =>
-											jobType() === 'full-stack' ? 'full' : jobType() === 'softwareEngineer' ? 'se' : undefined
-										}
-										company={company}
-										forceNonSenior={() => (senior() ? undefined : true)}
-									/>
-								))}
-						</Timeline>
+						<Timeline
+							children={work.map((company) => (
+								<CompanyProjects forceRole={forceRole} company={company} forceNonSenior={forceNonSenior} />
+							))}
+						/>
 					</Box>
 				</Grid>
 

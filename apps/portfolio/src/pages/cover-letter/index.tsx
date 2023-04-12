@@ -41,7 +41,7 @@ const CoverLetter = () => {
 				const cover = document.getElementById('cover');
 				if (!cover) return;
 				setTimeout(() => {
-					var range = document.createRange();
+					const range = document.createRange();
 					range.selectNode(cover);
 					window.getSelection()?.removeAllRanges();
 					window.getSelection()?.addRange(range);
@@ -104,8 +104,7 @@ const CoverLetter = () => {
 					});
 				}
 			})
-
-			.catch((e) => {
+			.catch(() => {
 				notificationService.show({
 					title: 'Print failed',
 					status: 'danger',
@@ -159,15 +158,15 @@ const CoverLetter = () => {
 						userSelect="none"
 					>
 						<Text>Skill 1</Text>
-						<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)}></Input>
+						<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)} />
 						<Text>Skill 2</Text>
-						<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)}></Input>
+						<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)} />
 						<Text>Skill 3</Text>
-						<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)}></Input>
+						<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)} />
 						<Text>Company name</Text>
-						<Input value={companyName()} onChange={createOnChangeHandler(setCompanyName)}></Input>
+						<Input value={companyName()} onChange={createOnChangeHandler(setCompanyName)} />
 						<Text>Role title</Text>
-						<Input value={roleTitle()} onChange={createOnChangeHandler(setRoleTitle)}></Input>
+						<Input value={roleTitle()} onChange={createOnChangeHandler(setRoleTitle)} />
 
 						<Button onClick={printPage} aria-label="Print">
 							Print

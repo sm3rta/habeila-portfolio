@@ -13,7 +13,7 @@ const StyledVideo = styled('video')({
 	marginLeft: 'auto',
 });
 
-const Carousel = ({ achievements }: { achievements: NonNullable<ProjectType['achievements']> }) => {
+const Carousel = (props: { achievements: NonNullable<ProjectType['achievements']> }) => {
 	const [tab, setTab] = createSignal(0);
 
 	const [transitioning, setTransitioning] = createSignal(false);
@@ -21,7 +21,7 @@ const Carousel = ({ achievements }: { achievements: NonNullable<ProjectType['ach
 	const prevPage = () => {
 		setTransitioning(true);
 		setTimeout(() => {
-			setTab(tab() === 0 ? achievements.length - 1 : tab() - 1);
+			setTab(tab() === 0 ? props.achievements.length - 1 : tab() - 1);
 			setTransitioning(false);
 			resetProgress();
 		}, transitionDurationMs);
@@ -29,21 +29,21 @@ const Carousel = ({ achievements }: { achievements: NonNullable<ProjectType['ach
 	const nextPage = () => {
 		setTransitioning(true);
 		setTimeout(() => {
-			setTab(tab() === achievements.length - 1 ? 0 : tab() + 1);
+			setTab(tab() === props.achievements.length - 1 ? 0 : tab() + 1);
 			setTransitioning(false);
 			resetProgress();
 		}, transitionDurationMs);
 	};
 
-	const { progressBar, setPaused, resetProgress } = useLoopingSquareProgressBar(
-		achievements.length > 1 ? nextPage : undefined
-	);
+	const { progressBar, setPaused, resetProgress } = useLoopingSquareProgressBar(() => {
+		props.achievements.length > 1 && nextPage();
+	});
 
 	return (
 		<Box mt="$8" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
 			<Flex justifyContent="space-between" align-items="center">
 				<Text fontWeight="$bold">Achievements</Text>
-				<Show when={achievements.length > 1}>
+				<Show when={props.achievements.length > 1}>
 					<Flex gap="$2">
 						<IconButton
 							icon={<FaSolidChevronLeft />}
@@ -76,7 +76,7 @@ const Carousel = ({ achievements }: { achievements: NonNullable<ProjectType['ach
 			>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Switch>
-						<For each={achievements}>
+						<For each={props.achievements}>
 							{(task, index) => (
 								<Match when={tab() === index()}>
 									<Box

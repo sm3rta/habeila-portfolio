@@ -71,58 +71,79 @@ const oneTenthOfDeg = 0.1 * (Math.PI / 180);
 const transitionTimeMs = 750;
 const transitionTimeSec = transitionTimeMs / 1000;
 
-const BadgeAndLine = ({
-	index,
-	innerRadius,
-	skill,
-	outerRadius,
-}: {
+const BadgeAndLine = (props: {
 	skill: { name: string; Icon: IconTypes | null };
 	index: number;
 	innerRadius: number;
 	outerRadius: number;
 }) => {
-	// const fSections = 3;
-	const fSections = randRangeInt(3, 4);
-	const offsetAngle = randRange(15, 20) * (Math.PI / 180);
-	const m = (Math.PI - 2 * offsetAngle) / Math.PI;
-
-	const delay = (index * transitionTimeMs) / 8;
-
 	const [firstRender, setFirstRender] = createSignal(true);
-	onMount(() => {
+	const [params, setParams] = createSignal({
+		x: 0,
+		y: 0,
+		x1: 0,
+		y1: 0,
+		x2: 0,
+		y2: 0,
+		delay: 0,
+		posNegFactor: 1,
+	});
+
+	createEffect(() => {
+		// const fSections = 3;
+		const fSections = randRangeInt(3, 4);
+		const offsetAngle = randRange(15, 20) * (Math.PI / 180);
+		const m = (Math.PI - 2 * offsetAngle) / Math.PI;
+
+		const delay = (props.index * transitionTimeMs) / 8;
+		const a =
+			(props.innerRadius / 2) *
+			((props.index % fSections) * ((fMax - fMin) / fSections) + fMin) *
+			randRange(randMin, randMax);
+		const b = a * aToBRatio;
+		const circleAngle = (props.index / (skills.length - 1)) * 2 * Math.PI;
+
+		const c = circleAngle <= Math.PI ? offsetAngle : 3 * offsetAngle;
+		const angle = m * circleAngle + c;
+		const xPosNeg = (a * b) / Math.sqrt(b ** 2 + a ** 2 * Math.tan(angle) ** 2);
+		const posNegFactor = angle > Math.PI / 2 && angle < (Math.PI * 3) / 2 ? 1 : -1;
+
+		const x = xPosNeg * posNegFactor;
+		const y = x * Math.tan(angle);
+
+		const xPosNeg1 = (a * b) / Math.sqrt(b ** 2 + a ** 2 * Math.tan(angle - oneTenthOfDeg) ** 2);
+		const x1 = xPosNeg1 * posNegFactor;
+		const y1 = x1 * Math.tan(angle - oneTenthOfDeg);
+		const xPosNeg2 = (a * b) / Math.sqrt(b ** 2 + a ** 2 * Math.tan(angle + oneTenthOfDeg) ** 2);
+		const x2 = xPosNeg2 * posNegFactor;
+		const y2 = x2 * Math.tan(angle + oneTenthOfDeg);
+
+		setParams({
+			x,
+			y,
+			x1,
+			y1,
+			x2,
+			y2,
+			delay,
+			posNegFactor,
+		});
 		setTimeout(() => {
 			setFirstRender(false);
 		}, delay);
 	});
 
-	const a =
-		(innerRadius / 2) * ((index % fSections) * ((fMax - fMin) / fSections) + fMin) * randRange(randMin, randMax);
-	const b = a * aToBRatio;
-	const circleAngle = (index / (skills.length - 1)) * 2 * Math.PI;
-
-	const c = circleAngle <= Math.PI ? offsetAngle : 3 * offsetAngle;
-	const angle = m * circleAngle + c;
-	const xPosNeg = (a * b) / Math.sqrt(b ** 2 + a ** 2 * Math.tan(angle) ** 2);
-	const posNegFactor = angle > Math.PI / 2 && angle < (Math.PI * 3) / 2 ? 1 : -1;
-
-	const x = xPosNeg * posNegFactor;
-	const y = x * Math.tan(angle);
-
-	const xPosNeg1 = (a * b) / Math.sqrt(b ** 2 + a ** 2 * Math.tan(angle - oneTenthOfDeg) ** 2);
-	const x1 = xPosNeg1 * posNegFactor;
-	const y1 = x1 * Math.tan(angle - oneTenthOfDeg);
-	const xPosNeg2 = (a * b) / Math.sqrt(b ** 2 + a ** 2 * Math.tan(angle + oneTenthOfDeg) ** 2);
-	const x2 = xPosNeg2 * posNegFactor;
-	const y2 = x2 * Math.tan(angle + oneTenthOfDeg);
+	const opacity = () => (firstRender() ? 0 : 1);
+	const transform = () =>
+		firstRender() ? 'translate(0px, 0px)' : `translate(calc(${params().x}px - 50%), calc(${params().y}px - 50%))`;
 
 	return (
 		<>
-			<RenderAfterDelay delay={delay + transitionTimeMs / 4}>
+			<RenderAfterDelay delay={params().delay + transitionTimeMs / 4}>
 				<StyledSvg>
 					<defs>
-						{posNegFactor === 1 ? (
-							<linearGradient id={`gradient-${index}`}>
+						{params().posNegFactor === 1 ? (
+							<linearGradient id={`gradient-${props.index}`}>
 								<stop offset="40%" stop-color="transparent" />
 								<stop offset="100%" stop-color={colors.primary3}>
 									<animate dur={`${transitionTimeSec}s`} attributeName="offset" from="0.4" to="1" />
@@ -132,7 +153,7 @@ const BadgeAndLine = ({
 								</stop>
 							</linearGradient>
 						) : (
-							<linearGradient id={`gradient-${index}`}>
+							<linearGradient id={`gradient-${props.index}`}>
 								<stop offset="0%" stop-color="transparent">
 									<animate dur={`${transitionTimeSec}s`} attributeName="offset" from="1" to="0" />
 								</stop>
@@ -144,19 +165,21 @@ const BadgeAndLine = ({
 						)}
 					</defs>
 					<path
-						d={`M ${outerRadius / 2} ${(outerRadius * aToBRatio) / 2} l ${x1} ${y1} l ${x2 - x1} ${y2 - y1} z`}
-						fill={`url(#gradient-${index})`}
+						d={`M ${props.outerRadius / 2} ${(props.outerRadius * aToBRatio) / 2} l ${params().x1} ${params().y1} l ${
+							params().x2 - params().x1
+						} ${params().y2 - params().y1} z`}
+						fill={`url(#gradient-${props.index})`}
 					/>
 				</StyledSvg>
 			</RenderAfterDelay>
 			<SkillBadge
-				skill={skill}
+				skill={props.skill}
 				position="absolute"
 				top="50%"
 				left="50%"
 				zIndex={1}
-				opacity={() => (firstRender() ? 0 : 1)}
-				transform={() => (firstRender() ? 'translate(0px, 0px)' : `translate(calc(${x}px - 50%), calc(${y}px - 50%))`)}
+				opacity={opacity}
+				transform={transform}
 				transition={`transform ${transitionTimeSec}s cubic-bezier(0.3, 0.41, 0.56, 0.78), opacity ${transitionTimeSec}s cubic-bezier(1, 0, 1, 1)`}
 			/>
 		</>
@@ -206,14 +229,14 @@ export const RotatingSkills = () => {
 	);
 };
 
-const RenderAfterDelay = ({ delay, children }: { delay: number; children: JSX.Element }) => {
+const RenderAfterDelay = (props: { delay: number; children: JSX.Element }) => {
 	const [show, setShow] = createSignal(false);
 
 	onMount(() => {
 		setTimeout(() => {
 			setShow(true);
-		}, delay);
+		}, props.delay);
 	});
 
-	return <Show when={show()}>{children}</Show>;
+	return <Show when={show()}>{props.children}</Show>;
 };

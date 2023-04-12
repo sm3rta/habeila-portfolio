@@ -1,19 +1,29 @@
 import { Anchor, Box, Flex, ListItem, Text } from '@hope-ui/solid';
-import { For, Show } from 'solid-js';
+import { For, Match, Show, Switch } from 'solid-js';
 import { Project } from '../../data/work';
 import { SkillBadge } from '../home/SkillBadge';
 
-const renderProjectTitle = ({ name, website, renderTitle }: Project) => {
-	if (renderTitle) return renderTitle();
-	const project = <Text>{name}</Text>;
-	if (website) return <Anchor href={website}>{project}</Anchor>;
-	else return project;
+const renderProjectTitle = (props: Project) => {
+	const project = <Text>{props.name}</Text>;
+	return (
+		<Switch>
+			<Match when={props.renderTitle}>{props.renderTitle!()}</Match>
+			<Match when={!props.renderTitle}>
+				<Switch>
+					<Match when={props.website}>
+						<Anchor href={props.website}>{project}</Anchor>
+					</Match>
+					<Match when={!props.website}>{project}</Match>
+				</Switch>
+			</Match>
+		</Switch>
+	);
 };
 
-const ProjectSummary = ({ project }: { project: Project }) => (
+const ProjectSummary = (props: { project: Project }) => (
 	<Flex w="100%" direction="column" justifyContent="center">
 		<Box>
-			{renderProjectTitle(project)}
+			{renderProjectTitle(props.project)}
 
 			{/* <Text as="span">: {project.description}</Text> */}
 		</Box>
@@ -22,7 +32,7 @@ const ProjectSummary = ({ project }: { project: Project }) => (
 					Achievements
 				</Text> */}
 			<Flex mt="$2" direction="column" as="ul">
-				<For each={project.achievements.filter((achievement) => !achievement.hideOnResume)}>
+				<For each={props.project.achievements.filter((achievement) => !achievement.hideOnResume)}>
 					{(achievement) => (
 						<ListItem ml="$6" fontSize="$sm">
 							{achievement.description}
@@ -31,12 +41,12 @@ const ProjectSummary = ({ project }: { project: Project }) => (
 				</For>
 			</Flex>
 
-			<Show when={project.technologies?.length}>
+			<Show when={props.project.technologies?.length}>
 				{/* <Text mt="$4" fontWeight="$semibold" fontSize="$sm">
 					Technologies used
 				</Text> */}
 				<Flex mt="$2" gap="$2" wrap="wrap">
-					<For each={project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
+					<For each={props.project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
 				</Flex>
 			</Show>
 

@@ -1,7 +1,8 @@
 import { Box } from '@hope-ui/solid';
-import { Accessor, JSX, createEffect, createSignal, onMount } from 'solid-js';
+import { Accessor, JSX, createEffect, createSignal, splitProps } from 'solid-js';
 
-const Fade = ({ children, ...rest }: { children: JSX.Element; in: boolean | Accessor<boolean> }) => {
+const Fade = (_props: { children: JSX.Element; in: boolean | Accessor<boolean> }) => {
+	const [props, rest] = splitProps(_props, ['children']);
 	const [opacity, setOpacity] = createSignal(0);
 
 	createEffect(() => {
@@ -18,7 +19,7 @@ const Fade = ({ children, ...rest }: { children: JSX.Element; in: boolean | Acce
 				transition: 'opacity 1s ease-in-out',
 			}}
 		>
-			{children}
+			{props.children}
 		</Box>
 	);
 };

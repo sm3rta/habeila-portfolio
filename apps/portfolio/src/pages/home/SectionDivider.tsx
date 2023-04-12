@@ -1,4 +1,5 @@
 import { Box } from '@hope-ui/solid';
+import { JSX } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { getAsteriskSectionColor } from '../../ui/theme';
 
@@ -11,7 +12,7 @@ const sectionDividerPaths = [
 
 const getRandomDividerPath = () => sectionDividerPaths[Math.floor(Math.random() * sectionDividerPaths.length)];
 
-const SectionDividerSvg = (props: any) => (
+const SectionDividerSvg = (props: JSX.IntrinsicElements['div']) => (
 	<div {...props}>
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
 			<path class="shape-fill" d={getRandomDividerPath()} />

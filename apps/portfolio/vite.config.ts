@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
+import eslint from 'vite-plugin-eslint';
 import mkcert from 'vite-plugin-mkcert';
 import solidPlugin from 'vite-plugin-solid';
 // @ts-ignore
 import packageJson from './package.json';
+
 const { dependencies } = packageJson;
 
 // these packages have to be bundled in the vendor bundle
@@ -22,7 +24,7 @@ function renderChunks(deps: Record<string, string>) {
 console.log(renderChunks(dependencies));
 
 export default defineConfig({
-	plugins: [solidPlugin(), mkcert()],
+	plugins: [solidPlugin(), mkcert(), eslint()],
 	server: { https: true, port: 3002, host: true },
 	resolve: {
 		alias: {},

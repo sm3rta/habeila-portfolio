@@ -73,7 +73,7 @@ export const Star = () => {
 		},
 	});
 
-	let [ref, setRef] = createSignal<HTMLDivElement>();
+	const [ref, setRef] = createSignal<HTMLDivElement>();
 
 	onMount(() => {
 		if (ref() && !isMobileDevice) {

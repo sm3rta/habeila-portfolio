@@ -1,16 +1,20 @@
 import { Box, Container, Divider, Flex, Grid, Text, hope } from '@hope-ui/solid';
 import { createMediaQuery } from '@solid-primitives/media';
 import { ComponentProps } from '@stitches/core';
+import { JSX } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { darkMode } from '../../App';
 import { TILE_SIZE, colors, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
 import Section from './Section';
 
-const StyledImage = hope((props: any) => <img {...props} type="image/webp" height={TILE_SIZE} width={TILE_SIZE} />, {
-	baseStyle: {
-		clipPath: createOctagonalClipPathWithMargin(5),
-	},
-});
+const StyledImage = hope(
+	(props: JSX.ImgHTMLAttributes<HTMLImageElement>) => <img alt="" {...props} height={TILE_SIZE} width={TILE_SIZE} />,
+	{
+		baseStyle: {
+			clipPath: createOctagonalClipPathWithMargin(5),
+		},
+	}
+);
 
 const ImageContainer = styled((props: ComponentProps<typeof Box>) => <Box {...props} />)({
 	'@keyframes animLight': {

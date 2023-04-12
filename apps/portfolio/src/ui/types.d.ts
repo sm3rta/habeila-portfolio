@@ -5,6 +5,6 @@ declare module 'rallax.js' {
 	};
 
 	export default class Rallax {
-		constructor(node: any, options?: RallaxOptions);
+		constructor(node: Record<string, unknown>, options?: RallaxOptions);
 	}
 }

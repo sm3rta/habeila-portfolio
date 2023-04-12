@@ -1,21 +1,32 @@
 import { Anchor, Badge, Box, Container, Flex, Text } from '@hope-ui/solid';
-import { For, Show } from 'solid-js';
+import { For, Match, Show, Switch } from 'solid-js';
 import { Project } from '../../data/work';
 import { SkillBadge } from '../home/SkillBadge';
 import Carousel from './Carousel';
 
-const renderProjectTitle = ({ name, website, renderTitle }: Project) => {
-	if (renderTitle) return renderTitle();
+const renderProjectTitle = (props: Project) => {
 	const project = (
 		<Text as="span" fontSize="$lg">
-			{name}
+			{props.name}
 		</Text>
 	);
-	if (website) return <Anchor href={website}>{project}</Anchor>;
-	else return project;
+
+	return (
+		<Switch>
+			<Match when={props.renderTitle}>{props.renderTitle!()}</Match>
+			<Match when={!props.renderTitle}>
+				<Switch>
+					<Match when={props.website}>
+						<Anchor href={props.website}>{project}</Anchor>
+					</Match>
+					<Match when={!props.website}>{project}</Match>
+				</Switch>
+			</Match>
+		</Switch>
+	);
 };
 
-const ProjectLayoutDetailed = ({ project }: { project: Project }) => (
+const ProjectLayoutDetailed = (props: { project: Project }) => (
 	<Container
 		d="flex"
 		flexDirection="column"
@@ -26,32 +37,32 @@ const ProjectLayoutDetailed = ({ project }: { project: Project }) => (
 		}}
 	>
 		<Box>
-			{renderProjectTitle(project)}
+			{renderProjectTitle(props.project)}
 			<Text as="span" fontSize="$sm">
-				: {project.description}
+				: {props.project.description}
 			</Text>
 		</Box>
 		<Box>
-			<Show when={project.technologies?.length}>
+			<Show when={props.project.technologies?.length}>
 				<Text fontWeight="$bold" mt="$3">
 					Technologies used
 				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
-					<For each={project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
+					<For each={props.project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
 				</Flex>
 			</Show>
 
-			<Show when={project.responsibilities?.length}>
+			<Show when={props.project.responsibilities?.length}>
 				<Text fontWeight="$bold" mt="$3">
 					What I worked on
 				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
-					<For each={project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
+					<For each={props.project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
 				</Flex>
 			</Show>
 
-			<Show when={project.achievements?.length}>
-				<Carousel achievements={project.achievements!} />
+			<Show when={props.project.achievements?.length}>
+				<Carousel achievements={props.project.achievements!} />
 			</Show>
 		</Box>
 	</Container>
