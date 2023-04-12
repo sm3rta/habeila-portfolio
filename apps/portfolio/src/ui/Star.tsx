@@ -2,10 +2,10 @@ import { Box } from '@hope-ui/solid';
 import Parallax from 'rallax.js';
 import { ComponentProps, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { generateRandomColor, generateRandomColorLight, randRange, randRangeInt } from '../utils';
-import { HEADER_HEIGHT, zIndexes } from './theme';
-import { mobileCheck } from './isMobileDevice';
 import { darkMode } from '../App';
+import { generateRandomColor, generateRandomColorLight, randRange, randRangeInt } from '../utils';
+import { mobileCheck } from './isMobileDevice';
+import { headerHeight, zIndexes } from './theme';
 
 const isMobileDevice = mobileCheck();
 
@@ -42,7 +42,7 @@ export const Star = () => {
 	const [delay, setDelay] = createSignal(0);
 
 	const width = randRangeInt(15, 40);
-	const top = `clamp(${HEADER_HEIGHT}px, ${randRangeInt(0, 100)}%, calc(100% - 40px))`;
+	const top = `clamp(${headerHeight()}px, ${randRangeInt(0, 100)}%, calc(100% - 40px))`;
 
 	const leftRandom = randRangeInt(...leftRange);
 	const left = `${leftRandom}%`;
@@ -77,7 +77,7 @@ export const Star = () => {
 
 	onMount(() => {
 		if (ref() && !isMobileDevice) {
-			new Parallax(ref(), { speed });
+			new Parallax(ref()!, { speed });
 		}
 	});
 

@@ -9,12 +9,13 @@ export const Footer = () => {
 	const pathname = useResolvedPath(() => location.pathname);
 	return (
 		<Box
-			minH={`300px`}
+			minH={300}
 			display="flex"
 			flexDirection="column"
 			justifyContent="flex-end"
 			position="relative"
 			zIndex={zIndexes.aboveStar}
+			pointerEvents="none"
 		>
 			<Show when={pathname() === '/'}>
 				<UpperSectionDivider />
@@ -32,7 +33,11 @@ export const Footer = () => {
 					width: '100%',
 					height: 40,
 					display: 'flex',
-					placeContent: 'center',
+					px: '$4',
+				}}
+				placeContent={{
+					'@initial': 'flex-start',
+					'@sm': 'center',
 				}}
 			>
 				<Text textAlign="center" alignSelf="center" verticalAlign="middle">

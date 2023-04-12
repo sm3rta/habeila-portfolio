@@ -8,6 +8,7 @@ import { Timeline } from './Timeline';
 const Resume = () => (
 	<Fade in={() => true}>
 		<Timeline
+			showStepper
 			children={work.map((company) => (
 				<CompanyProjects company={company} />
 			))}

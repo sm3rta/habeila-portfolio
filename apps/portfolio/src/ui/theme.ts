@@ -1,8 +1,12 @@
 import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
+import { createMediaQuery } from '@solid-primitives/media';
 import merge from 'lodash.merge';
 import { darkMode } from '../App';
 
-export const HEADER_HEIGHT = 60;
+const isSmall = createMediaQuery('(max-width: 1024px)');
+export const headerHeight = () => {
+	return isSmall() ? 40 : 60;
+};
 export const ICON_SIZE = 30;
 export const TILE_SIZE = 160;
 export const zIndexes = {

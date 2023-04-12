@@ -6,7 +6,7 @@ import { Footer } from './components/Footer';
 import { Stars } from './components/Stars';
 import { DarkModeSwitch } from './ui/DarkModeSwitch';
 import Loader from './ui/components/Loader';
-import { HEADER_HEIGHT, colors, darkTheme, lightTheme } from './ui/theme';
+import { colors, darkTheme, headerHeight, lightTheme } from './ui/theme';
 
 const Home = lazy(() => import('./pages/home'));
 const Project = lazy(() => import('./pages/projects'));
@@ -26,7 +26,7 @@ const App = () => {
 		<Flex
 			as="main"
 			w="100%"
-			pt={HEADER_HEIGHT}
+			pt={headerHeight()}
 			direction="column"
 			position="relative"
 			overflow="hidden"

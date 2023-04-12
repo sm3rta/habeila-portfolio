@@ -1,19 +1,20 @@
 import { Box, Switch } from '@hope-ui/solid';
-import { darkMode, setDarkMode } from '../App';
-import { IoSunny } from 'solid-icons/io';
 import { BsMoonStarsFill } from 'solid-icons/bs';
+import { IoSunny } from 'solid-icons/io';
+import { createSignal, onCleanup, onMount } from 'solid-js';
+import { darkMode, setDarkMode } from '../App';
 import { getAsteriskSectionColor } from './theme';
-import { createSignal, onMount, onCleanup } from 'solid-js';
 
 export const DarkModeSwitch = () => {
 	const [scrolledToEnd, setScrolledToEnd] = createSignal(false);
 	const updateScrolledToEnd = () =>
-		setScrolledToEnd(window.innerHeight + window.scrollY >= document.body.scrollHeight - 10);
+		setScrolledToEnd(window.innerHeight + window.scrollY >= document.body.scrollHeight - 20);
 	onMount(() => {
-		window.onscroll = updateScrolledToEnd;
+		window.addEventListener('scroll', updateScrolledToEnd);
+		updateScrolledToEnd();
 	});
 	onCleanup(() => {
-		window.onscroll = null;
+		window.removeEventListener('scroll', updateScrolledToEnd);
 	});
 
 	return (

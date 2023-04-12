@@ -70,12 +70,20 @@ export type Project = {
 	id: (typeof projectIds)[number];
 	description?: string | JSX.Element;
 	technologies?: { name: string; Icon: IconTypes | null }[];
-	achievements: {
+	achievements: ({
 		description: string | (() => JSX.Element);
-		imageUrl?: string;
 		videoUrl?: string;
 		hideOnResume?: boolean;
-	}[];
+	} & (
+		| {
+				imageUrl: string;
+				imageAlt: string;
+		  }
+		| {
+				imageUrl?: never;
+				imageAlt?: never;
+		  }
+	))[];
 	website?: string;
 	responsibilities?: string[];
 	Logo?: (props: JSX.SvgSVGAttributes<SVGSVGElement>) => JSX.Element;
@@ -133,6 +141,7 @@ export const work: Workplace[] = [
 							</>
 						),
 						imageUrl: '/assets/projects/portfolio/PortfolioPageSpeedInsights.webp',
+						imageAlt: 'PageSpeed Insights score',
 					},
 					{
 						description: () => (
@@ -206,6 +215,7 @@ export const work: Workplace[] = [
 					{
 						description: 'Collaborated with a team of 4 to launch blog website in 1 week',
 						imageUrl: '/assets/projects/quint/QuintBlogLightDark.png',
+						imageAlt: 'Light and dark theme',
 					},
 					{
 						description: () => (
@@ -218,6 +228,7 @@ export const work: Workplace[] = [
 							</>
 						),
 						imageUrl: '/assets/projects/quint/BlogPageSpeed.png',
+						imageAlt: 'PageSpeed Insights score',
 					},
 				],
 				responsibilities: ['Website (front-end)'],
@@ -244,6 +255,7 @@ export const work: Workplace[] = [
 					{
 						description: 'Built fully accessible, responsive website with light/dark themes',
 						imageUrl: '/assets/projects/quint/QuintStakingLightDark.png',
+						imageAlt: 'Light and dark theme',
 					},
 					{ description: 'Created UI component library based on Radix UI design system and documented on Storybook' },
 				],
@@ -314,6 +326,7 @@ export const work: Workplace[] = [
 							'Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles',
 						imageUrl: '/assets/projects/calqulate/CalqulateTables.webp',
 						hideOnResume: true,
+						imageAlt: 'Calqulate tables',
 					},
 					{
 						description: 'Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu',
@@ -399,15 +412,18 @@ export const work: Workplace[] = [
 					{
 						description: 'Built this website from the ground up until it went live',
 						imageUrl: '/assets/projects/bmwf/BMWF.png',
+						imageAlt: 'BMW Foundation website',
 					},
 					{
 						description: 'Fully responsive, supports keyboard navigation and screen readers',
 						imageUrl: '/assets/projects/bmwf/BMWF-Mobile.png',
+						imageAlt: 'BMW Foundation website mobile',
 					},
 					{
 						description:
 							'Created an accessibility menu which features high contrast mode, dyslexia-friendly font and animations toggle',
 						imageUrl: '/assets/projects/bmwf/AccessibilityMenu.png',
+						imageAlt: 'BMW Foundation website accessibility menu',
 					},
 					{ description: 'Integrated Google Tag Manager along with following the best SEO practices' },
 				],
@@ -443,10 +459,12 @@ export const work: Workplace[] = [
 					{
 						description: 'Built this website from the ground up until it went live',
 						imageUrl: '/assets/projects/tt/TT.png',
+						imageAlt: 'TwentyThirty website',
 					},
 					{
 						description: 'Fully responsive, supports keyboard navigation and screen readers',
 						imageUrl: '/assets/projects/tt/TT-Mobile.png',
+						imageAlt: 'TwentyThirty website mobile',
 					},
 					{ description: 'Integrated Google Tag Manager along with following the best SEO practices' },
 				],

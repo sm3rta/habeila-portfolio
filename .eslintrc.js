@@ -8,6 +8,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-non-null-assertion": "off",
     "no-debugger": "off",
+    "@typescript-eslint/ban-types": "off",
   },
   extends: [
     "eslint:recommended",

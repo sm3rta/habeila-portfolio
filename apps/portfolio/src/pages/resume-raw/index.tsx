@@ -181,7 +181,7 @@ const ResumeRaw = () => {
 		height: 40,
 		width: 40,
 		css: { '&>svg': { opacity: 0, transition: 'opacity 0.3s ease' } },
-		_hover: { background: colors.primary5, '&>svg': { opacity: 1 } },
+		_hover: { background: colors.primary6, '&>svg': { opacity: 1 } },
 	};
 
 	const skills = () => [skill1(), skill2(), skill3()].filter(Boolean);
@@ -192,7 +192,10 @@ const ResumeRaw = () => {
 		<HopeProvider
 			config={{
 				lightTheme: {
-					colors: { primary5: '#00254d' },
+					colors: {
+						primary5: 'black',
+						primary6: '#00254d',
+					},
 					fontSizes: theme.darkTheme.fontSizes,
 				},
 				components: {
@@ -330,6 +333,9 @@ const ResumeRaw = () => {
 									as={Anchor}
 									css={{
 										textDecorationColor: `${secondaryTextAndIconColorHeader} !important`,
+										_hover: {
+											textDecorationColor: 'var(--hope-colors-primary11) !important',
+										},
 									}}
 								>
 									<Icon size={ICON_SIZE} color={secondaryTextAndIconColorHeader} />
@@ -412,7 +418,7 @@ const ResumeRaw = () => {
 								<Flex direction="column" gap="$0_5">
 									<Text>{name}</Text>
 									<Progress size="xs" value={value}>
-										<ProgressIndicator bgColor="$primary5 !important" />
+										<ProgressIndicator bgColor="$primary6 !important" />
 									</Progress>
 								</Flex>
 							)}
@@ -554,7 +560,7 @@ const ResumeRaw = () => {
 							</Text>
 							<SiGithub
 								size={ICON_SIZE}
-								color="$primary5"
+								color="$primary6"
 								style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
 							/>
 						</StyledFlexLink>

@@ -1,6 +1,6 @@
 import { Box, Flex, IconButton, Image, Text } from '@hope-ui/solid';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
-import { For, Match, Show, Suspense, Switch, createEffect, createSignal } from 'solid-js';
+import { For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { Project as ProjectType } from '../../data/work';
 import { colors } from '../../ui/theme';
@@ -16,6 +16,30 @@ const StyledVideo = styled('video')({
 const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectType['achievements']> }) => {
 	const [tab, setTab] = createSignal(0);
 	const [transitioning, setTransitioning] = createSignal(false);
+	const [height, setHeight] = createSignal(0);
+
+	const updateHeight = () => {
+		const carousel = document.querySelector('#carousel');
+		if (!carousel) return;
+		const carouselChildren = [...carousel.children];
+		// get max height of all children
+		const maxHeight = carouselChildren.reduce((acc, child) => {
+			const childHeight = child.getBoundingClientRect().height;
+			return childHeight > acc ? childHeight : acc;
+		}, 0);
+		setHeight(maxHeight);
+	};
+
+	onMount(() => {
+		window.addEventListener('resize', updateHeight);
+		setTimeout(() => {
+			updateHeight();
+		}, 0);
+	});
+
+	onCleanup(() => {
+		window.removeEventListener('resize', updateHeight);
+	});
 
 	createEffect(() => {
 		if (props.projectId) {
@@ -70,57 +94,43 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 					</Flex>
 				</Show>
 			</Flex>
-			<Box
-				mt="$2"
-				d="flex"
-				gap="$2"
-				flexWrap="wrap"
-				css={{
-					transition: `all ${transitionDurationMs}ms ease-in-out`,
-					opacity: transitioning() ? 0 : 1,
-				}}
-			>
-				<Suspense fallback={<div>Loading...</div>}>
-					<Switch>
-						<For each={props.achievements}>
-							{(task, index) => (
-								<Match when={tab() === index()}>
-									<Box
-										d="grid"
-										w="100%"
-										gap="$8"
-										gridTemplateColumns={{
-											'@initial': 'unset',
-											'@lg': 'minmax(300px, 1fr) minmax(auto, 1fr)',
-										}}
-										height={{ '@initial': 'auto', '@lg': 'unset' }}
-										// maxH={{ '@initial': '450px', '@lg': 'unset' }}
-									>
-										<Text>{typeof task.description === 'function' ? task.description() : task.description}</Text>
+			<Box mt="$2" d="flex" gap="$2" flexWrap="wrap" pos="relative" id="carousel" h={height()}>
+				<For each={props.achievements}>
+					{(task, index) => (
+						<Box
+							d="grid"
+							w="100%"
+							gap="$8"
+							gridTemplateColumns={{
+								'@initial': 'unset',
+								'@lg': 'minmax(300px, 1fr) minmax(auto, 1fr)',
+							}}
+							transition={`all ${transitionDurationMs}ms ease-in-out`}
+							opacity={tab() === index() && !transitioning() && height() ? 1 : 0}
+							pos="absolute"
+						>
+							<Text>{typeof task.description === 'function' ? task.description() : task.description}</Text>
 
-										{/* video/image container */}
-										<Show when={task.videoUrl}>
-											<StyledVideo autoplay loop>
-												<source src={task.videoUrl} type="video/webm" />
-											</StyledVideo>
-										</Show>
-										<Show when={task.imageUrl}>
-											<Image
-												src={task.imageUrl}
-												zIndex={2}
-												pos="relative"
-												mx="auto"
-												maxH={600}
-												css={{ filter: `drop-shadow(0px 0px 15px ${colors.secondary6})` }}
-												maxW="100%"
-											/>
-										</Show>
-									</Box>
-								</Match>
-							)}
-						</For>
-					</Switch>
-				</Suspense>
+							{/* video/image container */}
+							<Show when={task.videoUrl}>
+								<StyledVideo autoplay loop>
+									<source src={task.videoUrl} type="video/webm" />
+								</StyledVideo>
+							</Show>
+							<Show when={task.imageUrl}>
+								<Image
+									src={task.imageUrl}
+									zIndex={2}
+									pos="relative"
+									mx="auto"
+									maxH={600}
+									css={{ filter: `drop-shadow(0px 0px 15px ${colors.secondary6})` }}
+									maxW="100%"
+								/>
+							</Show>
+						</Box>
+					)}
+				</For>
 			</Box>
 		</Box>
 	);

@@ -11,7 +11,9 @@ const renderProjectTitle = (props: Project) => {
 			<Match when={!props.renderTitle}>
 				<Switch>
 					<Match when={props.website}>
-						<Anchor href={props.website}>{project}</Anchor>
+						<Anchor href={props.website} d="inline-flex">
+							{project}
+						</Anchor>
 					</Match>
 					<Match when={!props.website}>{project}</Match>
 				</Switch>

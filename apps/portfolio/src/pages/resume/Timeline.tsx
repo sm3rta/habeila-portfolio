@@ -1,19 +1,22 @@
 import { Box, Divider } from '@hope-ui/solid';
-import { For } from 'solid-js';
+import { For, Show } from 'solid-js';
 import { JSX } from 'solid-js/web/types/jsx';
+import { colors } from '../../ui/theme';
 
-// const side = 24;
+const side = 24;
 
-export const Timeline = (props: { children: JSX.Element[] }) => (
+export const Timeline = (props: { children: JSX.Element[]; showStepper?: boolean }) => (
 	<Box d="flex" flexDirection="column" p="$8">
 		<For each={props.children}>
 			{(child, index) => (
 				<>
 					<Box d="flex" gap="$8">
-						{/* <Box d="flex" flexDirection="column" w={side} alignItems="center">
-							<Box h={side} w={side} borderRadius="50%" border={`4px solid ${colors.secondary3}`}></Box>
-							<Box flex={1} w="2px" bg={colors.secondary2}></Box>
-						</Box> */}
+						<Show when={props.showStepper}>
+							<Box d="flex" flexDirection="column" w={side} alignItems="center">
+								<Box h={side} w={side} borderRadius="50%" border={`4px solid ${colors.secondary3}`} />
+								<Box flex={1} w="2px" bg={colors.secondary2} />
+							</Box>
+						</Show>
 						<Box d="flex" flexDirection="column" flex={1}>
 							<Box pb={index() !== props.children.length - 1 ? '$4' : 0}>{child}</Box>
 							{index() !== props.children.length - 1 && <Divider my="$4" />}

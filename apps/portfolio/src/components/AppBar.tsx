@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import { createSignal, onCleanup, onMount } from 'solid-js';
 import { darkMode } from '../App';
 import { Link } from '../ui/components/Link';
-import { HEADER_HEIGHT, colors, zIndexes } from '../ui/theme';
+import { colors, headerHeight, zIndexes } from '../ui/theme';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 
@@ -21,7 +21,7 @@ export const AppBar = () => {
 		const bodyRect = document.body.getBoundingClientRect(),
 			elemRect = element.getBoundingClientRect(),
 			offset = elemRect.top - bodyRect.top;
-		window.scrollTo({ top: offset - HEADER_HEIGHT, behavior: 'smooth' });
+		window.scrollTo({ top: offset - headerHeight(), behavior: 'smooth' });
 	};
 
 	const onScroll = debounce(() => {
@@ -44,7 +44,7 @@ export const AppBar = () => {
 	return (
 		<Flex
 			position="fixed"
-			h={HEADER_HEIGHT}
+			h={headerHeight()}
 			backgroundColor={darkMode() ? colors.secondary1 : colors.secondary7}
 			top={0}
 			w="100%"
