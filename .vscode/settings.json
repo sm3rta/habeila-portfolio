@@ -35,5 +35,7 @@
     "Vuedotjs",
     "Vuex",
     "webm"
-  ]
+  ],
+  "easynpm.packageManager": "yarn",
+  "easynpm.defaultProjectRoot": "c:\\Users\\sm3rt\\Desktop\\Work\\habeila-portfolio\\apps\\portfolio"
 }

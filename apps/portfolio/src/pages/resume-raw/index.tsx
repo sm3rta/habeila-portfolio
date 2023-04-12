@@ -97,13 +97,16 @@ const ResumeRaw = () => {
 	);
 
 	createEffect(() => {
-		setParams({
-			skill1: skill1(),
-			skill2: skill2(),
-			skill3: skill3(),
-			senior: senior().toString(),
-			jobType: jobType(),
-		});
+		setParams(
+			{
+				skill1: skill1(),
+				skill2: skill2(),
+				skill3: skill3(),
+				senior: senior().toString(),
+				jobType: jobType(),
+			},
+			{ replace: true }
+		);
 	});
 
 	const handleKeyDown = (e: KeyboardEvent) => {

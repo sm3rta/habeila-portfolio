@@ -51,13 +51,16 @@ const CoverLetter = () => {
 	});
 
 	createEffect(() => {
-		setParams({
-			skill1: skill1(),
-			skill2: skill2(),
-			skill3: skill3(),
-			companyName: companyName(),
-			roleTitle: roleTitle(),
-		});
+		setParams(
+			{
+				skill1: skill1(),
+				skill2: skill2(),
+				skill3: skill3(),
+				companyName: companyName(),
+				roleTitle: roleTitle(),
+			},
+			{ replace: true }
+		);
 	});
 
 	const createOnChangeHandler = (setFn: (value: string) => void) => (e: Event) => {
