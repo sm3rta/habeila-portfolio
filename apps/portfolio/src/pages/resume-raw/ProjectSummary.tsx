@@ -1,6 +1,7 @@
-import { Anchor, Badge, Box, Flex, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, Box, Flex, ListItem } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
 import { Project } from '../../data/work';
+import { Text } from '../../ui/Text';
 import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { SkillBadge } from '../home/SkillBadge';
 
@@ -25,40 +26,21 @@ const renderProjectTitle = (props: Project) => {
 
 const ProjectSummary = (props: { project: Project }) => (
 	<Flex w="100%" direction="column" justifyContent="center">
+		<Box>{renderProjectTitle(props.project)}</Box>
 		<Box>
-			{renderProjectTitle(props.project)}
-
-			<Text as="span">: {renderStringOrJsx(props.project.description)}</Text>
-		</Box>
-		<Box>
-			<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
-				Achievements
-			</Text>
 			<Flex mt="$2" direction="column" as="ul">
 				<For each={props.project.achievements.filter((achievement) => !achievement.hideOnResume)}>
 					{(achievement) => (
 						<ListItem ml="$6">
-							<Text fontSize="$sm">{renderStringOrJsx(achievement.description)}</Text>
+							<Text>{renderStringOrJsx(achievement.description)}</Text>
 						</ListItem>
 					)}
 				</For>
 			</Flex>
 
 			<Show when={props.project.technologies?.length}>
-				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
-					Technologies used
-				</Text>
 				<Flex mt="$2" gap="$2" wrap="wrap">
 					<For each={props.project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
-				</Flex>
-			</Show>
-
-			<Show when={props.project.responsibilities?.length}>
-				<Text mt="$4" fontWeight="$semibold" fontSize="$sm">
-					My responsibilities
-				</Text>
-				<Flex mt="$2" gap="$2" wrap="wrap">
-					<For each={props.project.responsibilities}>{(resp) => <Badge>{resp}</Badge>}</For>
 				</Flex>
 			</Show>
 		</Box>

@@ -42,7 +42,7 @@ import {
 	SiYoutube,
 	SiZoom,
 } from 'solid-icons/si';
-import { JSX } from 'solid-js';
+import { For, JSX } from 'solid-js';
 import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
 import { NetjeekLogo } from './logos/NetjeekLogo';
@@ -68,7 +68,7 @@ const projectIds = [
 export type Project = {
 	name: string;
 	id: (typeof projectIds)[number];
-	description?: string | JSX.Element;
+	description?: string | (() => JSX.Element);
 	technologies?: { name: string; Icon: IconTypes | null }[];
 	achievements: ({
 		description: string | (() => JSX.Element);
@@ -96,7 +96,7 @@ export type Workplace = {
 	name: string;
 	from?: string;
 	to?: string;
-	description?: string | JSX.Element;
+	description?: string | (() => JSX.Element);
 	title?: {
 		role: 'front' | 'full' | 'se';
 		senior: boolean;
@@ -186,7 +186,7 @@ export const work: Workplace[] = [
 				achievements: [
 					{
 						description:
-							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week',
+							'Collaborated with a team of four to launch 2 accessible, responsive websites with light/dark themes in 1 week',
 					},
 					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
 					{ description: 'Created UI component library based on Radix UI design system and documented on Storybook' },
@@ -213,7 +213,7 @@ export const work: Workplace[] = [
 				],
 				achievements: [
 					{
-						description: 'Collaborated with a team of 4 to launch blog website in 1 week',
+						description: 'Collaborated with a team of four to launch blog website in 1 week',
 						imageUrl: '/assets/projects/quint/QuintBlogLightDark.png',
 						imageAlt: 'Light and dark theme',
 					},
@@ -263,22 +263,39 @@ export const work: Workplace[] = [
 			},
 		],
 	},
+	// {
+	// 	name: 'Calqulate',
+	// 	// website: 'https://calqulate.io/',
+	// 	description: (
+	// 		<>
+	// 			Led a team of 4 front-end developers in the process of creating and maintaining features while setting clear
+	// 			design system standards for the design team to follow
+	// 			<br />
+	// 			Built and maintained different libraries in a monorepo for tables, charts and reusable UI components
+	// 		</>
+	// 	),
+	// 	from: 'November 2020',
+	// 	to: 'January 2023',
+	// 	title: {
+	// 		role: 'front',
+	// 		senior: true,
+	// 	},
+	// 	projects: [],
+	// },
 	{
-		name: 'Calqulate',
-		// website: 'https://calqulate.io/',
-		description: (
+		name: 'Coformatique',
+		website: 'https://www.linkedin.com/company/coformatique/',
+		description: () => (
 			<>
-				Led a team of 4 front-end developers in the process of creating and maintaining features while setting clear
-				design system standards for the design team to follow
-				<br />
-				Built and maintained different libraries in a monorepo for tables, charts and reusable UI components
+				Worked as a full-stack developer on varying projects in this warehouse company, using different sets of
+				technologies. Gained experience in accessibility, pixel perfect UI, responsive design and SEO.
 			</>
 		),
-		from: 'November 2020',
+		from: 'May 2020',
 		to: 'January 2023',
 		title: {
-			role: 'front',
-			senior: true,
+			role: 'full',
+			senior: false,
 		},
 		projects: [
 			{
@@ -286,37 +303,51 @@ export const work: Workplace[] = [
 				id: 'calqulate',
 				website: 'https://calqulate.io/',
 				Logo: CalqulateLogo,
-				description: (
+				description: () => (
 					<>
 						A financial tool for modern SaaS organizations that
 						<ul>
-							<ListItem ml="$6" fontSize="$sm">
-								Collects data from multiple sources and automatically generates reports on finances, growth metrics,
-								cashflow forecasting, cash management, customer growth and churn, multi-source subscription management
-								and more.
-							</ListItem>
-							<ListItem ml="$6" fontSize="$sm">
-								Features complex editable tree tables with fixed columns, sticky headers and advanced styles,
-								interactive data rich charts.
-							</ListItem>
-							<ListItem ml="$6" fontSize="$sm">
-								Integrates with most known major accounting and subscription software like Stripe, Procountor,
-								QuickBooks and Xero.
-							</ListItem>
+							<For
+								each={[
+									<>
+										Collects data from multiple sources and automatically generates reports on finances, growth metrics,
+										cashflow forecasting, cash management, customer growth and churn, multi-source subscription
+										management and more.
+									</>,
+									<>
+										Features complex editable tree tables with fixed columns, sticky headers and advanced styles,
+										interactive data rich charts.
+									</>,
+									<>
+										Integrates with most known major accounting and subscription software like Stripe, Procountor,
+										QuickBooks and Xero.
+									</>,
+								]}
+							>
+								{(item) => (
+									<ListItem ml="$6">
+										<Text fontSize="$sm">{item}</Text>
+									</ListItem>
+								)}
+							</For>
 						</ul>
 					</>
 				),
 				achievements: [
+					// {
+					// 	description:
+					// 		'Led team of 4 front-end developers to create and maintain features and set clear design system standards',
+					// },
 					{
 						description:
-							'Led team of 4 front-end developers to create and maintain features and set clear design system standards',
+							'Repeatedly consulted with clients to develop and document website requirements in an agile environment',
 					},
 					{ description: 'Developed front-end monorepo architecture with 2 apps and 5 independent libraries' },
 					{
 						description: () => (
 							<>
 								Developed a proprietary charts library using D3.js with 10 different types of charts with animations,
-								interactive tooltips, legends and placeholders with randomly generated data
+								interactive tooltips, legends, and placeholders with randomly generated data
 							</>
 						),
 						videoUrl: '/assets/projects/calqulate/CalqulateCharts.webm',
@@ -346,46 +377,22 @@ export const work: Workplace[] = [
 					{ name: 'Turborepo', Icon: SiTurborepo },
 					{ name: 'Sentry', Icon: SiSentry },
 					{ name: 'AWS', Icon: SiAmazonaws },
-					// { name: 'Sass', Icon: SiSass },
-					// { name: 'Styled components', Icon: SiStyledcomponents },
-					// { name: 'react-hook-form', Icon: SiReacthookform },
-					// { name: 'Zod', Icon: null },
 					{ name: 'D3.js', Icon: SiD3dotjs },
 					{ name: 'Devexpress', Icon: SiDevexpress },
 					{ name: 'Storybook', Icon: SiStorybook },
 					{ name: 'Hasura', Icon: SiHasura },
 					{ name: 'Stripe API', Icon: SiStripe },
 					{ name: 'GraphQL', Icon: SiGraphql },
-					// { name: 'react-query', Icon: SiReactquery },
-					// { name: 'Auth0', Icon: SiAuth0 },
 				],
 				responsibilities: ['Front-end Web App', 'Back-end API Types SDK'],
 			},
-		],
-	},
-	{
-		name: 'Coformatique',
-		website: 'https://www.linkedin.com/company/coformatique/',
-		description: (
-			<>
-				Worked as a full-stack web developer on varying projects in this warehouse company, using different sets of
-				technologies. Gained experience in accessibility, pixel perfect UI, responsive design and SEO.
-			</>
-		),
-		from: 'May 2020',
-		to: 'November 2020',
-		title: {
-			role: 'full',
-			senior: false,
-		},
-		projects: [
 			{
 				hideOnResume: true,
 				name: 'BMW Foundation',
 				id: 'bmw-foundation',
 				website: 'https://bmw-foundation.org/',
 				Logo: BmwFoundationLogo,
-				description: (
+				description: () => (
 					<>
 						An informative website of the BMW Foundation's mission, plans and events. The website features advanced
 						accessibility features and multi-language routing.
@@ -434,7 +441,7 @@ export const work: Workplace[] = [
 				id: 'twentythirty',
 				website: 'https://twentythirty.com/',
 				Logo: TwentyThirtyLogo,
-				description: (
+				description: () => (
 					<>
 						An online magazine managed by the BMW Foundation inspiring a just and sustainable future in alignment with
 						the UN 2030 Agenda.
@@ -485,7 +492,7 @@ export const work: Workplace[] = [
 					</>
 				),
 
-				description: (
+				description: () => (
 					<>
 						An informative website of the BMW Foundation's mission, plans and events. The website features advanced
 						accessibility features and multi-language routing.
@@ -497,15 +504,11 @@ export const work: Workplace[] = [
 					{ name: 'TypeScript', Icon: SiTypescript },
 					{ name: 'Material UI', Icon: null },
 					{ name: 'JSS', Icon: SiJss },
-					// { name: 'Multi-language Routing', Icon: null },
-					// { name: 'Responsive UI', Icon: null },
-					// { name: 'i18next', Icon: SiI18next },
 					{ name: 'Wordpress', Icon: SiWordpress },
 					{ name: 'Twitter API', Icon: SiTwitter },
 					{ name: 'Instagram API', Icon: SiInstagram },
 					{ name: 'Facebook API', Icon: SiFacebook },
 					{ name: 'YouTube API', Icon: SiYoutube },
-					// { name: 'Google Tag Manager', Icon: SiGoogletagmanager },
 				],
 				responsibilities: ['Website (front-end)'],
 				achievements: [
@@ -520,7 +523,7 @@ export const work: Workplace[] = [
 			{
 				name: 'Educational platform',
 				id: 'educational-platform',
-				description: (
+				description: () => (
 					<>
 						An educational platform where professors can upload and schedule lectures to different classes,
 						automatically create and share Zoom meeting links after a lecture have been seen by all the students to
@@ -542,10 +545,7 @@ export const work: Workplace[] = [
 					{ name: 'TypeScript ', Icon: SiTypescript },
 					{ name: 'Sendgrid', Icon: null },
 					{ name: 'React', Icon: SiReact },
-					// { name: 'Material UI', Icon: null },
 					{ name: 'JSS', Icon: SiJss },
-					// { name: 'Formik', Icon: null },
-					// { name: 'Yup', Icon: null },
 					{ name: 'Zoom API', Icon: SiZoom },
 				],
 				responsibilities: ['Back-end (Firebase)', 'Admin Dashboard (front-end)'],
@@ -569,7 +569,7 @@ export const work: Workplace[] = [
 				id: 'asset-tracking-system',
 				hideOnHomepage: true,
 				hideOnResume: true,
-				description: (
+				description: () => (
 					<>
 						A web application for an asset tracking system designed to manage, track and generate statistics about
 						equipment and their status
@@ -589,7 +589,7 @@ export const work: Workplace[] = [
 				name: 'Netjeek',
 				id: 'netjeek',
 				Logo: NetjeekLogo,
-				description: (
+				description: () => (
 					<>
 						Designed and implemented an eCommerce trans-shipping system designed to facilitate the purchase and delivery
 						of goods to countries where customers can’t place an order to international e-retailers directly
@@ -599,15 +599,11 @@ export const work: Workplace[] = [
 					{ name: 'React', Icon: SiReact },
 					{ name: 'JavaScript', Icon: SiJavascript },
 					{ name: 'Material UI', Icon: null },
-					// { name: 'JSS', Icon: SiJss },
 					{ name: 'Python', Icon: SiPython },
 					{ name: 'Django', Icon: SiDjango },
-					// { name: 'Express.js', Icon: SiExpress },
 					{ name: 'Redux ', Icon: SiRedux },
 					{ name: 'Stripe API', Icon: SiStripe },
-					// { name: 'i18next', Icon: SiI18next },
 					{ name: 'Google Maps', Icon: SiGooglemaps },
-					// { name: 'JSDoc', Icon: null },
 					{ name: 'React Testing Library', Icon: SiTestinglibrary },
 				],
 				achievements: [

@@ -18,8 +18,8 @@ export const Timeline = (props: { children: JSX.Element[]; showStepper?: boolean
 							</Box>
 						</Show>
 						<Box d="flex" flexDirection="column" flex={1}>
-							<Box pb={index() !== props.children.length - 1 ? '$4' : 0}>{child}</Box>
-							{index() !== props.children.length - 1 && <Divider my="$4" />}
+							<Box>{child}</Box>
+							{index() !== props.children.length - 1 && <Divider my="$3" />}
 						</Box>
 					</Box>
 				</>

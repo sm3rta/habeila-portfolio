@@ -1,9 +1,9 @@
 const getRoleTitle = (role: 'front' | 'full' | 'se') => {
 	switch (role) {
 		case 'front':
-			return 'Front-end Web Developer';
+			return 'Front-end Developer';
 		case 'full':
-			return 'Full-stack Web Developer';
+			return 'Full-stack Developer';
 		case 'se':
 			return 'Software Engineer';
 	}

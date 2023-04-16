@@ -4,6 +4,7 @@ import { darkMode } from '../../App';
 import { Workplace } from '../../data/work';
 import { colors } from '../../ui/theme';
 import { getTitle } from '../../utils/getTitle';
+import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import ProjectSummary from './ProjectSummary';
 
 const renderCompany = (name: string, link?: string) => {
@@ -49,13 +50,13 @@ export const CompanyProjects = (props: {
 					{props.company.from} - {props.company.to}
 				</Text>
 			</Show>
-			{/* <Show when={company.description}>
-                <Text mt="$4">{company.description}</Text>
-            </Show> */}
+			<Show when={props.company.description}>
+				<Text mt="$4">{renderStringOrJsx(props.company.description)}</Text>
+			</Show>
 
-			{/* <Text fontWeight="$bold" color={darkMode() ? '$primary5' : colors.primary1} my="$4">
+			<Text fontWeight="$bold" color={darkMode() ? '$primary5' : colors.primary1} my="$4">
 				Projects:
-			</Text> */}
+			</Text>
 			<List d="flex" flexDirection="column" mt="$2">
 				<For each={projects()}>
 					{(project, index) => (

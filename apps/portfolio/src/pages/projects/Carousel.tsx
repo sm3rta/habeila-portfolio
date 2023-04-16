@@ -4,6 +4,7 @@ import { For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid
 import { styled } from 'solid-styled-components';
 import { Project as ProjectType } from '../../data/work';
 import { colors } from '../../ui/theme';
+import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { useLoopingSquareProgressBar } from './useLoopingSquareProgressBar';
 
 const transitionDurationMs = 300;
@@ -109,7 +110,7 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 							opacity={tab() === index() && !transitioning() && height() ? 1 : 0}
 							pos="absolute"
 						>
-							<Text>{typeof task.description === 'function' ? task.description() : task.description}</Text>
+							<Text>{renderStringOrJsx(task.description)}</Text>
 
 							{/* video/image container */}
 							<Show when={task.videoUrl}>

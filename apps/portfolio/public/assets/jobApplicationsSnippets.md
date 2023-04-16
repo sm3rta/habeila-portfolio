@@ -10,7 +10,7 @@
 
 ## Info
 
-- Full-stack web developer
+- Full-stack developer
 - HabeilaAhmed@gmail.com
 - (647) 979-0872
 - 80,000 CAD/Year -> 42 CAD/Hour
@@ -89,7 +89,7 @@ Please consider taking a look at my portfolio: <https://habeila.dev/>
 
 ## Achievements/Recent achievement
 
-I led a team of 4 front-end developers in the process of creating and maintaining features while setting clear design system standards for the design team to follow.
+I led a team of four front-end developers in the process of creating and maintaining features while setting clear design system standards for the design team to follow.
 
 ---
 
@@ -108,7 +108,7 @@ I led a team of 4 front-end developers in the process of creating and maintainin
 
 - How did you meet or exceed your employers’ expectations in previous jobs
 
-      In my last job, I stepped up by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks. I also showed leadership be leading a team of 4 of my peer front-end developers in the process of creating and maintaining features, reviewing their code and enforcing project-specific standards and best practices, while also setting clear design system standards for the design team to follow
+      In my last job, I stepped up by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks. I also showed leadership be leading a team of four of my peer front-end developers in the process of creating and maintaining features, reviewing their code and enforcing project-specific standards and best practices, while also setting clear design system standards for the design team to follow
 
 - How I'm going to make the company succeed
 
@@ -141,13 +141,13 @@ Looking forward to hearing back from you!
 
 ### Quint
 
-Senior Full-stack Web Developer
+Senior Full-stack Developer
 
 01/2023 - Current
 
 Quint
 
-- Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week
+- Collaborated with a team of four to launch 2 accessible, responsive websites with light/dark themes in 1 week
 - Achieved 100% Lighthouse score with optimized SEO and accessibility
 - Created UI component library based on Radix UI design system and documented on Storybook
 
@@ -173,15 +173,15 @@ Technologies used
 
 ### Calqulate
 
-Front-end web developer
+Front-end developer
 
 11/2020 - 01/2023
 
 Calqulate
 
-- Led team of 4 front-end developers to create and maintain features and set clear design system standards
+- Led team of four front-end developers to create and maintain features and set clear design system standards
 - Developed front-end monorepo architecture with 2 apps and 5 independent libraries
-- Developed a proprietary charts library using D3.js with 10 different types of charts with animations, interactive tooltips, legends and placeholders with randomly generated data
+- Developed a proprietary charts library using D3.js with 10 different types of charts with animations, interactive tooltips, legends, and placeholders with randomly generated data
 - Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles
 - Built time selectors and filters that follow a global state design pattern and sync with the URL
 - Integrated Stripe for subscription payments
@@ -212,7 +212,7 @@ Technologies used
 
 ### Coformatique
 
-Full-stack web developer
+Full-stack developer
 
 05/2020 - 11/2020
 
@@ -258,7 +258,7 @@ Full-stack web developer
 
 ### Haya Solutions
 
-Full-stack web developer
+Full-stack developer
 
 05/2018 - 05/2020
 

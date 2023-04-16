@@ -203,7 +203,7 @@ export const lightTheme = merge({}, darkTheme, lightThemeOverrides) as Override<
 	typeof lightThemeOverrides
 >;
 
-type Flat<T> = T extends object ? { [K in keyof T]: Flat<T[K]> } : T;
+export type Flat<T> = T extends object ? { [K in keyof T]: Flat<T[K]> } : T;
 
 type Override<T1 extends object, T2 extends object> = Flat<
 	{

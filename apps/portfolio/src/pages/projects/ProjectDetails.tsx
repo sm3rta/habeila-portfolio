@@ -1,6 +1,7 @@
 import { Anchor, Badge, Box, Container, Flex, Text } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
 import { Project } from '../../data/work';
+import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { SkillBadge } from '../home/SkillBadge';
 import Carousel from './Carousel';
 
@@ -39,7 +40,7 @@ const ProjectLayoutDetailed = (props: { project: Project }) => (
 		<Box>
 			{renderProjectTitle(props.project)}
 			<Text as="span" fontSize="$sm">
-				: {props.project.description}
+				: {renderStringOrJsx(props.project.description)}
 			</Text>
 		</Box>
 		<Box>

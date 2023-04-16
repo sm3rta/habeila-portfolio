@@ -12,3 +12,7 @@ html {
 .hope-notification__list {
 	top: 60px;
 }
+
+ul {
+	list-style-type: circle;
+}

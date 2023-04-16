@@ -2,6 +2,7 @@ import { Box, Text } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import { Show } from 'solid-js';
 import { BottomSectionDivider, UpperSectionDivider } from '../pages/home/SectionDivider';
+import Fade from '../ui/components/Fade';
 import { getAsteriskSectionColor, zIndexes } from '../ui/theme';
 
 export const Footer = () => {
@@ -18,7 +19,9 @@ export const Footer = () => {
 			pointerEvents="none"
 		>
 			<Show when={pathname() === '/'}>
-				<UpperSectionDivider />
+				<Fade in>
+					<UpperSectionDivider />
+				</Fade>
 			</Show>
 
 			<Show when={pathname() === '/resume'}>

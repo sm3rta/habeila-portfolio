@@ -31,7 +31,7 @@ const CoverLetter = () => {
 	const [skill2, setSkill2] = createSignal(params.skill2 ?? 'Typescript');
 	const [skill3, setSkill3] = createSignal(params.skill3 ?? 'Node.js');
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
-	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Web Developer');
+	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
 	const [pdf, setPdf] = createSignal<Params['pdf']>(params.pdf ?? 'false');
 
 	onMount(() => {
@@ -201,7 +201,7 @@ const CoverLetter = () => {
 					<Text as="span">On the back end, I have experience with Express.js, Firebase and AWS.</Text>
 					{lineBreak()}
 					<Text as="span">
-						During my time working as a senior front-end web developer for Calqulate, I led a team of four front-end
+						During my time working as a senior front-end developer for Calqulate, I led a team of four front-end
 						developers reviewing PRs and optimizing <b>code performance</b>. I developed front-end monorepo architecture
 						with two apps and five independent libraries including a proprietary charts library using D3.js, tables and
 						reusable UI components. I also developed a proprietary types SDK for API type safety.
