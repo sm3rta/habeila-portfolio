@@ -1,4 +1,5 @@
 import express from "express";
+import puppeteer from "puppeteer";
 import { Params } from "../../portfolio/src/pages/resume-raw";
 import { printWidth } from "../../portfolio/src/utils";
 
@@ -15,13 +16,15 @@ const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end", "software
 /* GET home page. */
 router.post("/", async (req, res) => {
   try {
-    const puppeteer = require("puppeteer");
     const { body } = req;
     const { url, baseUrl, height = 2000 } = body;
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      product: "firefox",
+      ignoreHTTPSErrors: true,
+    });
 
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle2" });
+    await page.goto(url, { waitUntil: "load" });
     const fileName = `AhmedHabeilaResume.pdf`;
     const path = `../../resumes/${fileName}`;
     await page.pdf({
@@ -31,11 +34,11 @@ router.post("/", async (req, res) => {
       height: Number(height) + 4,
     });
 
-    const promises: Array<() => Promise<any>> = jobTypes.map((jobType) => {
+    const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => {
       return async () => {
         const page = await browser.newPage();
         const url = `${baseUrl}?jobType=${jobType}`;
-        await page.goto(url, { waitUntil: "networkidle2" });
+        await page.goto(url, { waitUntil: "load" });
 
         const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
         const path = `../../resumes/${fileName}`;

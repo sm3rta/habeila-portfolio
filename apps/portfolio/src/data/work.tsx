@@ -1,4 +1,4 @@
-import { Anchor, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, ListItem } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
 import {
 	SiAmazonaws,
@@ -43,6 +43,7 @@ import {
 	SiZoom,
 } from 'solid-icons/si';
 import { For, JSX } from 'solid-js';
+import { Text } from '../ui/Text';
 import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
 import { NetjeekLogo } from './logos/NetjeekLogo';
@@ -159,7 +160,7 @@ export const work: Workplace[] = [
 				name: 'Quint Blog and Staking',
 				id: 'quint-blog-staking',
 				renderTitle: () => (
-					<>
+					<Text>
 						<Anchor href="https://blog.quint.io/">
 							<Text as="span">Quint blog</Text>
 						</Anchor>{' '}
@@ -167,7 +168,7 @@ export const work: Workplace[] = [
 						<Anchor href="https://stake.quint.io/">
 							<Text as="span">Quint Staking App</Text>
 						</Anchor>
-					</>
+					</Text>
 				),
 				// description: 'A web 3 platform for the Quint cryptocurrency',
 				technologies: [
@@ -179,7 +180,7 @@ export const work: Workplace[] = [
 					{ name: 'AWS Amplify', Icon: SiAwsamplify },
 					{ name: 'React', Icon: SiReact },
 					{ name: 'Next.js', Icon: SiNextdotjs },
-					{ name: 'Radix UI', Icon: null },
+					// { name: 'Radix UI', Icon: null },
 					{ name: 'Web 3', Icon: SiWeb3dotjs },
 					{ name: 'Storybook', Icon: SiStorybook },
 				],
@@ -263,39 +264,22 @@ export const work: Workplace[] = [
 			},
 		],
 	},
-	// {
-	// 	name: 'Calqulate',
-	// 	// website: 'https://calqulate.io/',
-	// 	description: (
-	// 		<>
-	// 			Led a team of 4 front-end developers in the process of creating and maintaining features while setting clear
-	// 			design system standards for the design team to follow
-	// 			<br />
-	// 			Built and maintained different libraries in a monorepo for tables, charts and reusable UI components
-	// 		</>
-	// 	),
-	// 	from: 'November 2020',
-	// 	to: 'January 2023',
-	// 	title: {
-	// 		role: 'front',
-	// 		senior: true,
-	// 	},
-	// 	projects: [],
-	// },
 	{
-		name: 'Coformatique',
-		website: 'https://www.linkedin.com/company/coformatique/',
+		name: 'Calqulate',
+		// website: 'https://calqulate.io/',
 		description: () => (
 			<>
-				Worked as a full-stack developer on varying projects in this warehouse company, using different sets of
-				technologies. Gained experience in accessibility, pixel perfect UI, responsive design and SEO.
+				Led a team of 4 front-end developers in the process of creating and maintaining features while setting clear
+				design system standards for the design team to follow
+				<br />
+				Built and maintained different libraries in a monorepo for tables, charts and reusable UI components
 			</>
 		),
-		from: 'May 2020',
+		from: 'November 2020',
 		to: 'January 2023',
 		title: {
-			role: 'full',
-			senior: false,
+			role: 'front',
+			senior: true,
 		},
 		projects: [
 			{
@@ -335,12 +319,16 @@ export const work: Workplace[] = [
 				),
 				achievements: [
 					// {
-					// 	description:
-					// 		'Led team of 4 front-end developers to create and maintain features and set clear design system standards',
+					// 	description: () => (
+					// 		<>
+					// 			{/* Led team of 4 front-end developers to create and maintain features and set clear design system standards */}
+					// 			{/* Successfully led the front-end team in the Calqulate project to achieve a 6-figure monthly income within
+					// 			six months of launch */}
+					// 		</>
+					// 	),
 					// },
 					{
-						description:
-							'Repeatedly consulted with clients to develop and document website requirements in an agile environment',
+						description: 'Consulted with clients to develop and document website requirements in an agile environment',
 					},
 					{ description: 'Developed front-end monorepo architecture with 2 apps and 5 independent libraries' },
 					{
@@ -373,7 +361,7 @@ export const work: Workplace[] = [
 				technologies: [
 					{ name: 'React', Icon: SiReact },
 					{ name: 'TypeScript', Icon: SiTypescript },
-					{ name: 'Material UI', Icon: null },
+					// { name: 'Material UI', Icon: null,  },
 					{ name: 'Turborepo', Icon: SiTurborepo },
 					{ name: 'Sentry', Icon: SiSentry },
 					{ name: 'AWS', Icon: SiAmazonaws },
@@ -386,6 +374,24 @@ export const work: Workplace[] = [
 				],
 				responsibilities: ['Front-end Web App', 'Back-end API Types SDK'],
 			},
+		],
+	},
+	{
+		name: 'Coformatique',
+		website: 'https://www.linkedin.com/company/coformatique/',
+		description: () => (
+			<>
+				Worked as a full-stack developer on varying projects in this warehouse company, using different sets of
+				technologies. Gained experience in accessibility, pixel perfect UI, responsive design and SEO.
+			</>
+		),
+		from: 'May 2020',
+		to: 'November 2020',
+		title: {
+			role: 'full',
+			senior: false,
+		},
+		projects: [
 			{
 				hideOnResume: true,
 				name: 'BMW Foundation',
@@ -481,15 +487,10 @@ export const work: Workplace[] = [
 				name: 'BMW Foundation',
 				id: 'bmw-foundation-tt',
 				renderTitle: () => (
-					<>
-						<Anchor href="https://bmw-foundation.org/">
-							<Text as="span">BMW Foundation</Text>
-						</Anchor>{' '}
-						and{' '}
-						<Anchor href="https://twentythirty.com/">
-							<Text as="span">TwentyThirty</Text>
-						</Anchor>
-					</>
+					<Text>
+						<Anchor href="https://bmw-foundation.org/">BMW Foundation</Anchor> and{' '}
+						<Anchor href="https://twentythirty.com/">TwentyThirty</Anchor>
+					</Text>
 				),
 
 				description: () => (
@@ -502,7 +503,7 @@ export const work: Workplace[] = [
 					{ name: 'React', Icon: SiReact },
 					{ name: 'Gatsby.js', Icon: SiGatsby },
 					{ name: 'TypeScript', Icon: SiTypescript },
-					{ name: 'Material UI', Icon: null },
+					// { name: 'Material UI', Icon: null },
 					{ name: 'JSS', Icon: SiJss },
 					{ name: 'Wordpress', Icon: SiWordpress },
 					{ name: 'Twitter API', Icon: SiTwitter },
@@ -512,7 +513,14 @@ export const work: Workplace[] = [
 				],
 				responsibilities: ['Website (front-end)'],
 				achievements: [
-					{ description: 'Launched two responsive websites with keyboard navigation and screen reader support' },
+					{
+						description: () => (
+							<>
+								Launched two responsive websites with keyboard navigation and screen reader support, reaching thousands
+								of organic monthly users
+							</>
+						),
+					},
 					{
 						description:
 							'Created accessibility menu with high contrast mode, dyslexia-friendly font, and animations toggle',
@@ -598,7 +606,7 @@ export const work: Workplace[] = [
 				technologies: [
 					{ name: 'React', Icon: SiReact },
 					{ name: 'JavaScript', Icon: SiJavascript },
-					{ name: 'Material UI', Icon: null },
+					// { name: 'Material UI', Icon: null },
 					{ name: 'Python', Icon: SiPython },
 					{ name: 'Django', Icon: SiDjango },
 					{ name: 'Redux ', Icon: SiRedux },

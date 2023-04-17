@@ -1,4 +1,4 @@
-import { Anchor, Box, Divider, Flex, List, ListItem } from '@hope-ui/solid';
+import { Anchor, Box, Flex, List, ListItem } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
 import { Workplace } from '../../data/work';
 import { Text } from '../../ui/Text';
@@ -53,12 +53,11 @@ export const CompanyProjects = (props: {
 				</Show>
 			</Box>
 
-			<List d="flex" flexDirection="column">
+			<List d="flex" flexDirection="column" gap="$4">
 				<For each={projects()}>
-					{(project, index) => (
+					{(project) => (
 						<ListItem>
 							<ProjectSummary project={project} />
-							{index() !== projects().length - 1 && <Divider my="$3" />}
 						</ListItem>
 					)}
 				</For>
