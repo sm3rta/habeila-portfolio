@@ -25,7 +25,7 @@ import Page2 from './Page2';
 
 export const pagePaddings = {
 	x: '$20',
-	y: '$12',
+	y: '$16',
 };
 
 export const ICON_SIZE = 20;

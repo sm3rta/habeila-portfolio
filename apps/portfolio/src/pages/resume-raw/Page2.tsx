@@ -5,7 +5,7 @@ import { ICON_SIZE, StyledDivider, StyledFlexLink, pagePaddings } from '.';
 import { Text } from '../../ui/Text';
 import { SkillBadge } from '../home/SkillBadge';
 
-const secondaryTextColor = 'var(--hope-colors-neutral9)';
+const secondaryTextColor = 'var(--hope-colors-neutral10)';
 
 const Page2 = () => {
 	return (
