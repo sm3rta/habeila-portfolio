@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 import mkcert from 'vite-plugin-mkcert';
 import solidPlugin from 'vite-plugin-solid';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import packageJson from './package.json';
 
@@ -12,8 +13,9 @@ const { dependencies } = packageJson;
 const vendorDepsArray: string[] = [];
 
 function renderChunks(deps: Record<string, string>) {
-	let chunks: Record<string, Array<string>> = {};
+	const chunks: Record<string, Array<string>> = {};
 	Object.keys(deps).forEach((key) => {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		if (vendorDepsArray.includes(key) || key.startsWith('@types/')) return;
 		chunks[key] = [key];

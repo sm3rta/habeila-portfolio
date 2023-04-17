@@ -1,27 +1,32 @@
 import express from "express";
+import puppeteer from "puppeteer";
 import { coverPrintWidth } from "../../portfolio/src/utils";
 
 const router = express.Router();
 
 router.post("/cover", async (req, res) => {
   try {
-    const puppeteer = require("puppeteer");
     const { body } = req;
     const { url, height = 2000 } = body;
-    const browser = await puppeteer.launch();
+
+    const browser = await puppeteer.launch({
+      product: "firefox",
+      ignoreHTTPSErrors: true,
+    });
 
     const page = await browser.newPage();
-    await page.goto(url + "&pdf=true", { waitUntil: "networkidle2" });
+
+    await page.goto(url + "&pdf=true", { waitUntil: "load" });
     const path = "../../resumes/AhmedHabeilaCoverLetter.pdf";
 
     await page.pdf({
       path,
-      // printBackground: true,
       width: coverPrintWidth,
       height: Number(height) + 4,
     });
 
-    await browser.close();
+    // await browser.close();
+    if (browser.process() != null) browser.process().kill("SIGINT");
 
     res.status(200).send({ message: "printed successfully" });
   } catch (err) {

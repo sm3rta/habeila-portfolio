@@ -44,7 +44,7 @@ export const createDesktopNotification = async ({
 
 	new Notification(title, {
 		body: message,
-		icon: status === 'success' ? '../../../public/check.png' : '../../../public/cross.png',
+		icon: status === 'success' ? '/check.png' : '/cross.png',
 	});
 };
 

@@ -62,7 +62,9 @@ router.post("/", async (req, res) => {
     });
 
     await Promise.all(promises.map((p) => p()));
-    await browser.close();
+
+    // await browser.close();
+    if (browser.process() != null) browser.process().kill("SIGINT");
 
     // var readStream = new stream.PassThrough();
     // readStream.end(file);
