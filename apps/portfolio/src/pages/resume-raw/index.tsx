@@ -6,11 +6,9 @@ import {
 	HopeProvider,
 	IconButton,
 	Input,
-	NotificationsProvider,
 	PropsOf,
 	Radio,
 	RadioGroup,
-	notificationService,
 } from '@hope-ui/solid';
 import { Link, useSearchParams } from '@solidjs/router';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
@@ -22,6 +20,33 @@ import { colors } from '../../ui/theme';
 import { printWidth } from '../../utils';
 import Page1 from './Page1';
 import Page2 from './Page2';
+
+export const createDesktopNotification = async ({
+	status,
+	message,
+	title,
+}: {
+	title: string;
+	status: 'success' | 'fail';
+	message: string;
+}) => {
+	if (!window.Notification) {
+		console.log('Browser does not support notifications.');
+		return;
+	}
+
+	const permission = await Notification.requestPermission();
+
+	if (permission !== 'granted') {
+		console.log('User blocked notifications.');
+		return;
+	}
+
+	new Notification(title, {
+		body: message,
+		icon: status === 'success' ? '../../../public/check.png' : '../../../public/cross.png',
+	});
+};
 
 export const pagePaddings = {
 	x: '$20',
@@ -116,22 +141,25 @@ const ResumeRaw = () => {
 		})
 			.then((res) => {
 				if (res.status === 200) {
-					notificationService.show({
-						title: 'Printed successfully',
+					createDesktopNotification({
+						message: 'Printed successfully',
+						title: 'Success',
 						status: 'success',
 					});
 					return res.blob();
 				} else {
-					notificationService.show({
-						title: 'Print failed',
-						status: 'danger',
+					createDesktopNotification({
+						message: 'Print failed',
+						title: 'Failed',
+						status: 'fail',
 					});
 				}
 			})
 			.catch(() => {
-				notificationService.show({
-					title: 'Print failed',
-					status: 'danger',
+				createDesktopNotification({
+					message: 'Print failed',
+					title: 'Failed',
+					status: 'fail',
 				});
 			});
 	};
@@ -173,78 +201,76 @@ const ResumeRaw = () => {
 				},
 			}}
 		>
-			<NotificationsProvider>
-				{/* controls */}
-				<Show when={showControls()}>
-					<Box display="grid" gridTemplateColumns="1fr 1fr" maxW="500px" p="$4" rowGap="$8">
-						<Text>Skill 1</Text>
-						<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)} />
-						<Text>Skill 2</Text>
-						<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)} />
-						<Text>Skill 3</Text>
-						<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)} />
-						<Text>Type</Text>
-						<RadioGroup defaultValue={jobType()}>
-							<Flex direction="column" gap="$4">
-								<Radio value="front-end" onChange={() => setJobType('front-end')}>
-									Specialist/Front-end
-								</Radio>
-								<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
-									Generalist/Full-stack
-								</Radio>
-								<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
-									Software Engineer
-								</Radio>
-							</Flex>
-						</RadioGroup>
-						<Text>Seniority</Text>
-						<RadioGroup defaultValue={senior().toString()}>
-							<Flex direction="column" gap="$4">
-								<Radio value="true" onChange={() => setSenior(true)}>
-									Senior
-								</Radio>
-								<Radio value="false" onChange={() => setSenior(false)}>
-									Junior
-								</Radio>
-							</Flex>
-						</RadioGroup>
-					</Box>
-				</Show>
-				{/* top invisible bar */}
-				<Box pos="fixed" top="0" right="0">
-					<IconButton
-						{...iconButtonProps}
-						size="lg"
-						as={Link}
-						href={`/cover?skill1=${skill1()}&skill2=${skill2()}&skill3=${skill3()}`}
-						aria-label="Go to cover letter"
-						icon={<BsChatLeftTextFill />}
-					/>
-					<IconButton
-						{...iconButtonProps}
-						size="lg"
-						onClick={() => setShowControls(!showControls())}
-						aria-label="Up"
-						icon={<TbStackPop />}
-					/>
-					<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
+			{/* controls */}
+			<Show when={showControls()}>
+				<Box display="grid" gridTemplateColumns="1fr 1fr" maxW="500px" p="$4" rowGap="$8">
+					<Text>Skill 1</Text>
+					<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)} />
+					<Text>Skill 2</Text>
+					<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)} />
+					<Text>Skill 3</Text>
+					<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)} />
+					<Text>Type</Text>
+					<RadioGroup defaultValue={jobType()}>
+						<Flex direction="column" gap="$4">
+							<Radio value="front-end" onChange={() => setJobType('front-end')}>
+								Specialist/Front-end
+							</Radio>
+							<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
+								Generalist/Full-stack
+							</Radio>
+							<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
+								Software Engineer
+							</Radio>
+						</Flex>
+					</RadioGroup>
+					<Text>Seniority</Text>
+					<RadioGroup defaultValue={senior().toString()}>
+						<Flex direction="column" gap="$4">
+							<Radio value="true" onChange={() => setSenior(true)}>
+								Senior
+							</Radio>
+							<Radio value="false" onChange={() => setSenior(false)}>
+								Junior
+							</Radio>
+						</Flex>
+					</RadioGroup>
 				</Box>
-				{/* header */}
-
-				{/* page 1 */}
-				<Page1
-					{...{
-						jobType: jobType(),
-						senior: senior(),
-						skill1: skill1(),
-						skill2: skill2(),
-						skill3: skill3(),
-					}}
+			</Show>
+			{/* top invisible bar */}
+			<Box pos="fixed" top="0" right="0">
+				<IconButton
+					{...iconButtonProps}
+					size="lg"
+					as={Link}
+					href={`/cover?skill1=${skill1()}&skill2=${skill2()}&skill3=${skill3()}`}
+					aria-label="Go to cover letter"
+					icon={<BsChatLeftTextFill />}
 				/>
+				<IconButton
+					{...iconButtonProps}
+					size="lg"
+					onClick={() => setShowControls(!showControls())}
+					aria-label="Up"
+					icon={<TbStackPop />}
+				/>
+				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
+			</Box>
+			{/* header */}
 
-				{/* page 2 */}
-				<Page2 />
-			</NotificationsProvider>
+			{/* page 1 */}
+			<Page1
+				{...{
+					jobType: jobType(),
+					senior: senior(),
+					skill1: skill1(),
+					skill2: skill2(),
+					skill3: skill3(),
+				}}
+			/>
+
+			{/* page 2 */}
+			<Page2 />
 		</HopeProvider>
 	);
 };
