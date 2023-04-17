@@ -27,7 +27,7 @@ const Page1 = (props: Omit<Params, 'senior'> & { senior: boolean }) => {
 				color="white"
 				gap="$4"
 			>
-				<Text variant="h1" as="span" lineHeight="normal">
+				<Text variant="h1" as="span">
 					Ahmed Habeila
 				</Text>
 
