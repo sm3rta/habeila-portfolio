@@ -18,13 +18,13 @@ router.post("/", async (req, res) => {
   try {
     const { body } = req;
     const { url, baseUrl, height = 2000 } = body;
+
     const browser = await puppeteer.launch({
-      product: "firefox",
-      ignoreHTTPSErrors: true,
+      // headless: false,
     });
 
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "load" });
+    await page.goto(url, { waitUntil: "networkidle2" });
     const fileName = `AhmedHabeilaResume.pdf`;
     const path = `../../resumes/${fileName}`;
     await page.pdf({
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
       return async () => {
         const page = await browser.newPage();
         const url = `${baseUrl}?jobType=${jobType}`;
-        await page.goto(url, { waitUntil: "load" });
+        await page.goto(url, { waitUntil: "networkidle2" });
 
         const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
         const path = `../../resumes/${fileName}`;
@@ -63,8 +63,8 @@ router.post("/", async (req, res) => {
 
     await Promise.all(promises.map((p) => p()));
 
-    // await browser.close();
-    if (browser.process() != null) browser.process().kill("SIGINT");
+    await browser.close();
+    // if (browser.process() != null) browser.process().kill("SIGINT");
 
     // var readStream = new stream.PassThrough();
     // readStream.end(file);

@@ -9,14 +9,11 @@ router.post("/cover", async (req, res) => {
     const { body } = req;
     const { url, height = 2000 } = body;
 
-    const browser = await puppeteer.launch({
-      product: "firefox",
-      ignoreHTTPSErrors: true,
-    });
+    const browser = await puppeteer.launch({});
 
     const page = await browser.newPage();
 
-    await page.goto(url + "&pdf=true", { waitUntil: "load" });
+    await page.goto(url + "&pdf=true", { waitUntil: "networkidle2" });
     const path = "../../resumes/AhmedHabeilaCoverLetter.pdf";
 
     await page.pdf({
@@ -25,8 +22,8 @@ router.post("/cover", async (req, res) => {
       height: Number(height) + 4,
     });
 
-    // await browser.close();
-    if (browser.process() != null) browser.process().kill("SIGINT");
+    await browser.close();
+    // if (browser.process() != null) browser.process().kill("SIGINT");
 
     res.status(200).send({ message: "printed successfully" });
   } catch (err) {

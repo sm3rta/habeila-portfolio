@@ -14,7 +14,7 @@ const Page2 = () => {
 				<Text variant="title">Education</Text>
 				<StyledDivider />
 				<Text>Bachelor's Degree of Computer Science and Automatic Control</Text>
-				<Text>Tanta University of Engineering, Egypt &ndash; (2014 - 2019)</Text>
+				<Text>Tanta University of Engineering &ndash; (2014 - 2019)</Text>
 				<Box d="inline" alignItems="center">
 					<Text as="span" variant="subtitle">
 						Graduation Project:{' '}

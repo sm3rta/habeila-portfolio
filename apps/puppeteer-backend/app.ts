@@ -30,7 +30,7 @@ const errorHandler: express.ErrorRequestHandler = (err, req, res, next) => {
 app.use(errorHandler);
 
 app.listen(3001, () => {
-  console.log(`Example app listening on port ${3001}`);
+  console.log(`Puppeteer Backend listening on port ${3001}`);
 });
 
 export default app;

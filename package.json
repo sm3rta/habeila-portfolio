@@ -10,7 +10,8 @@
     "build:portfolio": "yarn workspace portfolio build",
     "start": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "npx rimraf yarn.lock && npx rimraf **/node_modules && npx rimraf **/.turbo && npx rimraf **/.dist && yarn"
   },
   "devDependencies": {
     "prettier": "latest",
