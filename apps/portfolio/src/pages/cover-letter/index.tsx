@@ -1,26 +1,24 @@
 import { Anchor, Box, Button, Flex, HopeProvider, Input, Text } from '@hope-ui/solid';
 import { useSearchParams } from '@solidjs/router';
-import { Show, createEffect, createSignal, onMount } from 'solid-js';
+import { For, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { website } from '../../data/work';
 import { darkTheme as theme } from '../../ui/theme';
 import { coverPrintWidth } from '../../utils';
-import { createDesktopNotification } from '../resume-raw';
+import { TopSkills, createDesktopNotification, parseArray, stringifyArray } from '../resume-raw';
 
 export type Params = {
-	skill1: string;
-	skill2: string;
-	skill3: string;
+	skills: string;
 	companyName: string;
 	roleTitle: string;
+	adjective: string;
 	pdf: 'true' | 'false';
 };
 
 const CoverLetter = () => {
 	const [params, setParams] = useSearchParams<Params>();
 
-	const [skill1, setSkill1] = createSignal(params.skill1 ?? 'React');
-	const [skill2, setSkill2] = createSignal(params.skill2 ?? 'Typescript');
-	const [skill3, setSkill3] = createSignal(params.skill3 ?? 'Node.js');
+	const [adjective, setAdjective] = createSignal(params.adjective ?? 'Highly motivated');
+	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? ['JavaScript', 'React', 'HTML']);
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
 	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
 	const [pdf, setPdf] = createSignal<Params['pdf']>(params.pdf ?? 'false');
@@ -44,9 +42,7 @@ const CoverLetter = () => {
 	createEffect(() => {
 		setParams(
 			{
-				skill1: skill1(),
-				skill2: skill2(),
-				skill3: skill3(),
+				skills: stringifyArray(skills()),
 				companyName: companyName(),
 				roleTitle: roleTitle(),
 			},
@@ -128,7 +124,7 @@ const CoverLetter = () => {
 				components: {
 					Anchor: {
 						baseStyle: {
-							textDecoration: 'underline',
+							textDecoration: 'underline 1px',
 							_hover: {
 								color: 'var(--hope-colors-primary11)',
 								'& *': { color: 'var(--hope-colors-primary11)' },
@@ -153,17 +149,35 @@ const CoverLetter = () => {
 					rowGap="$8"
 					userSelect="none"
 				>
-					<Text>Skill 1</Text>
-					<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)} />
-					<Text>Skill 2</Text>
-					<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)} />
-					<Text>Skill 3</Text>
-					<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)} />
+					<Text>Skills</Text>
+					<Box d="grid" gap="$1">
+						<For each={skills()}>
+							{(skill, index) => (
+								<Input
+									value={skill}
+									onChange={(e) => {
+										const newSkills = skills().slice();
+										newSkills[index()] = (e.target as HTMLInputElement).value;
+										setSkills(newSkills.filter(Boolean));
+									}}
+								/>
+							)}
+						</For>
+
+						<Input
+							onChange={(e) => {
+								const newSkills = skills().slice();
+								newSkills.push((e.target as HTMLInputElement).value);
+								setSkills(newSkills.filter(Boolean));
+							}}
+						/>
+					</Box>
 					<Text>Company name</Text>
 					<Input value={companyName()} onChange={createOnChangeHandler(setCompanyName)} />
 					<Text>Role title</Text>
 					<Input value={roleTitle()} onChange={createOnChangeHandler(setRoleTitle)} />
-
+					<Text>Adjective</Text>
+					<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
 					<Button onClick={printPage} aria-label="Print">
 						Print
 					</Button>
@@ -188,8 +202,8 @@ const CoverLetter = () => {
 				</Text>
 				{lineBreak()}
 				<Text as="span">
-					I have a strong background in <b>{skill1()}</b>, <b>{skill2()}</b> and <b>{skill3()}</b>. I also have
-					experience with mobile-first design, SEO, accessibility and web development fundamentals.
+					I have a strong background in <TopSkills skills={skills} />. I also have experience with mobile-first design,
+					SEO, accessibility and web development fundamentals.
 				</Text>
 				<Text as="span">On the back end, I have experience with Express.js, Firebase and AWS.</Text>
 				{lineBreak()}
@@ -202,12 +216,17 @@ const CoverLetter = () => {
 				{lineBreak()}
 				<Text as="span">
 					I am excited about the opportunity to bring my skills and experience to your company and contribute to the
-					continued success of your web development team. Thank you so much for considering my application.
+					continued success of your web development team.
 				</Text>
 				{lineBreak()}
 				<Text as="span">
-					Please also consider taking a look at{' '}
-					{pdf() === 'false' ? `my portfolio at ${website}` : <Anchor href={website}>my portfolio</Anchor>}
+					{pdf() === 'false' ? (
+						`You can find my portfolio at ${website}`
+					) : (
+						<>
+							Here is <Anchor href={website}>my portfolio</Anchor>
+						</>
+					)}
 				</Text>
 				{lineBreak()}
 				<Text as="span">Sincerely,</Text>

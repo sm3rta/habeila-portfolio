@@ -48,6 +48,7 @@ router.post("/", async (req, res) => {
           printBackground: true,
           width: printWidth,
           height: Number(height) + 4,
+          // format: "A3",
         });
 
         if (jobType === "front-end") {

@@ -120,7 +120,7 @@ export const darkTheme = {
 		},
 		Anchor: {
 			baseStyle: {
-				textDecoration: 'underline',
+				textDecoration: 'underline 1px',
 				_hover: {
 					color: colors.secondary5,
 					'& *': {
@@ -186,7 +186,7 @@ const lightThemeOverrides = {
 		},
 		Anchor: {
 			baseStyle: {
-				textDecoration: 'underline',
+				textDecoration: 'underline 1px',
 				_hover: {
 					color: colors.secondary5,
 					'& *': {

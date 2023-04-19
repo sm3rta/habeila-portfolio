@@ -174,7 +174,7 @@ export const work: Workplace[] = [
 				technologies: [
 					{ name: 'Astro', Icon: SiAstro },
 					{ name: 'Solid.js', Icon: SiSolid },
-					{ name: 'Typescript', Icon: SiTypescript },
+					{ name: 'TypeScript', Icon: SiTypescript },
 					{ name: 'Tailwind CSS', Icon: SiTailwindcss },
 					{ name: 'Disqus', Icon: SiDisqus },
 					{ name: 'AWS Amplify', Icon: SiAwsamplify },
@@ -205,7 +205,7 @@ export const work: Workplace[] = [
 				technologies: [
 					{ name: 'Astro', Icon: SiAstro },
 					{ name: 'Solid.js', Icon: SiSolid },
-					{ name: 'Typescript', Icon: SiTypescript },
+					{ name: 'TypeScript', Icon: SiTypescript },
 					{ name: 'Tailwind CSS', Icon: SiTailwindcss },
 					{ name: 'Disqus', Icon: SiDisqus },
 					{ name: 'AWS Amplify', Icon: SiAwsamplify },
@@ -244,7 +244,7 @@ export const work: Workplace[] = [
 				technologies: [
 					{ name: 'React', Icon: SiReact },
 					{ name: 'Next.js', Icon: SiNextdotjs },
-					{ name: 'Typescript', Icon: SiTypescript },
+					{ name: 'TypeScript', Icon: SiTypescript },
 					{ name: 'Radix UI', Icon: null },
 					{ name: 'Tailwind CSS', Icon: SiTailwindcss },
 					{ name: 'Web 3', Icon: SiWeb3dotjs },
@@ -318,19 +318,26 @@ export const work: Workplace[] = [
 					</>
 				),
 				achievements: [
-					// {
-					// 	description: () => (
-					// 		<>
-					// 			{/* Led team of 4 front-end developers to create and maintain features and set clear design system standards */}
-					// 			{/* Successfully led the front-end team in the Calqulate project to achieve a 6-figure monthly income within
-					// 			six months of launch */}
-					// 		</>
-					// 	),
-					// },
 					{
-						description: 'Consulted with clients to develop and document website requirements in an agile environment',
+						description:
+							'Communicated with clients to develop and document website requirements in an agile environment',
 					},
-					{ description: 'Developed front-end monorepo architecture with 2 apps and 5 independent libraries' },
+					{
+						description: () => (
+							<>
+								Led team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5
+								independent libraries
+								{/* to create and maintain features and set clear design system standards */}
+								{/* Successfully led the front-end team in the Calqulate project to achieve a 6-figure monthly income within
+								six months of launch */}
+							</>
+						),
+					},
+					// { description: 'Developed front-end monorepo architecture with 2 apps and 5 independent libraries' },
+					// {
+					// 	description:
+					// 		'Developed 3 libraries for tables (Devexpress), charts (D3) and reusable UI components (Material UI)',
+					// },
 					{
 						description: () => (
 							<>
@@ -339,6 +346,7 @@ export const work: Workplace[] = [
 							</>
 						),
 						videoUrl: '/assets/projects/calqulate/CalqulateCharts.webm',
+						hideOnResume: true,
 					},
 					{
 						description:
@@ -354,9 +362,10 @@ export const work: Workplace[] = [
 					{
 						description:
 							'Built time selectors and filters that follow a global state design pattern and sync with the URL',
+						hideOnResume: true,
 					},
 					{ description: 'Integrated Stripe for subscription payments', hideOnResume: true },
-					{ description: 'Developed proprietary types SDK for API type safety' },
+					{ description: 'Enhanced developer experience by developing a proprietary types SDK for API type safety' },
 				],
 				technologies: [
 					{ name: 'React', Icon: SiReact },
@@ -516,8 +525,8 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Launched two responsive websites with keyboard navigation and screen reader support, reaching thousands
-								of organic monthly users
+								Launched two responsive, accessible SEO-focused websites, increasing the reach to thousands of organic
+								monthly users
 							</>
 						),
 					},
@@ -648,7 +657,7 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 // 	<>
 // 		Highly motivated software engineer with 5 years of professional experience as a web developer mainly in front-end
 // 		development using React, with excellent interpersonal skills to work with a team and clients and strong
-// 		understanding of Typescript and web development fundamentals.
+// 		understanding of TypeScript and web development fundamentals.
 // 	</>
 // );
 

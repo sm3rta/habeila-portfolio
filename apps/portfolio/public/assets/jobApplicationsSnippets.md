@@ -155,14 +155,14 @@ Technologies used
 
 - Astro
 - Solid.js
-- Typescript
+- TypeScript
 - Tailwind CSS
 - Next.js
 - Disqus
 - GitLab
 - React
 - Next.js
-- Typescript
+- TypeScript
 - Radix UI
 - Tailwind CSS
 - Web 3

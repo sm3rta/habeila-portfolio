@@ -3,23 +3,57 @@ import {
 	Box,
 	Divider,
 	Flex,
+	Grid,
 	HopeProvider,
 	IconButton,
 	Input,
+	ListItem,
 	PropsOf,
 	Radio,
 	RadioGroup,
 } from '@hope-ui/solid';
 import { Link, useSearchParams } from '@solidjs/router';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
+import { FaSolidLocationDot } from 'solid-icons/fa';
+import { HiOutlineMail } from 'solid-icons/hi';
+import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
+import { SiApache, SiCplusplus, SiGithub, SiLinux } from 'solid-icons/si';
 import { TbStackPop } from 'solid-icons/tb';
-import { ComponentProps, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { Accessor, ComponentProps, For, JSX, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
+import { telephoneNumber, telephoneNumberStylized, website, work } from '../../data/work';
 import { Text } from '../../ui/Text';
 import { colors } from '../../ui/theme';
 import { printWidth } from '../../utils';
-import Page1 from './Page1';
-import Page2 from './Page2';
+import { socials } from '../home/Contact';
+import { SkillBadge } from '../home/SkillBadge';
+import { CompanyProjects } from './CompanyProjects';
+import { Timeline } from './Timeline';
+
+const secondaryTextColor = 'var(--hope-colors-neutral10)';
+
+export const TopSkills = (props: { skills: Accessor<string[]> }) => {
+	const [node, setNode] = createSignal<JSX.Element | null>();
+
+	createEffect(() => {
+		setNode(
+			<For each={props.skills()}>
+				{(skill, index) =>
+					index() === props.skills().length - 1 ? (
+						<>
+							and <b>{skill}</b>
+						</>
+					) : (
+						<>
+							<b>{skill}</b>,{' '}
+						</>
+					)
+				}
+			</For>
+		);
+	});
+	return node;
+};
 
 export const createDesktopNotification = async ({
 	status,
@@ -49,28 +83,39 @@ export const createDesktopNotification = async ({
 };
 
 export const pagePaddings = {
-	x: '$20',
-	y: '$16',
+	x: '$24',
+	y: '$12',
 };
 
 export const ICON_SIZE = 20;
 
-export const StyledDivider = styled((props: PropsOf<typeof Divider>) => <Divider {...props} />)({
-	marginBlock: '0.5rem',
+export const StyledDivider = styled((props: PropsOf<typeof Divider> & { noMargin?: boolean }) => (
+	<Divider {...props} />
+))(({ noMargin }) => ({
+	marginBlock: noMargin ? 0 : '0.5rem',
 	backgroundColor: 'gray',
-	height: '2px',
-});
+	// height: '2px',
+}));
 
 export const StyledFlexLink = (props: ComponentProps<typeof Flex>) => (
 	<Anchor d="flex" target="_blank" alignItems="center" w="fit-content" {...props} />
 );
 
 export type Params = {
-	skill1: string;
-	skill2: string;
-	skill3: string;
+	skills: string;
 	senior: string;
 	jobType: 'full-stack' | 'front-end' | 'softwareEngineer';
+	adjective: string;
+};
+
+const SPLIT_CHARACTER = '-';
+export const parseArray = (str: string | undefined) => {
+	if (!str) return undefined;
+	return str.split(SPLIT_CHARACTER);
+};
+
+export const stringifyArray = (arr: string[]) => {
+	return arr.join(SPLIT_CHARACTER);
 };
 
 const ResumeRaw = () => {
@@ -78,10 +123,9 @@ const ResumeRaw = () => {
 
 	const [params, setParams] = useSearchParams<Params>();
 
-	const [skill1, setSkill1] = createSignal(params.skill1 ?? 'React');
-	const [skill2, setSkill2] = createSignal(params.skill2 ?? 'Typescript');
-	const [skill3, setSkill3] = createSignal(params.skill3 ?? 'Node.js');
-	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : false);
+	const [adjective, setAdjective] = createSignal(params.adjective ?? 'Highly motivated');
+	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? ['React', 'JavaScript', 'HTML/CSS']);
+	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : true);
 	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>(
 		params.jobType ?? 'front-end'
 	);
@@ -89,9 +133,7 @@ const ResumeRaw = () => {
 	createEffect(() => {
 		setParams(
 			{
-				skill1: skill1(),
-				skill2: skill2(),
-				skill3: skill3(),
+				skills: stringifyArray(skills()),
 				senior: senior().toString(),
 				jobType: jobType(),
 			},
@@ -171,6 +213,9 @@ const ResumeRaw = () => {
 		_hover: { background: colors.primary6, color: 'black !important', '&>svg': { opacity: 1 } },
 	};
 
+	const forceRole = () => (jobType() === 'full-stack' ? 'full' : jobType() === 'softwareEngineer' ? 'se' : undefined);
+	const forceNonSenior = () => (senior() ? undefined : true);
+
 	return (
 		<HopeProvider
 			config={{
@@ -189,7 +234,7 @@ const ResumeRaw = () => {
 				components: {
 					Anchor: {
 						baseStyle: {
-							textDecoration: 'underline',
+							textDecoration: 'underline 1px',
 							position: 'unset',
 							_hover: {
 								color: 'var(--hope-colors-primary11)',
@@ -204,12 +249,30 @@ const ResumeRaw = () => {
 			{/* controls */}
 			<Show when={showControls()}>
 				<Box display="grid" gridTemplateColumns="1fr 1fr" maxW="500px" p="$4" rowGap="$8">
-					<Text>Skill 1</Text>
-					<Input value={skill1()} onChange={createOnChangeHandler(setSkill1)} />
-					<Text>Skill 2</Text>
-					<Input value={skill2()} onChange={createOnChangeHandler(setSkill2)} />
-					<Text>Skill 3</Text>
-					<Input value={skill3()} onChange={createOnChangeHandler(setSkill3)} />
+					<Text>Skills</Text>
+					<Box d="grid" gap="$1">
+						<For each={skills()}>
+							{(skill, index) => (
+								<Input
+									value={skill}
+									onChange={(e) => {
+										const newSkills = skills().slice();
+										newSkills[index()] = (e.target as HTMLInputElement).value;
+										setSkills(newSkills.filter(Boolean));
+									}}
+								/>
+							)}
+						</For>
+
+						<Input
+							onChange={(e) => {
+								const newSkills = skills().slice();
+								newSkills.push((e.target as HTMLInputElement).value);
+								setSkills(newSkills.filter(Boolean));
+							}}
+						/>
+					</Box>
+
 					<Text>Type</Text>
 					<RadioGroup defaultValue={jobType()}>
 						<Flex direction="column" gap="$4">
@@ -235,6 +298,8 @@ const ResumeRaw = () => {
 							</Radio>
 						</Flex>
 					</RadioGroup>
+					<Text>Adjective</Text>
+					<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
 				</Box>
 			</Show>
 			{/* top invisible bar */}
@@ -243,7 +308,7 @@ const ResumeRaw = () => {
 					{...iconButtonProps}
 					size="lg"
 					as={Link}
-					href={`/cover?skill1=${skill1()}&skill2=${skill2()}&skill3=${skill3()}`}
+					href={`/cover?skills=${stringifyArray(skills())}&adjective=${adjective()}`}
 					aria-label="Go to cover letter"
 					icon={<BsChatLeftTextFill />}
 				/>
@@ -259,18 +324,173 @@ const ResumeRaw = () => {
 			{/* header */}
 
 			{/* page 1 */}
-			<Page1
-				{...{
-					jobType: jobType(),
-					senior: senior(),
-					skill1: skill1(),
-					skill2: skill2(),
-					skill3: skill3(),
-				}}
-			/>
+			<Flex
+				direction="column"
+				px={pagePaddings.x}
+				pt={pagePaddings.y}
+				pb={pagePaddings.y}
+				// bgColor="var(--hope-colors-info12)"
+				// color="white"
+				gap="$4"
+				alignItems="center"
+			>
+				<Text variant="h1">Ahmed Habeila</Text>
+				<Text variant="title" textTransform="unset" fontWeight="normal">
+					{adjective()}{' '}
+					{
+						{
+							'full-stack': 'full-stack developer',
+							softwareEngineer: 'software engineer',
+							'front-end': 'front-end developer',
+						}[jobType()]
+					}
+				</Text>
+				<StyledDivider noMargin />
+
+				<Flex gap="$8">
+					<Flex alignItems="center">
+						<FaSolidLocationDot size={ICON_SIZE} />
+						<Text ml="$2">North York, ON, M3A 2E2</Text>
+					</Flex>
+
+					<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
+						<RiDeviceSmartphoneLine size={ICON_SIZE} />
+						<Text ml="$2">{telephoneNumberStylized}</Text>
+					</StyledFlexLink>
+
+					<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!" textDecoration="none">
+						<HiOutlineMail size={ICON_SIZE} />
+						<Text ml="$2">HabeilaAhmed@gmail.com</Text>
+					</StyledFlexLink>
+				</Flex>
+
+				<Flex gap="$8">
+					<For
+						each={[
+							{ name: 'Portfolio', href: website, Icon: RiDocumentBookMarkFill },
+							socials.find((s) => s.name === 'LinkedIn')!,
+							socials.find((s) => s.name === 'Github')!,
+						]}
+					>
+						{({ href, Icon, name }) => (
+							<StyledFlexLink gap="$2" href={href} as={Anchor}>
+								<Icon size={ICON_SIZE} />
+								<Text>{name}</Text>
+							</StyledFlexLink>
+						)}
+					</For>
+				</Flex>
+			</Flex>
+			<Box as="main" px={pagePaddings.x} pb={pagePaddings.y}>
+				<Show when={skills().length}>
+					<Flex direction="column">
+						<Text variant="title">Summary of Qualifications</Text>
+						<StyledDivider />
+						<Flex mt="$2" direction="column" as="ul">
+							<For
+								each={[
+									<>5+ years of experience building elegant and performant user experiences</>,
+									// helping companies create and maintain a better code base for reusability
+									<>
+										Strong background in <TopSkills skills={skills} /> with high flexibility to work with any stack
+										{/* and web development fundamentals */}
+									</>,
+									'Demonstrated ability to lead other developers, performing code reviews and enforcing certain patterns',
+									'Proficient in communication, capable of effectively interacting with clients to establish and record their needs',
+								]}
+							>
+								{(item) => (
+									<ListItem ml="$6">
+										<Text>{item}</Text>
+									</ListItem>
+								)}
+							</For>
+						</Flex>
+					</Flex>
+				</Show>
+
+				<Grid mt="$8">
+					<Text variant="title">Work Experience</Text>
+					<StyledDivider />
+					<Timeline
+						children={work.map((company) => (
+							<CompanyProjects forceRole={forceRole} company={company} forceNonSenior={forceNonSenior} />
+						))}
+					/>
+				</Grid>
+			</Box>
 
 			{/* page 2 */}
-			<Page2 />
+			<Box as="main" px={pagePaddings.x} py={pagePaddings.y} id="page2">
+				<Flex direction="column">
+					<Text variant="title">Education</Text>
+					<StyledDivider />
+					<Text>Bachelor's Degree of Computer Science and Automatic Control</Text>
+					<Text>Tanta University of Engineering &ndash; (2014 - 2019)</Text>
+					<Box d="inline" alignItems="center">
+						<Text as="span" variant="subtitle">
+							Graduation Project:{' '}
+						</Text>
+						<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="inline-flex">
+							<Text mr="$2" d="contents" as="span">
+								An Express-like C++ web application framework
+							</Text>
+							<SiGithub
+								size={ICON_SIZE}
+								style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
+							/>
+						</StyledFlexLink>
+					</Box>
+					<Text>
+						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
+						build full-fledged back-end multi-threaded API servers with middleware support and connect it to the desired
+						database in C++
+					</Text>
+					<Flex gap="$2" wrap="wrap" mt="$2">
+						<For
+							each={[
+								{ name: 'C++17', Icon: SiCplusplus },
+								{ name: 'CGI', Icon: null },
+								{ name: 'Apache', Icon: SiApache },
+								{ name: 'Multithreading', Icon: null },
+								{ name: 'Linux', Icon: SiLinux },
+							]}
+						>
+							{(skill) => <SkillBadge skill={skill} />}
+						</For>
+					</Flex>
+				</Flex>
+
+				<Flex direction="column" mt="$8">
+					<Text variant="title">Self-taught Courses</Text>
+					<StyledDivider />
+					<Flex direction="column">
+						<For
+							each={[
+								{ course: 'Mastering React', subtitle: '(by Mosh Hamedani)' },
+								{ course: 'Node.js - The Complete Guide to Build RESTful APIs', subtitle: '(by Mosh Hamedani)' },
+								{ course: 'CSS - The Complete Guide', subtitle: '(by Maximilian Schwarzmüller)' },
+								{
+									course: 'Vue - The Complete Guide (w/ Router, Vuex, Composition API)',
+									subtitle: '(by Maximilian Schwarzmüller)',
+								},
+								{ course: 'Master C++ and OOP', subtitle: '(Learncpp.com)' },
+								{ course: 'Introduction to Game Development Specialization', subtitle: '(Coursera)' },
+							]}
+						>
+							{({ course, subtitle }) => (
+								<Flex>
+									<Text d="contents">{course}</Text>
+									<Text d="contents" color={secondaryTextColor}>
+										{' '}
+										{subtitle}
+									</Text>
+								</Flex>
+							)}
+						</For>
+					</Flex>
+				</Flex>
+			</Box>
 		</HopeProvider>
 	);
 };
