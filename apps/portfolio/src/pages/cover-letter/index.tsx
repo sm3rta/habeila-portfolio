@@ -45,6 +45,7 @@ const CoverLetter = () => {
 				skills: stringifyArray(skills()),
 				companyName: companyName(),
 				roleTitle: roleTitle(),
+				adjective: adjective(),
 			},
 			{ replace: true }
 		);
@@ -202,8 +203,8 @@ const CoverLetter = () => {
 				</Text>
 				{lineBreak()}
 				<Text as="span">
-					I have a strong background in <TopSkills skills={skills} />. I also have experience with mobile-first design,
-					SEO, accessibility and web development fundamentals.
+					I have a strong background in <TopSkills skills={skills()} />. I also have experience with mobile-first
+					design, SEO, accessibility and web development fundamentals.
 				</Text>
 				<Text as="span">On the back end, I have experience with Express.js, Firebase and AWS.</Text>
 				{lineBreak()}

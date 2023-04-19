@@ -1,6 +1,7 @@
 import {
 	Anchor,
 	Box,
+	Button,
 	Divider,
 	Flex,
 	Grid,
@@ -19,7 +20,7 @@ import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import { SiApache, SiCplusplus, SiGithub, SiLinux } from 'solid-icons/si';
 import { TbStackPop } from 'solid-icons/tb';
-import { Accessor, ComponentProps, For, JSX, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { ComponentProps, For, JSX, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { telephoneNumber, telephoneNumberStylized, website, work } from '../../data/work';
 import { Text } from '../../ui/Text';
@@ -32,14 +33,14 @@ import { Timeline } from './Timeline';
 
 const secondaryTextColor = 'var(--hope-colors-neutral10)';
 
-export const TopSkills = (props: { skills: Accessor<string[]> }) => {
+export const TopSkills = (props: { skills: string[] }) => {
 	const [node, setNode] = createSignal<JSX.Element | null>();
 
 	createEffect(() => {
-		setNode(
-			<For each={props.skills()}>
+		setNode(() => (
+			<For each={props.skills}>
 				{(skill, index) =>
-					index() === props.skills().length - 1 ? (
+					index() === props.skills.length - 1 ? (
 						<>
 							and <b>{skill}</b>
 						</>
@@ -50,9 +51,9 @@ export const TopSkills = (props: { skills: Accessor<string[]> }) => {
 					)
 				}
 			</For>
-		);
+		));
 	});
-	return node;
+	return node as unknown as JSX.Element;
 };
 
 export const createDesktopNotification = async ({
@@ -113,21 +114,25 @@ export const parseArray = (str: string | undefined) => {
 	if (!str) return undefined;
 	return str.split(SPLIT_CHARACTER);
 };
+export const stringifyArray = (arr: string[]) => arr.join(SPLIT_CHARACTER);
 
-export const stringifyArray = (arr: string[]) => {
-	return arr.join(SPLIT_CHARACTER);
-};
+const paramsDefaultValues = {
+	skills: ['React', 'JavaScript', 'HTML/CSS'],
+	senior: true,
+	jobType: 'front-end',
+	adjective: 'Highly motivated',
+} as const;
 
 const ResumeRaw = () => {
 	const [showControls, setShowControls] = createSignal(false);
 
 	const [params, setParams] = useSearchParams<Params>();
 
-	const [adjective, setAdjective] = createSignal(params.adjective ?? 'Highly motivated');
-	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? ['React', 'JavaScript', 'HTML/CSS']);
-	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : true);
+	const [adjective, setAdjective] = createSignal(params.adjective ?? paramsDefaultValues.adjective);
+	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? paramsDefaultValues.skills.slice());
+	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : paramsDefaultValues.senior);
 	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>(
-		params.jobType ?? 'front-end'
+		params.jobType ?? paramsDefaultValues.jobType
 	);
 
 	createEffect(() => {
@@ -136,6 +141,7 @@ const ResumeRaw = () => {
 				skills: stringifyArray(skills()),
 				senior: senior().toString(),
 				jobType: jobType(),
+				adjective: adjective(),
 			},
 			{ replace: true }
 		);
@@ -157,16 +163,24 @@ const ResumeRaw = () => {
 		setFn(value);
 	};
 
-	const printPage = async () => {
-		const root = document.getElementById('root');
-		const page2 = document.getElementById('page2');
-		if (!root || !page2) return;
+	const [printing, setPrinting] = createSignal(false);
 
-		root.style.width = `${printWidth}px`;
+	const printPage = async () => {
+		const main = document.getElementById('main');
+		const page2 = document.getElementById('page2');
+		if (!main || !page2) return;
+
+		main.style.width = `${printWidth}px`;
 		page2.style.display = 'none';
-		const height = root.scrollHeight;
-		root.style.width = '';
+
+		setPrinting(true);
+		const height = main.scrollHeight;
+		main.style.width = '';
 		page2.style.display = 'block';
+
+		setTimeout(() => {
+			setPrinting(false);
+		}, 0);
 
 		const body = {
 			url: window.location.href,
@@ -300,6 +314,16 @@ const ResumeRaw = () => {
 					</RadioGroup>
 					<Text>Adjective</Text>
 					<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
+					<Button
+						onClick={() => {
+							setSkills(paramsDefaultValues.skills.slice());
+							setJobType(paramsDefaultValues.jobType);
+							setSenior(paramsDefaultValues.senior);
+							setAdjective(paramsDefaultValues.adjective);
+						}}
+					>
+						Reset
+					</Button>
 				</Box>
 			</Show>
 			{/* top invisible bar */}
@@ -321,176 +345,179 @@ const ResumeRaw = () => {
 				/>
 				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
 			</Box>
-			{/* header */}
-
-			{/* page 1 */}
-			<Flex
-				direction="column"
-				px={pagePaddings.x}
-				pt={pagePaddings.y}
-				pb={pagePaddings.y}
-				// bgColor="var(--hope-colors-info12)"
-				// color="white"
-				gap="$4"
-				alignItems="center"
-			>
-				<Text variant="h1">Ahmed Habeila</Text>
-				<Text variant="title" textTransform="unset" fontWeight="normal">
-					{adjective()}{' '}
-					{
+			{/* main */}
+			<Flex as="main" direction="column" id="main" w={printing() ? printWidth : 'auto'}>
+				{/* header */}
+				<Flex
+					direction="column"
+					px={pagePaddings.x}
+					pt={pagePaddings.y}
+					pb={pagePaddings.y}
+					// bgColor="var(--hope-colors-info12)"
+					// color="white"
+					gap="$4"
+					alignItems="center"
+				>
+					<Text variant="h1">Ahmed Habeila</Text>
+					<Text variant="title" textTransform="unset" fontWeight="normal">
+						{adjective()}{' '}
 						{
-							'full-stack': 'full-stack developer',
-							softwareEngineer: 'software engineer',
-							'front-end': 'front-end developer',
-						}[jobType()]
-					}
-				</Text>
-				<StyledDivider noMargin />
-
-				<Flex gap="$8">
-					<Flex alignItems="center">
-						<FaSolidLocationDot size={ICON_SIZE} />
-						<Text ml="$2">North York, ON, M3A 2E2</Text>
-					</Flex>
-
-					<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
-						<RiDeviceSmartphoneLine size={ICON_SIZE} />
-						<Text ml="$2">{telephoneNumberStylized}</Text>
-					</StyledFlexLink>
-
-					<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!" textDecoration="none">
-						<HiOutlineMail size={ICON_SIZE} />
-						<Text ml="$2">HabeilaAhmed@gmail.com</Text>
-					</StyledFlexLink>
-				</Flex>
-
-				<Flex gap="$8">
-					<For
-						each={[
-							{ name: 'Portfolio', href: website, Icon: RiDocumentBookMarkFill },
-							socials.find((s) => s.name === 'LinkedIn')!,
-							socials.find((s) => s.name === 'Github')!,
-						]}
-					>
-						{({ href, Icon, name }) => (
-							<StyledFlexLink gap="$2" href={href} as={Anchor}>
-								<Icon size={ICON_SIZE} />
-								<Text>{name}</Text>
-							</StyledFlexLink>
-						)}
-					</For>
-				</Flex>
-			</Flex>
-			<Box as="main" px={pagePaddings.x} pb={pagePaddings.y}>
-				<Show when={skills().length}>
-					<Flex direction="column">
-						<Text variant="title">Summary of Qualifications</Text>
-						<StyledDivider />
-						<Flex mt="$2" direction="column" as="ul">
-							<For
-								each={[
-									<>5+ years of experience building elegant and performant user experiences</>,
-									// helping companies create and maintain a better code base for reusability
-									<>
-										Strong background in <TopSkills skills={skills} /> with high flexibility to work with any stack
-										{/* and web development fundamentals */}
-									</>,
-									'Demonstrated ability to lead other developers, performing code reviews and enforcing certain patterns',
-									'Proficient in communication, capable of effectively interacting with clients to establish and record their needs',
-								]}
-							>
-								{(item) => (
-									<ListItem ml="$6">
-										<Text>{item}</Text>
-									</ListItem>
-								)}
-							</For>
-						</Flex>
-					</Flex>
-				</Show>
-
-				<Grid mt="$8">
-					<Text variant="title">Work Experience</Text>
-					<StyledDivider />
-					<Timeline
-						children={work.map((company) => (
-							<CompanyProjects forceRole={forceRole} company={company} forceNonSenior={forceNonSenior} />
-						))}
-					/>
-				</Grid>
-			</Box>
-
-			{/* page 2 */}
-			<Box as="main" px={pagePaddings.x} py={pagePaddings.y} id="page2">
-				<Flex direction="column">
-					<Text variant="title">Education</Text>
-					<StyledDivider />
-					<Text>Bachelor's Degree of Computer Science and Automatic Control</Text>
-					<Text>Tanta University of Engineering &ndash; (2014 - 2019)</Text>
-					<Box d="inline" alignItems="center">
-						<Text as="span" variant="subtitle">
-							Graduation Project:{' '}
-						</Text>
-						<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="inline-flex">
-							<Text mr="$2" d="contents" as="span">
-								An Express-like C++ web application framework
-							</Text>
-							<SiGithub
-								size={ICON_SIZE}
-								style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
-							/>
-						</StyledFlexLink>
-					</Box>
-					<Text>
-						A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
-						build full-fledged back-end multi-threaded API servers with middleware support and connect it to the desired
-						database in C++
+							{
+								'full-stack': 'full-stack developer',
+								softwareEngineer: 'software engineer',
+								'front-end': 'front-end developer',
+							}[jobType()]
+						}
 					</Text>
-					<Flex gap="$2" wrap="wrap" mt="$2">
-						<For
-							each={[
-								{ name: 'C++17', Icon: SiCplusplus },
-								{ name: 'CGI', Icon: null },
-								{ name: 'Apache', Icon: SiApache },
-								{ name: 'Multithreading', Icon: null },
-								{ name: 'Linux', Icon: SiLinux },
-							]}
-						>
-							{(skill) => <SkillBadge skill={skill} />}
-						</For>
-					</Flex>
-				</Flex>
+					<StyledDivider noMargin />
 
-				<Flex direction="column" mt="$8">
-					<Text variant="title">Self-taught Courses</Text>
-					<StyledDivider />
-					<Flex direction="column">
+					<Flex gap="$8">
+						<Flex alignItems="center">
+							<FaSolidLocationDot size={ICON_SIZE} />
+							<Text ml="$2">North York, ON, M3A 2E2</Text>
+						</Flex>
+
+						<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
+							<RiDeviceSmartphoneLine size={ICON_SIZE} />
+							<Text ml="$2">{telephoneNumberStylized}</Text>
+						</StyledFlexLink>
+
+						<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!" textDecoration="none">
+							<HiOutlineMail size={ICON_SIZE} />
+							<Text ml="$2">HabeilaAhmed@gmail.com</Text>
+						</StyledFlexLink>
+					</Flex>
+
+					<Flex gap="$8">
 						<For
 							each={[
-								{ course: 'Mastering React', subtitle: '(by Mosh Hamedani)' },
-								{ course: 'Node.js - The Complete Guide to Build RESTful APIs', subtitle: '(by Mosh Hamedani)' },
-								{ course: 'CSS - The Complete Guide', subtitle: '(by Maximilian Schwarzmüller)' },
-								{
-									course: 'Vue - The Complete Guide (w/ Router, Vuex, Composition API)',
-									subtitle: '(by Maximilian Schwarzmüller)',
-								},
-								{ course: 'Master C++ and OOP', subtitle: '(Learncpp.com)' },
-								{ course: 'Introduction to Game Development Specialization', subtitle: '(Coursera)' },
+								{ name: 'Portfolio', href: website, Icon: RiDocumentBookMarkFill },
+								socials.find((s) => s.name === 'LinkedIn')!,
+								socials.find((s) => s.name === 'Github')!,
 							]}
 						>
-							{({ course, subtitle }) => (
-								<Flex>
-									<Text d="contents">{course}</Text>
-									<Text d="contents" color={secondaryTextColor}>
-										{' '}
-										{subtitle}
-									</Text>
-								</Flex>
+							{({ href, Icon, name }) => (
+								<StyledFlexLink gap="$2" href={href} as={Anchor}>
+									<Icon size={ICON_SIZE} />
+									<Text>{name}</Text>
+								</StyledFlexLink>
 							)}
 						</For>
 					</Flex>
 				</Flex>
-			</Box>
+				{/* page 1 */}
+
+				<Box px={pagePaddings.x} pb={pagePaddings.y}>
+					<Show when={skills().length}>
+						<Flex direction="column">
+							<Text variant="title">Professional summary</Text>
+							<StyledDivider />
+							<Flex mt="$2" direction="column" as="ul">
+								<For
+									each={[
+										<>5+ years of experience building elegant and performant user experiences</>,
+										// helping companies create and maintain a better code base for reusability
+										<>
+											Strong background in <TopSkills skills={skills()} /> with high flexibility to work with any stack
+											{/* and web development fundamentals */}
+										</>,
+										'Demonstrated ability to lead other developers, performing code reviews and enforcing certain patterns',
+										'Proficient in communication, capable of effectively interacting with clients to establish and record their needs',
+									]}
+								>
+									{(item) => (
+										<ListItem ml="$6">
+											<Text>{item}</Text>
+										</ListItem>
+									)}
+								</For>
+							</Flex>
+						</Flex>
+					</Show>
+
+					<Grid mt="$8">
+						<Text variant="title">Work Experience</Text>
+						<StyledDivider />
+						<Timeline
+							children={work.map((company) => (
+								<CompanyProjects forceRole={forceRole} company={company} forceNonSenior={forceNonSenior} />
+							))}
+						/>
+					</Grid>
+				</Box>
+
+				{/* page 2 */}
+				<Box px={pagePaddings.x} py={pagePaddings.y} id="page2" d={printing() ? 'none' : 'block'}>
+					<Flex direction="column">
+						<Text variant="title">Education</Text>
+						<StyledDivider />
+						<Text>Bachelor's Degree of Computer Science and Automatic Control</Text>
+						<Text>Tanta University of Engineering &ndash; (2014 - 2019)</Text>
+						<Box d="inline" alignItems="center">
+							<Text as="span" variant="subtitle">
+								Graduation Project:{' '}
+							</Text>
+							<StyledFlexLink href="https://github.com/darwishdd/cpp_webapi_framework" d="inline-flex">
+								<Text mr="$2" d="contents" as="span">
+									An Express-like C++ web application framework
+								</Text>
+								<SiGithub
+									size={ICON_SIZE}
+									style={{ display: 'inline', 'margin-left': '8px', 'vertical-align': 'baseline' }}
+								/>
+							</StyledFlexLink>
+						</Box>
+						<Text>
+							A simple-to-use web development framework with an easy syntax inspired by Express.js that lets developers
+							build full-fledged back-end multi-threaded API servers with middleware support and connect it to the
+							desired database in C++
+						</Text>
+						<Flex gap="$2" wrap="wrap" mt="$2">
+							<For
+								each={[
+									{ name: 'C++17', Icon: SiCplusplus },
+									{ name: 'CGI', Icon: null },
+									{ name: 'Apache', Icon: SiApache },
+									{ name: 'Multithreading', Icon: null },
+									{ name: 'Linux', Icon: SiLinux },
+								]}
+							>
+								{(skill) => <SkillBadge skill={skill} />}
+							</For>
+						</Flex>
+					</Flex>
+
+					<Flex direction="column" mt="$8">
+						<Text variant="title">Self-taught Courses</Text>
+						<StyledDivider />
+						<Flex direction="column">
+							<For
+								each={[
+									{ course: 'Mastering React', subtitle: '(by Mosh Hamedani)' },
+									{ course: 'Node.js - The Complete Guide to Build RESTful APIs', subtitle: '(by Mosh Hamedani)' },
+									{ course: 'CSS - The Complete Guide', subtitle: '(by Maximilian Schwarzmüller)' },
+									{
+										course: 'Vue - The Complete Guide (w/ Router, Vuex, Composition API)',
+										subtitle: '(by Maximilian Schwarzmüller)',
+									},
+									{ course: 'Master C++ and OOP', subtitle: '(Learncpp.com)' },
+									{ course: 'Introduction to Game Development Specialization', subtitle: '(Coursera)' },
+								]}
+							>
+								{({ course, subtitle }) => (
+									<Flex>
+										<Text d="contents">{course}</Text>
+										<Text d="contents" color={secondaryTextColor}>
+											{' '}
+											{subtitle}
+										</Text>
+									</Flex>
+								)}
+							</For>
+						</Flex>
+					</Flex>
+				</Box>
+			</Flex>
 		</HopeProvider>
 	);
 };
