@@ -80,7 +80,7 @@
 
 ## Tell me about yourself
 
-I am a software engineer with strong analytical and problem-solving skills. I have 5 years of professional experience, mainly in front-end development using React.
+I am a software engineer with strong analytical and problem-solving skills. I have 5+ years of professional experience, mainly in front-end development using React.
 I worked on various projects and dived into a lot of concepts of front-end development, from content-driven websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
 I have experience in leading other developers, performing code reviews and enforcing certain patterns, project-specific standards and best practices.
 Please consider taking a look at my portfolio: <https://habeila.dev/>
@@ -103,7 +103,7 @@ I led a team of four front-end developers in the process of creating and maintai
 
 - My experience
 
-      Hi, my name's Ahmed Habeila and I am a software engineer with strong analytical and problem-solving skills. I have a bachelor's degree in computer science and 5 years of professional experience as a web developer. I've worked on various projects and dived into a lot of concepts of web development, from content-driven websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
+      Hi, my name's Ahmed Habeila and I am a software engineer with strong analytical and problem-solving skills. I have a bachelor's degree in computer science and 5+ years of professional experience as a web developer. I've worked on various projects and dived into a lot of concepts of web development, from content-driven websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
       I am very passionate and committed and I'm always willing to learn more.
 
 - How did you meet or exceed your employers’ expectations in previous jobs
@@ -127,7 +127,7 @@ I had a very big moment of excitement after re-implementing the animations where
 
 ## Message to the hiring manager/Summary why you're a good fit
 
-Hi! I'm Ahmed, a full-stack engineer with 5 years of experience of building performant and beautiful user experiences. I'm skilled in React & TypeScript.
+Hi! I'm Ahmed, a full-stack engineer with 5+ years of experience of building performant and beautiful user experiences. I'm skilled in React & TypeScript.
 
 Please check my portfolio at <https://habeila.dev>
 

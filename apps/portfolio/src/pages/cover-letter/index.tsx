@@ -198,7 +198,7 @@ const CoverLetter = () => {
 				</Text>
 				{lineBreak()}
 				<Text as="span">
-					I am writing to express my interest in the <b>{roleTitle()}</b> role. With 5 years of experience in web
+					I am writing to express my interest in the <b>{roleTitle()}</b> role. With 5+ years of experience in web
 					development, I am confident that I have the skills and qualifications necessary to excel in this position.
 				</Text>
 				{lineBreak()}

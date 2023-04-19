@@ -655,7 +655,7 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 
 // export const introText = (
 // 	<>
-// 		Highly motivated software engineer with 5 years of professional experience as a web developer mainly in front-end
+// 		Highly motivated software engineer with 5+ years of professional experience as a web developer mainly in front-end
 // 		development using React, with excellent interpersonal skills to work with a team and clients and strong
 // 		understanding of TypeScript and web development fundamentals.
 // 	</>
