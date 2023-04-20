@@ -41,9 +41,7 @@ const ResumeRaw = () => {
 	const [adjective, setAdjective] = createSignal(params.adjective ?? paramsDefaultValues.adjective);
 	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? paramsDefaultValues.skills.slice());
 	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : paramsDefaultValues.senior);
-	const [jobType, setJobType] = createSignal<'full-stack' | 'front-end' | 'softwareEngineer'>(
-		params.jobType ?? paramsDefaultValues.jobType
-	);
+	const [jobType, setJobType] = createSignal<Params['jobType']>(params.jobType ?? paramsDefaultValues.jobType);
 
 	createEffect(() => {
 		setParams(
@@ -199,10 +197,13 @@ const ResumeRaw = () => {
 					</Box>
 
 					<Text>Type</Text>
-					<RadioGroup defaultValue={jobType()}>
+					<RadioGroup value={jobType()}>
 						<Flex direction="column" gap="$4">
+							<Radio value="react" onChange={() => setJobType('react')}>
+								React.js
+							</Radio>
 							<Radio value="front-end" onChange={() => setJobType('front-end')}>
-								Specialist/Front-end
+								Front-end
 							</Radio>
 							<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
 								Generalist/Full-stack
@@ -213,7 +214,7 @@ const ResumeRaw = () => {
 						</Flex>
 					</RadioGroup>
 					<Text>Seniority</Text>
-					<RadioGroup defaultValue={senior().toString()}>
+					<RadioGroup value={senior().toString()}>
 						<Flex direction="column" gap="$4">
 							<Radio value="true" onChange={() => setSenior(true)}>
 								Senior
@@ -224,7 +225,7 @@ const ResumeRaw = () => {
 						</Flex>
 					</RadioGroup>
 					<Text>Include location</Text>
-					<RadioGroup defaultValue={includeLocation().toString()}>
+					<RadioGroup value={includeLocation().toString()}>
 						<Flex direction="column" gap="$4">
 							<Radio value="true" onChange={() => setIncludeLocation(true)}>
 								Yes

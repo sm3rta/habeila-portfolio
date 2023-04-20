@@ -1,7 +1,7 @@
 export type Params = {
 	skills: string;
 	senior: string;
-	jobType: 'full-stack' | 'front-end' | 'softwareEngineer';
+	jobType: 'full-stack' | 'front-end' | 'softwareEngineer' | 'react';
 	adjective: string;
 	includeLocation: string;
 };

@@ -9,6 +9,7 @@ import { Text } from '../../ui/Text';
 import { ICON_SIZE } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { StyledDivider } from './Divider';
+import { Params } from './utils';
 
 const PhoneNumber = () => (
 	<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
@@ -39,11 +40,7 @@ const Links = () => (
 	</For>
 );
 
-export const Header = (props: {
-	adjective: string;
-	jobType: 'full-stack' | 'softwareEngineer' | 'front-end';
-	includeLocation: boolean;
-}) => {
+export const Header = (props: { adjective: string; jobType: Params['jobType']; includeLocation: boolean }) => {
 	return (
 		<Flex
 			direction="column"
@@ -63,6 +60,7 @@ export const Header = (props: {
 						'full-stack': 'full-stack developer',
 						softwareEngineer: 'software engineer',
 						'front-end': 'front-end developer',
+						react: 'React.js developer',
 					}[props.jobType]
 				}
 			</Text>
