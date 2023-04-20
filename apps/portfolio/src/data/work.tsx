@@ -95,6 +95,7 @@ export type Project = {
 
 export type Workplace = {
 	name: string;
+	location?: string;
 	from?: string;
 	to?: string;
 	description?: string | (() => JSX.Element);
@@ -266,6 +267,7 @@ export const work: Workplace[] = [
 	},
 	{
 		name: 'Calqulate',
+		// location: 'Helsinki, Finland',
 		// website: 'https://calqulate.io/',
 		description: () => (
 			<>
@@ -387,6 +389,7 @@ export const work: Workplace[] = [
 	},
 	{
 		name: 'Coformatique',
+		// location: 'Cairo, Egypt',
 		website: 'https://www.linkedin.com/company/coformatique/',
 		description: () => (
 			<>
@@ -569,9 +572,9 @@ export const work: Workplace[] = [
 			},
 		],
 	},
-
 	{
 		name: 'Haya Solutions Inc.',
+		// location: 'Mississauga, ON',
 		website: 'https://hayasolutions.com/',
 		description: '',
 		from: 'May 2018',

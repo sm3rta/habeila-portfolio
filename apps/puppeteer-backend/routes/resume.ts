@@ -1,6 +1,6 @@
 import express from "express";
 import puppeteer from "puppeteer";
-import { Params } from "../../portfolio/src/pages/resume-raw";
+import { Params, paramsDefaultValues, stringifyArray } from "../../portfolio/src/pages/resume-raw/utils";
 import { printWidth } from "../../portfolio/src/utils";
 
 const router = express.Router();
@@ -17,49 +17,54 @@ const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end", "software
 router.post("/", async (req, res) => {
   try {
     const { body } = req;
-    const { url, baseUrl, height = 2000 } = body;
+    const { url, height = 2000 } = body;
 
     const browser = await puppeteer.launch({
       // headless: false,
     });
 
-    const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle2" });
-    const fileName = `AhmedHabeilaResume.pdf`;
-    const path = `../../resumes/${fileName}`;
-    await page.pdf({
-      path,
-      printBackground: true,
-      width: printWidth,
-      height: Number(height) + 4,
-    });
+    const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => async () => {
+      const page = await browser.newPage();
+      const modifiedUrl = new URL(url);
 
-    const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => {
-      return async () => {
-        const page = await browser.newPage();
-        const url = `${baseUrl}?jobType=${jobType}`;
-        await page.goto(url, { waitUntil: "networkidle2" });
+      modifiedUrl.searchParams.set("jobType", jobType);
+      modifiedUrl.searchParams.set("senior", paramsDefaultValues.senior.toString());
+      modifiedUrl.searchParams.set("adjective", paramsDefaultValues.adjective);
+      modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.skills));
 
-        const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
-        const path = `../../resumes/${fileName}`;
+      await page.goto(modifiedUrl.href, { waitUntil: "networkidle0" });
 
+      const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
+      const path = `../../resumes/${fileName}`;
+
+      await page.pdf({
+        path,
+        printBackground: true,
+        width: printWidth,
+        height: Number(height) + 4,
+      });
+
+      if (jobType === "front-end") {
         await page.pdf({
-          path,
+          path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
           printBackground: true,
           width: printWidth,
           height: Number(height) + 4,
-          // format: "A3",
         });
+      }
+    });
 
-        if (jobType === "front-end") {
-          await page.pdf({
-            path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
-            printBackground: true,
-            width: printWidth,
-            height: Number(height) + 4,
-          });
-        }
-      };
+    promises.push(async () => {
+      const page = await browser.newPage();
+      await page.goto(url, { waitUntil: "networkidle0" });
+      const fileName = `AhmedHabeilaResume.pdf`;
+      const path = `../../resumes/${fileName}`;
+      await page.pdf({
+        path,
+        printBackground: true,
+        width: printWidth,
+        height: Number(height) + 4,
+      });
     });
 
     await Promise.all(promises.map((p) => p()));

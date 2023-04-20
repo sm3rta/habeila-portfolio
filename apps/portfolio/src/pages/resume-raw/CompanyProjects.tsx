@@ -5,16 +5,21 @@ import { Text } from '../../ui/Text';
 import { getTitle } from '../../utils/getTitle';
 import ProjectSummary from './ProjectSummary';
 
-const renderCompany = (name: string, link?: string) => {
-	const company = <Text as="span">{name}</Text>;
+const renderCompany = (props: Workplace) => {
+	const company = <Text as="span">{props.name}</Text>;
 
 	return (
-		<Switch>
-			<Match when={link}>
-				<Anchor href={link}>{company}</Anchor>
-			</Match>
-			<Match when={!link}>{company}</Match>
-		</Switch>
+		<>
+			<Switch>
+				<Match when={props.website}>
+					<Anchor href={props.website}>{company}</Anchor>
+				</Match>
+				<Match when={!props.website}>{company}</Match>
+			</Switch>
+			<Show when={props.location}>
+				<Text as="span">, {props.location}</Text>
+			</Show>
+		</>
 	);
 };
 
@@ -36,14 +41,15 @@ export const CompanyProjects = (props: {
 							)}
 						</Text>
 					)}
-					{props.company.name === 'Self-employed' ? (
+					<Show when={props.company.name === 'Self-employed'}>
 						<Text as="span"> (Self-employed)</Text>
-					) : (
+					</Show>
+					<Show when={props.company.name !== 'Self-employed'}>
 						<>
 							<Text as="span"> at </Text>
-							{renderCompany(props.company.name, props.company.website)}
+							{renderCompany(props.company)}
 						</>
-					)}
+					</Show>
 				</Box>
 
 				<Show when={props.company.from && props.company.to}>
@@ -53,7 +59,7 @@ export const CompanyProjects = (props: {
 				</Show>
 			</Box>
 
-			<List d="flex" flexDirection="column" gap="$4">
+			<List d="flex" flexDirection="column" gap="$4" mt="$2">
 				<For each={projects()}>
 					{(project) => (
 						<ListItem>

@@ -27,20 +27,34 @@ const renderProjectTitle = (props: Project) => {
 const ProjectSummary = (props: { project: Project }) => (
 	<Flex w="100%" direction="column" justifyContent="center">
 		<Box>{renderProjectTitle(props.project)}</Box>
+
 		<Box>
-			<Flex mt="$2" direction="column" as="ul">
+			<Flex direction="column" as="ul">
 				<For each={props.project.achievements.filter((achievement) => !achievement.hideOnResume)}>
 					{(achievement) => (
 						<ListItem ml="$6">
-							<Text>{renderStringOrJsx(achievement.description)}</Text>
+							<Text display="contents">{renderStringOrJsx(achievement.description)}</Text>
+							<Text display="contents" variant="hidden">
+								.
+							</Text>
 						</ListItem>
 					)}
 				</For>
 			</Flex>
 
 			<Show when={props.project.technologies?.length}>
-				<Flex mt="$2" gap="$2" wrap="wrap">
-					<For each={props.project.technologies}>{(skill) => <SkillBadge skill={skill} />}</For>
+				<Text variant="hidden">skills:</Text>
+				<Flex mt="$2" gap="$1" wrap="wrap">
+					<For each={props.project.technologies}>
+						{(skill, index) => (
+							<>
+								<SkillBadge skill={skill} />
+								<Show when={index() < props.project.technologies!.length - 1}>
+									<Text variant="hidden">,</Text>
+								</Show>
+							</>
+						)}
+					</For>
 				</Flex>
 			</Show>
 		</Box>
