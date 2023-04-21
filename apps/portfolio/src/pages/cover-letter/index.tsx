@@ -1,5 +1,5 @@
 import { Box, Button, Flex, HopeProvider, Input, List, ListItem } from '@hope-ui/solid';
-import { useSearchParams } from '@solidjs/router';
+import { Link, useSearchParams } from '@solidjs/router';
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { website } from '../../data/work';
 import { Text } from '../../ui/Text';
@@ -9,7 +9,7 @@ import { pagePaddings } from '../resume-raw';
 import { Header } from '../resume-raw/Header';
 import { TopSkills } from '../resume-raw/TopSkills';
 import { createDesktopNotification } from '../resume-raw/createDesktopNotification';
-import { parseArray, stringifyArray } from '../resume-raw/utils';
+import { paramsDefaultValues, parseArray, stringifyArray } from '../resume-raw/utils';
 
 export type Params = {
 	skills: string;
@@ -20,21 +20,23 @@ export type Params = {
 };
 
 const defaultBullets: string[] = [
-	'Collaborating with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week for Quint blog and Quint Staking App. Achieved 100% Lighthouse score with optimized SEO and accessibility.',
-	'Creating UI component library based on Radix UI design system and documented on Storybook.',
+	'Collaborating with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week, achieving 100% Lighthouse score with optimized SEO and accessibility.',
+	'Creating UI component library following a design system and documented on Storybook.',
+	'Communicated with clients to develop and document website requirements in an agile environment',
 	'Leading team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5 independent libraries for Calqulate.',
 	'Enhancing developer experience by developing a proprietary types SDK for API type safety.',
 	'Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.',
-	'Creating accessibility menu with high contrast mode, dyslexia-friendly font, and animations toggle.',
-	'Building back-end API with Express.js and Firebase for authentication, file uploads, emails, and database queries for an educational platform.',
-	'Integrating Zoom for automatic meeting link creation and email sending to students.',
-	'Building admin dashboard for lecture management and grade emailing to parents.',
+	// "Creating accessibility focused websites with high contrast mode, dyslexia-friendly font, and animations toggle.",
+	'Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.',
+	'Conducted system analysis, designed and implemented eCommerce website',
 ];
 
 const CoverLetter = () => {
 	const [params, setParams] = useSearchParams<Params>();
 
-	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? ['JavaScript', 'React', 'HTML']);
+	const [skills, setSkills] = createSignal<string[]>(
+		parseArray(params.skills) ?? (paramsDefaultValues.skills as unknown as string[])
+	);
 	const [bullets, setBullets] = createSignal<string[]>(params.bullets ? JSON.parse(params.bullets) : defaultBullets);
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
 	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
@@ -71,6 +73,10 @@ const CoverLetter = () => {
 	const createOnChangeHandler = (setFn: (value: string) => void) => (e: Event) => {
 		const { value } = e.target as HTMLInputElement;
 		setFn(value);
+	};
+
+	const resetBullets = () => {
+		setBullets(defaultBullets);
 	};
 
 	const printPage = async () => {
@@ -165,6 +171,7 @@ const CoverLetter = () => {
 					// maxW="500px"
 					p="$4"
 					rowGap="$8"
+					columnGap="$4"
 					userSelect="none"
 				>
 					<Text>Skills</Text>
@@ -221,6 +228,21 @@ const CoverLetter = () => {
 					<Button onClick={printPage} aria-label="Print">
 						Print
 					</Button>
+					<Flex gap="$4">
+						<Button variant="dashed" w="200px" onClick={resetBullets} aria-label="Reset">
+							Reset bullets
+						</Button>
+						<Button
+							variant="dashed"
+							w="200px"
+							onClick={resetBullets}
+							as={Link}
+							href={`/resume-raw?skills=${stringifyArray(skills())}`}
+							aria-label="Go to resume"
+						>
+							Go to resume
+						</Button>
+					</Flex>
 				</Box>
 			</Show>
 
@@ -236,11 +258,13 @@ const CoverLetter = () => {
 					{/* <Text as="span">Portfolio: {website}</Text>
 					<Text as="span">LinkedIn: {socials.find((s) => s.name === 'LinkedIn')!.href}</Text> */}
 					<Text as="span">North York, ON, M3A 2E2</Text>
-					<Text as="span">
-						{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-					</Text>
-					{lineBreak()}
 				</Show>
+
+				<Text as="span">
+					{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+				</Text>
+				{lineBreak()}
+
 				<Text as="span">
 					Dear Hiring Manager
 					{companyName() && (

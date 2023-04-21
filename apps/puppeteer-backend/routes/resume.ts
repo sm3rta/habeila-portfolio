@@ -20,6 +20,7 @@ router.post("/", async (req, res) => {
   try {
     const { body } = req;
     const { url, height = 2000 } = body;
+    // console.log(`🚀 ~ router.post ~ height:`, height);
 
     const browser = await puppeteer.launch({
       // headless: false,
@@ -43,7 +44,7 @@ router.post("/", async (req, res) => {
         path,
         printBackground: true,
         width: printWidth,
-        height: Number(height) + 4,
+        height: Number(height),
       });
 
       if (jobType === "front-end") {
@@ -51,7 +52,7 @@ router.post("/", async (req, res) => {
           path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
           printBackground: true,
           width: printWidth,
-          height: Number(height) + 4,
+          height: Number(height),
         });
       }
     });
@@ -65,7 +66,7 @@ router.post("/", async (req, res) => {
         path,
         printBackground: true,
         width: printWidth,
-        height: Number(height) + 4,
+        height: Number(height),
       });
     });
 

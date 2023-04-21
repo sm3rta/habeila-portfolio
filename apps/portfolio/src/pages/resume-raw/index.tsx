@@ -74,25 +74,16 @@ const ResumeRaw = () => {
 	const [printing, setPrinting] = createSignal(false);
 
 	const printPage = async () => {
-		const main = document.getElementById('main');
-		const page2 = document.getElementById('page2');
-		if (!main || !page2) return;
-
-		main.style.width = `${printWidth}px`;
-		page2.style.display = 'none';
+		const page1 = document.getElementById('page1');
+		if (!page1) return;
 
 		setPrinting(true);
-		const height = main.scrollHeight;
-		main.style.width = '';
-		page2.style.display = 'block';
-
-		setTimeout(() => {
-			setPrinting(false);
-		}, 0);
+		const height = page1.scrollHeight;
+		// console.log(`🚀 ~ printPage ~ height:`, height);
+		setPrinting(false);
 
 		const body = {
 			url: window.location.href,
-			baseUrl: window.location.origin + window.location.pathname,
 			height,
 		};
 
@@ -255,7 +246,7 @@ const ResumeRaw = () => {
 					{...iconButtonProps}
 					size="lg"
 					as={Link}
-					href={`/cover?skills=${stringifyArray(skills())}&adjective=${adjective()}`}
+					href={`/cover?skills=${stringifyArray(skills())}`}
 					aria-label="Go to cover letter"
 					icon={<BsChatLeftTextFill />}
 				/>
@@ -269,25 +260,26 @@ const ResumeRaw = () => {
 				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
 			</Box>
 			{/* main */}
-			<Flex as="main" direction="column" id="main" w={printing() ? printWidth : 'auto'}>
-				{/* header */}
-				<Header adjective={adjective()} jobType={jobType()} includeLocation={includeLocation()} />
-				{/* page 1 */}
+			<Flex as="main" direction="column" id="main">
+				<Grid id="page1" w={printing() ? printWidth : 'auto'}>
+					{/* header */}
+					<Header adjective={adjective()} jobType={jobType()} includeLocation={includeLocation()} />
+					{/* page 1 */}
 
-				<Box px={pagePaddings.x} pb={pagePaddings.y}>
-					<SummaryOfQualifications skills={skills()} />
+					<Box px={pagePaddings.x} pb={pagePaddings.y}>
+						<SummaryOfQualifications skills={skills()} />
 
-					<Grid mt="$8">
-						<Text variant="title">Work Experience</Text>
-						<StyledDivider />
-						<Timeline
-							children={work.map((company) => (
-								<CompanyProjects forceRole={forceRole} company={company} forceNonSenior={forceNonSenior} />
-							))}
-						/>
-					</Grid>
-				</Box>
-
+						<Grid mt="$8">
+							<Text variant="title">Work Experience</Text>
+							<StyledDivider />
+							<Timeline
+								children={work.map((company) => (
+									<CompanyProjects forceRole={forceRole} company={company} forceNonSenior={forceNonSenior} />
+								))}
+							/>
+						</Grid>
+					</Box>
+				</Grid>
 				{/* page 2 */}
 				<Box px={pagePaddings.x} py={pagePaddings.y} id="page2" d={printing() ? 'none' : 'block'}>
 					{/* header */}

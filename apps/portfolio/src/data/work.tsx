@@ -191,7 +191,7 @@ export const work: Workplace[] = [
 							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week',
 					},
 					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
-					{ description: 'Created UI component library based on Radix UI design system and documented on Storybook' },
+					{ description: 'Created UI component library following a design system and documented on Storybook' },
 				],
 
 				responsibilities: ['Website (front-end)'],
@@ -259,7 +259,7 @@ export const work: Workplace[] = [
 						imageUrl: '/assets/projects/quint/QuintStakingLightDark.png',
 						imageAlt: 'Light and dark theme',
 					},
-					{ description: 'Created UI component library based on Radix UI design system and documented on Storybook' },
+					{ description: 'Created UI component library following a design system and documented on Storybook' },
 				],
 				responsibilities: ['Website (front-end)'],
 			},
