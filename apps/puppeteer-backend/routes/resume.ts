@@ -9,9 +9,11 @@ const jobTypesMap: Record<Params["jobType"], string> = {
   "full-stack": "Fullstack",
   "front-end": "Frontend",
   softwareEngineer: "SoftwareEngineer",
+  react: "React",
 };
 
-const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end", "softwareEngineer"];
+// const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end", "softwareEngineer", "react"];
+const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end"];
 
 /* GET home page. */
 router.post("/", async (req, res) => {

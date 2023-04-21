@@ -12,7 +12,6 @@ import { StyledDivider } from './Divider';
 import { Education } from './Education';
 import { Header } from './Header';
 import { Keywords } from './Keywords';
-import { References } from './References';
 import { SelfTaught } from './SelfTaught';
 import { SummaryOfQualifications } from './SummaryOfQualifications';
 import { Timeline } from './Timeline';
@@ -300,7 +299,7 @@ const ResumeRaw = () => {
 					<SelfTaught />
 
 					{/* references */}
-					<References />
+					{/* <References /> */}
 					{/* damn keywords */}
 					<Keywords />
 				</Box>

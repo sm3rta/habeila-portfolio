@@ -1,24 +1,41 @@
-import { Anchor, Box, Button, Flex, HopeProvider, Input, Text } from '@hope-ui/solid';
+import { Box, Button, Flex, HopeProvider, Input, List, ListItem } from '@hope-ui/solid';
 import { useSearchParams } from '@solidjs/router';
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { website } from '../../data/work';
+import { Text } from '../../ui/Text';
 import { darkTheme as theme } from '../../ui/theme';
 import { coverPrintWidth } from '../../utils';
-import { TopSkills, createDesktopNotification, parseArray, stringifyArray } from '../resume-raw';
+import { pagePaddings } from '../resume-raw';
+import { Header } from '../resume-raw/Header';
+import { TopSkills } from '../resume-raw/TopSkills';
+import { createDesktopNotification } from '../resume-raw/createDesktopNotification';
+import { parseArray, stringifyArray } from '../resume-raw/utils';
 
 export type Params = {
 	skills: string;
 	companyName: string;
 	roleTitle: string;
-	adjective: string;
 	pdf: 'true' | 'false';
+	bullets: string;
 };
+
+const defaultBullets: string[] = [
+	'Collaborating with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week for Quint blog and Quint Staking App. Achieved 100% Lighthouse score with optimized SEO and accessibility.',
+	'Creating UI component library based on Radix UI design system and documented on Storybook.',
+	'Leading team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5 independent libraries for Calqulate.',
+	'Enhancing developer experience by developing a proprietary types SDK for API type safety.',
+	'Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.',
+	'Creating accessibility menu with high contrast mode, dyslexia-friendly font, and animations toggle.',
+	'Building back-end API with Express.js and Firebase for authentication, file uploads, emails, and database queries for an educational platform.',
+	'Integrating Zoom for automatic meeting link creation and email sending to students.',
+	'Building admin dashboard for lecture management and grade emailing to parents.',
+];
 
 const CoverLetter = () => {
 	const [params, setParams] = useSearchParams<Params>();
 
-	const [adjective, setAdjective] = createSignal(params.adjective ?? 'Highly motivated');
 	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? ['JavaScript', 'React', 'HTML']);
+	const [bullets, setBullets] = createSignal<string[]>(params.bullets ? JSON.parse(params.bullets) : defaultBullets);
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
 	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
 	const [pdf, setPdf] = createSignal<Params['pdf']>(params.pdf ?? 'false');
@@ -45,7 +62,7 @@ const CoverLetter = () => {
 				skills: stringifyArray(skills()),
 				companyName: companyName(),
 				roleTitle: roleTitle(),
-				adjective: adjective(),
+				bullets: JSON.stringify(bullets()),
 			},
 			{ replace: true }
 		);
@@ -144,8 +161,8 @@ const CoverLetter = () => {
 				<Box
 					display="grid"
 					id="controls"
-					gridTemplateColumns="1fr 1fr"
-					maxW="500px"
+					gridTemplateColumns="200px 1fr"
+					// maxW="500px"
 					p="$4"
 					rowGap="$8"
 					userSelect="none"
@@ -173,19 +190,57 @@ const CoverLetter = () => {
 							}}
 						/>
 					</Box>
+					<Text>Bullets</Text>
+					<Box d="grid" gap="$1">
+						<For each={bullets()}>
+							{(bullet, index) => (
+								<Input
+									noOfLines={4}
+									value={bullet}
+									onChange={(e) => {
+										const newBullets = bullets().slice();
+										newBullets[index()] = (e.target as HTMLInputElement).value;
+										setBullets(newBullets.filter(Boolean));
+									}}
+								/>
+							)}
+						</For>
+
+						<Input
+							onChange={(e) => {
+								const newBullets = bullets().slice();
+								newBullets.push((e.target as HTMLInputElement).value);
+								setBullets(newBullets.filter(Boolean));
+							}}
+						/>
+					</Box>
 					<Text>Company name</Text>
 					<Input value={companyName()} onChange={createOnChangeHandler(setCompanyName)} />
 					<Text>Role title</Text>
 					<Input value={roleTitle()} onChange={createOnChangeHandler(setRoleTitle)} />
-					<Text>Adjective</Text>
-					<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
 					<Button onClick={printPage} aria-label="Print">
 						Print
 					</Button>
 				</Box>
 			</Show>
 
-			<Flex direction="column" p="$20" id="cover">
+			<Show when={pdf() === 'true'}>
+				<Header />
+			</Show>
+
+			<Flex direction="column" px={pagePaddings.x} pb="$20" pt={pdf() === 'true' ? 0 : '$20'} id="cover">
+				<Show when={pdf() === 'false'}>
+					<Text as="span">Ahmed Habeila</Text>
+					<Text as="span">HabeilaAhmed@gmail.com</Text>
+					<Text as="span">(647) 979-0872</Text>
+					{/* <Text as="span">Portfolio: {website}</Text>
+					<Text as="span">LinkedIn: {socials.find((s) => s.name === 'LinkedIn')!.href}</Text> */}
+					<Text as="span">North York, ON, M3A 2E2</Text>
+					<Text as="span">
+						{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+					</Text>
+					{lineBreak()}
+				</Show>
 				<Text as="span">
 					Dear Hiring Manager
 					{companyName() && (
@@ -198,42 +253,40 @@ const CoverLetter = () => {
 				</Text>
 				{lineBreak()}
 				<Text as="span">
-					I am writing to express my interest in the <b>{roleTitle()}</b> role. With 5+ years of experience in web
-					development, I am confident that I have the skills and qualifications necessary to excel in this position.
+					I am writing to express my interest in the <b>{roleTitle()}</b> position. I have over 5 years of experience in
+					building elegant and performant user interfaces using various technologies such as{' '}
+					<TopSkills skills={skills()} />. I also have a background in leading other developers, performing code
+					reviews, and communicating effectively with clients.
 				</Text>
 				{lineBreak()}
 				<Text as="span">
-					I have a strong background in <TopSkills skills={skills()} />. I also have experience with mobile-first
-					design, SEO, accessibility and web development fundamentals.
+					In my previous roles, I have successfully delivered several web-based projects for different clients and
+					industries. Some of my notable achievements include:
 				</Text>
-				<Text as="span">On the back end, I have experience with Express.js, Firebase and AWS.</Text>
+				{lineBreak()}
+
+				<List styleType="disc" ml="$6">
+					<For each={bullets()}>{(bullet) => <ListItem>{bullet}</ListItem>}</For>
+				</List>
+				{lineBreak()}
+
+				<Text as="span">
+					I am interested in working for your company because I believe I can contribute to your vision of creating
+					innovative and user-friendly web solutions. I am eager to learn from your talented team and apply my skills
+					and knowledge to your projects.
+				</Text>
 				{lineBreak()}
 				<Text as="span">
-					During my time working as a senior front-end developer for Calqulate, I led a team of four front-end
-					developers reviewing PRs and optimizing <b>code performance</b>. I developed front-end monorepo architecture
-					with two apps and five independent libraries including a proprietary charts library using D3.js, tables and
-					reusable UI components. I also developed a proprietary types SDK for API type safety.
+					Thank you for your consideration of my application. I would love to discuss this opportunity further with you
+					and answer any questions you may have.
 				</Text>
 				{lineBreak()}
-				<Text as="span">
-					I am excited about the opportunity to bring my skills and experience to your company and contribute to the
-					continued success of your web development team.
-				</Text>
-				{lineBreak()}
-				<Text as="span">
-					{pdf() === 'false' ? (
-						`You can find my portfolio at ${website}`
-					) : (
-						<>
-							Here is <Anchor href={website}>my portfolio</Anchor>
-						</>
-					)}
-				</Text>
-				{lineBreak()}
+				<Show when={pdf() === 'false'}>
+					<Text as="span">You can find my portfolio at {website}</Text>
+					{lineBreak()}
+				</Show>
 				<Text as="span">Sincerely,</Text>
 				<Text as="span">Ahmed Habeila</Text>
-				<Text as="span">(647) 979-0872</Text>
-				<Text as="span">HabeilaAhmed@gmail.com</Text>
 			</Flex>
 		</HopeProvider>
 	);

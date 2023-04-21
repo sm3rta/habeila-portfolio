@@ -188,7 +188,7 @@ export const work: Workplace[] = [
 				achievements: [
 					{
 						description:
-							'Collaborated with a team of four to launch 2 accessible, responsive websites with light/dark themes in 1 week',
+							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week',
 					},
 					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
 					{ description: 'Created UI component library based on Radix UI design system and documented on Storybook' },
@@ -215,7 +215,7 @@ export const work: Workplace[] = [
 				],
 				achievements: [
 					{
-						description: 'Collaborated with a team of four to launch blog website in 1 week',
+						description: 'Collaborated with a team of 4 to launch blog website in 1 week',
 						imageUrl: '/assets/projects/quint/QuintBlogLightDark.png',
 						imageAlt: 'Light and dark theme',
 					},
@@ -528,7 +528,7 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Launched two responsive, accessible SEO-focused websites, increasing the reach to thousands of organic
+								Launched 2 responsive, accessible SEO-focused websites, increasing the reach to thousands of organic
 								monthly users
 							</>
 						),
@@ -547,7 +547,7 @@ export const work: Workplace[] = [
 					<>
 						An educational platform where professors can upload and schedule lectures to different classes,
 						automatically create and share Zoom meeting links after a lecture have been seen by all the students to
-						discuss it, create assignments, quizzes and grade students. We built two mobile apps for Android and iOS, an
+						discuss it, create assignments, quizzes and grade students. We built 2 mobile apps for Android and iOS, an
 						admin dashboard where professors can manage lectures, send emails with grades to students' parents
 					</>
 				),

@@ -2,7 +2,7 @@ import { Anchor, Flex } from '@hope-ui/solid';
 import { FaSolidLocationDot } from 'solid-icons/fa';
 import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
-import { For, Match, Switch } from 'solid-js';
+import { For, Match, Show, Switch } from 'solid-js';
 import { StyledFlexLink, pagePaddings } from '.';
 import { telephoneNumber, telephoneNumberStylized, website } from '../../data/work';
 import { Text } from '../../ui/Text';
@@ -40,7 +40,7 @@ const Links = () => (
 	</For>
 );
 
-export const Header = (props: { adjective: string; jobType: Params['jobType']; includeLocation: boolean }) => {
+export const Header = (props: { adjective?: string; jobType?: Params['jobType']; includeLocation?: boolean }) => {
 	return (
 		<Flex
 			direction="column"
@@ -53,17 +53,19 @@ export const Header = (props: { adjective: string; jobType: Params['jobType']; i
 			alignItems="center"
 		>
 			<Text variant="h1">Ahmed Habeila</Text>
-			<Text variant="title" textTransform="unset" fontWeight="normal">
-				{props.adjective}{' '}
-				{
+			<Show when={props.adjective && props.jobType}>
+				<Text variant="title" textTransform="unset" fontWeight="normal">
+					{props.adjective}{' '}
 					{
-						'full-stack': 'full-stack developer',
-						softwareEngineer: 'software engineer',
-						'front-end': 'front-end developer',
-						react: 'React.js developer',
-					}[props.jobType]
-				}
-			</Text>
+						{
+							'full-stack': 'full-stack developer',
+							softwareEngineer: 'software engineer',
+							'front-end': 'front-end developer',
+							react: 'React.js developer',
+						}[props.jobType!]
+					}
+				</Text>
+			</Show>
 			<StyledDivider noMargin />
 
 			<Switch>
