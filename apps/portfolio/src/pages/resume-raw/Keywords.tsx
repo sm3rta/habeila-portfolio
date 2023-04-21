@@ -179,6 +179,9 @@ export const _resumeSkills = [
 	'Team player',
 	'Dependability',
 	'analysis',
+	'Client focus',
+	'OpenGL',
+	'Unity',
 ];
 
 const resumeSkills = [...new Set(_resumeSkills)];

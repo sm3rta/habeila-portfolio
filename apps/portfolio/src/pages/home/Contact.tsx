@@ -6,7 +6,7 @@ import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine } from 'solid-icons/ri';
 import { SiGithub } from 'solid-icons/si';
 import { For } from 'solid-js';
-import { telephoneNumber, telephoneNumberStylized } from '../../data/work';
+import { emailAddress, telephoneNumber, telephoneNumberStylized } from '../../data/work';
 import { ICON_SIZE } from '../../ui/theme';
 import Section from './Section';
 
@@ -15,12 +15,12 @@ export const EmailAndTelephone = () => (
 		<ListItem d="flex" columnGap="$4" alignItems="center">
 			<IconButton
 				as="a"
-				href={"mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!"}
+				href={`mailto:${emailAddress}?subject=Let's%20work%20together!`}
 				target="_blank"
 				aria-label="mail"
 				icon={<HiOutlineMail size={ICON_SIZE} />}
 			/>
-			<Text>HabeilaAhmed@gmail.com</Text>
+			<Text>{emailAddress}</Text>
 		</ListItem>
 		<ListItem d="flex" columnGap="$4" alignItems="center">
 			<IconButton

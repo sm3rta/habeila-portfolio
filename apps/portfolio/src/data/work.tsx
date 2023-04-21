@@ -666,3 +666,5 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 
 export const telephoneNumber = '16479790872';
 export const telephoneNumberStylized = '(647) 979-0872';
+export const locationAddress = 'North York, ON, M3A 2E2';
+export const emailAddress = 'HabeilaAhmed@gmail.com';

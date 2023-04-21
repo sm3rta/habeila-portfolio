@@ -1,15 +1,21 @@
 import express from "express";
 import puppeteer from "puppeteer";
-import { coverPrintWidth } from "../../portfolio/src/utils";
+import { coverPrintWidth as width } from "../../portfolio/src/utils";
 
 const router = express.Router();
 
 router.post("/cover", async (req, res) => {
   try {
     const { body } = req;
-    const { url, height = 2000 } = body;
+    const { url, height: _height = 2000 } = body;
+    const height = Number(_height) + 4;
 
-    const browser = await puppeteer.launch({});
+    const browser = await puppeteer.launch({
+      defaultViewport: {
+        width,
+        height,
+      },
+    });
 
     const page = await browser.newPage();
 
@@ -18,12 +24,12 @@ router.post("/cover", async (req, res) => {
 
     await page.pdf({
       path,
-      width: coverPrintWidth,
-      height: Number(height) + 4,
+      width,
+      height,
     });
 
     await browser.close();
-    // if (browser.process() != null) browser.process().kill("SIGINT");
+    if (browser.process() != null) browser.process().kill("SIGINT");
 
     res.status(200).send({ message: "printed successfully" });
   } catch (err) {

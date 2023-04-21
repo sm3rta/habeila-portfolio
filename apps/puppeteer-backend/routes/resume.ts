@@ -1,7 +1,7 @@
 import express from "express";
 import puppeteer from "puppeteer";
 import { Params, paramsDefaultValues, stringifyArray } from "../../portfolio/src/pages/resume-raw/utils";
-import { printWidth } from "../../portfolio/src/utils";
+import { printWidth as width } from "../../portfolio/src/utils";
 
 const router = express.Router();
 
@@ -19,11 +19,16 @@ const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end"];
 router.post("/", async (req, res) => {
   try {
     const { body } = req;
-    const { url, height = 2000 } = body;
-    // console.log(`🚀 ~ router.post ~ height:`, height);
+    const { url, height: _height = 2000 } = body;
+
+    const height = Number(_height) + 4;
 
     const browser = await puppeteer.launch({
       // headless: false,
+      defaultViewport: {
+        width,
+        height,
+      },
     });
 
     const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => async () => {
@@ -43,16 +48,16 @@ router.post("/", async (req, res) => {
       await page.pdf({
         path,
         printBackground: true,
-        width: printWidth,
-        height: Number(height),
+        width,
+        height,
       });
 
       if (jobType === "front-end") {
         await page.pdf({
           path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
           printBackground: true,
-          width: printWidth,
-          height: Number(height),
+          width,
+          height,
         });
       }
     });
@@ -65,23 +70,17 @@ router.post("/", async (req, res) => {
       await page.pdf({
         path,
         printBackground: true,
-        width: printWidth,
-        height: Number(height),
+        width,
+        height,
       });
     });
 
     await Promise.all(promises.map((p) => p()));
 
     await browser.close();
-    // if (browser.process() != null) browser.process().kill("SIGINT");
+    if (browser.process() != null) browser.process().kill("SIGINT");
 
-    // var readStream = new stream.PassThrough();
-    // readStream.end(file);
-
-    // res.set("Content-disposition", "attachment; filename=" + fileName);
-    // res.set("Content-Type", "application/pdf");
     res.status(200).send({ message: "printed successfully" });
-    // readStream.pipe(res);
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: "error happened" });

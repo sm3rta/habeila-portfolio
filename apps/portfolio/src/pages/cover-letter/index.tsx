@@ -1,7 +1,7 @@
-import { Box, Button, Flex, HopeProvider, Input, List, ListItem } from '@hope-ui/solid';
+import { Box, Button, Flex, HopeProvider, Input, List, ListItem, Textarea } from '@hope-ui/solid';
 import { Link, useSearchParams } from '@solidjs/router';
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js';
-import { website } from '../../data/work';
+import { emailAddress, locationAddress, telephoneNumberStylized, website } from '../../data/work';
 import { Text } from '../../ui/Text';
 import { darkTheme as theme } from '../../ui/theme';
 import { coverPrintWidth } from '../../utils';
@@ -11,12 +11,16 @@ import { TopSkills } from '../resume-raw/TopSkills';
 import { createDesktopNotification } from '../resume-raw/createDesktopNotification';
 import { paramsDefaultValues, parseArray, stringifyArray } from '../resume-raw/utils';
 
+export const TextSpan: typeof Text = (props) => <Text as="span" {...props} />;
+
 export type Params = {
 	skills: string;
 	companyName: string;
 	roleTitle: string;
 	pdf: 'true' | 'false';
 	bullets: string;
+	interested: string;
+	jobBoard: string;
 };
 
 const defaultBullets: string[] = [
@@ -31,12 +35,19 @@ const defaultBullets: string[] = [
 	'Conducted system analysis, designed and implemented eCommerce website',
 ];
 
+const defaultInterested =
+	'I am interested in working for your company because I believe I can contribute to your vision\
+ of creating innovative and user-friendly web solutions. I am eager to learn from your talented team\
+ and apply my skills and knowledge to your projects.';
+
 const CoverLetter = () => {
 	const [params, setParams] = useSearchParams<Params>();
 
 	const [skills, setSkills] = createSignal<string[]>(
 		parseArray(params.skills) ?? (paramsDefaultValues.skills as unknown as string[])
 	);
+	const [interested, setInterested] = createSignal<string>(params.interested ?? defaultInterested);
+	const [jobBoard, setJobBoard] = createSignal<string>(params.jobBoard ?? '');
 	const [bullets, setBullets] = createSignal<string[]>(params.bullets ? JSON.parse(params.bullets) : defaultBullets);
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
 	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
@@ -65,6 +76,8 @@ const CoverLetter = () => {
 				companyName: companyName(),
 				roleTitle: roleTitle(),
 				bullets: JSON.stringify(bullets()),
+				interested: interested(),
+				jobBoard: jobBoard(),
 			},
 			{ replace: true }
 		);
@@ -77,6 +90,7 @@ const CoverLetter = () => {
 
 	const resetBullets = () => {
 		setBullets(defaultBullets);
+		setInterested(defaultInterested);
 	};
 
 	const printPage = async () => {
@@ -174,7 +188,8 @@ const CoverLetter = () => {
 					columnGap="$4"
 					userSelect="none"
 				>
-					<Text>Skills</Text>
+					{/* Skills */}
+					<TextSpan>Skills</TextSpan>
 					<Box d="grid" gap="$1">
 						<For each={skills()}>
 							{(skill, index) => (
@@ -188,7 +203,6 @@ const CoverLetter = () => {
 								/>
 							)}
 						</For>
-
 						<Input
 							onChange={(e) => {
 								const newSkills = skills().slice();
@@ -197,34 +211,47 @@ const CoverLetter = () => {
 							}}
 						/>
 					</Box>
-					<Text>Bullets</Text>
+
+					{/* Bullets */}
+					<TextSpan>Bullets</TextSpan>
 					<Box d="grid" gap="$1">
 						<For each={bullets()}>
 							{(bullet, index) => (
-								<Input
-									noOfLines={4}
+								<Textarea
+									resize="vertical"
+									rows="1"
 									value={bullet}
 									onChange={(e) => {
 										const newBullets = bullets().slice();
-										newBullets[index()] = (e.target as HTMLInputElement).value;
+										newBullets[index()] = (e.target as HTMLTextAreaElement).value;
 										setBullets(newBullets.filter(Boolean));
 									}}
 								/>
 							)}
 						</For>
-
-						<Input
+						<Textarea
+							resize="vertical"
+							rows="1"
 							onChange={(e) => {
 								const newBullets = bullets().slice();
-								newBullets.push((e.target as HTMLInputElement).value);
+								newBullets.push((e.target as HTMLTextAreaElement).value);
 								setBullets(newBullets.filter(Boolean));
 							}}
 						/>
 					</Box>
-					<Text>Company name</Text>
+					{/* Interested */}
+					<TextSpan>Interested</TextSpan>
+					<Textarea rows="2" resize="vertical" value={interested()} onChange={createOnChangeHandler(setInterested)} />
+					{/* Company name */}
+					<TextSpan>Company name</TextSpan>
 					<Input value={companyName()} onChange={createOnChangeHandler(setCompanyName)} />
-					<Text>Role title</Text>
+					{/* Role title */}
+					<TextSpan>Role title</TextSpan>
 					<Input value={roleTitle()} onChange={createOnChangeHandler(setRoleTitle)} />
+					{/* Job board */}
+					<TextSpan>Job board</TextSpan>
+					<Input value={jobBoard()} onChange={createOnChangeHandler(setJobBoard)} />
+					{/* Buttons */}
 					<Button onClick={printPage} aria-label="Print">
 						Print
 					</Button>
@@ -252,20 +279,20 @@ const CoverLetter = () => {
 
 			<Flex direction="column" px={pagePaddings.x} pb="$20" pt={pdf() === 'true' ? 0 : '$20'} id="cover">
 				<Show when={pdf() === 'false'}>
-					<Text as="span">Ahmed Habeila</Text>
-					<Text as="span">HabeilaAhmed@gmail.com</Text>
-					<Text as="span">(647) 979-0872</Text>
-					{/* <Text as="span">Portfolio: {website}</Text>
-					<Text as="span">LinkedIn: {socials.find((s) => s.name === 'LinkedIn')!.href}</Text> */}
-					<Text as="span">North York, ON, M3A 2E2</Text>
+					<TextSpan>Ahmed Habeila</TextSpan>
+					<TextSpan>{emailAddress}</TextSpan>
+					<TextSpan>{telephoneNumberStylized}</TextSpan>
+					{/* <TextSpan>Portfolio: {website}</TextSpan>
+					<TextSpan>LinkedIn: {socials.find((s) => s.name === 'LinkedIn')!.href}</TextSpan> */}
+					<TextSpan>{locationAddress}</TextSpan>
 				</Show>
 
-				<Text as="span">
+				<TextSpan>
 					{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-				</Text>
+				</TextSpan>
 				{lineBreak()}
 
-				<Text as="span">
+				<TextSpan>
 					Dear Hiring Manager
 					{companyName() && (
 						<>
@@ -274,43 +301,54 @@ const CoverLetter = () => {
 						</>
 					)}
 					,
-				</Text>
+				</TextSpan>
 				{lineBreak()}
-				<Text as="span">
-					I am writing to express my interest in the <b>{roleTitle()}</b> position. I have over 5 years of experience in
-					building elegant and performant user interfaces using various technologies such as{' '}
-					<TopSkills skills={skills()} />. I also have a background in leading other developers, performing code
-					reviews, and communicating effectively with clients.
-				</Text>
+
+				<TextSpan>
+					I am writing to express my interest in the <b>{roleTitle()}</b> position
+					<Show when={jobBoard()}> advertised on {jobBoard()}</Show>. I have over 5 years of experience in building
+					elegant and performant user interfaces using various technologies such as <TopSkills skills={skills()} />. I
+					also have a background in leading other developers, performing code reviews, and communicating effectively
+					with clients.
+				</TextSpan>
 				{lineBreak()}
-				<Text as="span">
+
+				<TextSpan>
 					In my previous roles, I have successfully delivered several web-based projects for different clients and
 					industries. Some of my notable achievements include:
-				</Text>
+				</TextSpan>
 				{lineBreak()}
 
 				<List styleType="disc" ml="$6">
-					<For each={bullets()}>{(bullet) => <ListItem>{bullet}</ListItem>}</For>
+					<For each={bullets()}>
+						{(bullet) => (
+							<ListItem>
+								<TextSpan>{bullet}</TextSpan>
+							</ListItem>
+						)}
+					</For>
 				</List>
 				{lineBreak()}
 
-				<Text as="span">
-					I am interested in working for your company because I believe I can contribute to your vision of creating
-					innovative and user-friendly web solutions. I am eager to learn from your talented team and apply my skills
-					and knowledge to your projects.
-				</Text>
+				{/* <GameDevelopmentBackground />
+				{lineBreak()} */}
+
+				<TextSpan>{interested()}</TextSpan>
 				{lineBreak()}
-				<Text as="span">
+
+				<TextSpan>
 					Thank you for your consideration of my application. I would love to discuss this opportunity further with you
 					and answer any questions you may have.
-				</Text>
+				</TextSpan>
 				{lineBreak()}
+
 				<Show when={pdf() === 'false'}>
-					<Text as="span">You can find my portfolio at {website}</Text>
+					<TextSpan>You can find my portfolio at {website}</TextSpan>
 					{lineBreak()}
 				</Show>
-				<Text as="span">Sincerely,</Text>
-				<Text as="span">Ahmed Habeila</Text>
+
+				<TextSpan>Sincerely,</TextSpan>
+				<TextSpan>Ahmed Habeila</TextSpan>
 			</Flex>
 		</HopeProvider>
 	);

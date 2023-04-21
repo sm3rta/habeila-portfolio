@@ -4,7 +4,7 @@ import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import { For, Match, Show, Switch } from 'solid-js';
 import { StyledFlexLink, pagePaddings } from '.';
-import { telephoneNumber, telephoneNumberStylized, website } from '../../data/work';
+import { emailAddress, locationAddress, telephoneNumber, telephoneNumberStylized, website } from '../../data/work';
 import { Text } from '../../ui/Text';
 import { ICON_SIZE } from '../../ui/theme';
 import { socials } from '../home/Contact';
@@ -18,9 +18,9 @@ const PhoneNumber = () => (
 	</StyledFlexLink>
 );
 const Email = () => (
-	<StyledFlexLink href="mailto:HabeilaAhmed@gmail.com?subject=Let's%20work%20together!" textDecoration="none">
+	<StyledFlexLink href={`mailto:${emailAddress}?subject=Let's%20work%20together!`} textDecoration="none">
 		<HiOutlineMail size={ICON_SIZE} />
-		<Text ml="$2">HabeilaAhmed@gmail.com</Text>
+		<Text ml="$2">{emailAddress}</Text>
 	</StyledFlexLink>
 );
 const Links = () => (
@@ -73,7 +73,7 @@ export const Header = (props: { adjective?: string; jobType?: Params['jobType'];
 					<Flex gap="$8">
 						<Flex alignItems="center">
 							<FaSolidLocationDot size={ICON_SIZE} />
-							<Text ml="$2">North York, ON, M3A 2E2</Text>
+							<Text ml="$2">{locationAddress}</Text>
 						</Flex>
 						<Email />
 						<PhoneNumber />
