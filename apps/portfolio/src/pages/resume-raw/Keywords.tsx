@@ -81,6 +81,7 @@ export const _resumeSkills = [
 	'Python',
 	'RDFa',
 	'React',
+	'React Native',
 	'React.js',
 	'React Testing Library',
 	'Redux',
@@ -182,6 +183,13 @@ export const _resumeSkills = [
 	'Client focus',
 	'OpenGL',
 	'Unity',
+	'Web 3',
+	'Wagmi',
+	'Curious',
+	'unit tests',
+	'integration tests',
+	'Jest',
+	'Cypress',
 ];
 
 const resumeSkills = [...new Set(_resumeSkills)];

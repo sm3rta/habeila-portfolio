@@ -18,21 +18,28 @@ export type Params = {
 	companyName: string;
 	roleTitle: string;
 	pdf: 'true' | 'false';
-	bullets: string;
+	experienceBullets: string;
+	perfectFitBullets: string;
 	interested: string;
 	jobBoard: string;
 };
 
-const defaultBullets: string[] = [
+const defaultExperienceBullets: string[] = [
 	'Collaborating with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week, achieving 100% Lighthouse score with optimized SEO and accessibility.',
 	'Creating UI component library following a design system and documented on Storybook.',
-	'Communicated with clients to develop and document website requirements in an agile environment',
+	'Communicated with clients to develop and document website requirements in an agile environment.',
 	'Leading team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5 independent libraries for Calqulate.',
 	'Enhancing developer experience by developing a proprietary types SDK for API type safety.',
 	'Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.',
-	// "Creating accessibility focused websites with high contrast mode, dyslexia-friendly font, and animations toggle.",
-	'Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.',
-	'Conducted system analysis, designed and implemented eCommerce website',
+	// 'Creating accessibility focused websites with high contrast mode, dyslexia-friendly font, and animations toggle.',
+	// 'Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.',
+	'Conducted system analysis, designed and implemented eCommerce website.',
+];
+
+const defaultPerfectFitBullets: string[] = [
+	'During my time at calqulate, I mentored a team of 4 front-end developers, performing PR reviews for code quality and enforcing best practices.',
+	'I have extensive experience with multiple React state management tools including Redux, Redux-toolkit, and MobX.',
+	'I also have experience writing unit tests with Jest and React testing library.',
 ];
 
 const defaultInterested =
@@ -48,10 +55,19 @@ const CoverLetter = () => {
 	);
 	const [interested, setInterested] = createSignal<string>(params.interested ?? defaultInterested);
 	const [jobBoard, setJobBoard] = createSignal<string>(params.jobBoard ?? '');
-	const [bullets, setBullets] = createSignal<string[]>(params.bullets ? JSON.parse(params.bullets) : defaultBullets);
+	const [experienceBullets, setExperienceBullets] = createSignal<string[]>(
+		params.experienceBullets ? JSON.parse(params.experienceBullets) : defaultExperienceBullets
+	);
+	const [perfectFitBullets, setPerfectFitBullets] = createSignal<string[]>(
+		params.perfectFitBullets ? JSON.parse(params.perfectFitBullets) : defaultPerfectFitBullets
+	);
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
 	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
 	const [pdf, setPdf] = createSignal<Params['pdf']>(params.pdf ?? 'false');
+
+	const [newSkillInput, setNewSkillInput] = createSignal<string>();
+	const [newExperienceBulletInput, setNewExperienceBulletInput] = createSignal<string>();
+	const [newPerfectFitBulletInput, setNewPerfectFitBulletInput] = createSignal<string>();
 
 	onMount(() => {
 		document.body.addEventListener('keydown', (e) => {
@@ -72,14 +88,18 @@ const CoverLetter = () => {
 	createEffect(() => {
 		setParams(
 			{
+				...params,
 				skills: stringifyArray(skills()),
 				companyName: companyName(),
 				roleTitle: roleTitle(),
-				bullets: JSON.stringify(bullets()),
+				experienceBullets: JSON.stringify(experienceBullets()),
+				perfectFitBullets: JSON.stringify(perfectFitBullets()),
 				interested: interested(),
 				jobBoard: jobBoard(),
 			},
-			{ replace: true }
+			{
+				// replace: true,
+			}
 		);
 	});
 
@@ -89,7 +109,8 @@ const CoverLetter = () => {
 	};
 
 	const resetBullets = () => {
-		setBullets(defaultBullets);
+		setExperienceBullets(defaultExperienceBullets);
+		setPerfectFitBullets(defaultPerfectFitBullets);
 		setInterested(defaultInterested);
 	};
 
@@ -143,15 +164,7 @@ const CoverLetter = () => {
 			});
 	};
 
-	const lineBreak = () =>
-		pdf() === 'false' ? (
-			<br />
-		) : (
-			<>
-				<br />
-				<br />
-			</>
-		);
+	const lineBreak = () => (pdf() === 'false' ? <br /> : <Box h={30} />);
 
 	return (
 		<HopeProvider
@@ -193,52 +206,138 @@ const CoverLetter = () => {
 					<Box d="grid" gap="$1">
 						<For each={skills()}>
 							{(skill, index) => (
-								<Input
-									value={skill}
-									onChange={(e) => {
-										const newSkills = skills().slice();
-										newSkills[index()] = (e.target as HTMLInputElement).value;
-										setSkills(newSkills.filter(Boolean));
-									}}
-								/>
+								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+									<Input
+										value={skill}
+										onChange={(e) => {
+											const newSkills = skills().slice();
+											newSkills[index()] = (e.target as HTMLInputElement).value;
+											setSkills(newSkills.filter(Boolean).map((s) => s.trim()));
+										}}
+									/>
+									<Button
+										colorScheme="danger"
+										onClick={() => {
+											const newSkills = skills().slice();
+											newSkills.splice(index(), 1);
+											setSkills(newSkills);
+										}}
+									>
+										Remove
+									</Button>
+								</Box>
 							)}
 						</For>
-						<Input
-							onChange={(e) => {
-								const newSkills = skills().slice();
-								newSkills.push((e.target as HTMLInputElement).value);
-								setSkills(newSkills.filter(Boolean));
-							}}
-						/>
+						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+							<Input value={newSkillInput()} onChange={createOnChangeHandler(setNewSkillInput)} />
+							<Button
+								onClick={() => {
+									if (!newSkillInput()) return;
+									setSkills(Array.from(new Set([...skills(), newSkillInput()!])));
+									setNewSkillInput('');
+								}}
+							>
+								Add
+							</Button>
+						</Box>
 					</Box>
 
-					{/* Bullets */}
-					<TextSpan>Bullets</TextSpan>
+					{/* Experience Bullets */}
+					<TextSpan>Experience Bullets</TextSpan>
 					<Box d="grid" gap="$1">
-						<For each={bullets()}>
+						<For each={experienceBullets()}>
 							{(bullet, index) => (
-								<Textarea
-									resize="vertical"
-									rows="1"
-									value={bullet}
-									onChange={(e) => {
-										const newBullets = bullets().slice();
-										newBullets[index()] = (e.target as HTMLTextAreaElement).value;
-										setBullets(newBullets.filter(Boolean));
-									}}
-								/>
+								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+									<Textarea
+										resize="vertical"
+										rows={bullet.length > 100 ? 2 : 1}
+										value={bullet}
+										onChange={(e) => {
+											const newBullets = experienceBullets().slice();
+											newBullets[index()] = (e.target as HTMLTextAreaElement).value;
+											setExperienceBullets(newBullets.filter(Boolean));
+										}}
+									/>
+									<Button
+										colorScheme="danger"
+										onClick={() => {
+											const newBullets = experienceBullets().slice();
+											newBullets.splice(index(), 1);
+											setExperienceBullets(newBullets);
+										}}
+									>
+										Remove
+									</Button>
+								</Box>
 							)}
 						</For>
-						<Textarea
-							resize="vertical"
-							rows="1"
-							onChange={(e) => {
-								const newBullets = bullets().slice();
-								newBullets.push((e.target as HTMLTextAreaElement).value);
-								setBullets(newBullets.filter(Boolean));
-							}}
-						/>
+						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+							<Textarea
+								resize="vertical"
+								rows="1"
+								value={newExperienceBulletInput()}
+								onChange={createOnChangeHandler(setNewExperienceBulletInput)}
+							/>
+							<Button
+								onClick={() => {
+									if (!newExperienceBulletInput()) return;
+									setExperienceBullets(Array.from(new Set([...experienceBullets(), newExperienceBulletInput()!])));
+									setNewExperienceBulletInput('');
+								}}
+							>
+								Add
+							</Button>
+						</Box>
 					</Box>
+
+					{/* Perfect Fit Bullets */}
+					<TextSpan>Perfect Fit Bullets</TextSpan>
+					<Box d="grid" gap="$1">
+						<For each={perfectFitBullets()}>
+							{(bullet, index) => (
+								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+									<Textarea
+										resize="vertical"
+										rows={bullet.length > 100 ? 2 : 1}
+										value={bullet}
+										onChange={(e) => {
+											const newBullets = perfectFitBullets().slice();
+											newBullets[index()] = (e.target as HTMLTextAreaElement).value;
+											setPerfectFitBullets(newBullets.filter(Boolean));
+										}}
+									/>
+									<Button
+										colorScheme="danger"
+										onClick={() => {
+											const newBullets = perfectFitBullets().slice();
+											newBullets.splice(index(), 1);
+											setPerfectFitBullets(newBullets);
+										}}
+									>
+										Remove
+									</Button>
+								</Box>
+							)}
+						</For>
+						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+							<Textarea
+								resize="vertical"
+								rows="1"
+								value={newPerfectFitBulletInput()}
+								onChange={createOnChangeHandler(setNewPerfectFitBulletInput)}
+							/>
+							<Button
+								onClick={() => {
+									if (!newPerfectFitBulletInput()) return;
+									setPerfectFitBullets(Array.from(new Set([...perfectFitBullets(), newPerfectFitBulletInput()!])));
+									setNewPerfectFitBulletInput('');
+								}}
+							>
+								Add
+							</Button>
+						</Box>
+					</Box>
+
 					{/* Interested */}
 					<TextSpan>Interested</TextSpan>
 					<Textarea rows="2" resize="vertical" value={interested()} onChange={createOnChangeHandler(setInterested)} />
@@ -297,7 +396,7 @@ const CoverLetter = () => {
 					{companyName() && (
 						<>
 							{' '}
-							at <b>{companyName()}</b>
+							at <b>{companyName().trim()}</b>
 						</>
 					)}
 					,
@@ -305,22 +404,34 @@ const CoverLetter = () => {
 				{lineBreak()}
 
 				<TextSpan>
-					I am writing to express my interest in the <b>{roleTitle()}</b> position
-					<Show when={jobBoard()}> advertised on {jobBoard()}</Show>. I have over 5 years of experience in building
-					elegant and performant user interfaces using various technologies such as <TopSkills skills={skills()} />. I
-					also have a background in leading other developers, performing code reviews, and communicating effectively
-					with clients.
+					I am writing to express my interest in the <b>{roleTitle().trim()}</b> position
+					<Show when={jobBoard()}> advertised on {jobBoard().trim()}</Show>. I have over 5 years of experience in
+					building elegant and performant user interfaces using various technologies such as{' '}
+					<TopSkills skills={skills()} />. I also have a background in leading other developers, performing code
+					reviews, and communicating effectively with clients.
 				</TextSpan>
 				{lineBreak()}
+
+				<Show when={perfectFitBullets().length}>
+					<TextSpan>Here's why I think I'm the perfect fit for this job</TextSpan>
+					<List styleType="disc" ml="$6">
+						<For each={perfectFitBullets()}>
+							{(bullet) => (
+								<ListItem>
+									<TextSpan>{bullet}</TextSpan>
+								</ListItem>
+							)}
+						</For>
+					</List>
+					{lineBreak()}
+				</Show>
 
 				<TextSpan>
 					In my previous roles, I have successfully delivered several web-based projects for different clients and
 					industries. Some of my notable achievements include:
 				</TextSpan>
-				{lineBreak()}
-
 				<List styleType="disc" ml="$6">
-					<For each={bullets()}>
+					<For each={experienceBullets()}>
 						{(bullet) => (
 							<ListItem>
 								<TextSpan>{bullet}</TextSpan>

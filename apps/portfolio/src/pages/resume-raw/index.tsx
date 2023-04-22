@@ -39,12 +39,14 @@ const ResumeRaw = () => {
 	);
 	const [adjective, setAdjective] = createSignal(params.adjective ?? paramsDefaultValues.adjective);
 	const [skills, setSkills] = createSignal<string[]>(parseArray(params.skills) ?? paramsDefaultValues.skills.slice());
+	const [newSkillInput, setNewSkillInput] = createSignal<string>();
 	const [senior, setSenior] = createSignal(params.senior ? params.senior === 'true' : paramsDefaultValues.senior);
 	const [jobType, setJobType] = createSignal<Params['jobType']>(params.jobType ?? paramsDefaultValues.jobType);
 
 	createEffect(() => {
 		setParams(
 			{
+				...params,
 				skills: stringifyArray(skills()),
 				senior: senior().toString(),
 				jobType: jobType(),
@@ -161,29 +163,46 @@ const ResumeRaw = () => {
 		>
 			{/* controls */}
 			<Show when={showControls()}>
-				<Box display="grid" gridTemplateColumns="1fr 1fr" maxW="500px" p="$4" rowGap="$8">
+				<Box display="grid" gridTemplateColumns="200px 1fr" maxW="800px" p="$4" rowGap="$8">
 					<Text>Skills</Text>
 					<Box d="grid" gap="$1">
 						<For each={skills()}>
 							{(skill, index) => (
-								<Input
-									value={skill}
-									onChange={(e) => {
-										const newSkills = skills().slice();
-										newSkills[index()] = (e.target as HTMLInputElement).value;
-										setSkills(newSkills.filter(Boolean));
-									}}
-								/>
+								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px">
+									<Input
+										value={skill}
+										onChange={(e) => {
+											const newSkills = skills().slice();
+											newSkills[index()] = (e.target as HTMLInputElement).value;
+											setSkills(newSkills.filter(Boolean));
+										}}
+									/>
+									<Button
+										colorScheme="danger"
+										onClick={() => {
+											const newSkills = skills().slice();
+											newSkills.splice(index(), 1);
+											setSkills(newSkills);
+										}}
+									>
+										Remove
+									</Button>
+								</Box>
 							)}
 						</For>
 
-						<Input
-							onChange={(e) => {
-								const newSkills = skills().slice();
-								newSkills.push((e.target as HTMLInputElement).value);
-								setSkills(newSkills.filter(Boolean));
-							}}
-						/>
+						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px">
+							<Input value={newSkillInput()} onChange={createOnChangeHandler(setNewSkillInput)} />
+							<Button
+								onClick={() => {
+									if (!newSkillInput()) return;
+									setSkills([...skills(), newSkillInput()!]);
+									setNewSkillInput('');
+								}}
+							>
+								Add
+							</Button>
+						</Box>
 					</Box>
 
 					<Text>Type</Text>
