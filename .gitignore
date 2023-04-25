@@ -18,3 +18,6 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+# puppeteer cache
+apps/puppeteer-backend/.puppeteer

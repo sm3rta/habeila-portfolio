@@ -1,6 +1,6 @@
 import express from "express";
-import puppeteer from "puppeteer";
 import { coverPrintWidth as width } from "../../portfolio/src/utils";
+import { launchPuppeteer } from "./utils";
 
 const router = express.Router();
 
@@ -10,12 +10,7 @@ router.post("/cover", async (req, res) => {
     const { url, height: _height = 2000 } = body;
     const height = Number(_height) + 4;
 
-    const browser = await puppeteer.launch({
-      defaultViewport: {
-        width,
-        height,
-      },
-    });
+    const browser = await launchPuppeteer();
 
     const page = await browser.newPage();
 
@@ -23,6 +18,8 @@ router.post("/cover", async (req, res) => {
     const path = "../../resumes/AhmedHabeilaCoverLetter.pdf";
 
     await page.pdf({
+      printBackground: true,
+      preferCSSPageSize: true,
       path,
       width,
       height,

@@ -73,6 +73,7 @@ const CoverLetter = () => {
 		document.body.addEventListener('keydown', (e) => {
 			if (e.key === 'a' && e.ctrlKey) {
 				if (document.activeElement?.nodeName === 'INPUT') return;
+				if (document.activeElement?.nodeName === 'TEXTAREA') return;
 				const cover = document.getElementById('cover');
 				if (!cover) return;
 				setTimeout(() => {
@@ -109,6 +110,11 @@ const CoverLetter = () => {
 	};
 
 	const resetBullets = () => {
+		console.log('old values', {
+			experienceBullets: experienceBullets(),
+			perfectFitBullets: perfectFitBullets(),
+			interested: interested(),
+		});
 		setExperienceBullets(defaultExperienceBullets);
 		setPerfectFitBullets(defaultPerfectFitBullets);
 		setInterested(defaultInterested);
@@ -361,7 +367,6 @@ const CoverLetter = () => {
 						<Button
 							variant="dashed"
 							w="200px"
-							onClick={resetBullets}
 							as={Link}
 							href={`/resume-raw?skills=${stringifyArray(skills())}`}
 							aria-label="Go to resume"
@@ -393,23 +398,27 @@ const CoverLetter = () => {
 
 				<TextSpan>
 					Dear Hiring Manager
-					{companyName() && (
-						<>
-							{' '}
-							at <b>{companyName().trim()}</b>
-						</>
-					)}
+					<Show when={companyName()}>
+						{' '}
+						at <b>{companyName().trim()}</b>
+					</Show>
 					,
 				</TextSpan>
 				{lineBreak()}
 
-				<TextSpan>
-					I am writing to express my interest in the <b>{roleTitle().trim()}</b> position
-					<Show when={jobBoard()}> advertised on {jobBoard().trim()}</Show>. I have over 5 years of experience in
-					building elegant and performant user interfaces using various technologies such as{' '}
-					<TopSkills skills={skills()} />. I also have a background in leading other developers, performing code
-					reviews, and communicating effectively with clients.
-				</TextSpan>
+				<Box>
+					<TextSpan>
+						I am writing to express my interest in the <b>{roleTitle().trim()}</b> position
+					</TextSpan>
+					<Show when={jobBoard()}>
+						<TextSpan> advertised on {jobBoard().trim()}</TextSpan>
+					</Show>
+					<TextSpan>
+						. I have over 5 years of experience in building elegant and performant user interfaces using various
+						technologies such as <TopSkills skills={skills()} />. I also have a background in leading other developers,
+						performing code reviews, and communicating effectively with clients.
+					</TextSpan>
+				</Box>
 				{lineBreak()}
 
 				<Show when={perfectFitBullets().length}>

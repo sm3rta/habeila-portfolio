@@ -1,7 +1,7 @@
 import express from "express";
-import puppeteer from "puppeteer";
 import { Params, paramsDefaultValues, stringifyArray } from "../../portfolio/src/pages/resume-raw/utils";
 import { printWidth as width } from "../../portfolio/src/utils";
+import { launchPuppeteer } from "./utils";
 
 const router = express.Router();
 
@@ -20,16 +20,18 @@ router.post("/", async (req, res) => {
   try {
     const { body } = req;
     const { url, height: _height = 2000 } = body;
+    console.log(`Processing resume with height`, _height);
 
-    const height = Number(_height) + 4;
+    const height = Number(_height) + 2;
 
-    const browser = await puppeteer.launch({
-      // headless: false,
-      defaultViewport: {
-        width,
-        height,
-      },
-    });
+    const browser = await launchPuppeteer();
+
+    const pdfArgs = {
+      printBackground: true,
+      preferCSSPageSize: true,
+      width,
+      height,
+    };
 
     const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => async () => {
       const page = await browser.newPage();
@@ -45,20 +47,10 @@ router.post("/", async (req, res) => {
       const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
       const path = `../../resumes/${fileName}`;
 
-      await page.pdf({
-        path,
-        printBackground: true,
-        width,
-        height,
-      });
+      await page.pdf({ path, ...pdfArgs });
 
       if (jobType === "front-end") {
-        await page.pdf({
-          path: "../portfolio/public/assets/AhmedHabeilaResume.pdf",
-          printBackground: true,
-          width,
-          height,
-        });
+        await page.pdf({ path: "../portfolio/public/assets/AhmedHabeilaResume.pdf", ...pdfArgs });
       }
     });
 
@@ -67,12 +59,7 @@ router.post("/", async (req, res) => {
       await page.goto(url, { waitUntil: "networkidle0" });
       const fileName = `AhmedHabeilaResume.pdf`;
       const path = `../../resumes/${fileName}`;
-      await page.pdf({
-        path,
-        printBackground: true,
-        width,
-        height,
-      });
+      await page.pdf({ path, ...pdfArgs });
     });
 
     await Promise.all(promises.map((p) => p()));

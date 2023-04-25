@@ -8,14 +8,14 @@
   "scripts": {
     "build": "turbo run build",
     "build:portfolio": "yarn workspace portfolio build",
-    "start": "turbo run dev --parallel",
+    "start": "turbo run dev --parallel --no-daemon",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "npx rimraf yarn.lock && npx rimraf **/node_modules && npx rimraf **/.turbo && npx rimraf **/.dist && yarn"
+    "clean": "npx rimraf yarn.lock && npx rimraf **/node_modules && npx rimraf **/.turbo && npx rimraf **/dist && npx rimraf **/.puppeteer && yarn"
   },
   "devDependencies": {
     "prettier": "latest",
-    "turbo": "^1.9.3"
+    "turbo": "latest"
   },
   "engines": {
     "node": ">=14.0.0"
