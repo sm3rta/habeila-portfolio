@@ -58,6 +58,7 @@ export const _resumeSkills = [
 	'Hasura',
 	'HTML',
 	'HTML5',
+	'i18n',
 	'i18next',
 	'Innovation',
 	'Instagram API',
@@ -190,6 +191,8 @@ export const _resumeSkills = [
 	'integration tests',
 	'Jest',
 	'Cypress',
+	'cross browser compatibility',
+	'accessibility',
 ];
 
 const resumeSkills = [...new Set(_resumeSkills)];
