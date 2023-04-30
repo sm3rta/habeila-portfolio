@@ -6,7 +6,7 @@ import { BottomSectionDivider, UpperSectionDivider } from './SectionDivider';
 const Section = (_props: ContainerProps & { upperSectionDivider?: boolean; bottomSectionDivider?: boolean }) => {
 	const [dividers, props] = splitProps(_props, ['bottomSectionDivider', 'upperSectionDivider']);
 	return (
-		<Box position="relative">
+		<Box position="relative" as="section">
 			<Container
 				minH={`calc(100vh - ${headerHeight()}px)`}
 				d="flex"

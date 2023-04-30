@@ -33,7 +33,7 @@ const defaultExperienceBullets: string[] = [
 	'Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.',
 	// 'Creating accessibility focused websites with high contrast mode, dyslexia-friendly font, and animations toggle.',
 	// 'Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.',
-	'Conducted system analysis, designed and implemented eCommerce website.',
+	'Conducting system analysis, designing and implementing eCommerce website.',
 ];
 
 const defaultPerfectFitBullets: string[] = [

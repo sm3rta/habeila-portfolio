@@ -43,6 +43,7 @@ export const AppBar = () => {
 
 	return (
 		<Flex
+			as="nav"
 			position="fixed"
 			h={headerHeight()}
 			backgroundColor={darkMode() ? colors.secondary1 : colors.secondary7}
