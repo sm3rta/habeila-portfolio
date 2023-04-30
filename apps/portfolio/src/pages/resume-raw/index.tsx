@@ -1,12 +1,30 @@
-import { Anchor, Box, Button, Flex, Grid, HopeProvider, IconButton, Input, Radio, RadioGroup } from '@hope-ui/solid';
+import {
+	Anchor,
+	Box,
+	Button,
+	Drawer,
+	DrawerBody,
+	DrawerCloseButton,
+	DrawerContent,
+	DrawerOverlay,
+	Flex,
+	Grid,
+	HopeProvider,
+	IconButton,
+	Input,
+	Radio,
+	RadioGroup,
+	createDisclosure,
+} from '@hope-ui/solid';
 import { Link, useSearchParams } from '@solidjs/router';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
-import { TbStackPop } from 'solid-icons/tb';
-import { ComponentProps, For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { TbMenu2 } from 'solid-icons/tb';
+import { ComponentProps, For, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { work } from '../../data/work';
 import { Text } from '../../ui/Text';
 import { colors } from '../../ui/theme';
 import { printWidth } from '../../utils';
+import { Certifications } from './Certifications';
 import { CompanyProjects } from './CompanyProjects';
 import { StyledDivider } from './Divider';
 import { Education } from './Education';
@@ -30,7 +48,7 @@ export const StyledFlexLink = (props: ComponentProps<typeof Flex>) => (
 );
 
 const ResumeRaw = () => {
-	const [showControls, setShowControls] = createSignal(false);
+	const { isOpen: showControls, onOpen: onOpenControls, onClose: onCloseControls } = createDisclosure();
 
 	const [params, setParams] = useSearchParams<Params>();
 
@@ -60,7 +78,7 @@ const ResumeRaw = () => {
 	});
 
 	const handleKeyDown = (e: KeyboardEvent) => {
-		if (e.code === 'NumpadEnter') setShowControls(!showControls());
+		if (e.code === 'NumpadEnter') onOpenControls();
 	};
 
 	onMount(() => {
@@ -164,103 +182,111 @@ const ResumeRaw = () => {
 			}}
 		>
 			{/* controls */}
-			<Show when={showControls()}>
-				<Box display="grid" gridTemplateColumns="200px 1fr" maxW="800px" p="$4" rowGap="$8">
-					<Text>Skills</Text>
-					<Box d="grid" gap="$1">
-						<For each={skills()}>
-							{(skill, index) => (
+			<Drawer opened={showControls()} placement="right" onClose={onCloseControls} size="xl">
+				<DrawerOverlay />
+				<DrawerContent>
+					<DrawerCloseButton />
+
+					<DrawerBody>
+						<Box display="grid" gridTemplateColumns="200px 1fr" maxW="800px" p="$4" rowGap="$8">
+							<Text>Skills</Text>
+							<Box d="grid" gap="$1">
+								<For each={skills()}>
+									{(skill, index) => (
+										<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px">
+											<Input
+												value={skill}
+												onChange={(e) => {
+													const newSkills = skills().slice();
+													newSkills[index()] = (e.target as HTMLInputElement).value;
+													setSkills(newSkills.filter(Boolean));
+												}}
+											/>
+											<Button
+												colorScheme="danger"
+												onClick={() => {
+													const newSkills = skills().slice();
+													newSkills.splice(index(), 1);
+													setSkills(newSkills);
+												}}
+											>
+												Remove
+											</Button>
+										</Box>
+									)}
+								</For>
+
 								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px">
-									<Input
-										value={skill}
-										onChange={(e) => {
-											const newSkills = skills().slice();
-											newSkills[index()] = (e.target as HTMLInputElement).value;
-											setSkills(newSkills.filter(Boolean));
-										}}
-									/>
+									<Input value={newSkillInput()} onChange={createOnChangeHandler(setNewSkillInput)} />
 									<Button
-										colorScheme="danger"
 										onClick={() => {
-											const newSkills = skills().slice();
-											newSkills.splice(index(), 1);
-											setSkills(newSkills);
+											if (!newSkillInput()) return;
+											setSkills([...skills(), newSkillInput()!]);
+											setNewSkillInput('');
 										}}
 									>
-										Remove
+										Add
 									</Button>
 								</Box>
-							)}
-						</For>
+							</Box>
 
-						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px">
-							<Input value={newSkillInput()} onChange={createOnChangeHandler(setNewSkillInput)} />
+							<Text>Type</Text>
+							<RadioGroup value={jobType()}>
+								<Flex direction="column" gap="$4">
+									<Radio value="react" onChange={() => setJobType('react')}>
+										React.js
+									</Radio>
+									<Radio value="front-end" onChange={() => setJobType('front-end')}>
+										Front-end
+									</Radio>
+									<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
+										Generalist/Full-stack
+									</Radio>
+									<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
+										Software Engineer
+									</Radio>
+								</Flex>
+							</RadioGroup>
+							<Text>Seniority</Text>
+							<RadioGroup value={senior().toString()}>
+								<Flex direction="column" gap="$4">
+									<Radio value="true" onChange={() => setSenior(true)}>
+										Senior
+									</Radio>
+									<Radio value="false" onChange={() => setSenior(false)}>
+										Junior
+									</Radio>
+								</Flex>
+							</RadioGroup>
+							<Text>Include location</Text>
+							<RadioGroup value={includeLocation().toString()}>
+								<Flex direction="column" gap="$4">
+									<Radio value="true" onChange={() => setIncludeLocation(true)}>
+										Yes
+									</Radio>
+									<Radio value="false" onChange={() => setIncludeLocation(false)}>
+										No
+									</Radio>
+								</Flex>
+							</RadioGroup>
+							<Text>Adjective</Text>
+							<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
 							<Button
 								onClick={() => {
-									if (!newSkillInput()) return;
-									setSkills([...skills(), newSkillInput()!]);
-									setNewSkillInput('');
+									setSkills(paramsDefaultValues.skills.slice());
+									setJobType(paramsDefaultValues.jobType);
+									setSenior(paramsDefaultValues.senior);
+									setAdjective(paramsDefaultValues.adjective);
+									setIncludeLocation(paramsDefaultValues.includeLocation);
 								}}
 							>
-								Add
+								Reset
 							</Button>
 						</Box>
-					</Box>
+					</DrawerBody>
+				</DrawerContent>
+			</Drawer>
 
-					<Text>Type</Text>
-					<RadioGroup value={jobType()}>
-						<Flex direction="column" gap="$4">
-							<Radio value="react" onChange={() => setJobType('react')}>
-								React.js
-							</Radio>
-							<Radio value="front-end" onChange={() => setJobType('front-end')}>
-								Front-end
-							</Radio>
-							<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
-								Generalist/Full-stack
-							</Radio>
-							<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
-								Software Engineer
-							</Radio>
-						</Flex>
-					</RadioGroup>
-					<Text>Seniority</Text>
-					<RadioGroup value={senior().toString()}>
-						<Flex direction="column" gap="$4">
-							<Radio value="true" onChange={() => setSenior(true)}>
-								Senior
-							</Radio>
-							<Radio value="false" onChange={() => setSenior(false)}>
-								Junior
-							</Radio>
-						</Flex>
-					</RadioGroup>
-					<Text>Include location</Text>
-					<RadioGroup value={includeLocation().toString()}>
-						<Flex direction="column" gap="$4">
-							<Radio value="true" onChange={() => setIncludeLocation(true)}>
-								Yes
-							</Radio>
-							<Radio value="false" onChange={() => setIncludeLocation(false)}>
-								No
-							</Radio>
-						</Flex>
-					</RadioGroup>
-					<Text>Adjective</Text>
-					<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
-					<Button
-						onClick={() => {
-							setSkills(paramsDefaultValues.skills.slice());
-							setJobType(paramsDefaultValues.jobType);
-							setSenior(paramsDefaultValues.senior);
-							setAdjective(paramsDefaultValues.adjective);
-							setIncludeLocation(paramsDefaultValues.includeLocation);
-						}}
-					>
-						Reset
-					</Button>
-				</Box>
-			</Show>
 			{/* top invisible bar */}
 			<Box pos="fixed" top="0" right="0">
 				<IconButton
@@ -274,9 +300,9 @@ const ResumeRaw = () => {
 				<IconButton
 					{...iconButtonProps}
 					size="lg"
-					onClick={() => setShowControls(!showControls())}
-					aria-label="Up"
-					icon={<TbStackPop />}
+					onClick={onOpenControls}
+					aria-label="Open drawer"
+					icon={<TbMenu2 />}
 				/>
 				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
 			</Box>
@@ -308,8 +334,9 @@ const ResumeRaw = () => {
 					{/* education */}
 					<Education />
 
-					{/* self taught courses */}
-					<SelfTaught />
+					{/* certifications + self taught courses */}
+					<Certifications />
+					<SelfTaught jobType={jobType()} />
 
 					{/* references */}
 					{/* <References /> */}
