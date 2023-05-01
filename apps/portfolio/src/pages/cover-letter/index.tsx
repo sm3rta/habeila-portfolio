@@ -1,4 +1,5 @@
 import { Box, Button, Flex, HopeProvider, Input, List, ListItem, Textarea } from '@hope-ui/solid';
+import { MetaProvider, Title } from '@solidjs/meta';
 import { Link, useSearchParams } from '@solidjs/router';
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { emailAddress, locationAddress, telephoneNumberStylized, website } from '../../data/work';
@@ -196,6 +197,9 @@ const CoverLetter = () => {
 				},
 			}}
 		>
+			<MetaProvider>
+				<Title>Ahmed Habeila's Portfolio - Cover Letter</Title>
+			</MetaProvider>
 			<Show when={pdf() === 'false'}>
 				<Box
 					display="grid"

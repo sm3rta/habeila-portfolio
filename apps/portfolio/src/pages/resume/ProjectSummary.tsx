@@ -5,7 +5,7 @@ import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { SkillBadge } from '../home/SkillBadge';
 
 const renderProjectTitle = (props: Project) => {
-	const project = <Text>{props.name}</Text>;
+	const project = <Text as="span">{props.name}</Text>;
 	return (
 		<Switch>
 			<Match when={props.renderTitle}>{props.renderTitle!()}</Match>

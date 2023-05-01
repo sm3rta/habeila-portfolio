@@ -161,7 +161,7 @@ export const work: Workplace[] = [
 				name: 'Quint Blog and Staking',
 				id: 'quint-blog-staking',
 				renderTitle: () => (
-					<Text>
+					<Text as="span">
 						<Anchor href="https://blog.quint.io/">
 							<Text as="span">Quint blog</Text>
 						</Anchor>{' '}
@@ -499,7 +499,7 @@ export const work: Workplace[] = [
 				name: 'BMW Foundation',
 				id: 'bmw-foundation-tt',
 				renderTitle: () => (
-					<Text>
+					<Text as="span">
 						<Anchor href="https://bmw-foundation.org/">BMW Foundation</Anchor> and{' '}
 						<Anchor href="https://twentythirty.com/">TwentyThirty</Anchor>
 					</Text>

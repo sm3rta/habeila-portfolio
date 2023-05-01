@@ -1,4 +1,5 @@
 import { Button, Center, Flex } from '@hope-ui/solid';
+import { MetaProvider, Title } from '@solidjs/meta';
 import { A } from '@solidjs/router';
 import { work } from '../../data/work';
 import Fade from '../../ui/components/Fade';
@@ -7,6 +8,9 @@ import { Timeline } from './Timeline';
 
 const Resume = () => (
 	<Fade in={() => true}>
+		<MetaProvider>
+			<Title>Ahmed Habeila's Portfolio - Resume</Title>
+		</MetaProvider>
 		<Timeline
 			showStepper
 			children={work.map((company) => (

@@ -26,24 +26,17 @@ const renderCompany = (name: string, link?: string) => {
 	);
 };
 
-export const CompanyProjects = (props: {
-	company: Workplace;
-	forceRole?: () => 'full' | 'se' | undefined;
-	forceNonSenior?: () => boolean | undefined;
-}) => {
-	const projects = () => props.company.projects.filter((project) => !project.hideOnResume);
+export const CompanyProjects = (props: { company: Workplace }) => {
+	const projects = () => props.company.projects.filter((project) => !project.hideOnHomepage);
 	return (
 		<Flex h="100%" w="100%" direction="column" justifyContent="center">
 			<Box>
 				{props.company.title && (
 					<Text as="span" fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
-						{getTitle(
-							props.forceRole?.() ?? props.company.title.role,
-							props.forceNonSenior?.() ? !props.forceNonSenior() : props.company.title.senior
-						)}
+						{getTitle(props.company.title.role, props.company.title.senior)}
 					</Text>
 				)}{' '}
-				– {renderCompany(props.company.name, props.company.website)}
+				&ndash; {renderCompany(props.company.name, props.company.website)}
 			</Box>
 			<Show when={props.company.from && props.company.to}>
 				<Text fontSize="$xs" fontWeight="$bold">

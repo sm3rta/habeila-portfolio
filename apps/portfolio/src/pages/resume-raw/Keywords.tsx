@@ -193,6 +193,9 @@ export const _resumeSkills = [
 	'Cypress',
 	'cross browser compatibility',
 	'accessibility',
+	'CMS',
+	'Content management system',
+	'Flask',
 ];
 
 const resumeSkills = [...new Set(_resumeSkills)];

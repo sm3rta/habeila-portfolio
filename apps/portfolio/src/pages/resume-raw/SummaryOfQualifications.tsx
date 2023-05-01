@@ -14,7 +14,7 @@ export const SummaryOfQualifications = (props: { skills: string[] }) => (
 					<>5+ years of experience building elegant and performant user experiences</>,
 					// helping companies create and maintain a better code base for reusability
 					<>
-						Strong background in <TopSkills skills={props.skills} /> with high flexibility to work with any stack
+						Strong background in <TopSkills skills={props.skills} /> with high adaptability to work with any stack
 						{/* and web development fundamentals */}
 					</>,
 					'Demonstrated ability to lead other developers, performing code reviews and enforcing certain patterns',

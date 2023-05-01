@@ -18,5 +18,5 @@ export const paramsDefaultValues = {
 	senior: true,
 	jobType: 'front-end',
 	adjective: 'Highly motivated',
-	includeLocation: true,
+	includeLocation: false,
 } as const;

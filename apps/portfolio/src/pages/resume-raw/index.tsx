@@ -16,6 +16,7 @@ import {
 	RadioGroup,
 	createDisclosure,
 } from '@hope-ui/solid';
+import { MetaProvider, Title } from '@solidjs/meta';
 import { Link, useSearchParams } from '@solidjs/router';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
 import { TbMenu2 } from 'solid-icons/tb';
@@ -181,6 +182,9 @@ const ResumeRaw = () => {
 				},
 			}}
 		>
+			<MetaProvider>
+				<Title>Ahmed Habeila's Portfolio - Resume Raw</Title>
+			</MetaProvider>
 			{/* controls */}
 			<Drawer opened={showControls()} placement="right" onClose={onCloseControls} size="xl">
 				<DrawerOverlay />
@@ -271,7 +275,16 @@ const ResumeRaw = () => {
 							</RadioGroup>
 							<Text>Adjective</Text>
 							<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
+						</Box>
+						<Box gap="$4" display="flex">
+							<Button minW={200} onClick={printPage}>
+								Print
+							</Button>
+							<Button minW={200} onClick={onCloseControls}>
+								Close
+							</Button>
 							<Button
+								minW={200}
 								onClick={() => {
 									setSkills(paramsDefaultValues.skills.slice());
 									setJobType(paramsDefaultValues.jobType);
@@ -279,6 +292,7 @@ const ResumeRaw = () => {
 									setAdjective(paramsDefaultValues.adjective);
 									setIncludeLocation(paramsDefaultValues.includeLocation);
 								}}
+								colorScheme="danger"
 							>
 								Reset
 							</Button>
