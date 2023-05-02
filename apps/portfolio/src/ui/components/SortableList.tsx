@@ -1,4 +1,4 @@
-import { Box } from '@hope-ui/solid';
+import { Flex } from '@hope-ui/solid';
 import {
 	DragDropProvider,
 	DragDropSensors,
@@ -6,38 +6,39 @@ import {
 	SortableProvider,
 	closestCenter,
 	createSortable,
-	useDragDropContext,
 } from '@thisbeyond/solid-dnd';
 import { BsArrowsExpand } from 'solid-icons/bs';
-import { For, JSX, createEffect } from 'solid-js';
+import { Accessor, For, JSX, createEffect } from 'solid-js';
 
-const Sortable = (props: { renderItem: JSX.Element; id: string | number }) => {
+const Sortable = (props: { renderItem: JSX.Element; id: string | number; index: Accessor<number> }) => {
 	// eslint-disable-next-line solid/reactivity
 	const sortable = createSortable(props.id);
-	const [state] = useDragDropContext() as NonNullable<ReturnType<typeof useDragDropContext>>;
+	// const [state] = useDragDropContext() as NonNullable<ReturnType<typeof useDragDropContext>>;
+	// console.log(`🚀 ~ Sortable ~ state:`, state);
 	return (
-		<div
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			use:sortable
-			class="sortable"
-			classList={{
-				'opacity-25': sortable.isActiveDraggable,
-				'transition-transform': !!state.active.draggable,
-			}}
-		>
-			<Box display="flex" gap="$2" alignItems="center">
+		<Flex gap="$2">
+			<div
+				style={{
+					display: 'flex',
+					gap: '8px',
+					'align-items': 'center',
+				}}
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
+				use:sortable
+			>
 				<BsArrowsExpand />
-				{props.renderItem}
-			</Box>
-		</div>
+				{props.index() + 1}
+			</div>
+			{props.renderItem}
+		</Flex>
 	);
 };
 
 export const SortableVerticalList = <T,>(props: {
 	items: T[];
 	setItems: (items: T[]) => void;
-	renderItem: (item: T, index: () => number) => JSX.Element;
+	renderItem: (item: T, index: Accessor<number>) => JSX.Element;
 	getId: (item: T) => string | number;
 }) => {
 	// const [items, setItems] = createSignal(props.items);
@@ -48,7 +49,9 @@ export const SortableVerticalList = <T,>(props: {
 		console.log(props.items);
 	});
 
-	// const onDragStart: DragEventHandler = ({ draggable }) => setActiveItem(draggable.id as number);
+	// const onDragStart: DragEventHandler = (e) => {
+	//  setActiveItem(draggable.id as number);
+	// };
 
 	const onDragEnd: DragEventHandler = ({ draggable, droppable }) => {
 		if (draggable && droppable) {
@@ -72,7 +75,9 @@ export const SortableVerticalList = <T,>(props: {
 			<DragDropSensors />
 			<SortableProvider ids={ids()}>
 				<For each={props.items}>
-					{(item, index) => <Sortable renderItem={props.renderItem(item, index)} id={props.getId(item)} />}
+					{(item, index) => (
+						<Sortable renderItem={props.renderItem(item, index)} index={index} id={props.getId(item)} />
+					)}
 				</For>
 			</SortableProvider>
 		</DragDropProvider>
