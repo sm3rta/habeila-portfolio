@@ -16,3 +16,7 @@ html {
 ul {
 	list-style-type: circle;
 }
+
+editor-squiggler {
+	position: absolute;
+}

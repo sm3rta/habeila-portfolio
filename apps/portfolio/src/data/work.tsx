@@ -43,7 +43,7 @@ import {
 	SiZoom,
 } from 'solid-icons/si';
 import { For, JSX } from 'solid-js';
-import { Text } from '../ui/Text';
+import { Text } from '../ui/components/Text';
 import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
 import { NetjeekLogo } from './logos/NetjeekLogo';

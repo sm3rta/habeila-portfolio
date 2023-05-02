@@ -8,6 +8,7 @@ router.post("/cover", async (req, res) => {
   try {
     const { body } = req;
     const { url, height: _height = 2000 } = body;
+    console.log(`Processing cover letter with height`, _height);
     const height = Number(_height) + 4;
 
     const browser = await launchPuppeteer();

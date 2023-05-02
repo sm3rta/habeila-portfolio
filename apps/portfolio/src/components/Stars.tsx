@@ -1,6 +1,6 @@
 import { Box } from '@hope-ui/solid';
 import { For, Show, createSignal, onMount } from 'solid-js';
-import { Star } from '../ui/Star';
+import { Star } from '../ui/components/Star';
 import { randRangeInt } from '../utils';
 
 export const Stars = () => {

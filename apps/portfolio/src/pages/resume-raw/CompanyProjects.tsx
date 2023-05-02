@@ -1,7 +1,7 @@
 import { Anchor, Box, Flex, List, ListItem } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
 import { Workplace } from '../../data/work';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 import { getTitle } from '../../utils/getTitle';
 import ProjectSummary from './ProjectSummary';
 
@@ -25,8 +25,8 @@ const renderCompany = (props: Workplace) => {
 
 export const CompanyProjects = (props: {
 	company: Workplace;
-	forceRole?: () => 'full' | 'se' | undefined;
-	forceNonSenior?: () => boolean | undefined;
+	forceRole?: 'full' | 'se' | undefined;
+	forceNonSenior?: boolean | undefined;
 }) => {
 	const projects = () => props.company.projects.filter((project) => !project.hideOnResume);
 	return (
@@ -36,8 +36,8 @@ export const CompanyProjects = (props: {
 					{props.company.title && (
 						<Text variant="subtitle" as="span">
 							{getTitle(
-								props.forceRole?.() ?? props.company.title.role,
-								props.forceNonSenior?.() ? !props.forceNonSenior() : props.company.title.senior
+								props.forceRole ?? props.company.title.role,
+								props.forceNonSenior !== undefined ? !props.forceNonSenior : props.company.title.senior
 							)}
 						</Text>
 					)}

@@ -2,7 +2,7 @@ import { Anchor, Flex, List, ListItem } from '@hope-ui/solid';
 import { SiCoursera, SiMeta } from 'solid-icons/si';
 import { For } from 'solid-js';
 import { ICON_SIZE } from '.';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 import { StyledDivider } from './Divider';
 
 export const Certifications = () => (

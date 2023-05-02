@@ -4,7 +4,7 @@ import { Suspense, createSignal, lazy } from 'solid-js';
 import { AppBar } from './components/AppBar';
 import { Footer } from './components/Footer';
 import { Stars } from './components/Stars';
-import { DarkModeSwitch } from './ui/DarkModeSwitch';
+import { DarkModeSwitch } from './ui/components/DarkModeSwitch';
 import Loader from './ui/components/Loader';
 import { colors, darkTheme, headerHeight, lightTheme } from './ui/theme';
 

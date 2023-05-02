@@ -5,7 +5,7 @@ import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import { For, Match, Show, Switch } from 'solid-js';
 import { StyledFlexLink, pagePaddings } from '.';
 import { emailAddress, locationAddress, telephoneNumber, telephoneNumberStylized, website } from '../../data/work';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 import { ICON_SIZE } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { StyledDivider } from './Divider';

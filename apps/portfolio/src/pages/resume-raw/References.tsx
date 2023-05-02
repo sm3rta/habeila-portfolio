@@ -1,6 +1,6 @@
 import { Flex } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 import { StyledDivider } from './Divider';
 
 export const References = () => (

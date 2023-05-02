@@ -2,10 +2,10 @@ import { Box } from '@hope-ui/solid';
 import Parallax from 'rallax.js';
 import { ComponentProps, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { darkMode } from '../App';
-import { generateRandomColor, generateRandomColorLight, randRange, randRangeInt } from '../utils';
-import { mobileCheck } from './isMobileDevice';
-import { headerHeight, zIndexes } from './theme';
+import { darkMode } from '../../App';
+import { generateRandomColor, generateRandomColorLight, randRange, randRangeInt } from '../../utils';
+import { mobileCheck } from '../isMobileDevice';
+import { headerHeight, zIndexes } from '../theme';
 
 const isMobileDevice = mobileCheck();
 

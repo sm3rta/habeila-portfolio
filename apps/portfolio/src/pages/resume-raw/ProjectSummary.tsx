@@ -1,7 +1,7 @@
 import { Anchor, Box, Flex, ListItem } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
 import { Project } from '../../data/work';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { SkillBadge } from '../home/SkillBadge';
 

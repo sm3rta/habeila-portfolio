@@ -1,6 +1,6 @@
 import { List, ListItem } from '@hope-ui/solid';
 import { For } from 'solid-js';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 
 export const _resumeSkills = [
 	'Adobe Illustrator',

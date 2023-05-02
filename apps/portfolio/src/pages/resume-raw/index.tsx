@@ -6,6 +6,8 @@ import {
 	DrawerBody,
 	DrawerCloseButton,
 	DrawerContent,
+	DrawerFooter,
+	DrawerHeader,
 	DrawerOverlay,
 	Flex,
 	Grid,
@@ -17,12 +19,13 @@ import {
 	createDisclosure,
 } from '@hope-ui/solid';
 import { MetaProvider, Title } from '@solidjs/meta';
-import { Link, useSearchParams } from '@solidjs/router';
+import { useSearchParams } from '@solidjs/router';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
 import { TbMenu2 } from 'solid-icons/tb';
-import { ComponentProps, For, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { ComponentProps, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { work } from '../../data/work';
-import { Text } from '../../ui/Text';
+import { SortableVerticalList } from '../../ui/components/SortableList';
+import { Text } from '../../ui/components/Text';
 import { colors } from '../../ui/theme';
 import { printWidth } from '../../utils';
 import { Certifications } from './Certifications';
@@ -44,13 +47,21 @@ export const pagePaddings = {
 
 export const ICON_SIZE = 20;
 
+export const controlsSectionWidth = 150;
+
+export const iconButtonProps = {
+	background: 'none',
+	borderRadius: 0,
+	css: { '&>svg': { opacity: 0, transition: 'opacity 0.3s ease' } },
+	_hover: { background: colors.primary6, color: 'black !important', '&>svg': { opacity: 1 } },
+};
+
 export const StyledFlexLink = (props: ComponentProps<typeof Flex>) => (
 	<Anchor d="flex" target="_blank" alignItems="center" w="fit-content" {...props} />
 );
 
 const ResumeRaw = () => {
 	const { isOpen: showControls, onOpen: onOpenControls, onClose: onCloseControls } = createDisclosure();
-
 	const [params, setParams] = useSearchParams<Params>();
 
 	const [includeLocation, setIncludeLocation] = createSignal(
@@ -95,14 +106,14 @@ const ResumeRaw = () => {
 	};
 
 	const [printing, setPrinting] = createSignal(false);
+	const [page1Ref, setPage1Ref] = createSignal<HTMLDivElement>();
 
-	const printPage = async () => {
-		const page1 = document.getElementById('page1');
+	const printPage = () => {
+		const page1 = page1Ref();
 		if (!page1) return;
 
 		setPrinting(true);
 		const height = page1.scrollHeight;
-		// console.log(`🚀 ~ printPage ~ height:`, height);
 		setPrinting(false);
 
 		const body = {
@@ -110,7 +121,7 @@ const ResumeRaw = () => {
 			height,
 		};
 
-		await fetch('http://localhost:3001/', {
+		fetch('http://localhost:3001/', {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -120,14 +131,14 @@ const ResumeRaw = () => {
 			.then((res) => {
 				if (res.status === 200) {
 					createDesktopNotification({
-						message: 'Printed successfully',
+						message: 'Resume printed successfully',
 						title: 'Success',
 						status: 'success',
 					});
 					return res.blob();
 				} else {
 					createDesktopNotification({
-						message: 'Print failed',
+						message: 'Resume print failed',
 						title: 'Failed',
 						status: 'fail',
 					});
@@ -135,18 +146,11 @@ const ResumeRaw = () => {
 			})
 			.catch(() => {
 				createDesktopNotification({
-					message: 'Print failed',
+					message: 'Resume print failed',
 					title: 'Failed',
 					status: 'fail',
 				});
 			});
-	};
-
-	const iconButtonProps = {
-		background: 'none',
-		borderRadius: 0,
-		css: { '&>svg': { opacity: 0, transition: 'opacity 0.3s ease' } },
-		_hover: { background: colors.primary6, color: 'black !important', '&>svg': { opacity: 1 } },
 	};
 
 	const forceRole = () => (jobType() === 'full-stack' ? 'full' : jobType() === 'softwareEngineer' ? 'se' : undefined);
@@ -186,118 +190,121 @@ const ResumeRaw = () => {
 				<Title>Ahmed Habeila's Portfolio - Resume Raw</Title>
 			</MetaProvider>
 			{/* controls */}
-			<Drawer opened={showControls()} placement="right" onClose={onCloseControls} size="xl">
+			<Drawer opened={showControls()} placement="right" onClose={onCloseControls} size="lg">
 				<DrawerOverlay />
 				<DrawerContent>
 					<DrawerCloseButton />
+					<DrawerHeader />
+					<DrawerBody display="grid" gridTemplateColumns={`${controlsSectionWidth}px 1fr`} p="$4" rowGap="$8">
+						<Text fontSize="1rem">Skills</Text>
+						<Box d="grid" gap="$1">
+							<SortableVerticalList
+								items={skills()}
+								setItems={setSkills}
+								getId={(item) => item}
+								renderItem={(skill, index) => (
+									<Box d="grid" gap="$4" flex={1} gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
+										<Input
+											value={skill}
+											onChange={(e) => {
+												const newSkills = skills().slice();
+												newSkills[index()] = (e.target as HTMLInputElement).value;
+												setSkills(newSkills.filter(Boolean));
+											}}
+										/>
+										<Button
+											colorScheme="danger"
+											onClick={() => {
+												const newSkills = skills().slice();
+												newSkills.splice(index(), 1);
+												setSkills(newSkills);
+											}}
+										>
+											Remove
+										</Button>
+									</Box>
+								)}
+							/>
 
-					<DrawerBody>
-						<Box display="grid" gridTemplateColumns="200px 1fr" maxW="800px" p="$4" rowGap="$8">
-							<Text>Skills</Text>
-							<Box d="grid" gap="$1">
-								<For each={skills()}>
-									{(skill, index) => (
-										<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px">
-											<Input
-												value={skill}
-												onChange={(e) => {
-													const newSkills = skills().slice();
-													newSkills[index()] = (e.target as HTMLInputElement).value;
-													setSkills(newSkills.filter(Boolean));
-												}}
-											/>
-											<Button
-												colorScheme="danger"
-												onClick={() => {
-													const newSkills = skills().slice();
-													newSkills.splice(index(), 1);
-													setSkills(newSkills);
-												}}
-											>
-												Remove
-											</Button>
-										</Box>
-									)}
-								</For>
-
-								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px">
-									<Input value={newSkillInput()} onChange={createOnChangeHandler(setNewSkillInput)} />
-									<Button
-										onClick={() => {
-											if (!newSkillInput()) return;
-											setSkills([...skills(), newSkillInput()!]);
-											setNewSkillInput('');
-										}}
-									>
-										Add
-									</Button>
-								</Box>
-							</Box>
-
-							<Text>Type</Text>
-							<RadioGroup value={jobType()}>
-								<Flex direction="column" gap="$4">
-									<Radio value="react" onChange={() => setJobType('react')}>
-										React.js
-									</Radio>
-									<Radio value="front-end" onChange={() => setJobType('front-end')}>
-										Front-end
-									</Radio>
-									<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
-										Generalist/Full-stack
-									</Radio>
-									<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
-										Software Engineer
-									</Radio>
-								</Flex>
-							</RadioGroup>
-							<Text>Seniority</Text>
-							<RadioGroup value={senior().toString()}>
-								<Flex direction="column" gap="$4">
-									<Radio value="true" onChange={() => setSenior(true)}>
-										Senior
-									</Radio>
-									<Radio value="false" onChange={() => setSenior(false)}>
-										Junior
-									</Radio>
-								</Flex>
-							</RadioGroup>
-							<Text>Include location</Text>
-							<RadioGroup value={includeLocation().toString()}>
-								<Flex direction="column" gap="$4">
-									<Radio value="true" onChange={() => setIncludeLocation(true)}>
-										Yes
-									</Radio>
-									<Radio value="false" onChange={() => setIncludeLocation(false)}>
-										No
-									</Radio>
-								</Flex>
-							</RadioGroup>
-							<Text>Adjective</Text>
-							<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
-						</Box>
-						<Box gap="$4" display="flex">
-							<Button minW={200} onClick={printPage}>
-								Print
-							</Button>
-							<Button minW={200} onClick={onCloseControls}>
-								Close
-							</Button>
-							<Button
-								minW={200}
-								onClick={() => {
-									setSkills(paramsDefaultValues.skills.slice());
-									setJobType(paramsDefaultValues.jobType);
-									setSenior(paramsDefaultValues.senior);
-									setAdjective(paramsDefaultValues.adjective);
-									setIncludeLocation(paramsDefaultValues.includeLocation);
+							<Input
+								value={newSkillInput()}
+								onChange={(e) => {
+									if (!e.target.value) return;
+									setNewSkillInput(e.target.value);
+									setSkills(Array.from(new Set([...skills(), newSkillInput()!])));
+									setNewSkillInput('');
 								}}
-								colorScheme="danger"
-							>
-								Reset
-							</Button>
+							/>
 						</Box>
+
+						<Text fontSize="1rem">Type</Text>
+						<RadioGroup value={jobType()}>
+							<Flex direction="column" gap="$4">
+								<Radio value="react" onChange={() => setJobType('react')}>
+									React.js
+								</Radio>
+								<Radio value="front-end" onChange={() => setJobType('front-end')}>
+									Front-end
+								</Radio>
+								<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
+									Generalist/Full-stack
+								</Radio>
+								<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
+									Software Engineer
+								</Radio>
+							</Flex>
+						</RadioGroup>
+						<Text fontSize="1rem">Seniority</Text>
+						<RadioGroup value={senior().toString()}>
+							<Flex direction="column" gap="$4">
+								<Radio value="true" onChange={() => setSenior(true)}>
+									Senior
+								</Radio>
+								<Radio value="false" onChange={() => setSenior(false)}>
+									Junior
+								</Radio>
+							</Flex>
+						</RadioGroup>
+						<Text fontSize="1rem">Include location</Text>
+						<RadioGroup value={includeLocation().toString()}>
+							<Flex direction="column" gap="$4">
+								<Radio value="true" onChange={() => setIncludeLocation(true)}>
+									Yes
+								</Radio>
+								<Radio value="false" onChange={() => setIncludeLocation(false)}>
+									No
+								</Radio>
+							</Flex>
+						</RadioGroup>
+						<Text fontSize="1rem">Adjective</Text>
+						<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
 					</DrawerBody>
+					<DrawerFooter gap="$4" display="grid" gridAutoFlow="column" justifyContent="unset">
+						<Button onClick={printPage}>Print</Button>
+						<Button variant="dashed" onClick={onCloseControls}>
+							Close
+						</Button>
+						<Button
+							variant="dashed"
+							as="a"
+							href={`/cover?skills=${stringifyArray(skills())}`}
+							aria-label="Go to cover letter"
+						>
+							Go to cover letter
+						</Button>
+						<Button
+							onClick={() => {
+								setSkills(paramsDefaultValues.skills.slice());
+								setJobType(paramsDefaultValues.jobType);
+								setSenior(paramsDefaultValues.senior);
+								setAdjective(paramsDefaultValues.adjective);
+								setIncludeLocation(paramsDefaultValues.includeLocation);
+							}}
+							colorScheme="danger"
+						>
+							Reset
+						</Button>
+					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
 
@@ -306,11 +313,12 @@ const ResumeRaw = () => {
 				<IconButton
 					{...iconButtonProps}
 					size="lg"
-					as={Link}
+					as="a"
 					href={`/cover?skills=${stringifyArray(skills())}`}
 					aria-label="Go to cover letter"
 					icon={<BsChatLeftTextFill />}
 				/>
+				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
 				<IconButton
 					{...iconButtonProps}
 					size="lg"
@@ -318,11 +326,10 @@ const ResumeRaw = () => {
 					aria-label="Open drawer"
 					icon={<TbMenu2 />}
 				/>
-				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
 			</Box>
 			{/* main */}
 			<Flex as="main" direction="column" id="main">
-				<Grid id="page1" w={printing() ? printWidth : 'auto'}>
+				<Grid id="page1" w={printing() ? printWidth : 'auto'} ref={setPage1Ref}>
 					{/* header */}
 					<Header adjective={adjective()} jobType={jobType()} includeLocation={includeLocation()} />
 					{/* page 1 */}
@@ -335,7 +342,7 @@ const ResumeRaw = () => {
 							<StyledDivider />
 							<Timeline
 								children={work.map((company) => (
-									<CompanyProjects forceRole={forceRole} company={company} forceNonSenior={forceNonSenior} />
+									<CompanyProjects forceRole={forceRole()} company={company} forceNonSenior={forceNonSenior()} />
 								))}
 							/>
 						</Grid>

@@ -2,7 +2,7 @@ import { Box, Flex } from '@hope-ui/solid';
 import { SiApache, SiCplusplus, SiGithub, SiLinux } from 'solid-icons/si';
 import { For } from 'solid-js';
 import { ICON_SIZE, StyledFlexLink } from '.';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 import { SkillBadge } from '../home/SkillBadge';
 import { StyledDivider } from './Divider';
 

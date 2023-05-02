@@ -1,12 +1,36 @@
-import { Box, Button, Flex, HopeProvider, Input, List, ListItem, Textarea } from '@hope-ui/solid';
+import {
+	Box,
+	Button,
+	Drawer,
+	DrawerBody,
+	DrawerCloseButton,
+	DrawerContent,
+	DrawerFooter,
+	DrawerHeader,
+	DrawerOverlay,
+	Flex,
+	HopeProvider,
+	IconButton,
+	Input,
+	List,
+	ListItem,
+	Radio,
+	RadioGroup,
+	Textarea,
+	createDisclosure,
+} from '@hope-ui/solid';
 import { MetaProvider, Title } from '@solidjs/meta';
-import { Link, useSearchParams } from '@solidjs/router';
-import { For, Show, createEffect, createSignal, onMount } from 'solid-js';
+import { useSearchParams } from '@solidjs/router';
+import { BsPrinter } from 'solid-icons/bs';
+import { IoDocument } from 'solid-icons/io';
+import { TbMenu2 } from 'solid-icons/tb';
+import { For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { emailAddress, locationAddress, telephoneNumberStylized, website } from '../../data/work';
-import { Text } from '../../ui/Text';
+import { SortableVerticalList } from '../../ui/components/SortableList';
+import { Text } from '../../ui/components/Text';
 import { darkTheme as theme } from '../../ui/theme';
 import { coverPrintWidth } from '../../utils';
-import { pagePaddings } from '../resume-raw';
+import { controlsSectionWidth, iconButtonProps, pagePaddings } from '../resume-raw';
 import { Header } from '../resume-raw/Header';
 import { TopSkills } from '../resume-raw/TopSkills';
 import { createDesktopNotification } from '../resume-raw/createDesktopNotification';
@@ -38,7 +62,7 @@ const defaultExperienceBullets: string[] = [
 ];
 
 const defaultPerfectFitBullets: string[] = [
-	'During my time at calqulate, I mentored a team of 4 front-end developers, performing PR reviews for code quality and enforcing best practices.',
+	'During my time at Calqulate, I mentored a team of 4 front-end developers, performing PR reviews for code quality and enforcing best practices.',
 	'I have extensive experience with multiple React state management tools including Redux, Redux-toolkit, and MobX.',
 	'I also have experience writing unit tests with Jest and React testing library.',
 ];
@@ -49,6 +73,7 @@ const defaultInterested =
  and apply my skills and knowledge to your projects.';
 
 const CoverLetter = () => {
+	const { isOpen: showControls, onOpen: onOpenControls, onClose: onCloseControls } = createDisclosure();
 	const [params, setParams] = useSearchParams<Params>();
 
 	const [skills, setSkills] = createSignal<string[]>(
@@ -64,27 +89,35 @@ const CoverLetter = () => {
 	);
 	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
 	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
-	const [pdf, setPdf] = createSignal<Params['pdf']>(params.pdf ?? 'false');
+	const [pdf, setPdf] = createSignal<boolean>(params.pdf ? params.pdf === 'true' : false);
 
 	const [newSkillInput, setNewSkillInput] = createSignal<string>();
 	const [newExperienceBulletInput, setNewExperienceBulletInput] = createSignal<string>();
 	const [newPerfectFitBulletInput, setNewPerfectFitBulletInput] = createSignal<string>();
 
+	const [coverRef, setCoverRef] = createSignal<HTMLDivElement>();
+
+	const handleKeyDown = (e: KeyboardEvent) => {
+		if (e.key === 'a' && e.ctrlKey) {
+			if (document.activeElement?.nodeName === 'INPUT') return;
+			if (document.activeElement?.nodeName === 'TEXTAREA') return;
+			const cover = coverRef();
+			if (!cover) return;
+			setTimeout(() => {
+				const range = document.createRange();
+				range.selectNode(cover);
+				window.getSelection()?.removeAllRanges();
+				window.getSelection()?.addRange(range);
+			}, 0);
+		}
+	};
+
 	onMount(() => {
-		document.body.addEventListener('keydown', (e) => {
-			if (e.key === 'a' && e.ctrlKey) {
-				if (document.activeElement?.nodeName === 'INPUT') return;
-				if (document.activeElement?.nodeName === 'TEXTAREA') return;
-				const cover = document.getElementById('cover');
-				if (!cover) return;
-				setTimeout(() => {
-					const range = document.createRange();
-					range.selectNode(cover);
-					window.getSelection()?.removeAllRanges();
-					window.getSelection()?.addRange(range);
-				}, 0);
-			}
-		});
+		if (!pdf()) onOpenControls();
+		document.body.addEventListener('keydown', handleKeyDown);
+	});
+	onCleanup(() => {
+		document.body.removeEventListener('keydown', handleKeyDown);
 	});
 
 	createEffect(() => {
@@ -121,25 +154,20 @@ const CoverLetter = () => {
 		setInterested(defaultInterested);
 	};
 
-	const printPage = async () => {
-		const root = document.getElementById('root');
+	const printPage = () => {
+		const root = coverRef();
 		if (!root) return;
 
-		root.style.width = `${coverPrintWidth}px`;
-		setPdf('true');
-
+		setPdf(true);
 		const height = root.scrollHeight;
-		root.style.width = '';
-		setTimeout(() => {
-			setPdf('false');
-		}, 0);
+		setPdf(false);
 
 		const body = {
 			url: window.location.href,
 			height,
 		};
 
-		await fetch('http://localhost:3001/cover', {
+		fetch('http://localhost:3001/cover', {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -149,14 +177,14 @@ const CoverLetter = () => {
 			.then((res) => {
 				if (res.status === 200) {
 					createDesktopNotification({
-						message: 'Printed successfully',
+						message: 'Cover letter printed successfully',
 						title: 'Success',
 						status: 'success',
 					});
 					return res.blob();
 				} else {
 					createDesktopNotification({
-						message: 'Print failed',
+						message: 'Cover letter print failed',
 						title: 'Failed',
 						status: 'fail',
 					});
@@ -164,21 +192,25 @@ const CoverLetter = () => {
 			})
 			.catch(() => {
 				createDesktopNotification({
-					message: 'Print failed',
+					message: 'Cover letter print failed',
 					title: 'Failed',
 					status: 'fail',
 				});
 			});
 	};
 
-	const lineBreak = () => (pdf() === 'false' ? <br /> : <Box h={30} />);
+	const lineBreak = () => (!pdf() ? <br /> : <Box h={30} />);
 
 	return (
 		<HopeProvider
 			config={{
 				lightTheme: {
 					fontSizes: theme.darkTheme.fontSizes,
+					sizes: {
+						'4xl': '76rem',
+					},
 				},
+
 				components: {
 					Anchor: {
 						baseStyle: {
@@ -200,235 +232,305 @@ const CoverLetter = () => {
 			<MetaProvider>
 				<Title>Ahmed Habeila's Portfolio - Cover Letter</Title>
 			</MetaProvider>
-			<Show when={pdf() === 'false'}>
-				<Box
-					display="grid"
-					id="controls"
-					gridTemplateColumns="200px 1fr"
-					// maxW="500px"
-					p="$4"
-					rowGap="$8"
-					columnGap="$4"
-					userSelect="none"
-				>
-					{/* Skills */}
-					<TextSpan>Skills</TextSpan>
-					<Box d="grid" gap="$1">
-						<For each={skills()}>
-							{(skill, index) => (
-								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
-									<Input
-										value={skill}
-										onChange={(e) => {
-											const newSkills = skills().slice();
-											newSkills[index()] = (e.target as HTMLInputElement).value;
-											setSkills(newSkills.filter(Boolean).map((s) => s.trim()));
-										}}
-									/>
-									<Button
-										colorScheme="danger"
-										onClick={() => {
-											const newSkills = skills().slice();
-											newSkills.splice(index(), 1);
-											setSkills(newSkills);
-										}}
-									>
-										Remove
-									</Button>
-								</Box>
-							)}
-						</For>
-						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
-							<Input value={newSkillInput()} onChange={createOnChangeHandler(setNewSkillInput)} />
-							<Button
-								onClick={() => {
-									if (!newSkillInput()) return;
-									setSkills(Array.from(new Set([...skills(), newSkillInput()!])));
-									setNewSkillInput('');
-								}}
-							>
-								Add
-							</Button>
-						</Box>
-					</Box>
+			{/* controls */}
+			<Drawer opened={showControls()} placement="right" onClose={onCloseControls} size="xl">
+				<DrawerOverlay />
+				<DrawerContent>
+					<DrawerCloseButton />
+					<DrawerHeader />
+					<DrawerBody>
+						<Box
+							display="grid"
+							id="controls"
+							position="relative"
+							gridTemplateColumns={`${controlsSectionWidth}px 1fr`}
+							p="$4"
+							rowGap="$8"
+							columnGap="$4"
+						>
+							{/* Skills */}
+							<TextSpan>Skills</TextSpan>
+							<Box d="grid" gap="$1">
+								<SortableVerticalList
+									items={skills()}
+									setItems={setSkills}
+									getId={(item) => item}
+									renderItem={(skill, index) => (
+										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
+											<Input
+												value={skill}
+												onChange={(e) => {
+													const newSkills = skills().slice();
+													newSkills[index()] = (e.target as HTMLInputElement).value;
+													setSkills(newSkills.filter(Boolean).map((s) => s.trim()));
+												}}
+											/>
+											<Button
+												colorScheme="danger"
+												onClick={() => {
+													const newSkills = skills().slice();
+													newSkills.splice(index(), 1);
+													setSkills(newSkills);
+												}}
+											>
+												Remove
+											</Button>
+										</Box>
+									)}
+								/>
+								<Input
+									value={newSkillInput()}
+									onChange={(e) => {
+										if (!e.target.value) return;
+										setNewSkillInput(e.target.value);
+										setSkills(Array.from(new Set([...skills(), newSkillInput()!])));
+										setNewSkillInput('');
+									}}
+								/>
+							</Box>
 
-					{/* Experience Bullets */}
-					<TextSpan>Experience Bullets</TextSpan>
-					<Box d="grid" gap="$1">
-						<For each={experienceBullets()}>
-							{(bullet, index) => (
-								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+							{/* Experience Bullets */}
+							<TextSpan>Experience Bullets</TextSpan>
+							<Box d="grid" gap="$1">
+								<SortableVerticalList
+									items={experienceBullets()}
+									setItems={setExperienceBullets}
+									getId={(item) => item}
+									renderItem={(bullet, index) => (
+										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
+											<Textarea
+												resize="vertical"
+												rows={bullet.length > 100 ? 2 : 1}
+												value={bullet}
+												onChange={(e) => {
+													const newBullets = experienceBullets().slice();
+													newBullets[index()] = (e.target as HTMLTextAreaElement).value;
+													setExperienceBullets(newBullets.filter(Boolean));
+												}}
+											/>
+											<Button
+												colorScheme="danger"
+												onClick={() => {
+													const newBullets = experienceBullets().slice();
+													newBullets.splice(index(), 1);
+													setExperienceBullets(newBullets);
+												}}
+											>
+												Remove
+											</Button>
+										</Box>
+									)}
+								/>
+								<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
 									<Textarea
 										resize="vertical"
-										rows={bullet.length > 100 ? 2 : 1}
-										value={bullet}
-										onChange={(e) => {
-											const newBullets = experienceBullets().slice();
-											newBullets[index()] = (e.target as HTMLTextAreaElement).value;
-											setExperienceBullets(newBullets.filter(Boolean));
-										}}
+										rows="1"
+										value={newExperienceBulletInput()}
+										onChange={createOnChangeHandler(setNewExperienceBulletInput)}
 									/>
 									<Button
-										colorScheme="danger"
 										onClick={() => {
-											const newBullets = experienceBullets().slice();
-											newBullets.splice(index(), 1);
-											setExperienceBullets(newBullets);
+											if (!newExperienceBulletInput()) return;
+											setExperienceBullets(Array.from(new Set([...experienceBullets(), newExperienceBulletInput()!])));
+											setNewExperienceBulletInput('');
 										}}
 									>
-										Remove
+										Add
 									</Button>
 								</Box>
-							)}
-						</For>
-						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
-							<Textarea
-								resize="vertical"
-								rows="1"
-								value={newExperienceBulletInput()}
-								onChange={createOnChangeHandler(setNewExperienceBulletInput)}
-							/>
-							<Button
-								onClick={() => {
-									if (!newExperienceBulletInput()) return;
-									setExperienceBullets(Array.from(new Set([...experienceBullets(), newExperienceBulletInput()!])));
-									setNewExperienceBulletInput('');
-								}}
-							>
-								Add
-							</Button>
-						</Box>
-					</Box>
+							</Box>
 
-					{/* Perfect Fit Bullets */}
-					<TextSpan>Perfect Fit Bullets</TextSpan>
-					<Box d="grid" gap="$1">
-						<For each={perfectFitBullets()}>
-							{(bullet, index) => (
-								<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
+							{/* Perfect Fit Bullets */}
+							<TextSpan>Perfect Fit Bullets</TextSpan>
+							<Box d="grid" gap="$1">
+								<SortableVerticalList
+									items={perfectFitBullets()}
+									setItems={setPerfectFitBullets}
+									getId={(item) => item}
+									renderItem={(bullet, index) => (
+										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
+											<Textarea
+												resize="vertical"
+												rows={bullet.length > 100 ? 2 : 1}
+												value={bullet}
+												onChange={(e) => {
+													const newBullets = perfectFitBullets().slice();
+													newBullets[index()] = (e.target as HTMLTextAreaElement).value;
+													setPerfectFitBullets(newBullets.filter(Boolean));
+												}}
+											/>
+											<Button
+												colorScheme="danger"
+												onClick={() => {
+													const newBullets = perfectFitBullets().slice();
+													newBullets.splice(index(), 1);
+													setPerfectFitBullets(newBullets);
+												}}
+											>
+												Remove
+											</Button>
+										</Box>
+									)}
+								/>
+								<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
 									<Textarea
 										resize="vertical"
-										rows={bullet.length > 100 ? 2 : 1}
-										value={bullet}
-										onChange={(e) => {
-											const newBullets = perfectFitBullets().slice();
-											newBullets[index()] = (e.target as HTMLTextAreaElement).value;
-											setPerfectFitBullets(newBullets.filter(Boolean));
-										}}
+										rows="1"
+										value={newPerfectFitBulletInput()}
+										onChange={createOnChangeHandler(setNewPerfectFitBulletInput)}
 									/>
 									<Button
-										colorScheme="danger"
 										onClick={() => {
-											const newBullets = perfectFitBullets().slice();
-											newBullets.splice(index(), 1);
-											setPerfectFitBullets(newBullets);
+											if (!newPerfectFitBulletInput()) return;
+											setPerfectFitBullets(Array.from(new Set([...perfectFitBullets(), newPerfectFitBulletInput()!])));
+											setNewPerfectFitBulletInput('');
 										}}
 									>
-										Remove
+										Add
 									</Button>
 								</Box>
-							)}
-						</For>
-						<Box d="grid" gap="$4" gridTemplateColumns="1fr 150px 0">
-							<Textarea
-								resize="vertical"
-								rows="1"
-								value={newPerfectFitBulletInput()}
-								onChange={createOnChangeHandler(setNewPerfectFitBulletInput)}
-							/>
-							<Button
-								onClick={() => {
-									if (!newPerfectFitBulletInput()) return;
-									setPerfectFitBullets(Array.from(new Set([...perfectFitBullets(), newPerfectFitBulletInput()!])));
-									setNewPerfectFitBulletInput('');
-								}}
-							>
-								Add
-							</Button>
-						</Box>
-					</Box>
+							</Box>
 
-					{/* Interested */}
-					<TextSpan>Interested</TextSpan>
-					<Textarea rows="2" resize="vertical" value={interested()} onChange={createOnChangeHandler(setInterested)} />
-					{/* Company name */}
-					<TextSpan>Company name</TextSpan>
-					<Input value={companyName()} onChange={createOnChangeHandler(setCompanyName)} />
-					{/* Role title */}
-					<TextSpan>Role title</TextSpan>
-					<Input value={roleTitle()} onChange={createOnChangeHandler(setRoleTitle)} />
-					{/* Job board */}
-					<TextSpan>Job board</TextSpan>
-					<Input value={jobBoard()} onChange={createOnChangeHandler(setJobBoard)} />
-					{/* Buttons */}
-					<Button onClick={printPage} aria-label="Print">
-						Print
-					</Button>
-					<Flex gap="$4">
-						<Button variant="dashed" w="200px" onClick={resetBullets} aria-label="Reset">
-							Reset bullets
+							{/* Interested */}
+							<TextSpan>Interested</TextSpan>
+							<Textarea
+								rows="2"
+								resize="vertical"
+								value={interested()}
+								onChange={createOnChangeHandler(setInterested)}
+							/>
+							{/* Company name */}
+							<TextSpan>Company name</TextSpan>
+							<Input value={companyName()} onChange={createOnChangeHandler(setCompanyName)} />
+							{/* Role title */}
+							<TextSpan>Role title</TextSpan>
+							<Input value={roleTitle()} onChange={createOnChangeHandler(setRoleTitle)} />
+							{/* Job board */}
+							<TextSpan>Job board</TextSpan>
+							<Input value={jobBoard()} onChange={createOnChangeHandler(setJobBoard)} />
+							{/* pdf */}
+							<Text>PDF</Text>
+							<RadioGroup value={pdf().toString()}>
+								<Flex direction="column" gap="$4">
+									<Radio value="true" onChange={() => setPdf(true)}>
+										True
+									</Radio>
+									<Radio value="false" onChange={() => setPdf(false)}>
+										False
+									</Radio>
+								</Flex>
+							</RadioGroup>
+						</Box>
+					</DrawerBody>
+					<DrawerFooter gap="$4" display="grid" gridAutoFlow="column" justifyContent="unset">
+						{/* Buttons */}
+						<Button onClick={printPage} aria-label="Print">
+							Print
+						</Button>
+						<Button variant="dashed" onClick={onCloseControls}>
+							Close
 						</Button>
 						<Button
 							variant="dashed"
-							w="200px"
-							as={Link}
+							as="a"
 							href={`/resume-raw?skills=${stringifyArray(skills())}`}
 							aria-label="Go to resume"
 						>
 							Go to resume
 						</Button>
-					</Flex>
-				</Box>
-			</Show>
+						<Button colorScheme="danger" onClick={resetBullets} aria-label="Reset">
+							Reset bullets
+						</Button>
+					</DrawerFooter>
+				</DrawerContent>
+			</Drawer>
 
-			<Show when={pdf() === 'true'}>
-				<Header />
-			</Show>
+			{/* top invisible bar */}
+			<Box pos="fixed" top="0" right="0">
+				<IconButton
+					{...iconButtonProps}
+					size="lg"
+					as="a"
+					href={`/resume-raw?skills=${stringifyArray(skills())}`}
+					aria-label="Go to resume raw"
+					icon={<IoDocument />}
+				/>
+				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
+				<IconButton
+					{...iconButtonProps}
+					size="lg"
+					onClick={onOpenControls}
+					aria-label="Open drawer"
+					icon={<TbMenu2 />}
+				/>
+			</Box>
 
-			<Flex direction="column" px={pagePaddings.x} pb="$20" pt={pdf() === 'true' ? 0 : '$20'} id="cover">
-				<Show when={pdf() === 'false'}>
-					<TextSpan>Ahmed Habeila</TextSpan>
-					<TextSpan>{emailAddress}</TextSpan>
-					<TextSpan>{telephoneNumberStylized}</TextSpan>
-					{/* <TextSpan>Portfolio: {website}</TextSpan>
-					<TextSpan>LinkedIn: {socials.find((s) => s.name === 'LinkedIn')!.href}</TextSpan> */}
-					<TextSpan>{locationAddress}</TextSpan>
+			{/* main */}
+			<Box ref={setCoverRef} width={pdf() ? `${coverPrintWidth}px` : 'unset'}>
+				<Show when={pdf()}>
+					<Header />
 				</Show>
 
-				<TextSpan>
-					{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-				</TextSpan>
-				{lineBreak()}
-
-				<TextSpan>
-					Dear Hiring Manager
-					<Show when={companyName()}>
-						{' '}
-						at <b>{companyName().trim()}</b>
+				<Flex direction="column" px={pagePaddings.x} pb="$20" pt={pdf() ? 0 : '$20'} id="coverMain">
+					<Show when={!pdf()}>
+						<TextSpan>Ahmed Habeila</TextSpan>
+						<TextSpan>{emailAddress}</TextSpan>
+						<TextSpan>{telephoneNumberStylized}</TextSpan>
+						{/* <TextSpan>Portfolio: {website}</TextSpan>
+					<TextSpan>LinkedIn: {socials.find((s) => s.name === 'LinkedIn')!.href}</TextSpan> */}
+						<TextSpan>{locationAddress}</TextSpan>
 					</Show>
-					,
-				</TextSpan>
-				{lineBreak()}
 
-				<Box>
 					<TextSpan>
-						I am writing to express my interest in the <b>{roleTitle().trim()}</b> position
+						{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
 					</TextSpan>
-					<Show when={jobBoard()}>
-						<TextSpan> advertised on {jobBoard().trim()}</TextSpan>
+					{lineBreak()}
+
+					<TextSpan>
+						Dear Hiring Manager
+						<Show when={companyName()}>
+							{' '}
+							at <b>{companyName().trim()}</b>
+						</Show>
+						,
+					</TextSpan>
+					{lineBreak()}
+
+					<Box>
+						<TextSpan>
+							I am writing to express my interest in the <b>{roleTitle().trim()}</b> position
+						</TextSpan>
+						<Show when={jobBoard()}>
+							<TextSpan> advertised on {jobBoard().trim()}</TextSpan>
+						</Show>
+						<TextSpan>
+							. I have over 5 years of experience in building elegant and performant user interfaces using various
+							technologies such as <TopSkills skills={skills()} />. I also have a background in leading other
+							developers, performing code reviews, and communicating effectively with clients.
+						</TextSpan>
+					</Box>
+					{lineBreak()}
+
+					<Show when={perfectFitBullets().length}>
+						<TextSpan>Here's why I think I'm the perfect fit for this job</TextSpan>
+						<List styleType="disc" ml="$6">
+							<For each={perfectFitBullets()}>
+								{(bullet) => (
+									<ListItem>
+										<TextSpan>{bullet}</TextSpan>
+									</ListItem>
+								)}
+							</For>
+						</List>
+						{lineBreak()}
 					</Show>
-					<TextSpan>
-						. I have over 5 years of experience in building elegant and performant user interfaces using various
-						technologies such as <TopSkills skills={skills()} />. I also have a background in leading other developers,
-						performing code reviews, and communicating effectively with clients.
-					</TextSpan>
-				</Box>
-				{lineBreak()}
 
-				<Show when={perfectFitBullets().length}>
-					<TextSpan>Here's why I think I'm the perfect fit for this job</TextSpan>
+					<TextSpan>
+						In my previous roles, I have successfully delivered several web-based projects for different clients and
+						industries. Some of my notable achievements include:
+					</TextSpan>
 					<List styleType="disc" ml="$6">
-						<For each={perfectFitBullets()}>
+						<For each={experienceBullets()}>
 							{(bullet) => (
 								<ListItem>
 									<TextSpan>{bullet}</TextSpan>
@@ -437,43 +539,28 @@ const CoverLetter = () => {
 						</For>
 					</List>
 					{lineBreak()}
-				</Show>
 
-				<TextSpan>
-					In my previous roles, I have successfully delivered several web-based projects for different clients and
-					industries. Some of my notable achievements include:
-				</TextSpan>
-				<List styleType="disc" ml="$6">
-					<For each={experienceBullets()}>
-						{(bullet) => (
-							<ListItem>
-								<TextSpan>{bullet}</TextSpan>
-							</ListItem>
-						)}
-					</For>
-				</List>
-				{lineBreak()}
-
-				{/* <GameDevelopmentBackground />
+					{/* <GameDevelopmentBackground />
 				{lineBreak()} */}
 
-				<TextSpan>{interested()}</TextSpan>
-				{lineBreak()}
-
-				<TextSpan>
-					Thank you for your consideration of my application. I would love to discuss this opportunity further with you
-					and answer any questions you may have.
-				</TextSpan>
-				{lineBreak()}
-
-				<Show when={pdf() === 'false'}>
-					<TextSpan>You can find my portfolio at {website}</TextSpan>
+					<TextSpan>{interested()}</TextSpan>
 					{lineBreak()}
-				</Show>
 
-				<TextSpan>Sincerely,</TextSpan>
-				<TextSpan>Ahmed Habeila</TextSpan>
-			</Flex>
+					<TextSpan>
+						Thank you for your consideration of my application. I would love to discuss this opportunity further with
+						you and answer any questions you may have.
+					</TextSpan>
+					{lineBreak()}
+
+					<Show when={!pdf()}>
+						<TextSpan>You can find my portfolio at {website}</TextSpan>
+						{lineBreak()}
+					</Show>
+
+					<TextSpan>Sincerely,</TextSpan>
+					<TextSpan>Ahmed Habeila</TextSpan>
+				</Flex>
+			</Box>
 		</HopeProvider>
 	);
 };

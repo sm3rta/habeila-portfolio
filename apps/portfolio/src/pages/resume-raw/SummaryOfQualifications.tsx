@@ -1,6 +1,6 @@
 import { Flex, ListItem } from '@hope-ui/solid';
 import { For } from 'solid-js';
-import { Text } from '../../ui/Text';
+import { Text } from '../../ui/components/Text';
 import { StyledDivider } from './Divider';
 import { TopSkills } from './TopSkills';
 

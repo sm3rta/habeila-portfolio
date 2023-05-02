@@ -1,9 +1,9 @@
 export type Params = {
 	skills: string;
-	senior: string;
+	senior: 'true' | 'false';
 	jobType: 'full-stack' | 'front-end' | 'softwareEngineer' | 'react';
 	adjective: string;
-	includeLocation: string;
+	includeLocation: 'true' | 'false';
 };
 
 const SPLIT_CHARACTER = '-';
