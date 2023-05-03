@@ -24,7 +24,7 @@ import { useSearchParams } from '@solidjs/router';
 import { BsPrinter } from 'solid-icons/bs';
 import { IoDocument } from 'solid-icons/io';
 import { TbMenu2 } from 'solid-icons/tb';
-import { For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { For, Match, Show, Switch, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { emailAddress, locationAddress, telephoneNumberStylized, website } from '../../data/work';
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
@@ -57,7 +57,7 @@ const defaultExperienceBullets: string[] = [
 	'Enhancing developer experience by developing a proprietary types SDK for API type safety.',
 	'Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.',
 	// 'Creating accessibility focused websites with high contrast mode, dyslexia-friendly font, and animations toggle.',
-	// 'Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.',
+	'Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.',
 	'Conducting system analysis, designing and implementing eCommerce website.',
 ];
 
@@ -65,12 +65,17 @@ const defaultPerfectFitBullets: string[] = [
 	'During my time at Calqulate, I mentored a team of 4 front-end developers, performing PR reviews for code quality and enforcing best practices.',
 	'I have extensive experience with multiple React state management tools including Redux, Redux-toolkit, and MobX.',
 	'I also have experience writing unit tests with Jest and React testing library.',
+	'I worked for fintech companies Calqulate (financial tool) and Quint (crypto currency).',
+	"I'm skilled in Next.js and other SSR technologies such as Gatsby.js and Astro.",
+	"I'm familiar with agile environments, JIRA and daily scrum meetings.",
+	'I have experience with monorepos: Lerna, Yarn workspaces and Turborepo.',
+	'I know Material UI by heart, with 4 years of experience working solely with this UI framework on multiple projects.',
 ];
 
 const defaultInterested =
 	'I am interested in working for your company because I believe I can contribute to your vision\
- of creating innovative and user-friendly web solutions. I am eager to learn from your talented team\
- and apply my skills and knowledge to your projects.';
+ of creating innovative and user-friendly web solutions. I value collaboration, growth and innovation,\
+ and I am eager to learn from your talented team and apply my skills and knowledge to your projects.';
 
 const CoverLetter = () => {
 	const { isOpen: showControls, onOpen: onOpenControls, onClose: onCloseControls } = createDisclosure();
@@ -131,6 +136,7 @@ const CoverLetter = () => {
 				perfectFitBullets: JSON.stringify(perfectFitBullets()),
 				interested: interested(),
 				jobBoard: jobBoard(),
+				pdf: pdf() ? 'true' : 'false',
 			},
 			{
 				// replace: true,
@@ -300,7 +306,7 @@ const CoverLetter = () => {
 										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
 											<Textarea
 												resize="vertical"
-												rows={bullet.length > 100 ? 2 : 1}
+												rows={Math.ceil(bullet.length / 80)}
 												value={bullet}
 												onChange={(e) => {
 													const newBullets = experienceBullets().slice();
@@ -321,23 +327,27 @@ const CoverLetter = () => {
 										</Box>
 									)}
 								/>
-								<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
-									<Textarea
-										resize="vertical"
-										rows="1"
-										value={newExperienceBulletInput()}
-										onChange={createOnChangeHandler(setNewExperienceBulletInput)}
-									/>
-									<Button
-										onClick={() => {
-											if (!newExperienceBulletInput()) return;
+
+								<Textarea
+									resize="vertical"
+									rows="1"
+									value={newExperienceBulletInput()}
+									onKeyDown={(e) => {
+										if (e.key === 'Enter' && e.ctrlKey) {
+											e.preventDefault();
+											if (!(e.target as HTMLTextAreaElement).value) return;
+											setNewExperienceBulletInput((e.target as HTMLTextAreaElement).value);
 											setExperienceBullets(Array.from(new Set([...experienceBullets(), newExperienceBulletInput()!])));
 											setNewExperienceBulletInput('');
-										}}
-									>
-										Add
-									</Button>
-								</Box>
+										}
+									}}
+									onChange={(e) => {
+										if (!e.target.value) return;
+										setNewExperienceBulletInput(e.target.value);
+										setExperienceBullets(Array.from(new Set([...experienceBullets(), newExperienceBulletInput()!])));
+										setNewExperienceBulletInput('');
+									}}
+								/>
 							</Box>
 
 							{/* Perfect Fit Bullets */}
@@ -351,7 +361,7 @@ const CoverLetter = () => {
 										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
 											<Textarea
 												resize="vertical"
-												rows={bullet.length > 100 ? 2 : 1}
+												rows={Math.ceil(bullet.length / 80)}
 												value={bullet}
 												onChange={(e) => {
 													const newBullets = perfectFitBullets().slice();
@@ -372,23 +382,26 @@ const CoverLetter = () => {
 										</Box>
 									)}
 								/>
-								<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
-									<Textarea
-										resize="vertical"
-										rows="1"
-										value={newPerfectFitBulletInput()}
-										onChange={createOnChangeHandler(setNewPerfectFitBulletInput)}
-									/>
-									<Button
-										onClick={() => {
-											if (!newPerfectFitBulletInput()) return;
+								<Textarea
+									resize="vertical"
+									rows="1"
+									value={newPerfectFitBulletInput()}
+									onKeyDown={(e) => {
+										if (e.key === 'Enter' && e.ctrlKey) {
+											e.preventDefault();
+											if (!(e.target as HTMLTextAreaElement).value) return;
+											setNewPerfectFitBulletInput((e.target as HTMLTextAreaElement).value);
 											setPerfectFitBullets(Array.from(new Set([...perfectFitBullets(), newPerfectFitBulletInput()!])));
 											setNewPerfectFitBulletInput('');
-										}}
-									>
-										Add
-									</Button>
-								</Box>
+										}
+									}}
+									onChange={(e) => {
+										if (!e.target.value) return;
+										setNewPerfectFitBulletInput(e.target.value);
+										setPerfectFitBullets(Array.from(new Set([...perfectFitBullets(), newPerfectFitBulletInput()!])));
+										setNewPerfectFitBulletInput('');
+									}}
+								/>
 							</Box>
 
 							{/* Interested */}
@@ -516,9 +529,18 @@ const CoverLetter = () => {
 						<List styleType="disc" ml="$6">
 							<For each={perfectFitBullets()}>
 								{(bullet) => (
-									<ListItem>
-										<TextSpan>{bullet}</TextSpan>
-									</ListItem>
+									<>
+										<Switch>
+											<Match when={pdf()}>
+												<ListItem>
+													<TextSpan>{bullet}</TextSpan>
+												</ListItem>
+											</Match>
+											<Match when={!pdf()}>
+												<Text>- {bullet}</Text>
+											</Match>
+										</Switch>
+									</>
 								)}
 							</For>
 						</List>
@@ -532,9 +554,18 @@ const CoverLetter = () => {
 					<List styleType="disc" ml="$6">
 						<For each={experienceBullets()}>
 							{(bullet) => (
-								<ListItem>
-									<TextSpan>{bullet}</TextSpan>
-								</ListItem>
+								<>
+									<Switch>
+										<Match when={pdf()}>
+											<ListItem>
+												<TextSpan>{bullet}</TextSpan>
+											</ListItem>
+										</Match>
+										<Match when={!pdf()}>
+											<Text>- {bullet}</Text>
+										</Match>
+									</Switch>
+								</>
 							)}
 						</For>
 					</List>
