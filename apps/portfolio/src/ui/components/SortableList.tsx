@@ -8,7 +8,7 @@ import {
 	createSortable,
 } from '@thisbeyond/solid-dnd';
 import { BsArrowsExpand } from 'solid-icons/bs';
-import { Accessor, For, JSX, createEffect } from 'solid-js';
+import { Accessor, For, JSX } from 'solid-js';
 
 const Sortable = (props: { renderItem: JSX.Element; id: string | number; index: Accessor<number> }) => {
 	// eslint-disable-next-line solid/reactivity
@@ -45,9 +45,9 @@ export const SortableVerticalList = <T,>(props: {
 	// const [activeItem, setActiveItem] = createSignal<number | null>(null);
 	const ids = () => props.items.map(props.getId);
 
-	createEffect(() => {
-		console.log(props.items);
-	});
+	// createEffect(() => {
+	// 	console.log(props.items);
+	// });
 
 	// const onDragStart: DragEventHandler = (e) => {
 	//  setActiveItem(draggable.id as number);

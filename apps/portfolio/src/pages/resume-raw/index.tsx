@@ -195,7 +195,13 @@ const ResumeRaw = () => {
 				<DrawerContent>
 					<DrawerCloseButton />
 					<DrawerHeader />
-					<DrawerBody display="grid" gridTemplateColumns={`${controlsSectionWidth}px 1fr`} p="$4" rowGap="$8">
+					<DrawerBody
+						display="grid"
+						gridTemplateColumns={`${controlsSectionWidth}px 1fr`}
+						alignContent="start"
+						p="$4"
+						rowGap="$8"
+					>
 						<Text fontSize="1rem">Skills</Text>
 						<Box d="grid" gap="$1">
 							<SortableVerticalList
