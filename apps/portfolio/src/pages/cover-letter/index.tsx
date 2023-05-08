@@ -529,18 +529,18 @@ const CoverLetter = () => {
 						<List styleType="disc" ml="$6">
 							<For each={perfectFitBullets()}>
 								{(bullet) => (
-									<>
-										<Switch>
-											<Match when={pdf()}>
-												<ListItem>
-													<TextSpan>{bullet}</TextSpan>
-												</ListItem>
-											</Match>
-											<Match when={!pdf()}>
-												<Text>- {bullet}</Text>
-											</Match>
-										</Switch>
-									</>
+									<Switch>
+										<Match when={pdf()}>
+											<ListItem>
+												<TextSpan>{bullet}</TextSpan>
+											</ListItem>
+										</Match>
+										<Match when={!pdf()}>
+											<Box>
+												<TextSpan>- {bullet}</TextSpan>
+											</Box>
+										</Match>
+									</Switch>
 								)}
 							</For>
 						</List>
@@ -562,7 +562,9 @@ const CoverLetter = () => {
 											</ListItem>
 										</Match>
 										<Match when={!pdf()}>
-											<Text>- {bullet}</Text>
+											<Box>
+												<TextSpan>- {bullet}</TextSpan>
+											</Box>
 										</Match>
 									</Switch>
 								</>
