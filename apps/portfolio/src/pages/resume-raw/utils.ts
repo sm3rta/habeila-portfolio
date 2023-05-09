@@ -11,10 +11,11 @@ export const parseArray = (str: string | undefined) => {
 	if (!str) return undefined;
 	return str.split(SPLIT_CHARACTER);
 };
-export const stringifyArray = (arr: string[] | typeof paramsDefaultValues.skills) => arr.join(SPLIT_CHARACTER);
+export const stringifyArray = (arr: string[] | readonly string[]) => arr.join(SPLIT_CHARACTER);
 
 export const paramsDefaultValues = {
 	skills: ['React', 'JavaScript', 'HTML/CSS'],
+	fullStackSkills: ['React', 'JavaScript', 'Python'],
 	senior: true,
 	jobType: 'front-end',
 	adjective: 'Highly motivated',

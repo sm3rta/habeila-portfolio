@@ -40,7 +40,11 @@ router.post("/", async (req, res) => {
       modifiedUrl.searchParams.set("jobType", jobType);
       modifiedUrl.searchParams.set("senior", paramsDefaultValues.senior.toString());
       modifiedUrl.searchParams.set("adjective", paramsDefaultValues.adjective);
-      modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.skills));
+      if (jobType === "full-stack") {
+        modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.fullStackSkills));
+      } else {
+        modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.skills));
+      }
 
       await page.goto(modifiedUrl.href, { waitUntil: "networkidle0" });
 

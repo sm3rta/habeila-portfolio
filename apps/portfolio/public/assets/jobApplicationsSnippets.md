@@ -11,11 +11,11 @@
 ## Info
 
 - Full-stack developer
-- HabeilaAhmed@gmail.com
+- <HabeilaAhmed@gmail.com>
 - (647) 979-0872
 - 80,000 CAD/Year -> 42 CAD/Hour
 - Bachelor's Degree of Computer Science and Automatic Control
-- Tanta University of Engineering
+- Tanta University
 
 ---
 
@@ -101,7 +101,9 @@ I led a team of 4 front-end developers in the process of creating and maintainin
 
 Your software is inspiring and I value collaboration. I see this as a great opportunity to grow and contribute my skills to the project.
 
-I am interested in working for you because I admire your innovative approach to warehouse automation and your customer-focused solutions. Your software is inspiring and I value collaboration. I see this as a great opportunity to grow and contribute my skills to the project. I also share your commitment to quality and excellence, and I believe I can add value to your team and your customers.
+I am interested in working for you because I admire your innovative approach to warehouse automation and your customer-focused solutions.
+
+Your software is inspiring and I value collaboration. I see this as a great opportunity to grow and contribute my skills to the project. I also share your commitment to quality and excellence, and I believe I can add value to your team and your customers.
 
 ## What value can you bring to this company?
 
