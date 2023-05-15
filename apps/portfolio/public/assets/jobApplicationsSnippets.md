@@ -85,6 +85,8 @@ I worked on various projects and dived into a lot of concepts of front-end devel
 I have experience in leading other developers, performing code reviews and enforcing certain patterns, project-specific standards and best practices.
 Please consider taking a look at my portfolio: <https://habeila.dev/>
 
+I'm a very collaborative and dedicated but fun person. I love learning new technologies and I have strong analytical and problem-solving skills.
+
 ---
 
 ## Achievements/Recent achievement
@@ -99,11 +101,7 @@ I led a team of 4 front-end developers in the process of creating and maintainin
 
 ## What excites you about this company?
 
-Your software is inspiring and I value collaboration. I see this as a great opportunity to grow and contribute my skills to the project.
-
-I am interested in working for you because I admire your innovative approach to warehouse automation and your customer-focused solutions.
-
-Your software is inspiring and I value collaboration. I see this as a great opportunity to grow and contribute my skills to the project. I also share your commitment to quality and excellence, and I believe I can add value to your team and your customers.
+I'm impressed by your software solutions and how they [mission]. I enjoy working in a collaborative environment where I can learn from others and apply my skills to meaningful projects. I also strive for quality and excellence in everything I do, and I'm confident that I can deliver value to your team and your vision of [vision]
 
 ## What value can you bring to this company?
 
@@ -112,7 +110,7 @@ Your software is inspiring and I value collaboration. I see this as a great oppo
       Hi, my name's Ahmed Habeila and I am a software engineer with strong analytical and problem-solving skills. I have a bachelor's degree in computer science and 5+ years of professional experience as a web developer. I've worked on various projects and dived into a lot of concepts of web development, from content-driven websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms, data-rich charts and tables, reusable UI components and design systems.
       I am very passionate and committed and I'm always willing to learn more.
 
-- How did you meet or exceed your employers’ expectations in previous jobs
+- How did you meet or exceed your employers' expectations in previous jobs
 
       In my last job, I stepped up by consistently contributing solid ideas and robust scalable code, and pursuing more challenging tasks. I also showed leadership be leading a team of 4 of my peer front-end developers in the process of creating and maintaining features, reviewing their code and enforcing project-specific standards and best practices, while also setting clear design system standards for the design team to follow
 

@@ -16,7 +16,7 @@ export const stringifyArray = (arr: string[] | readonly string[]) => arr.join(SP
 export const paramsDefaultValues = {
 	skills: ['React', 'JavaScript', 'HTML/CSS'],
 	fullStackSkills: ['React', 'JavaScript', 'Python'],
-	senior: true,
+	senior: false,
 	jobType: 'front-end',
 	adjective: 'Highly motivated',
 	includeLocation: false,
