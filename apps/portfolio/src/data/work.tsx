@@ -334,12 +334,9 @@ export const work: Workplace[] = [
 								six months of launch */}
 							</>
 						),
+						imageUrl: '/assets/projects/calqulate/CalqulateDashboard.png',
+						imageAlt: 'Calqulate dashboard desktop layout',
 					},
-					// { description: 'Developed front-end monorepo architecture with 2 apps and 5 independent libraries' },
-					// {
-					// 	description:
-					// 		'Developed 3 libraries for tables (Devexpress), charts (D3) and reusable UI components (Material UI)',
-					// },
 					{
 						description: () => (
 							<>
@@ -360,6 +357,8 @@ export const work: Workplace[] = [
 					{
 						description: 'Built a responsive app layout with Atlassian-like collapsible drawer and mobile menu',
 						hideOnResume: true,
+						imageUrl: '/assets/projects/calqulate/CalqulateMobile.png',
+						imageAlt: 'Calqulate mobile layout',
 					},
 					{
 						description:
@@ -628,7 +627,17 @@ export const work: Workplace[] = [
 				],
 				achievements: [
 					{ description: 'Conducted system analysis to define APIs with possible responses' },
-					{ description: 'Designed and implemented eCommerce website for international customers' },
+					{
+						description: 'Designed and implemented eCommerce website for international customers',
+						imageUrl: '/assets/projects/netjeek/NetjeekHomepage.png',
+						imageAlt: 'Netjeek homepage desktop layout',
+					},
+					{
+						description: 'Fully responsive mobile design',
+						hideOnResume: true,
+						imageUrl: '/assets/projects/netjeek/NetjeekProductMobile.png',
+						imageAlt: 'Netjeek product page mobile layout',
+					},
 					{ description: 'Integrated Google Maps for delivery location pinpointing and detection' },
 					{ description: 'Integrated Stripe for shipment payments', hideOnResume: true },
 					{ description: 'Created mock API with configurable front end for each endpoint status code' },

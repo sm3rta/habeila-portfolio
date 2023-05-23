@@ -101,7 +101,9 @@ I led a team of 4 front-end developers in the process of creating and maintainin
 
 ## What excites you about this company?
 
-I'm impressed by your software solutions and how they [mission]. I enjoy working in a collaborative environment where I can learn from others and apply my skills to meaningful projects. I also strive for quality and excellence in everything I do, and I'm confident that I can deliver value to your team and your vision of [vision]
+I'm interested in your software solutions and how they [mission]. I enjoy working in a collaborative environment where I can learn from others and apply my skills to meaningful projects. I also strive for quality and excellence in everything I do, and I'm confident that I can deliver value to your team and your vision of [vision]
+
+I am interested in working for your company because I believe I can contribute to your vision of [vision]. I value collaboration, growth and innovation, and I am eager to learn from your talented team and apply my skills and knowledge to your projects.
 
 ## What value can you bring to this company?
 

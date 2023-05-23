@@ -108,6 +108,9 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 							}}
 							transition={`all ${transitionDurationMs}ms ease-in-out`}
 							opacity={tab() === index() && !transitioning() && height() ? 1 : 0}
+							css={{
+								visibility: tab() === index() && !transitioning() && height() ? 'visible' : 'hidden',
+							}}
 							pos="absolute"
 						>
 							<Text>{renderStringOrJsx(task.description)}</Text>
@@ -127,6 +130,7 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 									maxH={600}
 									css={{ filter: `drop-shadow(0px 0px 15px ${colors.secondary6})` }}
 									maxW="100%"
+									alt={task.imageAlt}
 								/>
 							</Show>
 						</Box>

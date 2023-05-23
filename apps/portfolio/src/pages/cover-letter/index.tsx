@@ -573,8 +573,8 @@ const CoverLetter = () => {
 					</List>
 					{lineBreak()}
 
-					{/* <GameDevelopmentBackground />
-				{lineBreak()} */}
+					{/* <GameDevelopmentBackground /> */}
+					{/* {lineBreak()} */}
 
 					<TextSpan>{interested()}</TextSpan>
 					{lineBreak()}
