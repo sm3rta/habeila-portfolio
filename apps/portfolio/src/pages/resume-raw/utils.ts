@@ -18,6 +18,6 @@ export const paramsDefaultValues = {
 	fullStackSkills: ['React', 'JavaScript', 'Python'],
 	senior: false,
 	jobType: 'front-end',
-	adjective: 'Highly motivated',
-	includeLocation: false,
+	adjective: 'Detail-oriented',
+	includeLocation: true,
 } as const;

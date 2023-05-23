@@ -188,7 +188,7 @@ export const work: Workplace[] = [
 				achievements: [
 					{
 						description:
-							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week',
+							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in Next.js, Astro and Solid.js',
 					},
 					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
 					{ description: 'Created UI component library following a design system and documented on Storybook' },
@@ -336,6 +336,10 @@ export const work: Workplace[] = [
 						),
 						imageUrl: '/assets/projects/calqulate/CalqulateDashboard.png',
 						imageAlt: 'Calqulate dashboard desktop layout',
+					},
+					{
+						description:
+							'Developed libraries for charts in D3, tables in Devexpress, and reusable UI and form components in Material UI',
 					},
 					{
 						description: () => (
@@ -628,7 +632,7 @@ export const work: Workplace[] = [
 				achievements: [
 					{ description: 'Conducted system analysis to define APIs with possible responses' },
 					{
-						description: 'Designed and implemented eCommerce website for international customers',
+						description: 'Designed and implemented eCommerce website in React for international customers',
 						imageUrl: '/assets/projects/netjeek/NetjeekHomepage.png',
 						imageAlt: 'Netjeek homepage desktop layout',
 					},
@@ -638,9 +642,16 @@ export const work: Workplace[] = [
 						imageUrl: '/assets/projects/netjeek/NetjeekProductMobile.png',
 						imageAlt: 'Netjeek product page mobile layout',
 					},
+					{
+						description:
+							'Documented codebase using JSDoc and written comprehensive unit tests using Jest and React testing library',
+					},
 					{ description: 'Integrated Google Maps for delivery location pinpointing and detection' },
 					{ description: 'Integrated Stripe for shipment payments', hideOnResume: true },
-					{ description: 'Created mock API with configurable front end for each endpoint status code' },
+					{
+						description:
+							'Created mock API in Python Django with a configurable front end for each endpoint status code',
+					},
 				],
 				responsibilities: ['eCommerce Website (front end)', 'System Analysis', 'Mock API creation'],
 			},
