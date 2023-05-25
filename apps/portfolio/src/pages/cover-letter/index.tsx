@@ -54,7 +54,7 @@ const defaultExperienceBullets: string[] = [
 	'Creating UI component library following a design system and documented on Storybook.',
 	'Communicated with clients to develop and document website requirements in an agile environment.',
 	'Leading team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5 independent libraries for Calqulate.',
-	'Enhancing developer experience by developing a proprietary types SDK for API type safety.',
+	'Enhancing developer experience by developing a proprietary types SDK for API type safety in TypeScript.',
 	'Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.',
 	// 'Creating accessibility focused websites with high contrast mode, dyslexia-friendly font, and animations toggle.',
 	'Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.',
@@ -80,11 +80,14 @@ const defaultInterested =
 const CoverLetter = () => {
 	const { isOpen: showControls, onOpen: onOpenControls, onClose: onCloseControls } = createDisclosure();
 	const [params, setParams] = useSearchParams<Params>();
+	const initializeFromParams = Object.keys(params).length > 0;
 
 	const [skills, setSkills] = createSignal<string[]>(
 		parseArray(params.skills) ?? (paramsDefaultValues.skills as unknown as string[])
 	);
-	const [interested, setInterested] = createSignal<string>(params.interested ?? defaultInterested);
+	const [interested, setInterested] = createSignal<string>(
+		initializeFromParams ? params.interested : defaultInterested
+	);
 	const [jobBoard, setJobBoard] = createSignal<string>(params.jobBoard ?? '');
 	const [experienceBullets, setExperienceBullets] = createSignal<string[]>(
 		params.experienceBullets ? JSON.parse(params.experienceBullets) : defaultExperienceBullets
@@ -92,9 +95,14 @@ const CoverLetter = () => {
 	const [perfectFitBullets, setPerfectFitBullets] = createSignal<string[]>(
 		params.perfectFitBullets ? JSON.parse(params.perfectFitBullets) : defaultPerfectFitBullets
 	);
-	const [companyName, setCompanyName] = createSignal(params.companyName ?? 'Discord');
-	const [roleTitle, setRoleTitle] = createSignal(params.roleTitle ?? 'Front-end Developer');
+	const [companyName, setCompanyName] = createSignal(params.companyName ?? '');
+	const [roleTitle, setRoleTitle] = createSignal(initializeFromParams ? params.roleTitle : 'Front-end Developer');
 	const [pdf, setPdf] = createSignal<boolean>(params.pdf ? params.pdf === 'true' : false);
+
+	createEffect(() => {
+		console.log(`🚀 ~ CoverLetter ~ companyName:`, companyName);
+		console.log(companyName());
+	});
 
 	const [newSkillInput, setNewSkillInput] = createSignal<string>();
 	const [newExperienceBulletInput, setNewExperienceBulletInput] = createSignal<string>();
@@ -146,6 +154,7 @@ const CoverLetter = () => {
 
 	const createOnChangeHandler = (setFn: (value: string) => void) => (e: Event) => {
 		const { value } = e.target as HTMLInputElement;
+		console.log(`🚀 ~ createOnChangeHandler ~ value:`, value);
 		setFn(value);
 	};
 
@@ -518,8 +527,8 @@ const CoverLetter = () => {
 						</Show>
 						<TextSpan>
 							. I have over 5 years of experience in building elegant and performant user interfaces using various
-							technologies such as <TopSkills skills={skills()} />. I also have a background in leading other
-							developers, performing code reviews, and communicating effectively with clients.
+							technologies such as <TopSkills skills={skills()} />. I'm experienced in working collaboratively with
+							others, performing code reviews and effective communication with clients.
 						</TextSpan>
 					</Box>
 					{lineBreak()}
@@ -547,31 +556,33 @@ const CoverLetter = () => {
 						{lineBreak()}
 					</Show>
 
-					<TextSpan>
-						In my previous roles, I have successfully delivered several web-based projects for different clients and
-						industries. Some of my notable achievements include:
-					</TextSpan>
-					<List styleType="disc" ml="$6">
-						<For each={experienceBullets()}>
-							{(bullet) => (
-								<>
-									<Switch>
-										<Match when={pdf()}>
-											<ListItem>
-												<TextSpan>{bullet}</TextSpan>
-											</ListItem>
-										</Match>
-										<Match when={!pdf()}>
-											<Box>
-												<TextSpan>- {bullet}</TextSpan>
-											</Box>
-										</Match>
-									</Switch>
-								</>
-							)}
-						</For>
-					</List>
-					{lineBreak()}
+					<Show when={experienceBullets().length}>
+						<TextSpan>
+							In my previous roles, I have successfully delivered several web-based projects for different clients and
+							industries. Some of my notable achievements include:
+						</TextSpan>
+						<List styleType="disc" ml="$6">
+							<For each={experienceBullets()}>
+								{(bullet) => (
+									<>
+										<Switch>
+											<Match when={pdf()}>
+												<ListItem>
+													<TextSpan>{bullet}</TextSpan>
+												</ListItem>
+											</Match>
+											<Match when={!pdf()}>
+												<Box>
+													<TextSpan>- {bullet}</TextSpan>
+												</Box>
+											</Match>
+										</Switch>
+									</>
+								)}
+							</For>
+						</List>
+						{lineBreak()}
+					</Show>
 
 					{/* <GameDevelopmentBackground /> */}
 					{/* {lineBreak()} */}
@@ -580,8 +591,8 @@ const CoverLetter = () => {
 					{lineBreak()}
 
 					<TextSpan>
-						Thank you for your consideration of my application. I would love to discuss this opportunity further with
-						you and answer any questions you may have.
+						Thank you for considering my application. I would love to discuss this opportunity further with you and
+						answer any questions you may have.
 					</TextSpan>
 					{lineBreak()}
 
