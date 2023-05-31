@@ -89,6 +89,12 @@ I'm a very collaborative and dedicated but fun person. I love learning new techn
 
 ---
 
+## Short message to employer
+
+Hello! I'm a collaborative and friendly full stack developer with 5 years of experience in React, HTML/CSS, Express & AWS. I'm looking forward to discussing this opportunity with you.
+
+---
+
 ## Achievements/Recent achievement
 
 I led a team of 4 front-end developers in the process of creating and maintaining features while setting clear design system standards for the design team to follow.
@@ -177,13 +183,13 @@ Technologies used
 
 ---
 
-### Calqulate
+### Calqulate Metrics
 
 Front-end developer
 
 11/2020 - 01/2023
 
-Calqulate
+Calqulate Metrics
 
 - Led team of 4 front-end developers to create and maintain features and set clear design system standards
 - Developed front-end monorepo architecture with 2 apps and 5 independent libraries
@@ -266,7 +272,7 @@ Full-stack developer
 
 Full-stack developer
 
-05/2018 - 05/2020
+05/2019 - 05/2020
 
 Netjeek
 

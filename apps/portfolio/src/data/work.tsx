@@ -232,6 +232,12 @@ export const work: Workplace[] = [
 						imageUrl: '/assets/projects/quint/BlogPageSpeed.png',
 						imageAlt: 'PageSpeed Insights score',
 					},
+					{
+						description: 'Fully responsive, supports keyboard navigation and screen readers',
+						imageUrl: '/assets/projects/quint/QuintBlogMobile.png',
+						imageAlt: 'Mobile view',
+						hideOnResume: true,
+					},
 				],
 				responsibilities: ['Website (front-end)'],
 			},
@@ -266,7 +272,7 @@ export const work: Workplace[] = [
 		],
 	},
 	{
-		name: 'Calqulate',
+		name: 'Calqulate Metrics',
 		// location: 'Helsinki, Finland',
 		// website: 'https://calqulate.io/',
 		description: () => (
@@ -370,7 +376,10 @@ export const work: Workplace[] = [
 						hideOnResume: true,
 					},
 					{ description: 'Integrated Stripe for subscription payments', hideOnResume: true },
-					{ description: 'Enhanced developer experience by developing a proprietary types SDK for API type safety in TypeScript' },
+					{
+						description:
+							'Enhanced developer experience by developing a proprietary types SDK for API type safety in TypeScript',
+					},
 				],
 				technologies: [
 					{ name: 'React', Icon: SiReact },
@@ -580,7 +589,7 @@ export const work: Workplace[] = [
 		// location: 'Mississauga, ON',
 		website: 'https://hayasolutions.com/',
 		description: '',
-		from: 'May 2018',
+		from: 'May 2019',
 		to: 'May 2020',
 		title: {
 			role: 'full',
@@ -676,14 +685,6 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 	'asset-tracking-system': 101,
 	'quint-blog-staking': 102,
 };
-
-// export const introText = (
-// 	<>
-// 		Highly motivated software engineer with 5+ years of professional experience as a web developer mainly in front-end
-// 		development using React, with excellent interpersonal skills to work with a team and clients and strong
-// 		understanding of TypeScript and web development fundamentals.
-// 	</>
-// );
 
 export const telephoneNumber = '16479790872';
 export const telephoneNumberStylized = '(647) 979-0872';

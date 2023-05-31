@@ -17,8 +17,8 @@ export const SummaryOfQualifications = (props: { skills: string[] }) => (
 						Strong background in <TopSkills skills={props.skills} /> with high adaptability to work with any stack
 						{/* and web development fundamentals */}
 					</>,
-					'Demonstrated ability to lead other developers, performing code reviews and enforcing certain patterns',
-					'Proficient in communication, capable of effectively interacting with clients to establish and record their needs',
+					'Collaborative and friendly, with experience in performing code reviews',
+					'Excellent in communication, capable of effectively interacting with clients to establish and record their needs',
 				]}
 			>
 				{(item) => (

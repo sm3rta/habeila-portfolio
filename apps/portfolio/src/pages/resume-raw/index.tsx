@@ -33,7 +33,6 @@ import { CompanyProjects } from './CompanyProjects';
 import { StyledDivider } from './Divider';
 import { Education } from './Education';
 import { Header } from './Header';
-import { Keywords } from './Keywords';
 import { SelfTaught } from './SelfTaught';
 import { SummaryOfQualifications } from './SummaryOfQualifications';
 import { Timeline } from './Timeline';
@@ -368,7 +367,7 @@ const ResumeRaw = () => {
 					{/* references */}
 					{/* <References /> */}
 					{/* damn keywords */}
-					<Keywords />
+					{/* <Keywords /> */}
 				</Box>
 			</Flex>
 		</HopeProvider>
