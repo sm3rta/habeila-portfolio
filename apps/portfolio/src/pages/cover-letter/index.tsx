@@ -50,10 +50,10 @@ export type Params = {
 };
 
 const defaultExperienceBullets: string[] = [
-	'Collaborating with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week, achieving 100% Lighthouse score with optimized SEO and accessibility.',
-	'Creating UI component library following a design system and documented on Storybook.',
+	'Collaborating with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week, achieving a 100% Lighthouse score with optimized SEO and accessibility.',
+	'Creating UI component library following a design system and documenting it on Storybook.',
 	'Communicated with clients to develop and document website requirements in an agile environment.',
-	'Leading team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5 independent libraries for Calqulate.',
+	'Leading a team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5 independent libraries for Calqulate.',
 	'Enhancing developer experience by developing a proprietary types SDK for API type safety in TypeScript.',
 	'Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.',
 	// 'Creating accessibility focused websites with high contrast mode, dyslexia-friendly font, and animations toggle.',
@@ -80,7 +80,7 @@ const defaultInterested =
 const CoverLetter = () => {
 	const { isOpen: showControls, onOpen: onOpenControls, onClose: onCloseControls } = createDisclosure();
 	const [params, setParams] = useSearchParams<Params>();
-	const initializeFromParams = Object.keys(params).length > 0;
+	const initializeFromParams = Object.keys(params).length > 1;
 
 	const [skills, setSkills] = createSignal<string[]>(
 		parseArray(params.skills) ?? (paramsDefaultValues.skills as unknown as string[])

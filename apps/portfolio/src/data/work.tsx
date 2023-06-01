@@ -191,7 +191,7 @@ export const work: Workplace[] = [
 							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in Next.js, Astro and Solid.js',
 					},
 					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
-					{ description: 'Created UI component library following a design system and documented on Storybook' },
+					{ description: 'Created UI component library following a design system and documented it on Storybook' },
 				],
 
 				responsibilities: ['Website (front-end)'],
@@ -265,7 +265,7 @@ export const work: Workplace[] = [
 						imageUrl: '/assets/projects/quint/QuintStakingLightDark.png',
 						imageAlt: 'Light and dark theme',
 					},
-					{ description: 'Created UI component library following a design system and documented on Storybook' },
+					{ description: 'Created UI component library following a design system and documented it on Storybook' },
 				],
 				responsibilities: ['Website (front-end)'],
 			},
@@ -333,7 +333,7 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Led team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5
+								Led a team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5
 								independent libraries
 								{/* to create and maintain features and set clear design system standards */}
 								{/* Successfully led the front-end team in the Calqulate project to achieve a 6-figure monthly income within

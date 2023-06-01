@@ -95,6 +95,23 @@ Hello! I'm a collaborative and friendly full stack developer with 5 years of exp
 
 ---
 
+## Upwork cover letter pitch
+
+Hello! I'm a front-end heavy developer with 5 years of experience using React, TypeScript and Next.js. I have experience in mobile-first design and have worked on many mobile-friendly SEO-focused websites. I always strive to write maintainable and performant code.
+
+Some of my notable achievements include:
+
+- Collaborating with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in 1 week, achieving a 100% Lighthouse score with optimized SEO and accessibility.
+- Creating UI component library following a design system and documenting it on Storybook.
+- Communicated with clients to develop and document website requirements in an agile environment.
+- Leading a team of 4 front-end developers in developing a front-end monorepo architecture with 2 apps and 5 independent libraries for Calqulate.
+- Enhancing developer experience by developing a proprietary types SDK for API type safety in TypeScript.
+- Launching 2 responsive, accessible SEO-focused websites for BMW Foundation and TwentyThirty, increasing the reach to thousands of organic monthly users.
+- Building back-end API with Express.js and Firebase for authentication, file uploads, and emails for an educational platform.
+- Conducting system analysis, designing and implementing eCommerce website.
+
+---
+
 ## Achievements/Recent achievement
 
 I led a team of 4 front-end developers in the process of creating and maintaining features while setting clear design system standards for the design team to follow.
@@ -191,7 +208,7 @@ Front-end developer
 
 Calqulate Metrics
 
-- Led team of 4 front-end developers to create and maintain features and set clear design system standards
+- Led a team of 4 front-end developers to create and maintain features and set clear design system standards
 - Developed front-end monorepo architecture with 2 apps and 5 independent libraries
 - Developed a proprietary charts library using D3.js with 10 different types of charts with animations, interactive tooltips, legends, and placeholders with randomly generated data
 - Built performant editable tree tables with fixed columns, virtual sticky headers, and advanced styles
