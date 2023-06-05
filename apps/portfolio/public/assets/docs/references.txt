@@ -1,3 +1,4 @@
-Name                        Phone                     Email                                             Company
-Mostafa Gamal               +1 (647) 395-0236         mosgamal@hayasolutions.com                        Haya Solutions Inc.
-Noha Abdelmoghni            -                         noha.abdelmoghni@coformatique.com                 Calqulate Metrics
+Name                        Phone               Email                                  Company
+Mostafa Gamal               +1 (647) 395-0236   mosgamal@hayasolutions.com             Haya Solutions Inc.     Technical Manager
+Noha Abdelmoghni            -                   noha.abdelmoghni@coformatique.com      Calqulate Metrics       Project Owner
+Mohamed Kassim              -                   mohamedkassim354@gmail.com             Quint                   peer software engineer
