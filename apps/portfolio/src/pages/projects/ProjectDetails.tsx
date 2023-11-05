@@ -32,9 +32,15 @@ const ProjectLayoutDetailed = (props: { project: Project }) => (
 		d="flex"
 		flexDirection="column"
 		justifyContent="center"
-		p={{
-			'@initial': '0 $4',
-			'@lg': '$6 $8',
+		pt={{
+			'@initial': '100px',
+			'@md': '$48',
+			'@lg': '$48',
+		}}
+		pb="$48"
+		px={{
+			'@initial': '$8',
+			'@xl': '$48',
 		}}
 	>
 		<Box>

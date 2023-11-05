@@ -3,10 +3,10 @@ import { Navigate, Outlet, Route, Router, Routes } from '@solidjs/router';
 import { Suspense, createSignal, lazy } from 'solid-js';
 import { AppBar } from './components/AppBar';
 import { Footer } from './components/Footer';
-import { Stars } from './components/Stars';
-import { DarkModeSwitch } from './ui/components/DarkModeSwitch';
+import { BackgroundRhombi } from './components/BackgroundRhombi';
 import Loader from './ui/components/Loader';
-import { colors, darkTheme, headerHeight, lightTheme } from './ui/theme';
+import { colors, darkTheme, lightTheme } from './ui/theme';
+import { HeaderRhombi } from './components/HeaderRhombi';
 
 const Home = lazy(() => import('./pages/home'));
 const Project = lazy(() => import('./pages/projects'));
@@ -26,7 +26,6 @@ const App = () => {
 		<Flex
 			as="main"
 			w="100%"
-			pt={headerHeight()}
 			direction="column"
 			position="relative"
 			overflow="hidden"
@@ -37,8 +36,8 @@ const App = () => {
 			}
 			minHeight="100%"
 		>
-			<Stars />
-			<DarkModeSwitch />
+			<BackgroundRhombi />
+			<HeaderRhombi />
 			<AppBar />
 			<Suspense fallback={<Loader />}>
 				<Outlet />

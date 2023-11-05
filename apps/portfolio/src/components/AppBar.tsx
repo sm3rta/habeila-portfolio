@@ -1,10 +1,11 @@
 import { Box, Flex, List } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
-import { createSignal, onCleanup, onMount } from 'solid-js';
-import { darkMode } from '../App';
+import { Show, createSignal, onCleanup, onMount } from 'solid-js';
+import { DarkModeSwitch } from '../ui/components/DarkModeSwitch';
 import { Link } from '../ui/components/Link';
-import { colors, headerHeight, zIndexes } from '../ui/theme';
+import { zIndexes } from '../ui/theme';
+import { createMediaQuery } from '@solid-primitives/media';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 
@@ -21,7 +22,7 @@ export const AppBar = () => {
 		const bodyRect = document.body.getBoundingClientRect(),
 			elemRect = element.getBoundingClientRect(),
 			offset = elemRect.top - bodyRect.top;
-		window.scrollTo({ top: offset - headerHeight(), behavior: 'smooth' });
+		window.scrollTo({ top: offset, behavior: 'smooth' });
 	};
 
 	const onScroll = debounce(() => {
@@ -41,19 +42,20 @@ export const AppBar = () => {
 		window.removeEventListener('scroll', onScroll);
 	});
 
+	const isSmall = createMediaQuery('(max-width: 768px)');
+
 	return (
 		<Flex
 			as="nav"
-			position="fixed"
-			h={headerHeight()}
-			backgroundColor={darkMode() ? colors.secondary1 : colors.secondary7}
+			position={isSmall() ? 'unset' : 'fixed'}
 			top={0}
-			w="100%"
-			justifyContent="center"
-			alignItems="center"
+			right={0}
+			mr="$4"
+			mt="$2"
+			direction="column"
 			zIndex={zIndexes.appBar}
 		>
-			<List d="flex" columnGap="$3" alignItems="baseline">
+			<List d="flex" flexDirection="column" columnGap="$3" alignItems="flex-end">
 				<Link
 					role="listitem"
 					// href="/#home"
@@ -63,53 +65,60 @@ export const AppBar = () => {
 				>
 					Home
 				</Link>
-				<Box
-					columnGap="$4"
-					maxW={pathname() === '/' ? '200px' : '0px'}
-					mx={pathname() === '/' ? '0' : '-$1_5'}
-					transition="all 0.5s ease-in-out"
-					display="flex"
-					overflowX="hidden"
-					p={pathname() === '/' ? '$1' : '0'}
-				>
-					<Link
-						small
-						role="listitem"
-						// href="/#work"
-						href="/"
-						onClick={createScrollHandler('work')}
-						active={visibleElement() === 'work'}
-						tabIndex={pathname() === '/' ? 0 : -1}
+
+				<Show when={!isSmall()}>
+					<Box
+						columnGap="$4"
+						maxH={pathname() === '/' ? '200px' : '0px'}
+						transition="all 0.5s ease-in-out"
+						display="flex"
+						overflowY="hidden"
+						p={pathname() === '/' ? '$1' : '0'}
+						d="flex"
+						flexDirection="column"
+						alignItems="flex-end"
 					>
-						Work
-					</Link>
-					<Link
-						small
-						role="listitem"
-						// href="/#about"
-						href="/"
-						onClick={createScrollHandler('about')}
-						active={visibleElement() === 'about'}
-						tabIndex={pathname() === '/' ? 0 : -1}
-					>
-						About
-					</Link>
-					<Link
-						small
-						role="listitem"
-						// href="/#contact"
-						href="/"
-						onClick={createScrollHandler('contact')}
-						active={visibleElement() === 'contact'}
-						tabIndex={pathname() === '/' ? 0 : -1}
-					>
-						Contact
-					</Link>
-				</Box>
+						<Link
+							small
+							role="listitem"
+							// href="/#work"
+							href="/"
+							onClick={createScrollHandler('work')}
+							active={visibleElement() === 'work'}
+							tabIndex={pathname() === '/' ? 0 : -1}
+						>
+							Work
+						</Link>
+						<Link
+							small
+							role="listitem"
+							// href="/#about"
+							href="/"
+							onClick={createScrollHandler('about')}
+							active={visibleElement() === 'about'}
+							tabIndex={pathname() === '/' ? 0 : -1}
+						>
+							About
+						</Link>
+						<Link
+							small
+							role="listitem"
+							// href="/#contact"
+							href="/"
+							onClick={createScrollHandler('contact')}
+							active={visibleElement() === 'contact'}
+							tabIndex={pathname() === '/' ? 0 : -1}
+						>
+							Contact
+						</Link>
+					</Box>
+				</Show>
+
 				<Link role="listitem" href="/resume" active={pathname() === '/resume'}>
 					Resume
 				</Link>
 			</List>
+			<DarkModeSwitch />
 		</Flex>
 	);
 };

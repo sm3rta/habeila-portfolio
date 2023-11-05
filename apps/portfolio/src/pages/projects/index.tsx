@@ -6,7 +6,7 @@ import { Project as ProjectType, allProjects } from '../../data/work';
 import Fade from '../../ui/components/Fade';
 import { getAsteriskSectionColor } from '../../ui/theme';
 import Projects from '../home/Projects';
-import { BottomSectionDivider, UpperSectionDivider, sectionDividerHeight } from '../home/SectionDivider';
+import { BottomSectionDivider, sectionDividerHeight } from '../home/SectionDivider';
 import ProjectLayoutDetailed from './ProjectDetails';
 
 export default function Project() {
@@ -35,9 +35,6 @@ export default function Project() {
 						</Box>
 						<Box background={getAsteriskSectionColor()}>
 							<Projects />
-						</Box>
-						<Box pos="relative">
-							<UpperSectionDivider />
 						</Box>
 					</Fade>
 				</Match>

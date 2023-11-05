@@ -65,7 +65,7 @@ export default function About() {
 		<Section id="about" upperSectionDivider bottomSectionDivider>
 			<Container>
 				<ImageContainer
-					zIndex={zIndexes.aboveStar}
+					zIndex={zIndexes.aboveRhombus}
 					pos="relative"
 					animation={`${darkMode() ? 'animDark' : 'animLight'} 3s 0s ease-in-out infinite alternate`}
 					mx="auto"

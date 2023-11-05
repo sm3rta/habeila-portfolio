@@ -1,6 +1,5 @@
 import { Box, Container, ContainerProps } from '@hope-ui/solid';
 import { Show, splitProps } from 'solid-js';
-import { headerHeight } from '../../ui/theme';
 import { BottomSectionDivider, UpperSectionDivider } from './SectionDivider';
 
 const Section = (_props: ContainerProps & { upperSectionDivider?: boolean; bottomSectionDivider?: boolean }) => {
@@ -8,14 +7,14 @@ const Section = (_props: ContainerProps & { upperSectionDivider?: boolean; botto
 	return (
 		<Box position="relative" as="section">
 			<Container
-				minH={`calc(100vh - ${headerHeight()}px)`}
+				minH="calc(100vh)"
 				d="flex"
 				placeContent="center"
 				alignContent="center"
 				flexDirection="column"
 				w="fit-content"
 				p={{
-					'@initial': '120px $6',
+					'@initial': '200px $6',
 					'@xl': '60px $16',
 				}}
 				{...props}

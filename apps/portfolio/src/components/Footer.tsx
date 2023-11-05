@@ -1,52 +1,37 @@
-import { Box, Text } from '@hope-ui/solid';
+import { Box } from '@hope-ui/solid';
+import { createElementSize } from '@solid-primitives/resize-observer';
 import { useLocation, useResolvedPath } from '@solidjs/router';
-import { Show } from 'solid-js';
-import { BottomSectionDivider, UpperSectionDivider } from '../pages/home/SectionDivider';
+import { For, Show, createSignal } from 'solid-js';
+import { BottomSectionDivider } from '../pages/home/SectionDivider';
 import Fade from '../ui/components/Fade';
-import { getAsteriskSectionColor, zIndexes } from '../ui/theme';
+import Rhombus from '../ui/components/HeaderFooterRhombus';
+import { getAsteriskSectionColor } from '../ui/theme';
 
 export const Footer = () => {
+	const [rootRef, setRootRef] = createSignal<HTMLDivElement>();
+	const size = createElementSize(rootRef);
+
 	const location = useLocation();
 	const pathname = useResolvedPath(() => location.pathname);
-	return (
-		<Box
-			minH={300}
-			display="flex"
-			flexDirection="column"
-			justifyContent="flex-end"
-			position="relative"
-			zIndex={zIndexes.aboveStar}
-			pointerEvents="none"
-		>
-			<Show when={pathname() === '/'}>
-				<Fade in>
-					<UpperSectionDivider />
-				</Fade>
-			</Show>
 
+	return (
+		<Fade in={() => true}>
 			<Show when={pathname() === '/resume'}>
 				<Box height="100px" w="100%" pos="relative">
 					<BottomSectionDivider />
 				</Box>
 			</Show>
-
 			<Box
+				minH={100}
+				ref={setRootRef}
 				css={{
 					backgroundColor: getAsteriskSectionColor(),
-					width: '100%',
-					height: 40,
-					display: 'flex',
-					px: '$4',
-				}}
-				placeContent={{
-					'@initial': 'flex-start',
-					'@sm': 'center',
 				}}
 			>
-				<Text textAlign="center" alignSelf="center" verticalAlign="middle">
-					@ {new Date().getFullYear()} Ahmed Habeila
-				</Text>
+				<svg width="100%" height={`${size.height ?? 100}px`}>
+					<For each={[...Array(500)]}>{() => <Rhombus x={size.width} y={size.height} />}</For>
+				</svg>
 			</Box>
-		</Box>
+		</Fade>
 	);
 };

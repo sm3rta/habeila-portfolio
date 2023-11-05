@@ -1,4 +1,4 @@
-import { Button, Center, Flex } from '@hope-ui/solid';
+import { Box, Button, Center, Flex } from '@hope-ui/solid';
 import { MetaProvider, Title } from '@solidjs/meta';
 import { A } from '@solidjs/router';
 import { work } from '../../data/work';
@@ -11,12 +11,21 @@ const Resume = () => (
 		<MetaProvider>
 			<Title>Ahmed Habeila's Portfolio - Resume</Title>
 		</MetaProvider>
-		<Timeline
-			showStepper
-			children={work.map((company) => (
-				<CompanyProjects company={company} />
-			))}
-		/>
+		<Box
+			pt={{
+				'@initial': '100px',
+				'@md': '$28',
+				'@lg': '$48',
+			}}
+			px={{ '@xl': '$48' }}
+		>
+			<Timeline
+				showStepper
+				children={work.map((company) => (
+					<CompanyProjects company={company} />
+				))}
+			/>
+		</Box>
 
 		<Center mt="$24">
 			<Flex gap="$4">

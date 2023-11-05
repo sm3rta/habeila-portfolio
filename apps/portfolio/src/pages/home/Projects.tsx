@@ -12,8 +12,6 @@ const projects = allProjects
 
 const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 	const [hover, setHover] = createSignal(false);
-	// const backgroundColor = generateRandomColor(0.3);
-	// const boxShadowColor = backgroundColor.replace('0.1', '0.8');
 	const backgroundColor = darkMode() ? colors.primary1 : colors.primary8;
 	const boxShadowColor = backgroundColor;
 
@@ -35,7 +33,7 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 				placeContent="center"
 				alignItems="center"
 				textAlign="center"
-				zIndex={zIndexes.star}
+				zIndex={zIndexes.rhombus}
 				backgroundColor={backgroundColor}
 				opacity={hover() ? 0 : 1}
 				css={{

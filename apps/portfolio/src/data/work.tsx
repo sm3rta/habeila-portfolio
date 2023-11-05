@@ -136,7 +136,7 @@ export const work: Workplace[] = [
 						description: () => (
 							<>
 								It's fully accessible, keyboard tabbable, responsive and SEO-enabled, scoring{' '}
-								<Anchor href={`https://pagespeed.web.dev/report?url=https%3A%2F%${website}&form_factor=desktop`}>
+								<Anchor href={`https://pagespeed.web.dev/report?url=${website}&form_factor=desktop`}>
 									100 on PageSpeed Insights
 								</Anchor>{' '}
 								on both mobile and desktop
@@ -148,7 +148,7 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								You can interact with the stars in the background by hovering over (or on mobile, touching) them and
+								You can interact with the rhombuses in the background by hovering over (or on mobile, touching) them and
 								they will disappear, skip forward and re-appear with a different color. Try it, it's fun!
 							</>
 						),

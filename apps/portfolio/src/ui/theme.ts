@@ -1,21 +1,16 @@
 import { HopeThemeConfig } from '@hope-ui/solid/dist/hope-provider';
-import { createMediaQuery } from '@solid-primitives/media';
 import merge from 'lodash.merge';
 import { darkMode } from '../App';
 
-const isSmall = createMediaQuery('(max-width: 1024px)');
-export const headerHeight = () => {
-	return isSmall() ? 40 : 60;
-};
 export const ICON_SIZE = 30;
 export const TILE_SIZE = 160;
 export const zIndexes = {
-	// above buttons, which are above stars
+	// above buttons, which are above rhombi
 	appBar: 100,
-	// above stars, e.g. buttons
-	aboveStar: 2,
-	// star and what's on the same level
-	star: 1,
+	// above rhombi, e.g. buttons
+	aboveRhombus: 2,
+	// background rhombus and what's on the same level
+	rhombus: 1,
 };
 export const createOctagonalClipPathWithMargin = (m: number) =>
 	`polygon(${m}% 0, ${100 - m}% 0, 100% ${m}%, 100% ${100 - m}%, ${100 - m}% 100%, ${m}% 100%, 0 ${100 - m}%, 0 ${m}%)`;
@@ -109,12 +104,13 @@ export const darkTheme = {
 				backgroundColor: colors.primary7,
 				textTransform: 'none',
 				borderRadius: 0,
+				zIndex: zIndexes.aboveRhombus,
 			},
 		},
 		Button: {
 			baseStyle: {
 				root: {
-					zIndex: zIndexes.aboveStar,
+					zIndex: zIndexes.aboveRhombus,
 				},
 			},
 		},
@@ -134,65 +130,24 @@ export const darkTheme = {
 
 const lightThemeOverrides = {
 	initialColorMode: 'light',
-	lightTheme: {
-		colors,
-		fontSizes,
-	},
 	components: {
-		Heading: {
-			baseStyle: {
-				// fontFamily: 'Rubik',
-				fontSize: '$md',
-			},
-		},
 		Text: {
 			baseStyle: {
 				color: 'black',
-				// fontFamily: 'Rubik',
-				fontSize: '$md',
 			},
 		},
 		IconButton: {
 			baseStyle: {
 				color: 'black',
-				background: 'unset',
 				_hover: {
-					background: 'unset',
 					color: colors.secondary6,
-				},
-				_active: {
-					color: colors.secondary2,
 				},
 			},
 		},
 		Badge: {
 			baseStyle: {
-				// color: colors.primary5,
-				// backgroundColor: colors.secondary1,
-				// color: colors.secondary1,
-				// backgroundColor: colors.primary7,
 				color: colors.primary7,
 				backgroundColor: colors.secondary1,
-				textTransform: 'none',
-				borderRadius: 0,
-			},
-		},
-		Button: {
-			baseStyle: {
-				root: {
-					zIndex: zIndexes.aboveStar,
-				},
-			},
-		},
-		Anchor: {
-			baseStyle: {
-				textDecoration: 'underline 1px',
-				_hover: {
-					color: colors.secondary5,
-					'& *': {
-						color: colors.secondary5,
-					},
-				},
 			},
 		},
 	},

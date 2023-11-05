@@ -1,10 +1,10 @@
 import { Box } from '@hope-ui/solid';
-import { colors, headerHeight } from '../theme';
+import { colors } from '../theme';
 
 const side = 80;
 
 const Loader = () => (
-	<Box d="flex" justifyContent="center" alignItems="center" w="100%" minH={`calc(100vh - ${headerHeight()}px)`}>
+	<Box d="flex" justifyContent="center" alignItems="center" w="100%" minH="calc(100vh)">
 		<svg width={`${side}px`} height={`${side}px`} viewBox={`0 0 ${side} ${side}`}>
 			<circle cx={side / 2} cy={side / 2} r="0" fill="none" stroke={colors.primary7} stroke-width="2">
 				<animate
