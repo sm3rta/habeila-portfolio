@@ -1,6 +1,5 @@
 node_modules
 dist
-yarn-error.log
 
 # all ad-hoc resumes
 resumes/AhmedHabeilaResume.pdf
@@ -21,3 +20,11 @@ yarn-error.log*
 
 # puppeteer cache
 apps/puppeteer-backend/.puppeteer
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
