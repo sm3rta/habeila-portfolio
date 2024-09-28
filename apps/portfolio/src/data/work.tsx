@@ -2,8 +2,10 @@ import { Anchor, ListItem } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
 import {
 	SiAmazonaws,
+	SiAngular,
 	SiAstro,
 	SiAwsamplify,
+	SiAzuredevops,
 	SiD3dotjs,
 	SiDevexpress,
 	SiDisqus,
@@ -12,21 +14,27 @@ import {
 	SiFacebook,
 	SiFirebase,
 	SiGatsby,
+	SiGithub,
 	SiGitlab,
 	SiGooglemaps,
 	SiGoogletagmanager,
 	SiGraphql,
 	SiHasura,
+	SiHtml5,
 	SiI18next,
 	SiInstagram,
 	SiJavascript,
 	SiJss,
+	SiLit,
 	SiMongodb,
 	SiNetlify,
 	SiNextdotjs,
+	SiNodedotjs,
 	SiPython,
 	SiReact,
 	SiRedux,
+	SiRollupdotjs,
+	SiSass,
 	SiSentry,
 	SiSolid,
 	SiStorybook,
@@ -38,7 +46,9 @@ import {
 	SiTwitter,
 	SiTypescript,
 	SiWeb3dotjs,
+	SiWebcomponentsdotorg,
 	SiWordpress,
+	SiYarn,
 	SiYoutube,
 	SiZoom,
 } from 'solid-icons/si';
@@ -64,6 +74,7 @@ const projectIds = [
 	'educational-platform',
 	'asset-tracking-system',
 	'netjeek',
+	'tr-design-system',
 ] as const;
 
 export type Project = {
@@ -100,7 +111,7 @@ export type Workplace = {
 	to?: string;
 	description?: string | (() => JSX.Element);
 	title?: {
-		role: 'front' | 'full' | 'se';
+		role: 'front' | 'full' | 'se' | 'architect';
 		senior: boolean;
 	};
 	projects: Project[];
@@ -109,13 +120,71 @@ export type Workplace = {
 
 export const work: Workplace[] = [
 	{
+		name: 'Thomson Reuters',
+		title: {
+			role: 'architect',
+			senior: true,
+		},
+		from: 'July 2023',
+		to: 'Present',
+		website: 'https://www.thomsonreuters.com/en.html',
+		projects: [
+			{
+				name: 'Enterprise Design System',
+				id: 'tr-design-system',
+				hideOnResume: false,
+				description: 'An enterprise design system for Thomson Reuters internal products',
+				technologies: [
+					{ name: 'TypeScript', Icon: SiTypescript },
+					{ name: 'Web Components', Icon: SiWebcomponentsdotorg },
+					{ name: 'Microsoft FAST', Icon: SiLit },
+					{ name: 'HTML', Icon: SiHtml5 },
+					{ name: 'GitHub', Icon: SiGithub },
+					{ name: 'Rollup', Icon: SiRollupdotjs },
+					{ name: 'Node.js', Icon: SiNodedotjs },
+					{ name: 'Yarn workspaces', Icon: SiYarn },
+					{ name: 'Azure DevOps', Icon: SiAzuredevops },
+					{ name: 'Storybook', Icon: SiStorybook },
+					{ name: 'React', Icon: SiReact },
+					{ name: 'Angular', Icon: SiAngular },
+				],
+				achievements: [
+					{
+						description: () => (
+							<>
+								Led the development of 90 design system web components and patterns that focus on accessibility,
+								developer experience and performance
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Released 3 major versions and 50 minor versions of the components package that is consumed by 150
+								products and downloaded 300K times in total
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Wrote 20 specification documents for components that include component behavior, WCAG 2.2 accessibility
+								requirements, component architecture and code examples
+							</>
+						),
+					},
+				],
+			},
+		],
+	},
+	{
 		name: 'Self-employed',
 		title: {
 			role: 'front',
 			senior: true,
 		},
 		from: 'January 2023',
-		to: 'Present',
+		to: 'July 2023',
 		// website: 'https://quint.io/',
 		projects: [
 			{
@@ -672,14 +741,15 @@ export const work: Workplace[] = [
 export const allProjects = work.flatMap((w) => w.projects.map((p) => ({ ...p, company: w })));
 
 export const projectPriority: Record<(typeof projectIds)[number], number> = {
-	calqulate: 1,
-	'quint-blog': 2,
-	'quint-staking': 3,
-	'bmw-foundation': 4,
-	twentythirty: 5,
-	'portfolio-website': 6,
-	netjeek: 7,
-	'educational-platform': 8,
+	'tr-design-system': 1,
+	calqulate: 2,
+	'quint-blog': 3,
+	'quint-staking': 4,
+	'bmw-foundation': 5,
+	twentythirty: 6,
+	'portfolio-website': 7,
+	netjeek: 8,
+	'educational-platform': 9,
 
 	'bmw-foundation-tt': 100,
 	'asset-tracking-system': 101,

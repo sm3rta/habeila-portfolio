@@ -29,12 +29,12 @@ import { emailAddress, locationAddress, telephoneNumberStylized, website } from 
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
 import { darkTheme as theme } from '../../ui/theme';
-import { coverPrintWidth } from '../../utils';
+import { coverPrintWidth } from '../../../../lib/utils';
 import { controlsSectionWidth, iconButtonProps, pagePaddings } from '../resume-raw';
 import { Header } from '../resume-raw/Header';
 import { TopSkills } from '../resume-raw/TopSkills';
 import { createDesktopNotification } from '../resume-raw/createDesktopNotification';
-import { paramsDefaultValues, parseArray, stringifyArray } from '../resume-raw/utils';
+import { paramsDefaultValues, parseArray, stringifyArray } from '../../../../lib/utils/utils';
 
 export const TextSpan: typeof Text = (props) => <Text as="span" {...props} />;
 
