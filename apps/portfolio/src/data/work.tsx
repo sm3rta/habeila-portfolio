@@ -137,7 +137,7 @@ export const work: Workplace[] = [
 				technologies: [
 					{ name: 'TypeScript', Icon: SiTypescript },
 					{ name: 'Web Components', Icon: SiWebcomponentsdotorg },
-					{ name: 'Microsoft FAST', Icon: SiLit },
+					{ name: 'Microsoft FAST', Icon: null },
 					{ name: 'HTML', Icon: SiHtml5 },
 					{ name: 'GitHub', Icon: SiGithub },
 					{ name: 'Rollup', Icon: SiRollupdotjs },
@@ -170,6 +170,14 @@ export const work: Workplace[] = [
 							<>
 								Wrote 20 specification documents for components that include component behavior, WCAG 2.2 accessibility
 								requirements, component architecture and code examples
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Engineered a RAG-based chatbot capable of addressing inquiries about the design system and delivering
+								code examples
 							</>
 						),
 					},
