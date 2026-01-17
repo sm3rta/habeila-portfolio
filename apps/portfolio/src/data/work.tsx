@@ -64,6 +64,7 @@ const projectIds = [
 	'educational-platform',
 	'asset-tracking-system',
 	'netjeek',
+	"saffron-design-system"
 ] as const;
 
 export type Project = {
@@ -100,7 +101,7 @@ export type Workplace = {
 	to?: string;
 	description?: string | (() => JSX.Element);
 	title?: {
-		role: 'front' | 'full' | 'se';
+		role: 'front' | 'full' | 'se' | 'architect';
 		senior: boolean;
 	};
 	projects: Project[];
@@ -109,13 +110,36 @@ export type Workplace = {
 
 export const work: Workplace[] = [
 	{
+		name: 'Thomson Reuters',
+		title: {
+			role: 'architect',
+			senior: false,
+		},
+		from: 'July 2023',
+		to: 'Present',
+		website: 'https://thomsonreuters.com/',
+		projects: [
+			{
+				name: "Saffron design system",
+				id: 'saffron-design-system',
+				description: "A design system and component library for Thomson Reuters internal applications",
+				hideOnHomepage: false,
+				hideOnResume: false,
+				technologies:[],
+				responsibilities:[],
+				achievements:[],
+
+			}
+		],
+	},
+	{
 		name: 'Self-employed',
 		title: {
 			role: 'front',
 			senior: true,
 		},
 		from: 'January 2023',
-		to: 'Present',
+		to: 'May 2023',
 		// website: 'https://quint.io/',
 		projects: [
 			{
