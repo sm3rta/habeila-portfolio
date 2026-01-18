@@ -9,7 +9,7 @@ import { Text } from '../../ui/components/Text';
 import { ICON_SIZE } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { StyledDivider } from './Divider';
-import { Params } from './utils';
+import { Params } from '../../../../common/params';
 
 const PhoneNumber = () => (
 	<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">

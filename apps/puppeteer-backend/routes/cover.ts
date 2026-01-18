@@ -1,5 +1,5 @@
 import express from "express";
-import { coverPrintWidth as width } from "../../portfolio/src/utils";
+import { coverPrintWidth as width } from "../../common/printWidth";
 import { launchPuppeteer } from "./utils";
 
 const router = express.Router();

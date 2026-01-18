@@ -1,6 +1,6 @@
 import express from "express";
-import { Params, paramsDefaultValues, stringifyArray } from "../../portfolio/src/pages/resume-raw/utils";
-import { printWidth as width } from "../../portfolio/src/utils";
+import { Params, paramsDefaultValues, stringifyArray } from "../../common/params";
+import { printWidth as width } from "../../common/printWidth";
 import { launchPuppeteer } from "./utils";
 
 const router = express.Router();

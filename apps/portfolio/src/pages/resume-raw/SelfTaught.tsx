@@ -2,7 +2,7 @@ import { Flex } from '@hope-ui/solid';
 import { For } from 'solid-js';
 import { Text } from '../../ui/components/Text';
 import { StyledDivider } from './Divider';
-import { Params } from './utils';
+import { Params } from '../../../../common/params';
 
 const secondaryTextColor = 'var(--hope-colors-neutral10)';
 

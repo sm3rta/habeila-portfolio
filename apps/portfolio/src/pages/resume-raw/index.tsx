@@ -27,7 +27,7 @@ import { work } from '../../data/work';
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
 import { colors } from '../../ui/theme';
-import { printWidth } from '../../utils';
+import { printWidth } from '../../../../common/printWidth';
 import { Certifications } from './Certifications';
 import { CompanyProjects } from './CompanyProjects';
 import { StyledDivider } from './Divider';
@@ -37,7 +37,7 @@ import { SelfTaught } from './SelfTaught';
 import { SummaryOfQualifications } from './SummaryOfQualifications';
 import { Timeline } from './Timeline';
 import { createDesktopNotification } from './createDesktopNotification';
-import { Params, paramsDefaultValues, parseArray, stringifyArray } from './utils';
+import { Params, paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
 
 export const pagePaddings = {
 	x: '$24',
