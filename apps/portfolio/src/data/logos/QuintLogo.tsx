@@ -205,7 +205,7 @@ export const QuintLogoBlog = () => (
 	<Box d="grid" justifyItems="center">
 		<QuintLogo />
 		<Text mt="$2" fontWeight="bold">
-			Blog
+			Quint Blog
 		</Text>
 	</Box>
 );
@@ -214,7 +214,7 @@ export const QuintLogoStaking = () => (
 	<Box d="grid" justifyItems="center">
 		<QuintLogo />
 		<Text mt="$2" fontWeight="bold">
-			Staking
+			Quint Staking
 		</Text>
 	</Box>
 );

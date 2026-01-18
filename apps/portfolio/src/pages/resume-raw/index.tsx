@@ -257,6 +257,9 @@ const ResumeRaw = () => {
 								<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
 									Software Engineer
 								</Radio>
+								<Radio value="architect" onChange={() => setJobType('architect')}>
+									Frontend Architect
+								</Radio>
 							</Flex>
 						</RadioGroup>
 						<Text fontSize="1rem">Seniority</Text>

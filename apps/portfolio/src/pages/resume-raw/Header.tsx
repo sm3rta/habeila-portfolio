@@ -40,6 +40,16 @@ const Links = () => (
 	</For>
 );
 
+const capitalizeFirstLetter = (str: string) => str[0].toUpperCase() + str.slice(1);
+
+const jobTypeTitles: Record<Params['jobType'], string> = {
+	'full-stack': 'full-stack developer',
+	softwareEngineer: 'software engineer',
+	'front-end': 'front-end developer',
+	react: 'React.js developer',
+	architect: 'Frontend Architect',
+};
+
 export const Header = (props: { adjective?: string; jobType?: Params['jobType']; includeLocation?: boolean }) => {
 	return (
 		<Flex
@@ -53,17 +63,10 @@ export const Header = (props: { adjective?: string; jobType?: Params['jobType'];
 			alignItems="center"
 		>
 			<Text variant="h1">Ahmed Habeila</Text>
-			<Show when={props.adjective && props.jobType}>
+			<Show when={props.jobType}>
 				<Text variant="title" textTransform="unset" fontWeight="normal">
 					{props.adjective}{' '}
-					{
-						{
-							'full-stack': 'full-stack developer',
-							softwareEngineer: 'software engineer',
-							'front-end': 'front-end developer',
-							react: 'React.js developer',
-						}[props.jobType!]
-					}
+					{props.adjective ? jobTypeTitles[props.jobType!] : capitalizeFirstLetter(jobTypeTitles[props.jobType!])}
 				</Text>
 			</Show>
 			<StyledDivider noMargin />

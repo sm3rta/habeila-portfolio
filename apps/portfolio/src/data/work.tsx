@@ -2,6 +2,7 @@ import { Anchor, ListItem } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
 import {
 	SiAmazonaws,
+	SiAngular,
 	SiAstro,
 	SiAwsamplify,
 	SiD3dotjs,
@@ -10,8 +11,10 @@ import {
 	SiDjango,
 	SiExpress,
 	SiFacebook,
+	SiFigma,
 	SiFirebase,
 	SiGatsby,
+	SiGithubactions,
 	SiGitlab,
 	SiGooglemaps,
 	SiGoogletagmanager,
@@ -24,9 +27,11 @@ import {
 	SiMongodb,
 	SiNetlify,
 	SiNextdotjs,
+	SiOpenai,
 	SiPython,
 	SiReact,
 	SiRedux,
+	SiRollupdotjs,
 	SiSentry,
 	SiSolid,
 	SiStorybook,
@@ -38,6 +43,7 @@ import {
 	SiTwitter,
 	SiTypescript,
 	SiWeb3dotjs,
+	SiWebcomponentsdotorg,
 	SiWordpress,
 	SiYoutube,
 	SiZoom,
@@ -49,6 +55,7 @@ import { CalqulateLogo } from './logos/CalqulateLogo';
 import { NetjeekLogo } from './logos/NetjeekLogo';
 import { QuintLogoBlog, QuintLogoStaking } from './logos/QuintLogo';
 import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
+import { ThomsonReutersLogoWithText } from './logos/ThomsonReutersLogo';
 
 export const website = 'https://habeila.dev';
 
@@ -64,7 +71,7 @@ const projectIds = [
 	'educational-platform',
 	'asset-tracking-system',
 	'netjeek',
-	"saffron-design-system"
+	'saffron-design-system',
 ] as const;
 
 export type Project = {
@@ -120,16 +127,67 @@ export const work: Workplace[] = [
 		website: 'https://thomsonreuters.com/',
 		projects: [
 			{
-				name: "Saffron design system",
+				name: 'Saffron design system',
 				id: 'saffron-design-system',
-				description: "A design system and component library for Thomson Reuters internal applications",
+				description: 'A design system and component library for Thomson Reuters internal applications',
 				hideOnHomepage: false,
 				hideOnResume: false,
-				technologies:[],
-				responsibilities:[],
-				achievements:[],
-
-			}
+				Logo: ThomsonReutersLogoWithText,
+				technologies: [
+					{ name: 'Web Components', Icon: SiWebcomponentsdotorg },
+					{ name: 'TypeScript', Icon: SiTypescript },
+					{ name: 'React', Icon: SiReact },
+					{ name: 'Angular', Icon: SiAngular },
+					{ name: 'Storybook', Icon: SiStorybook },
+					{ name: 'Rollup', Icon: SiRollupdotjs },
+					{ name: 'GPT-4', Icon: SiOpenai },
+					{ name: 'Chromatic', Icon: null },
+				],
+				responsibilities: ['Technical architecture ownership', 'Writing spec docs', 'Team leadership of 10 engineers'],
+				achievements: [
+					{
+						description:
+							'Owned technical architecture including repo structure, bundling, build/release processes, GitHub Actions, and 3rd party integrations',
+					},
+					{
+						description:
+							'Distilled requirements from UX designers, engineers, product team, testers and accessibility specialists into specification documents',
+					},
+					{
+						description:
+							'Led team of 10 engineers, providing technical guidance, code reviews, and acting as subject matter expert',
+					},
+					{
+						description: () => (
+							<>
+								Developed proprietary solutions for handling multiple web component versions in micro-frontend
+								architecture using{' '}
+								<Anchor href="https://dev.to/sm3rta/versioned-web-components-and-micro-front-ends-1m40">
+									namespaces and scoped registries
+								</Anchor>
+							</>
+						),
+					},
+					{
+						description:
+							'Built TypeScript parser extracting component metadata from JSDoc to auto-generate documentation, reducing maintenance overhead by 80%',
+					},
+					{
+						description:
+							'Created GPT-4 powered chatbot using generated component metadata, reducing developer support requests by 60%',
+					},
+					{
+						description:
+							'Built pAIella: Figma-to-code workflow generating framework-agnostic code (React, Angular, vanilla) with iterative screenshot comparison, increasing development velocity by 300%',
+					},
+					{
+						description: 'Won ZeroHeight award for design system innovation in 2025 for pAIella',
+					},
+					{
+						description: 'Achieved 1.8 million internal downloads across 250+ repositories within Thomson Reuters',
+					},
+				],
+			},
 		],
 	},
 	{
@@ -696,6 +754,7 @@ export const work: Workplace[] = [
 export const allProjects = work.flatMap((w) => w.projects.map((p) => ({ ...p, company: w })));
 
 export const projectPriority: Record<(typeof projectIds)[number], number> = {
+	'saffron-design-system': 0,
 	calqulate: 1,
 	'quint-blog': 2,
 	'quint-staking': 3,
@@ -712,5 +771,5 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 
 export const telephoneNumber = '16479790872';
 export const telephoneNumberStylized = '(647) 979-0872';
-export const locationAddress = 'North York, ON, M3A 2E2';
+export const locationAddress = 'Scarborough, ON, M1P5C7';
 export const emailAddress = 'HabeilaAhmed@gmail.com';
