@@ -1,6 +1,6 @@
 import express from "express";
-import { Params, paramsDefaultValues, stringifyArray } from "../../portfolio/src/pages/resume-raw/utils";
-import { printWidth as width } from "../../portfolio/src/utils";
+import { Params, paramsDefaultValues, stringifyArray } from "../../common/params";
+import { printWidth as width } from "../../common/printWidth";
 import { launchPuppeteer } from "./utils";
 
 const router = express.Router();
@@ -10,6 +10,7 @@ const jobTypesMap: Record<Params["jobType"], string> = {
   "front-end": "Frontend",
   softwareEngineer: "SoftwareEngineer",
   react: "React",
+  architect: "Architect",
 };
 
 // const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end", "softwareEngineer", "react"];
@@ -33,29 +34,31 @@ router.post("/", async (req, res) => {
       height,
     };
 
-    const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => async () => {
-      const page = await browser.newPage();
-      const modifiedUrl = new URL(url);
+    const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => {
+      return async () => {
+        const page = await browser.newPage();
+        const modifiedUrl = new URL(url);
 
-      modifiedUrl.searchParams.set("jobType", jobType);
-      modifiedUrl.searchParams.set("senior", paramsDefaultValues.senior.toString());
-      modifiedUrl.searchParams.set("adjective", paramsDefaultValues.adjective);
-      if (jobType === "full-stack") {
-        modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.fullStackSkills));
-      } else {
-        modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.skills));
-      }
+        modifiedUrl.searchParams.set("jobType", jobType);
+        modifiedUrl.searchParams.set("senior", paramsDefaultValues.senior.toString());
+        modifiedUrl.searchParams.set("adjective", paramsDefaultValues.adjective);
+        if (jobType === "full-stack") {
+          modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.fullStackSkills));
+        } else {
+          modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.skills));
+        }
 
-      await page.goto(modifiedUrl.href, { waitUntil: "networkidle0" });
+        await page.goto(modifiedUrl.href, { waitUntil: "networkidle0" });
 
-      const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
-      const path = `../../resumes/${fileName}`;
+        const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
+        const path = `../../resumes/${fileName}`;
 
-      await page.pdf({ path, ...pdfArgs });
+        await page.pdf({ path, ...pdfArgs });
 
-      if (jobType === "front-end") {
-        await page.pdf({ path: "../portfolio/public/assets/AhmedHabeilaResume.pdf", ...pdfArgs });
-      }
+        if (jobType === "front-end") {
+          await page.pdf({ path: "../portfolio/public/assets/AhmedHabeilaResume.pdf", ...pdfArgs });
+        }
+      };
     });
 
     promises.push(async () => {

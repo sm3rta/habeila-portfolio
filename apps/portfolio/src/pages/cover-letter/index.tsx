@@ -29,12 +29,12 @@ import { emailAddress, locationAddress, telephoneNumberStylized, website } from 
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
 import { darkTheme as theme } from '../../ui/theme';
-import { coverPrintWidth } from '../../utils';
+import { coverPrintWidth } from '../../../../common/printWidth';
 import { controlsSectionWidth, iconButtonProps, pagePaddings } from '../resume-raw';
 import { Header } from '../resume-raw/Header';
 import { TopSkills } from '../resume-raw/TopSkills';
 import { createDesktopNotification } from '../resume-raw/createDesktopNotification';
-import { paramsDefaultValues, parseArray, stringifyArray } from '../resume-raw/utils';
+import { paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
 
 export const TextSpan: typeof Text = (props) => <Text as="span" {...props} />;
 
@@ -526,7 +526,7 @@ const CoverLetter = () => {
 							<TextSpan> advertised on {jobBoard().trim()}</TextSpan>
 						</Show>
 						<TextSpan>
-							. I have over 5 years of experience in building elegant and performant user interfaces using various
+							. I have over 7 years of experience in building performant and accessible user interfaces using various
 							technologies such as <TopSkills skills={skills()} />. I'm experienced in working collaboratively with
 							others, performing code reviews and effective communication with clients.
 						</TextSpan>

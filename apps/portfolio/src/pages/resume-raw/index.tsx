@@ -27,7 +27,7 @@ import { work } from '../../data/work';
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
 import { colors } from '../../ui/theme';
-import { printWidth } from '../../utils';
+import { printWidth } from '../../../../common/printWidth';
 import { Certifications } from './Certifications';
 import { CompanyProjects } from './CompanyProjects';
 import { StyledDivider } from './Divider';
@@ -37,7 +37,8 @@ import { SelfTaught } from './SelfTaught';
 import { SummaryOfQualifications } from './SummaryOfQualifications';
 import { Timeline } from './Timeline';
 import { createDesktopNotification } from './createDesktopNotification';
-import { Params, paramsDefaultValues, parseArray, stringifyArray } from './utils';
+import { Params, paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
+import { Publications } from './Publications';
 
 export const pagePaddings = {
 	x: '$24',
@@ -257,6 +258,9 @@ const ResumeRaw = () => {
 								<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
 									Software Engineer
 								</Radio>
+								<Radio value="architect" onChange={() => setJobType('architect')}>
+									Frontend Architect
+								</Radio>
 							</Flex>
 						</RadioGroup>
 						<Text fontSize="1rem">Seniority</Text>
@@ -339,10 +343,10 @@ const ResumeRaw = () => {
 					<Header adjective={adjective()} jobType={jobType()} includeLocation={includeLocation()} />
 					{/* page 1 */}
 
-					<Box px={pagePaddings.x} pb={pagePaddings.y}>
+					<Grid rowGap="$8" px={pagePaddings.x} pb={pagePaddings.y}>
 						<SummaryOfQualifications skills={skills()} />
 
-						<Grid mt="$8">
+						<Grid>
 							<Text variant="title">Work Experience</Text>
 							<StyledDivider />
 							<Timeline
@@ -350,25 +354,32 @@ const ResumeRaw = () => {
 									<CompanyProjects forceRole={forceRole()} company={company} forceNonSenior={forceNonSenior()} />
 								))}
 							/>
+							<Text mt="$8">
+								Full work experience since{' '}
+								<b>May 2019 </b> is
+								available on <Anchor href="https://www.habeila.dev/resume">my portfolio</Anchor>.
+							</Text>
 						</Grid>
-					</Box>
+
+						{/* header */}
+						{/* <Header adjective={adjective()} jobType={jobType()} includeLocation={includeLocation()} /> */}
+						<Publications />
+						<Certifications />
+						<Education />
+						{/* <SelfTaught jobType={jobType()} /> */}
+						{/* <References /> */}
+						{/* <Keywords /> */}
+					</Grid>
 				</Grid>
 				{/* page 2 */}
-				<Box px={pagePaddings.x} py={pagePaddings.y} id="page2" d={printing() ? 'none' : 'block'}>
-					{/* header */}
-					{/* <Header adjective={adjective()} jobType={jobType()} includeLocation={includeLocation()} /> */}
-					{/* education */}
-					<Education />
-
-					{/* certifications + self taught courses */}
-					<Certifications />
-					<SelfTaught jobType={jobType()} />
-
-					{/* references */}
-					{/* <References /> */}
-					{/* damn keywords */}
-					{/* <Keywords /> */}
-				</Box>
+				{/* <Box
+					id="page2"
+					d={printing() ? 'none' : 'flex'}
+					flexDirection="column"
+					rowGap="$8"
+					px={pagePaddings.x}
+					py={pagePaddings.y}
+				></Box> */}
 			</Flex>
 		</HopeProvider>
 	);

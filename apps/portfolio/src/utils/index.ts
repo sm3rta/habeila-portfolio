@@ -9,7 +9,7 @@ export const randRangeInt = (_a: number, _b = 0) => {
 	return Math.floor(Math.random() * (b - a)) + a;
 };
 
-export const randomColors = [...Object.values(colors), 'transparent', 'black'];
+export const randomColors = [...Object.values(colors), 'black'];
 export const randomFromArray = <T>(array: Array<T>) => {
 	return array[randRangeInt(array.length)];
 };
@@ -18,4 +18,3 @@ export const generateRandomColor = () => randomFromArray(randomColors);
 export const clamp = (min: number, value: number, max: number) => Math.min(Math.max(value, min), max);
 
 export * from './getTitle';
-export * from './printWidth';

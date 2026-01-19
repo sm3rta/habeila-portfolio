@@ -23,7 +23,7 @@ function renderChunks(deps: Record<string, string>) {
 	return chunks;
 }
 
-console.log(renderChunks(dependencies));
+// console.log(renderChunks(dependencies));
 
 export default defineConfig({
 	plugins: [solidPlugin(), mkcert(), eslint()],

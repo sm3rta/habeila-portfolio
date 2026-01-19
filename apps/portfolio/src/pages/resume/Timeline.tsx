@@ -6,7 +6,16 @@ import { colors } from '../../ui/theme';
 const side = 24;
 
 export const Timeline = (props: { children: JSX.Element[]; showStepper?: boolean }) => (
-	<Box d="flex" flexDirection="column" p="$8">
+	<Box d="flex" flexDirection="column" py={{
+		"@initial": "$4",
+		"@lg": "$0",
+		"@2xl": "$24"
+	}} px={{
+		"@initial": "$8",
+		"@md": "$16",
+		"@lg": "$32",
+		"@xl": "$48"
+	}}>
 		<For each={props.children}>
 			{(child, index) => (
 				<>

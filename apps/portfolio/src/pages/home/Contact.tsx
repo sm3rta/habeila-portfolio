@@ -1,36 +1,25 @@
-import { Box, IconButton, List, ListItem, Text } from '@hope-ui/solid';
+import { Box, Button, IconButton, List, ListItem } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
 import { BiLogosDiscordAlt } from 'solid-icons/bi';
 import { FaBrandsLinkedinIn } from 'solid-icons/fa';
-import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine } from 'solid-icons/ri';
-import { SiGithub } from 'solid-icons/si';
+import { SiGithub, SiMaildotru } from 'solid-icons/si';
 import { For } from 'solid-js';
-import { emailAddress, telephoneNumber, telephoneNumberStylized } from '../../data/work';
+import { emailAddress, telephoneNumberStylized } from '../../data/work';
 import { ICON_SIZE } from '../../ui/theme';
 import Section from './Section';
 
 export const EmailAndTelephone = () => (
 	<List d="flex" flexDirection="column" rowGap="$4">
 		<ListItem d="flex" columnGap="$4" alignItems="center">
-			<IconButton
-				as="a"
-				href={`mailto:${emailAddress}?subject=Let's%20work%20together!`}
-				target="_blank"
-				aria-label="mail"
-				icon={<HiOutlineMail size={ICON_SIZE} />}
-			/>
-			<Text>{emailAddress}</Text>
+			<Button px="$1" variant="ghost" leftIcon={<SiMaildotru size={ICON_SIZE} />}>
+				{emailAddress}
+			</Button>
 		</ListItem>
-		<ListItem d="flex" columnGap="$4" alignItems="center">
-			<IconButton
-				as="a"
-				href={`tel:+${telephoneNumber}`}
-				target="_blank"
-				aria-label="telephone"
-				icon={<RiDeviceSmartphoneLine size={ICON_SIZE} />}
-			/>
-			<Text>{telephoneNumberStylized}</Text>
+		<ListItem  d="flex" columnGap="$4" alignItems="center">
+			<Button px="$1" variant="ghost" leftIcon={<RiDeviceSmartphoneLine size={ICON_SIZE} />}>
+				{telephoneNumberStylized}
+			</Button>
 		</ListItem>
 	</List>
 );

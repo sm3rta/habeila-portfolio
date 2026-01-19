@@ -13,6 +13,7 @@ export const DarkModeSwitch = () => {
 			height={40}
 			zIndex={5}
 			transition="all 0.3s ease-in-out"
+			pointerEvents="all"
 		>
 			<IoSunny />
 			<Switch

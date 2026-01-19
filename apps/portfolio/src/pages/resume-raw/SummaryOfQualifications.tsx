@@ -11,14 +11,14 @@ export const SummaryOfQualifications = (props: { skills: string[] }) => (
 		<Flex mt="$2" direction="column" as="ul">
 			<For
 				each={[
-					<>5+ years of experience building elegant and performant user experiences</>,
+					<>7+ years of experience building elegant, performant and accessible user experiences</>,
 					// helping companies create and maintain a better code base for reusability
 					<>
-						Strong background in <TopSkills skills={props.skills} /> with high adaptability to work with any stack
+						Excellent background in <TopSkills skills={props.skills} /> with high adaptability to work with any stack
 						{/* and web development fundamentals */}
 					</>,
-					'Collaborative and friendly, with experience in performing code reviews',
-					'Excellent in communication, capable of effectively interacting with clients to establish and record their needs',
+					'Collaborative and friendly, with experience in leading teams',
+					// 'Excellent in communication, capable of effectively interacting with clients to establish and record their needs',
 				]}
 			>
 				{(item) => (

@@ -1,16 +1,17 @@
 import { Box, Heading } from '@hope-ui/solid';
 import { createElementSize } from '@solid-primitives/resize-observer';
 import { IconTypes } from 'solid-icons';
+import { IoAccessibilitySharp } from 'solid-icons/io';
 import {
 	SiAstro,
 	SiAuth0,
 	SiCplusplus,
 	SiExpress,
+	SiFigma,
 	SiFirebase,
 	SiGit,
-	SiI18next,
 	SiJira,
-	SiJss,
+	SiMaterialdesign,
 	SiNextdotjs,
 	SiNodedotjs,
 	SiPython,
@@ -21,8 +22,9 @@ import {
 	SiSolid,
 	SiTailwindcss,
 	SiTestinglibrary,
-	SiTypescript,
+	SiTypescript
 } from 'solid-icons/si';
+import { TbBrandRadixUi } from 'solid-icons/tb';
 import { For, JSX, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { colors } from '../../ui/theme';
@@ -43,11 +45,11 @@ export const skills: {
 	{ name: 'Node.js', Icon: SiNodedotjs },
 	{ name: 'Git', Icon: SiGit },
 	{ name: 'Jira', Icon: SiJira },
-	{ name: 'Material UI', Icon: null },
-	{ name: 'Radix UI', Icon: null },
+	{ name: 'Material UI', Icon: SiMaterialdesign },
+	{ name: 'Radix UI', Icon: TbBrandRadixUi },
 	{ name: 'Sass', Icon: SiSass },
-	{ name: 'JSS', Icon: SiJss },
-	{ name: 'Localization', Icon: SiI18next },
+	{ name: 'Design systems', Icon: SiFigma },
+	{ name: 'Accessibility', Icon: IoAccessibilitySharp },
 	{ name: 'Forms & validation', Icon: SiReacthookform },
 	{ name: 'Express.js', Icon: SiExpress },
 	{ name: 'C++', Icon: SiCplusplus },

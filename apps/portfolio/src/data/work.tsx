@@ -2,6 +2,7 @@ import { Anchor, ListItem } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
 import {
 	SiAmazonaws,
+	SiAngular,
 	SiAstro,
 	SiAwsamplify,
 	SiD3dotjs,
@@ -24,9 +25,11 @@ import {
 	SiMongodb,
 	SiNetlify,
 	SiNextdotjs,
+	SiOpenai,
 	SiPython,
 	SiReact,
 	SiRedux,
+	SiRollupdotjs,
 	SiSentry,
 	SiSolid,
 	SiStorybook,
@@ -38,9 +41,10 @@ import {
 	SiTwitter,
 	SiTypescript,
 	SiWeb3dotjs,
+	SiWebcomponentsdotorg,
 	SiWordpress,
 	SiYoutube,
-	SiZoom,
+	SiZoom
 } from 'solid-icons/si';
 import { For, JSX } from 'solid-js';
 import { Text } from '../ui/components/Text';
@@ -48,6 +52,7 @@ import { BmwFoundationLogo } from './logos/BmwFoundationLogo';
 import { CalqulateLogo } from './logos/CalqulateLogo';
 import { NetjeekLogo } from './logos/NetjeekLogo';
 import { QuintLogoBlog, QuintLogoStaking } from './logos/QuintLogo';
+import { ThomsonReutersLogoWithText } from './logos/ThomsonReutersLogo';
 import { TwentyThirtyLogo } from './logos/TwentyThirtyLogo';
 
 export const website = 'https://habeila.dev';
@@ -64,6 +69,7 @@ const projectIds = [
 	'educational-platform',
 	'asset-tracking-system',
 	'netjeek',
+	'saffron-design-system',
 ] as const;
 
 export type Project = {
@@ -100,7 +106,7 @@ export type Workplace = {
 	to?: string;
 	description?: string | (() => JSX.Element);
 	title?: {
-		role: 'front' | 'full' | 'se';
+		role: 'front' | 'full' | 'se' | 'architect';
 		senior: boolean;
 	};
 	projects: Project[];
@@ -109,14 +115,114 @@ export type Workplace = {
 
 export const work: Workplace[] = [
 	{
+		name: 'Thomson Reuters',
+		title: {
+			role: 'architect',
+			senior: false,
+		},
+		from: 'July 2023',
+		to: 'Present',
+		website: 'https://thomsonreuters.com/',
+		projects: [
+			{
+				name: 'Saffron design system',
+				website: 'https://www.chrisswenke.com/saffron-design-system/',
+				id: 'saffron-design-system',
+				description: 'A design system and component library for Thomson Reuters internal applications',
+				hideOnHomepage: false,
+				hideOnResume: false,
+				Logo: ThomsonReutersLogoWithText,
+				technologies: [
+					{ name: 'Web Components', Icon: SiWebcomponentsdotorg },
+					{ name: 'TypeScript', Icon: SiTypescript },
+					{ name: 'React', Icon: SiReact },
+					{ name: 'Angular', Icon: SiAngular },
+					{ name: 'Storybook', Icon: SiStorybook },
+					{ name: 'Rollup', Icon: SiRollupdotjs },
+					{ name: 'GPT-4', Icon: SiOpenai },
+					{ name: 'Chromatic', Icon: null },
+				],
+				responsibilities: ['Technical architecture ownership', 'Writing spec docs', 'Team leadership of 10 engineers'],
+				achievements: [
+					{
+						description: () => (
+							<>
+								Achieved <b>1.8 million</b> internal downloads across <b>250+</b> repositories within Thomson Reuters
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Built TypeScript parser extracting component metadata to auto-generate documentation, reducing
+								maintenance overhead by <b>80%</b> and removing human error
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Created <b>GPT-4</b> powered chatbot using generated component metadata, reducing developer support
+								requests by <b>60%</b>
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Built pAIella: a Figma-to-code workflow generating code in any framework (React, Angular, vanilla),
+								increasing development velocity by <b>300%</b>
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Won <b>ZeroHeight award</b> in design system innovation in 2025 for project pAIella
+							</>
+						),
+					},
+					{
+						description:
+							'Owned technical architecture including repo structure, bundling, build/release processes, GitHub Actions, and 3rd party integrations',
+					},
+					{
+						description: () => (
+							<>
+								Distilled requirements from UX designers, engineers, product team, testers and accessibility specialists
+								into specification documents helping deliver <b>100+ components</b>
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Led team of <b>10</b> engineers, providing technical guidance, code reviews, and acting as subject
+								matter expert
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Developed proprietary solutions for handling multiple web component versions in micro-frontend
+								architecture using namespaces and scoped registries
+							</>
+						),
+					},
+				],
+			},
+		],
+	},
+	{
 		name: 'Self-employed',
 		title: {
 			role: 'front',
 			senior: true,
 		},
 		from: 'January 2023',
-		to: 'Present',
-		// website: 'https://quint.io/',
+		to: 'May 2023',
+		website: 'https://habeila.dev/',
 		projects: [
 			{
 				name: 'Portfolio website',
@@ -156,46 +262,47 @@ export const work: Workplace[] = [
 					{ description: 'All animations are vanilla' },
 				],
 			},
-			{
-				hideOnHomepage: true,
-				name: 'Quint Blog and Staking',
-				id: 'quint-blog-staking',
-				renderTitle: () => (
-					<Text as="span">
-						<Anchor href="https://blog.quint.io/">
-							<Text as="span">Quint blog</Text>
-						</Anchor>{' '}
-						and{' '}
-						<Anchor href="https://stake.quint.io/">
-							<Text as="span">Quint Staking App</Text>
-						</Anchor>
-					</Text>
-				),
-				// description: 'A web 3 platform for the Quint cryptocurrency',
-				technologies: [
-					{ name: 'Astro', Icon: SiAstro },
-					{ name: 'Solid.js', Icon: SiSolid },
-					{ name: 'TypeScript', Icon: SiTypescript },
-					{ name: 'Tailwind CSS', Icon: SiTailwindcss },
-					{ name: 'Disqus', Icon: SiDisqus },
-					{ name: 'AWS Amplify', Icon: SiAwsamplify },
-					{ name: 'React', Icon: SiReact },
-					{ name: 'Next.js', Icon: SiNextdotjs },
-					// { name: 'Radix UI', Icon: null },
-					{ name: 'Web 3', Icon: SiWeb3dotjs },
-					{ name: 'Storybook', Icon: SiStorybook },
-				],
-				achievements: [
-					{
-						description:
-							'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in Next.js, Astro and Solid.js',
-					},
-					{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
-					{ description: 'Created UI component library following a design system and documented it on Storybook' },
-				],
+			// {
+			// 	hideOnHomepage: true,
+			// 	hideOnResume: true,
+			// 	name: 'Quint Blog and Staking',
+			// 	id: 'quint-blog-staking',
+			// 	renderTitle: () => (
+			// 		<Text as="span">
+			// 			<Anchor href="https://blog.quint.io/">
+			// 				<Text as="span">Quint blog</Text>
+			// 			</Anchor>{' '}
+			// 			and{' '}
+			// 			<Anchor href="https://stake.quint.io/">
+			// 				<Text as="span">Quint Staking App</Text>
+			// 			</Anchor>
+			// 		</Text>
+			// 	),
+			// 	// description: 'A web 3 platform for the Quint cryptocurrency',
+			// 	technologies: [
+			// 		{ name: 'Astro', Icon: SiAstro },
+			// 		{ name: 'Solid.js', Icon: SiSolid },
+			// 		{ name: 'TypeScript', Icon: SiTypescript },
+			// 		{ name: 'Tailwind CSS', Icon: SiTailwindcss },
+			// 		{ name: 'Disqus', Icon: SiDisqus },
+			// 		{ name: 'AWS Amplify', Icon: SiAwsamplify },
+			// 		{ name: 'React', Icon: SiReact },
+			// 		{ name: 'Next.js', Icon: SiNextdotjs },
+			// { name: 'Radix UI', Icon: null },
+			// 		{ name: 'Web 3', Icon: SiWeb3dotjs },
+			// 		{ name: 'Storybook', Icon: SiStorybook },
+			// 	],
+			// 	achievements: [
+			// 		{
+			// 			description:
+			// 				'Collaborated with a team of 4 to launch 2 accessible, responsive websites with light/dark themes in Next.js, Astro and Solid.js',
+			// 		},
+			// 		{ description: 'Achieved 100% Lighthouse score with optimized SEO and accessibility' },
+			// 		{ description: 'Created UI component library following a design system and documented it on Storybook' },
+			// 	],
 
-				responsibilities: ['Website (front-end)'],
-			},
+			// 	responsibilities: ['Website (front-end)'],
+			// },
 			{
 				hideOnResume: true,
 				name: 'Quint Blog',
@@ -506,55 +613,56 @@ export const work: Workplace[] = [
 					{ description: 'Integrated Google Tag Manager along with following the best SEO practices' },
 				],
 			},
-			{
-				hideOnHomepage: true,
-				name: 'BMW Foundation',
-				id: 'bmw-foundation-tt',
-				renderTitle: () => (
-					<Text as="span">
-						<Anchor href="https://bmw-foundation.org/">BMW Foundation</Anchor> and{' '}
-						<Anchor href="https://twentythirty.com/">TwentyThirty</Anchor>
-					</Text>
-				),
+			// {
+			// 	hideOnHomepage: true,
+			// 	name: 'BMW Foundation',
+			// 	id: 'bmw-foundation-tt',
+			// 	renderTitle: () => (
+			// 		<Text as="span">
+			// 			<Anchor href="https://bmw-foundation.org/">BMW Foundation</Anchor> and{' '}
+			// 			<Anchor href="https://twentythirty.com/">TwentyThirty</Anchor>
+			// 		</Text>
+			// 	),
 
-				description: () => (
-					<>
-						An informative website of the BMW Foundation's mission, plans and events. The website features advanced
-						accessibility features and multi-language routing.
-					</>
-				),
-				technologies: [
-					{ name: 'React', Icon: SiReact },
-					{ name: 'Gatsby.js', Icon: SiGatsby },
-					{ name: 'TypeScript', Icon: SiTypescript },
-					// { name: 'Material UI', Icon: null },
-					{ name: 'JSS', Icon: SiJss },
-					{ name: 'Wordpress', Icon: SiWordpress },
-					{ name: 'Twitter API', Icon: SiTwitter },
-					{ name: 'Instagram API', Icon: SiInstagram },
-					{ name: 'Facebook API', Icon: SiFacebook },
-					{ name: 'YouTube API', Icon: SiYoutube },
-				],
-				responsibilities: ['Website (front-end)'],
-				achievements: [
-					{
-						description: () => (
-							<>
-								Launched 2 responsive, accessible SEO-focused websites, increasing the reach to thousands of organic
-								monthly users
-							</>
-						),
-					},
-					{
-						description:
-							'Created accessibility menu with high contrast mode, dyslexia-friendly font, and animations toggle',
-					},
-					{ description: 'Integrated Google Tag Manager and followed SEO best practices' },
-				],
-			},
+			// 	description: () => (
+			// 		<>
+			// 			An informative website of the BMW Foundation's mission, plans and events. The website features advanced
+			// 			accessibility features and multi-language routing.
+			// 		</>
+			// 	),
+			// 	technologies: [
+			// 		{ name: 'React', Icon: SiReact },
+			// 		{ name: 'Gatsby.js', Icon: SiGatsby },
+			// 		{ name: 'TypeScript', Icon: SiTypescript },
+			// 		// { name: 'Material UI', Icon: null },
+			// 		{ name: 'JSS', Icon: SiJss },
+			// 		{ name: 'Wordpress', Icon: SiWordpress },
+			// 		{ name: 'Twitter API', Icon: SiTwitter },
+			// 		{ name: 'Instagram API', Icon: SiInstagram },
+			// 		{ name: 'Facebook API', Icon: SiFacebook },
+			// 		{ name: 'YouTube API', Icon: SiYoutube },
+			// 	],
+			// 	responsibilities: ['Website (front-end)'],
+			// 	achievements: [
+			// 		{
+			// 			description: () => (
+			// 				<>
+			// 					Launched 2 responsive, accessible SEO-focused websites, increasing the reach to thousands of organic
+			// 					monthly users
+			// 				</>
+			// 			),
+			// 		},
+			// 		{
+			// 			description:
+			// 				'Created accessibility menu with high contrast mode, dyslexia-friendly font, and animations toggle',
+			// 		},
+			// 		{ description: 'Integrated Google Tag Manager and followed SEO best practices' },
+			// 	],
+			// },
 			{
 				name: 'Educational platform',
 				id: 'educational-platform',
+				hideOnResume: true,
 				description: () => (
 					<>
 						An educational platform where professors can upload and schedule lectures to different classes,
@@ -621,6 +729,7 @@ export const work: Workplace[] = [
 				name: 'Netjeek',
 				id: 'netjeek',
 				Logo: NetjeekLogo,
+				hideOnResume: true,
 				description: () => (
 					<>
 						Designed and implemented an eCommerce trans-shipping system designed to facilitate the purchase and delivery
@@ -672,6 +781,7 @@ export const work: Workplace[] = [
 export const allProjects = work.flatMap((w) => w.projects.map((p) => ({ ...p, company: w })));
 
 export const projectPriority: Record<(typeof projectIds)[number], number> = {
+	'saffron-design-system': 0,
 	calqulate: 1,
 	'quint-blog': 2,
 	'quint-staking': 3,
@@ -688,5 +798,5 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 
 export const telephoneNumber = '16479790872';
 export const telephoneNumberStylized = '(647) 979-0872';
-export const locationAddress = 'North York, ON, M3A 2E2';
+export const locationAddress = 'Scarborough, ON, M1P5C7';
 export const emailAddress = 'HabeilaAhmed@gmail.com';

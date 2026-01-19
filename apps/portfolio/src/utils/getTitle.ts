@@ -1,4 +1,4 @@
-const getRoleTitle = (role: 'front' | 'full' | 'se') => {
+const getRoleTitle = (role: 'front' | 'full' | 'se' | 'architect') => {
 	switch (role) {
 		case 'front':
 			return 'Front-end Developer';
@@ -6,18 +6,15 @@ const getRoleTitle = (role: 'front' | 'full' | 'se') => {
 			return 'Full-stack Developer';
 		case 'se':
 			return 'Software Engineer';
+		case 'architect':
+			return 'Frontend Architect';
 	}
 };
 
-export const getTitle = (
-	// title: {
-	role: 'front' | 'full' | 'se',
-	senior: boolean
-	// },
-	// force?: 'full' | 'se'
-) => {
-	// const { role, senior } = title;
-	const seniority = senior ? 'Senior ' : '';
+export const getTitle = (role: 'front' | 'full' | 'se' | 'architect', senior: boolean) => {
 	const roleTitle = getRoleTitle(role);
+	if (role === 'architect') return roleTitle;
+	
+	const seniority = senior ? 'Senior ' : '';
 	return `${seniority}${roleTitle}`;
 };

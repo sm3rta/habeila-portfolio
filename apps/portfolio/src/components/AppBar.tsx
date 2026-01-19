@@ -42,7 +42,7 @@ export const AppBar = () => {
 		window.removeEventListener('scroll', onScroll);
 	});
 
-	const isSmall = createMediaQuery('(max-width: 768px)');
+	const isSmall = createMediaQuery('(max-width: 960px)');
 
 	return (
 		<Flex
@@ -54,11 +54,11 @@ export const AppBar = () => {
 			mt="$2"
 			direction="column"
 			zIndex={zIndexes.appBar}
+			pointerEvents="none"
 		>
-			<List d="flex" flexDirection="column" columnGap="$3" alignItems="flex-end">
+			<List d="flex" flexDirection="column" columnGap="$3" alignItems="flex-end" pointerEvents="none">
 				<Link
 					role="listitem"
-					// href="/#home"
 					href="/"
 					onClick={createScrollHandler('home')}
 					active={pathname() === '/' && visibleElement() === 'home'}

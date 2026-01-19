@@ -29,6 +29,10 @@ export const CompanyProjects = (props: {
 	forceNonSenior?: boolean | undefined;
 }) => {
 	const projects = () => props.company.projects.filter((project) => !project.hideOnResume);
+
+	if(!projects().length)
+		return null;
+
 	return (
 		<Flex h="100%" w="100%" direction="column" justifyContent="center">
 			<Box d="flex" justifyContent="space-between">

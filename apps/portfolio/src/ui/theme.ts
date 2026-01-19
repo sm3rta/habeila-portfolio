@@ -89,11 +89,18 @@ export const darkTheme = {
 				background: 'unset',
 				_hover: {
 					background: 'unset',
-					color: colors.secondary3,
+					color: colors.primary4,
 				},
 				_active: {
-					color: colors.secondary2,
+					color: colors.primary1,
+					background: 'unset',
 				},
+				_disabled:{
+					"&:hover": {
+						background: 'unset',
+					},
+					background: 'unset',
+				}
 			},
 		},
 		Badge: {
@@ -130,6 +137,9 @@ export const darkTheme = {
 
 const lightThemeOverrides = {
 	initialColorMode: 'light',
+	lightTheme: {
+		fontSizes,
+	},
 	components: {
 		Text: {
 			baseStyle: {
@@ -148,6 +158,16 @@ const lightThemeOverrides = {
 			baseStyle: {
 				color: colors.primary7,
 				backgroundColor: colors.secondary1,
+			},
+		},
+		Button: {
+			baseStyle: {
+				root: {
+					color: 'black',
+					_hover: {
+						background: colors.secondary8,
+					},
+				},
 			},
 		},
 	},

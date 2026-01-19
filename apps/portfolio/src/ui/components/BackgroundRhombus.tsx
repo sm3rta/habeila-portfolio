@@ -1,6 +1,6 @@
 import { Box } from '@hope-ui/solid';
 import Parallax from 'rallax.js';
-import { createEffect, createSignal, onMount } from 'solid-js';
+import { createEffect, createSignal, onMount, Show } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { generateRandomColor, randRange, randRangeInt } from '../../utils';
 import { mobileCheck } from '../isMobileDevice';
@@ -21,12 +21,15 @@ const RhombusBase: typeof Box = styled(Box)({
 	zIndex: zIndexes.rhombus,
 	clipPath,
 	cursor: 'unset',
-	mixBlendMode: 'difference',
+	// mixBlendMode: 'difference',
 	transition: `background-color ${interactionDelayMs}ms ease-in-out`,
 });
 
 export const BackgroundRhombus = () => {
 	const [delay, setDelay] = createSignal(0);
+	const [hoverCount, setHoverCount] = createSignal(0);
+	const [isVisible, setIsVisible] = createSignal(true);
+	const [isBursting, setIsBursting] = createSignal(false);
 
 	const width = randRangeInt(15, 40);
 	const top = `clamp(0px, ${randRangeInt(0, 100)}%, calc(100% - 100px))`;
@@ -50,6 +53,8 @@ export const BackgroundRhombus = () => {
 	const animationDuration = randRangeInt(80, 120);
 	const animation = () => `${animationDirection} ${animationDuration}s ${delay()}s ease-in-out infinite alternate`;
 
+	const burstDuration = 400;
+
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	const Rhombus: typeof Box = styled(RhombusBase)({
@@ -59,33 +64,85 @@ export const BackgroundRhombus = () => {
 			'90%': { opacity: 0.5 },
 			'100%': { opacity: 0, marginLeft: `${translateX}px` },
 		},
+		'@keyframes burst': {
+			'0%': { transform: 'translateY(var(--burst-translateY, 0px)) scale(1) rotate(0deg)', opacity: 1 },
+			'50%': { transform: 'translateY(var(--burst-translateY, 0px)) scale(1.5) rotate(90deg)', opacity: 0.7 },
+			'100%': { transform: 'translateY(var(--burst-translateY, 0px)) scale(2.5) rotate(180deg)', opacity: 0 },
+		},
 	});
 
 	const [ref, setRef] = createSignal<HTMLDivElement>();
+	const [parallaxInstance, setParallaxInstance] = createSignal<Parallax | null>(null);
 
 	onMount(() => {
 		if (ref() && !isMobileDevice) {
-			new Parallax(ref()!, { speed });
+			const instance = new Parallax(ref()!, { speed });
+			setParallaxInstance(instance);
 		}
 	});
 
 	return (
-		<Rhombus
-			ref={setRef}
-			w={width}
-			top={top}
-			left={left}
-			backgroundColor={backgroundColor()}
-			boxShadow={boxShadow}
-			animation={animation()}
-			pointerEvents={backgroundColor() === 'transparent' ? 'none' : 'all'}
-			onMouseEnter={() => {
-				setBackgroundColor('transparent');
-				setTimeout(() => {
-					setDelay(delay() - 8);
-					updateBackgroundColor();
-				}, interactionDelayMs);
-			}}
-		/>
+		<Show when={isVisible()}>
+			<Rhombus
+				ref={setRef}
+				w={width}
+				top={top}
+				left={left}
+				backgroundColor={backgroundColor()}
+				boxShadow={boxShadow}
+				animation={isBursting() ? `burst ${burstDuration}ms ease-out forwards` : animation()}
+				pointerEvents={backgroundColor() === 'transparent' || isBursting() ? 'none' : 'all'}
+				onMouseEnter={() => {
+					const newCount = hoverCount() + 1;
+					setHoverCount(newCount);
+					setBackgroundColor('transparent');
+					
+					if (newCount < 3) {
+						setTimeout(() => {
+							setDelay(delay() - 8);
+							updateBackgroundColor();
+						}, interactionDelayMs);
+					} else {
+						// Lock position: disable parallax and start burst animation
+						const element = ref();
+						if (element) {
+							// Get current computed position
+							const computedStyle = window.getComputedStyle(element);
+							const currentTransform = computedStyle.transform;
+							const currentMarginLeft = computedStyle.marginLeft;
+							
+							// Destroy parallax to prevent further updates
+							if (parallaxInstance()) {
+								parallaxInstance()!.stop();
+							}
+							
+							// Lock the current marginLeft from the animation
+							if (currentMarginLeft) {
+								element.style.marginLeft = currentMarginLeft;
+							}
+							
+							// Lock the current transform (parallax translateY) and apply it to the burst animation
+							if (currentTransform && currentTransform !== 'none') {
+								// Extract the translateY value from the matrix
+								const matrixMatch = currentTransform.match(/matrix\(([^)]+)\)/);
+								if (matrixMatch) {
+									const matrixValues = matrixMatch[1].split(',').map(v => parseFloat(v.trim()));
+									const translateY = matrixValues[5] || 0;
+									// Update the burst animation to include the locked translateY
+									element.style.setProperty('--burst-translateY', `${translateY}px`);
+								}
+							}
+						}
+						
+						setIsBursting(true);
+						
+						// Wait for burst animation to complete before hiding
+						setTimeout(() => {
+							setIsVisible(false);
+						}, burstDuration);
+					}
+				}}
+			/>
+		</Show>
 	);
 };
