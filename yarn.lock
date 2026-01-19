@@ -4764,7 +4764,7 @@ __metadata:
     print-js: "npm:1.6.0"
     rallax.js: "npm:2.0.4"
     sharp: "npm:0.32.0"
-    solid-icons: "npm:1.0.4"
+    solid-icons: "npm:^1.1.0"
     solid-js: "npm:^1.9.10"
     solid-styled-components: "npm:0.28.5"
     solid-transition-group: "npm:0.2.2"
@@ -5397,12 +5397,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"solid-icons@npm:1.0.4":
-  version: 1.0.4
-  resolution: "solid-icons@npm:1.0.4"
+"solid-icons@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "solid-icons@npm:1.1.0"
   peerDependencies:
     solid-js: "*"
-  checksum: 10c0/c64b041126d2a4cf4af4f43d6e1a342fcfa550e9055de3ecaa98854880ab9989917d867af96850fb2e2758512dad2a6146590a6851d8fdf1d40234e202874ce9
+  checksum: 10c0/17e2d9ab953cec156e7545fc3d2b4244997a44c06ce38f202c1c40e93b68584dfb646e2f7e128c43674d9a2f349ba8094c4f6f5be67102a4897f660e9d883796
   languageName: node
   linkType: hard
 

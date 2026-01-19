@@ -1,11 +1,13 @@
 import { Box, Flex, IconButton, Image, Text } from '@hope-ui/solid';
-import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
+import { FaSolidChevronLeft, FaSolidChevronRight, FaSolidPause } from 'solid-icons/fa';
 import { For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { Project as ProjectType } from '../../data/work';
 import { colors } from '../../ui/theme';
 import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { useLoopingSquareProgressBar } from './useLoopingSquareProgressBar';
+import { BsPause } from 'solid-icons/bs';
+import { IoPause } from 'solid-icons/io';
 
 const transitionDurationMs = 300;
 

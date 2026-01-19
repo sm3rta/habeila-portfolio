@@ -6,7 +6,7 @@ import { Text } from '../../ui/components/Text';
 import { StyledDivider } from './Divider';
 
 export const Certifications = () => (
-	<Flex direction="column" mt="$8">
+	<Flex direction="column">
 		<Text variant="title">Certifications</Text>
 		<StyledDivider />
 

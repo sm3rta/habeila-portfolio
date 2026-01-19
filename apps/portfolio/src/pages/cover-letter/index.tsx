@@ -526,7 +526,7 @@ const CoverLetter = () => {
 							<TextSpan> advertised on {jobBoard().trim()}</TextSpan>
 						</Show>
 						<TextSpan>
-							. I have over 5 years of experience in building elegant and performant user interfaces using various
+							. I have over 7 years of experience in building performant and accessible user interfaces using various
 							technologies such as <TopSkills skills={skills()} />. I'm experienced in working collaboratively with
 							others, performing code reviews and effective communication with clients.
 						</TextSpan>

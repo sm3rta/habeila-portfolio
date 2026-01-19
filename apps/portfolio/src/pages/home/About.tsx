@@ -33,8 +33,7 @@ export default function About() {
 	const aboutProfessionalExperience = (
 		<>
 			<Text>
-				I have 5+ years of professional experience in software engineering, mainly front-end development using{' '}
-				<b>React</b>.
+				I have 7+ years of professional experience in software engineering.
 			</Text>
 			<Text mt="$6">
 				I worked on various projects and dived into a lot of concepts of front-end development, from content-driven
@@ -49,13 +48,13 @@ export default function About() {
 	);
 	const aboutMePersonal = (
 		<>
-			<Text>I love the process of planning features, splitting them into components and implementing them.</Text>
+			<Text>I love the process of planning features, breaking them down into components and implementing them.</Text>
 			<Text mt="$6">
 				While my career currently revolves around web development, I love everything programming which includes game
 				development, Python, AHK and more
 			</Text>
 			<Text mt="$6">
-				I like <b>gaming</b>, <b>food</b> and <b>photography</b>. I also love to <b>travel</b> and <b>explore</b> new
+				I like <b> landscape photography</b>, <b>making food</b> and <b>gaming</b>. I also love to <b>travel</b> and <b>explore</b> new
 				places.
 			</Text>
 		</>

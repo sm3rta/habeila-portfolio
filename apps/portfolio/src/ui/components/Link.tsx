@@ -8,6 +8,7 @@ import { colors, darkTheme as theme } from '../theme';
 export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean; small?: boolean }) => (
 	<Link title={props.children} role="navigation" size="sm" variant="ghost" as={A} {...props} />
 ))(({ active, small }) => ({
+	pointerEvents: "all",
 	// backgroundColor: 'unset !important',
 	height: '30px',
 	// margin: '2px',

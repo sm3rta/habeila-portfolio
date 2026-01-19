@@ -6,5 +6,6 @@ declare module 'rallax.js' {
 
 	export default class Rallax {
 		constructor(node: HTMLDivElement, options?: RallaxOptions);
+		stop: () => void;
 	}
 }

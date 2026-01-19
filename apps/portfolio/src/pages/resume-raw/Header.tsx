@@ -1,6 +1,5 @@
 import { Anchor, Flex } from '@hope-ui/solid';
 import { FaSolidLocationDot } from 'solid-icons/fa';
-import { HiOutlineMail } from 'solid-icons/hi';
 import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
 import { For, Match, Show, Switch } from 'solid-js';
 import { StyledFlexLink, pagePaddings } from '.';
@@ -10,6 +9,7 @@ import { ICON_SIZE } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { StyledDivider } from './Divider';
 import { Params } from '../../../../common/params';
+import { IoMailOutline } from 'solid-icons/io';
 
 const PhoneNumber = () => (
 	<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
@@ -19,7 +19,7 @@ const PhoneNumber = () => (
 );
 const Email = () => (
 	<StyledFlexLink href={`mailto:${emailAddress}?subject=Let's%20work%20together!`} textDecoration="none">
-		<HiOutlineMail size={ICON_SIZE} />
+		<IoMailOutline size={ICON_SIZE} />
 		<Text ml="$2">{emailAddress}</Text>
 	</StyledFlexLink>
 );
