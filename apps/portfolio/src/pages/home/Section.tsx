@@ -15,7 +15,7 @@ const Section = (_props: ContainerProps & { upperSectionDivider?: boolean; botto
 				w="fit-content"
 				p={{
 					'@initial': '200px $6',
-					'@xl': '60px $16',
+					'@xl': '60px $20',
 				}}
 				{...props}
 			/>

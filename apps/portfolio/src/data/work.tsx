@@ -26,6 +26,7 @@ import {
 	SiNetlify,
 	SiNextdotjs,
 	SiOpenai,
+	SiPlaywright,
 	SiPython,
 	SiReact,
 	SiRedux,
@@ -44,7 +45,7 @@ import {
 	SiWebcomponentsdotorg,
 	SiWordpress,
 	SiYoutube,
-	SiZoom
+	SiZoom,
 } from 'solid-icons/si';
 import { For, JSX } from 'solid-js';
 import { Text } from '../ui/components/Text';
@@ -140,6 +141,7 @@ export const work: Workplace[] = [
 					{ name: 'Storybook', Icon: SiStorybook },
 					{ name: 'Rollup', Icon: SiRollupdotjs },
 					{ name: 'GPT-4', Icon: SiOpenai },
+					{ name: 'Playwright', Icon: SiPlaywright },
 					{ name: 'Chromatic', Icon: null },
 				],
 				responsibilities: ['Technical architecture ownership', 'Writing spec docs', 'Team leadership of 10 engineers'],
@@ -147,7 +149,8 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Achieved <b>1.8 million</b> internal downloads across <b>250+</b> repositories within Thomson Reuters
+								Scaled adoption to <b>1000+</b> engineers across <b>250+</b> repositories, reaching <b>1.8 million</b>{' '}
+								internal downloads and <b>87%</b> adoption rate within 2 years
 							</>
 						),
 					},
@@ -163,7 +166,7 @@ export const work: Workplace[] = [
 						description: () => (
 							<>
 								Created <b>GPT-4</b> powered chatbot using generated component metadata, reducing developer support
-								requests by <b>60%</b>
+								requests by <b>40%</b>
 							</>
 						),
 					},
@@ -171,14 +174,20 @@ export const work: Workplace[] = [
 						description: () => (
 							<>
 								Built pAIella: a Figma-to-code workflow generating code in any framework (React, Angular, vanilla),
-								increasing development velocity by <b>300%</b>
+								achieving up to <b>64.2%</b> in time savings
 							</>
 						),
 					},
 					{
 						description: () => (
 							<>
-								Won <b>ZeroHeight award</b> in design system innovation in 2025 for project pAIella
+								Won{' '}
+								<b>
+									<Anchor href="https://zeroheight.com/blog/celebrating-the-2025-design-system-awards-winners/#:~:text=Award%20for%20Innovation,systems%20look%20like.">
+										ZeroHeight award
+									</Anchor>
+								</b>{' '}
+								in design system innovation in 2025 for project pAIella
 							</>
 						),
 					},
@@ -205,8 +214,24 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Developed proprietary solutions for handling multiple web component versions in micro-frontend
-								architecture using namespaces and scoped registries
+								Developed proprietary solutions for handling multiple web component versions in <b>micro-frontend</b>{' '}
+								architectures using namespaces and scoped registries architecture using namespaces and scoped registries
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Added <b>IntelliSense</b> support to components using Custom Element Manifests accross non-React
+								frameworks, enabling autocomplete for attributes and CSS custom properties
+							</>
+						),
+					},
+					{
+						description: () => (
+							<>
+								Developed a code generator to accelerate AI chatbot development, enabling creation of <b>15</b>{' '}
+								applications
 							</>
 						),
 					},
