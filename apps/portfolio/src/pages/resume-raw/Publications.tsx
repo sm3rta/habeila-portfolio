@@ -1,10 +1,8 @@
-import { Anchor, Flex, List, ListItem } from '@hope-ui/solid';
-import { SiCoursera, SiDevdotto, SiMeta } from 'solid-icons/si';
-import { For } from 'solid-js';
+import { Anchor, Flex } from '@hope-ui/solid';
+import { SiDevdotto } from 'solid-icons/si';
 import { ICON_SIZE } from '.';
 import { Text } from '../../ui/components/Text';
 import { StyledDivider } from './Divider';
-import { IoLogoWebComponent } from 'solid-icons/io';
 
 export const Publications = () => (
 	<Flex direction="column">

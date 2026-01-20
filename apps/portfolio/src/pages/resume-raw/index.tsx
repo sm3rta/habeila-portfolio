@@ -23,22 +23,21 @@ import { useSearchParams } from '@solidjs/router';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
 import { TbMenu2 } from 'solid-icons/tb';
 import { ComponentProps, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { Params, paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
+import { printWidth } from '../../../../common/printWidth';
 import { work } from '../../data/work';
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
 import { colors } from '../../ui/theme';
-import { printWidth } from '../../../../common/printWidth';
 import { Certifications } from './Certifications';
 import { CompanyProjects } from './CompanyProjects';
 import { StyledDivider } from './Divider';
 import { Education } from './Education';
 import { Header } from './Header';
-import { SelfTaught } from './SelfTaught';
+import { Publications } from './Publications';
 import { SummaryOfQualifications } from './SummaryOfQualifications';
 import { Timeline } from './Timeline';
 import { createDesktopNotification } from './createDesktopNotification';
-import { Params, paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
-import { Publications } from './Publications';
 
 export const pagePaddings = {
 	x: '$24',

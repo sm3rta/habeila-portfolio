@@ -1,20 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#000000" />
-		<meta name="description" content="Ahmed Habeila's portfolio website" />
+		<meta
+			name="description"
+			content="Ahmed Habeila's portfolio website - Full-stack developer specializing in React, TypeScript, and modern web technologies"
+		/>
+		<meta name="keywords" content="portfolio, web development, React, TypeScript, SolidJS, Ahmed Habeila" />
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-		<!-- <title>Ahmed Habeila's Portfolio</title> -->
+
+		<!-- Preconnect to external domains for faster loading -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+		<!-- Load fonts asynchronously to avoid render blocking -->
 		<link
 			rel="preload"
 			href="https://fonts.googleapis.com/css?family=Rubik&display=swap"
-			as="font"
-			type="font/woff2"
-			crossorigin
+			as="style"
+			onload="
+				this.onload = null;
+				this.rel = 'stylesheet';
+			"
 		/>
+		<noscript>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik&display=swap" />
+		</noscript>
+
+		<!-- Inline critical CSS -->
+		<style>
+			/* Critical global styles to prevent FOUC */
+			html,
+			body,
+			body > div#root {
+				height: 100%;
+			}
+
+			html {
+				scroll-behavior: smooth;
+				scroll-padding-top: 60px; /* header height */
+			}
+
+			/* Prevent layout shift during font loading */
+			body {
+				margin: 0;
+				padding: 0;
+				font-family:
+					Rubik,
+					-apple-system,
+					BlinkMacSystemFont,
+					'Segoe UI',
+					'Roboto',
+					'Oxygen',
+					'Ubuntu',
+					'Cantarell',
+					'Fira Sans',
+					'Droid Sans',
+					'Helvetica Neue',
+					sans-serif;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			ul {
+				list-style-type: circle;
+			}
+		</style>
 	</head>
 	<body>
 		<noscript>You need to enable JavaScript to run this app.</noscript>

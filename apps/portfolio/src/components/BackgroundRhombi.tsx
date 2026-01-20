@@ -9,7 +9,7 @@ export const BackgroundRhombi = () => {
 	onMount(() => {
 		setTimeout(() => {
 			setShow(true);
-		}, 3000);
+		}, 4000);
 	});
 
 	return (
