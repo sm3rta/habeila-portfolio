@@ -222,7 +222,7 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Added <b>IntelliSense</b> support to components using Custom Element Manifests accross non-React
+								Added <b>IntelliSense</b> support to components using Custom Elements Manifest accross non-React
 								frameworks, enabling autocomplete for attributes and CSS custom properties
 							</>
 						),
