@@ -1,24 +1,24 @@
 import { Flex, HopeProvider } from '@hope-ui/solid';
 import { Navigate, Outlet, Route, Router, Routes } from '@solidjs/router';
-import { Suspense, createSignal, lazy } from 'solid-js';
+import { Show, Suspense, createSignal, lazy } from 'solid-js';
 import { AppBar } from './components/AppBar';
-import { Footer } from './components/Footer';
 import { BackgroundRhombi } from './components/BackgroundRhombi';
-import Loader from './ui/components/Loader';
-import { colors, darkTheme, lightTheme } from './ui/theme';
+import { Footer } from './components/Footer';
 import { HeaderRhombi } from './components/HeaderRhombi';
+import Loader from './ui/components/Loader';
+import { darkTheme, lightTheme } from './ui/theme';
 
 const Home = lazy(() => import('./pages/home'));
 const Project = lazy(() => import('./pages/projects'));
 const Resume = lazy(() => import('./pages/resume'));
 const ResumeRaw = lazy(() => import('./pages/resume-raw'));
 const CoverLetter = lazy(() => import('./pages/cover-letter'));
+const DesignSystem = lazy(() => import('./pages/ds'));
 
 export const [darkMode, setDarkMode] = createSignal(
 	localStorage.getItem('darkMode')
 		? localStorage.getItem('darkMode') === 'true'
 		: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-	// true
 );
 
 const App = () => {
@@ -29,11 +29,7 @@ const App = () => {
 			direction="column"
 			position="relative"
 			overflow="hidden"
-			background={
-				darkMode()
-					? `linear-gradient(${colors.secondary1}, ${colors.primary1})`
-					: `linear-gradient(${colors.secondary9}, ${colors.primary3})`
-			}
+			background="linear-gradient($accent2, $primary2)"
 			minHeight="100%"
 		>
 			<BackgroundRhombi />
@@ -62,6 +58,9 @@ const App = () => {
 					<Route path="/" component={Home} />
 					<Route path="/resume" component={Resume} />
 					<Route path="/projects/:id" component={Project} />
+					<Show when={import.meta.env.DEV}>
+						<Route path="/ds" component={DesignSystem} />
+					</Show>
 					<Route path="*" element={<Navigate href="/" />} />
 				</Route>
 

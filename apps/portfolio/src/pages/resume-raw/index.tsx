@@ -28,7 +28,6 @@ import { printWidth } from '../../../../common/printWidth';
 import { work } from '../../data/work';
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
-import { colors } from '../../ui/theme';
 import { Certifications } from './Certifications';
 import { CompanyProjects } from './CompanyProjects';
 import { StyledDivider } from './Divider';
@@ -52,7 +51,7 @@ export const iconButtonProps = {
 	background: 'none',
 	borderRadius: 0,
 	css: { '&>svg': { opacity: 0, transition: 'opacity 0.3s ease' } },
-	_hover: { background: colors.primary6, color: 'black !important', '&>svg': { opacity: 1 } },
+	_hover: { background: "$primary3", color: 'black !important', '&>svg': { opacity: 1 } },
 };
 
 export const StyledFlexLink = (props: ComponentProps<typeof Flex>) => (

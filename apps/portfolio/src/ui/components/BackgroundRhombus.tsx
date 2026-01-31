@@ -97,7 +97,7 @@ export const BackgroundRhombus = () => {
 					setHoverCount(newCount);
 					setBackgroundColor('transparent');
 					
-					if (newCount < 3) {
+					if (newCount < 2) {
 						setTimeout(() => {
 							setDelay(delay() - 8);
 							updateBackgroundColor();

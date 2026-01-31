@@ -1,8 +1,6 @@
-import { Anchor, Box, Divider, Flex, List, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, Divider, Flex, Heading, List, ListItem, Text } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
-import { darkMode } from '../../App';
 import { Workplace } from '../../data/work';
-import { colors } from '../../ui/theme';
 import { getTitle } from '../../utils/getTitle';
 import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import ProjectSummary from './ProjectSummary';
@@ -30,14 +28,14 @@ export const CompanyProjects = (props: { company: Workplace }) => {
 	const projects = () => props.company.projects.filter((project) => !project.hideOnHomepage);
 	return (
 		<Flex h="100%" w="100%" direction="column" justifyContent="center">
-			<Box>
+			<Heading level={2}>
 				{props.company.title && (
-					<Text as="span" fontSize="$lg" color={darkMode() ? '$primary5' : colors.primary1} lineHeight="24px">
+					<Text as="span" fontSize="$lg" lineHeight="24px">
 						{getTitle(props.company.title.role, props.company.title.senior)}
 					</Text>
 				)}{' '}
 				&ndash; {renderCompany(props.company.name, props.company.website)}
-			</Box>
+			</Heading>
 			<Show when={props.company.from && props.company.to}>
 				<Text fontSize="$xs" fontWeight="$bold">
 					{props.company.from} - {props.company.to}
@@ -47,9 +45,9 @@ export const CompanyProjects = (props: { company: Workplace }) => {
 				<Text mt="$4">{renderStringOrJsx(props.company.description)}</Text>
 			</Show>
 
-			<Text fontWeight="$bold" color={darkMode() ? '$primary5' : colors.primary1} my="$4">
+			{/* <Text fontWeight="$bold" my="$4">
 				Projects:
-			</Text>
+			</Text> */}
 			<List d="flex" flexDirection="column" mt="$2">
 				<For each={projects()}>
 					{(project, index) => (

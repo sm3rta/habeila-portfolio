@@ -1,9 +1,8 @@
 import { Box, Button, Flex, Heading, Text } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { For, createSignal } from 'solid-js';
-import { darkMode } from '../../App';
 import { allProjects, projectPriority } from '../../data/work';
-import { TILE_SIZE, colors, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
+import { TILE_SIZE, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
 import Section from './Section';
 
 const projects = allProjects
@@ -12,7 +11,7 @@ const projects = allProjects
 
 const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 	const [hover, setHover] = createSignal(false);
-	const backgroundColor = darkMode() ? colors.primary1 : colors.primary8;
+	const backgroundColor = "$primary3"
 	const boxShadowColor = backgroundColor;
 
 	return (

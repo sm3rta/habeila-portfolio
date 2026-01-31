@@ -1,0 +1,10 @@
+TODO:
+
+Ahmed Habeila on mobile ✅
+Contact me form ✅
+Button styles in resume page
+Publications/news page
+Back bug on resume raw
+Resume raw button not working on mobile
+Rhombi working on mobile
+Rhombi not working with touch

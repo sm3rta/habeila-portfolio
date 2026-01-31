@@ -15,38 +15,66 @@ export const zIndexes = {
 export const createOctagonalClipPathWithMargin = (m: number) =>
 	`polygon(${m}% 0, ${100 - m}% 0, 100% ${m}%, 100% ${100 - m}%, ${100 - m}% 100%, ${m}% 100%, 0 ${100 - m}%, 0 ${m}%)`;
 
-export const getAsteriskSectionColor = () => (darkMode() ? 'rgb(0 0 0 / 40%)' : 'rgb(255 255 255 / 40%)');
+export const getAsteriskSectionColor = () => (darkMode() ? 'rgb(0 0 0 / 40%)' : 'rgb(255 255 255 / 20%)');
 
-export const colors = {
-	primary1: '#332b2b',
-	primary2: '#564d4d',
-	primary3: '#766d6d',
-	primary4: '#8b8281',
-	primary5: '#b6acac',
-	primary6: '#d4c9c9',
-	primary7: '#f5eaea',
-	primary8: '#fbf0f0',
-	primary9: '#fff5f5',
-	primary10: '#fffafa',
-	primary11: '#ffffff',
-	primary12: '#ffffff',
+export const darkThemeColors = {
+	primary1: '#1A1515',
+	primary2: '#1F1A1A',
+	primary3: '#241E1E',
+	primary4: '#292222',
+	primary5: '#2E2727',
+	primary6: '#332B2B',
+	primary7: '#473D3D',
+	primary8: '#5C5050',
+	primary9: '#706464',
+	primary10: '#857878',
+	primary11: '#998D8D',
+	primary12: '#ADA2A2',
 
-	secondary1: '#030f11',
-	secondary2: '#082a34',
-	secondary3: '#1a3f4b',
-	secondary4: '#275260',
-	secondary5: '#356575',
-	secondary6: '#407385',
-	secondary7: '#5c8898',
-	secondary8: '#769dac',
-	secondary9: '#9abac6',
-	secondary10: '#bcd7e0',
-	secondary11: '#ddf0f9',
-	secondary12: '#ffffff',
+	accent1: '#051D24',
+	accent2: '#062129',
+	accent3: '#07252E',
+	accent4: '#082A34',
+	accent5: '#113B47',
+	accent6: '#1D4D5C',
+	accent7: '#2D6170',
+	accent8: '#417585',
+	accent9: '#588A99',
+	accent10: '#72A0AD',
+	accent11: '#90B6C2',
+	accent12: '#B2CED6',
 } as const satisfies NonNullable<HopeThemeConfig['darkTheme']>['colors'];
 
+export const lightThemeColors = {
+	primary1: '#EBE7E7',
+	primary2: '#D6CFCF',
+	primary3: '#C2B8B8',
+	primary4: '#ADA2A2',
+	primary5: '#998D8D',
+	primary6: '#857878',
+	primary7: '#706464',
+	primary8: '#5C5050',
+	primary9: '#473D3D',
+	primary10: '#332B2B',
+	primary11: '#2E2727',
+	primary12: '#292222',
+
+	accent1: '#D7E6EB',
+	accent2: '#B2CED6',
+	accent3: '#90B6C2',
+	accent4: '#72A0AD',
+	accent5: '#588A99',
+	accent6: '#417585',
+	accent7: '#2D6170',
+	accent8: '#1D4D5C',
+	accent9: '#113B47',
+	accent10: '#082A34',
+	accent11: '#07252E',
+	accent12: '#062129',
+} as const satisfies NonNullable<HopeThemeConfig['lightTheme']>['colors'];
+
 export const fontSizes = {
-	'9xl': '9vw',
+	'9xl': 'clamp(3rem, 9vw, 8rem)',
 	'8xl': '8rem',
 	'7xl': '7rem',
 	'6xl': '6rem',
@@ -67,7 +95,7 @@ export const fontSizes = {
 export const darkTheme = {
 	initialColorMode: 'dark',
 	darkTheme: {
-		colors,
+		colors: darkThemeColors,
 		fontSizes,
 	},
 	components: {
@@ -89,26 +117,26 @@ export const darkTheme = {
 				background: 'unset',
 				_hover: {
 					background: 'unset',
-					color: colors.primary4,
+					color: '$primary4',
 				},
 				_active: {
-					color: colors.primary1,
+					color: '$primary1',
 					background: 'unset',
 				},
-				_disabled:{
-					"&:hover": {
+				_disabled: {
+					'&:hover': {
 						background: 'unset',
 					},
 					background: 'unset',
-				}
+				},
 			},
 		},
 		Badge: {
 			baseStyle: {
-				// color: colors.primary5,
-				// backgroundColor: colors.secondary1,
-				color: colors.secondary1,
-				backgroundColor: colors.primary7,
+				// color: "$primary5",
+				// backgroundColor: "$accent1",
+				color: lightThemeColors.accent12,
+				backgroundColor: lightThemeColors.primary1,
 				textTransform: 'none',
 				borderRadius: 0,
 				zIndex: zIndexes.aboveRhombus,
@@ -125,9 +153,9 @@ export const darkTheme = {
 			baseStyle: {
 				textDecoration: 'underline 1px',
 				_hover: {
-					color: colors.secondary5,
+					color: '$accent5',
 					'& *': {
-						color: colors.secondary5,
+						color: '$accent5',
 					},
 				},
 			},
@@ -139,6 +167,7 @@ const lightThemeOverrides = {
 	initialColorMode: 'light',
 	lightTheme: {
 		fontSizes,
+		colors: lightThemeColors,
 	},
 	components: {
 		Text: {
@@ -150,23 +179,38 @@ const lightThemeOverrides = {
 			baseStyle: {
 				color: 'black',
 				_hover: {
-					color: colors.secondary6,
+					color: '$accent6',
 				},
 			},
 		},
 		Badge: {
 			baseStyle: {
-				color: colors.primary7,
-				backgroundColor: colors.secondary1,
+				color: lightThemeColors.primary1,
+				backgroundColor: darkThemeColors.accent1,
 			},
 		},
 		Button: {
 			baseStyle: {
 				root: {
 					color: 'black',
-					_hover: {
-						background: colors.secondary8,
+				},
+			},
+		},
+		Input: {
+			baseStyle: {
+				input: {
+					borderColor: '$neutral12',
+					_placeholder: {
+						color: '$neutral12',
 					},
+				},
+			},
+		},
+		Textarea: {
+			baseStyle: {
+				borderColor: '$neutral12',
+				_placeholder: {
+					color: '$neutral12',
 				},
 			},
 		},
@@ -184,16 +228,16 @@ type Override<T1 extends object, T2 extends object> = Flat<
 	{
 		[K in keyof T1]: K extends keyof T2
 			? // T2[K] exists, override T1[K] with T2[K]
-			  T1[K] extends object
+				T1[K] extends object
 				? // T1[K] is object
-				  T2[K] extends object
+					T2[K] extends object
 					? // T2[K] is also an object
-					  Override<T1[K], T2[K]>
+						Override<T1[K], T2[K]>
 					: // T2[K] is not object
-					  T2[K]
+						T2[K]
 				: // T1[K] is not object
-				  T2[K]
+					T2[K]
 			: // T2[K] does not exist, keep T1[K]
-			  T1[K];
+				T1[K];
 	} & Omit<T2, keyof T1>
 >;
