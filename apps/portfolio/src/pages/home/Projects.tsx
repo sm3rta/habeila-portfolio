@@ -1,9 +1,11 @@
-import { Box, Button, Flex, Heading, Text } from '@hope-ui/solid';
+import { Box, Button, Flex, Heading, Text, useTheme } from '@hope-ui/solid';
 import { A } from '@solidjs/router';
 import { For, createSignal } from 'solid-js';
 import { allProjects, projectPriority } from '../../data/work';
 import { TILE_SIZE, createOctagonalClipPathWithMargin, zIndexes } from '../../ui/theme';
 import Section from './Section';
+import { applyAlphaToHex } from '../../utils';
+import { darkMode } from '../../App';
 
 const projects = allProjects
 	.filter((project) => !project.hideOnHomepage)
@@ -11,8 +13,9 @@ const projects = allProjects
 
 const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 	const [hover, setHover] = createSignal(false);
-	const backgroundColor = "$primary3"
-	const boxShadowColor = backgroundColor;
+	const backgroundColor = darkMode() ? '$primary6' : '$primary3';
+	const colors = useTheme()().colors;
+	const boxShadowColor = applyAlphaToHex(darkMode() ? colors.accent5.value : colors.accent8.value, 0.2);
 
 	return (
 		<Box
@@ -22,8 +25,10 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
 			overflow="hidden"
-			boxShadow={hover() ? `0 0 24px -16px ${boxShadowColor}` : `0 0 0px 0px ${boxShadowColor}`}
 			transition="all 0.3s ease-in-out"
+			css={{
+				filter: `drop-shadow(0 0 ${hover() ? '15px' : '10px'} ${boxShadowColor})`,
+			}}
 		>
 			<Flex
 				position="relative"
@@ -54,6 +59,7 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 					transition: 'all 0.3s ease-in-out',
 					whiteSpace: 'normal',
 					clipPath: createOctagonalClipPathWithMargin(5),
+					filter: hover() ? 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5))' : 'none',
 				}}
 				onClick={() => setTimeout(() => window.scrollTo(0, 0), 0)}
 				onFocus={() => setHover(true)}
@@ -66,6 +72,7 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 				as={A}
 				href={`/projects/${props.project.id}`}
 				textAlign="center"
+				color="white"
 			>
 				See project details
 			</Button>

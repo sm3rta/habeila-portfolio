@@ -1,9 +1,10 @@
-import { Box, Switch } from '@hope-ui/solid';
+import { Box, Switch, useTheme } from '@hope-ui/solid';
 import { BsMoonStarsFill } from 'solid-icons/bs';
 import { IoSunny } from 'solid-icons/io';
 import { darkMode, setDarkMode } from '../../App';
 
 export const DarkModeSwitch = () => {
+	const colors = useTheme()().colors
 	return (
 		<Box
 			d="flex"
@@ -28,6 +29,9 @@ export const DarkModeSwitch = () => {
 				css={{
 					'&>.hope-switch__label': {
 						display: 'none',
+					},
+					'&>.hope-switch__control': {
+						boxShadow: `0px 0px 8px 0px ${colors.primary12.value}`,
 					},
 				}}
 			/>

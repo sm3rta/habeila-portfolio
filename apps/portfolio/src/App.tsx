@@ -29,7 +29,7 @@ const App = () => {
 			direction="column"
 			position="relative"
 			overflow="hidden"
-			background="linear-gradient($accent2, $primary2)"
+			background="linear-gradient($accent4, $primary4)"
 			minHeight="100%"
 		>
 			<BackgroundRhombi />

@@ -1,4 +1,3 @@
-import { darkMode } from '../App';
 import { darkThemeColors, lightThemeColors } from '../ui/theme';
 
 export const randRange = (_a: number, _b = 0) => {
@@ -20,5 +19,11 @@ export const generateRandomColor = () => {
 };
 
 export const clamp = (min: number, value: number, max: number) => Math.min(Math.max(value, min), max);
+
+export const applyAlphaToHex = (hex: string, alpha: number) => {
+	const clampedAlpha = clamp(0, alpha, 1);
+	const alphaHex = Math.round(clampedAlpha * 255).toString(16).padStart(2, '0');
+	return `${hex}${alphaHex}`;
+};
 
 export * from './getTitle';

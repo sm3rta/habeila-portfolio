@@ -1,4 +1,5 @@
-import { Box, Flex, FormControl, FormLabel, Input, Text, useTheme, Button } from '@hope-ui/solid';
+import { Box, Flex, FormControl, FormLabel, Input, Text, useTheme, Button, IconButton } from '@hope-ui/solid';
+import { FaSolidChevronLeft } from 'solid-icons/fa';
 import { For } from 'solid-js';
 
 const p = 15;
@@ -34,6 +35,8 @@ const DesignSystemPage = () => {
 				</Flex>
 				<Button variant="solid">Solid</Button>
 				<Button variant="outline">Outline</Button>
+				<IconButton icon={<FaSolidChevronLeft />} aria-label="Previous" disabled />
+				<IconButton icon={<FaSolidChevronLeft />} aria-label="Previous"  />
 				<FormControl mb="$4">
 					<FormLabel for="email">Email</FormLabel>
 					<Input id="email" type="email" placeholder="your.email@example.com" value={''} required />
