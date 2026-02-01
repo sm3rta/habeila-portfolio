@@ -18,7 +18,7 @@ export const Link = styled((props: ComponentProps<typeof Button> & { active?: bo
 		display: 'flex',
 		transition: 'all 0.2s ease-in-out',
 		'&:hover': {
-			color: colors.primary8.value,
+			color: colors.primary9.value,
 		},
 		'&:active': {
 			color: colors.accent9.value,
