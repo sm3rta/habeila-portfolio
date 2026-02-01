@@ -107,9 +107,7 @@ const ContactForm = () => {
 	return (
 		<>
 			<Show when={loading() !== 'completed'}>
-				{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-				{/* @ts-ignore */}
-				<Box as="form" onSubmit={handleSubmit} w="$full" netlify name="contact">
+				<Box as="form" onSubmit={handleSubmit} w="$full" data-netlify="true" name="contact">
 					<input type="hidden" name="form-name" value="contact" />
 					<Text fontSize="$xl" fontWeight="$semibold" mb="$4">
 						Work with me!
