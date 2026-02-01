@@ -3,7 +3,7 @@ import { createSignal, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 const switchSlideAfterMs = 10000;
-const sections = 20;
+const sections = 25;
 
 const StyledPath = styled('path')({
 	transition: `stroke-dashoffset ${switchSlideAfterMs / sections}ms linear`,
@@ -23,7 +23,7 @@ export const useLoopingSquareProgressBar = (callback?: () => void) => {
 						callback();
 					}
 				}
-		  }, switchSlideAfterMs / sections)
+			}, switchSlideAfterMs / sections)
 		: undefined;
 
 	onCleanup(() => {
@@ -34,7 +34,7 @@ export const useLoopingSquareProgressBar = (callback?: () => void) => {
 		setValue(0);
 	};
 
-	const colors = useTheme()().colors
+	const colors = useTheme()().colors;
 
 	const progressBar = (
 		<svg
@@ -48,11 +48,12 @@ export const useLoopingSquareProgressBar = (callback?: () => void) => {
 			fill="none"
 		>
 			<StyledPath
-				d="M 20 0 H 40 V 40 H 0 V 0 Z"
+				d="M 20 1 H 35 Q 39 1 39 5 V 35 Q 39 39 35 39 H 5 Q 1 39 1 35 V 5 Q 1 1 5 1 Z"
 				stroke={colors.primary7.value}
-				stroke-width={2}
+				stroke-width={1}
 				stroke-dasharray="160"
 				stroke-dashoffset={`${((sections - value()) * 160) / sections}`}
+				stroke-linecap="round"
 			/>
 		</svg>
 	);
