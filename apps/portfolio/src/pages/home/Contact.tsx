@@ -107,7 +107,8 @@ const ContactForm = () => {
 	return (
 		<>
 			<Show when={loading() !== 'completed'}>
-				<Box as="form" onSubmit={handleSubmit} w="$full" data-netlify="true" name="contact">
+				{/* @ts-ignore */}
+				<Box as="form" onSubmit={handleSubmit} w="$full" netlify name="contact">
 					<input type="hidden" name="form-name" value="contact" />
 					<Text fontSize="$xl" fontWeight="$semibold" mb="$4">
 						Work with me!
