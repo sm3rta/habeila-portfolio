@@ -28,3 +28,6 @@ apps/puppeteer-backend/.puppeteer
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# local env files
+**/.env
