@@ -2,7 +2,7 @@ import { Box } from '@hope-ui/solid';
 import Parallax from 'rallax.js';
 import { createEffect, createSignal, onMount, Show } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { generateRandomColor, randRange, randRangeInt } from '../../utils';
+import { generateRandomColorBackgroundRhombus, randRange, randRangeInt } from '../../utils';
 import { zIndexes } from '../theme';
 
 const clipPath = 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)';
@@ -29,7 +29,7 @@ export const BackgroundRhombus = () => {
 	const [isVisible, setIsVisible] = createSignal(true);
 	const [isBursting, setIsBursting] = createSignal(false);
 
-	const width = randRangeInt(15, 40);
+	const width = randRangeInt(18, 40);
 	const top = `clamp(0px, ${randRangeInt(0, 100)}%, calc(100% - 100px))`;
 
 	const leftRandom = randRangeInt(...leftRange);
@@ -43,7 +43,7 @@ export const BackgroundRhombus = () => {
 	const [backgroundColor, setBackgroundColor] = createSignal<string>('transparent');
 
 	const updateBackgroundColor = () => {
-		setBackgroundColor(generateRandomColor());
+		setBackgroundColor(generateRandomColorBackgroundRhombus());
 	};
 
 	createEffect(updateBackgroundColor);

@@ -1,7 +1,6 @@
+import { useTheme } from '@hope-ui/solid';
 import { createSignal, onCleanup } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { darkMode } from '../../App';
-import { useTheme } from '@hope-ui/solid';
 
 const switchSlideAfterMs = 10000;
 const sections = 20;

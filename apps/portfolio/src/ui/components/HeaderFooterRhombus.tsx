@@ -1,6 +1,6 @@
 import { createEffect, createSignal } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { generateRandomColor, randRangeInt } from '../../utils';
+import { generateRandomColorHeaderFooterRhombus, randRangeInt } from '../../utils';
 import { accentColors } from '../theme';
 
 const createPath = (d: number, x: number, y: number) => {
@@ -13,7 +13,7 @@ const StyledPath = styled('path')({
 
 const Rhombus = (props: { x: number | null; y: number | null }) => {
 	const d = randRangeInt(10, 70);
-	const [background, setBackground] = createSignal(generateRandomColor());
+	const [background, setBackground] = createSignal(generateRandomColorHeaderFooterRhombus());
 	const [x, setX] = createSignal(0);
 	const [y, setY] = createSignal(0);
 
@@ -29,7 +29,7 @@ const Rhombus = (props: { x: number | null; y: number | null }) => {
 			stroke={accentColors[12]}
 			fill={background()}
 			onMouseEnter={() => {
-				setBackground(generateRandomColor());
+				setBackground(generateRandomColorHeaderFooterRhombus());
 			}}
 			pointer-events="all"
 		/>

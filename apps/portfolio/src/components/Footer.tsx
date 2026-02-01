@@ -16,7 +16,7 @@ export const Footer = () => {
 
 	return (
 		<Fade in={() => true}>
-			<Show when={pathname() === '/resume'}>
+			<Show when={pathname() === '/experience'}>
 				<Box height={sectionDividerHeight} w="100%" pos="relative">
 					<BottomSectionDivider />
 				</Box>

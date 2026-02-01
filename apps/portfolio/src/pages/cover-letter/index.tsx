@@ -30,10 +30,10 @@ import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
 import { darkTheme as theme } from '../../ui/theme';
 import { coverPrintWidth } from '../../../../common/printWidth';
-import { controlsSectionWidth, iconButtonProps, pagePaddings } from '../resume-raw';
-import { Header } from '../resume-raw/Header';
-import { TopSkills } from '../resume-raw/TopSkills';
-import { createDesktopNotification } from '../resume-raw/createDesktopNotification';
+import { controlsSectionWidth, iconButtonProps, pagePaddings } from '../resume';
+import { Header } from '../resume/Header';
+import { TopSkills } from '../resume/TopSkills';
+import { createDesktopNotification } from '../resume/createDesktopNotification';
 import { paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
 
 export const TextSpan: typeof Text = (props) => <Text as="span" {...props} />;
@@ -455,7 +455,7 @@ const CoverLetter = () => {
 						<Button
 							variant="dashed"
 							as="a"
-							href={`/resume-raw?skills=${stringifyArray(skills())}`}
+							href={`/resume?skills=${stringifyArray(skills())}`}
 							aria-label="Go to resume"
 						>
 							Go to resume
@@ -473,8 +473,8 @@ const CoverLetter = () => {
 					{...iconButtonProps}
 					size="lg"
 					as="a"
-					href={`/resume-raw?skills=${stringifyArray(skills())}`}
-					aria-label="Go to resume raw"
+					href={`/resume?skills=${stringifyArray(skills())}`}
+					aria-label="Go to resume"
 					icon={<IoDocument />}
 				/>
 				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />

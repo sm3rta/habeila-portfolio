@@ -16,10 +16,10 @@
 	"theme_color": "#332b2b",
 	"shortcuts": [
 		{
-			"name": "Resume",
-			"short_name": "Resume",
-			"description": "Ahmed Habeila's resume",
-			"url": "/resume"
+			"name": "Work Experience",
+			"short_name": "Experience",
+			"description": "Ahmed Habeila's work experience",
+			"url": "/experience"
 		}
 	],
 	"description": "Ahmed Habeila's Portfolio"

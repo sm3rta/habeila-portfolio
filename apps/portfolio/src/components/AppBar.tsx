@@ -22,7 +22,7 @@ export const AppBar = () => {
 	const createScrollHandler = (section: HomeSection) => () => {
 		const element = document.getElementById(section);
 		if (!element) return;
-		debugger;
+
 		const bodyRect = document.body.getBoundingClientRect();
 		const elemRect = element.getBoundingClientRect();
 		const elemRectCenterOffset = (elemRect.height - document.body.offsetHeight) / 2;
@@ -119,8 +119,8 @@ export const AppBar = () => {
 					</Box>
 				</Show>
 
-				<Link role="listitem" href="/resume" active={pathname() === '/resume'}>
-					Resume
+				<Link role="listitem" href="/experience" active={pathname() === '/experience'}>
+					Experience
 				</Link>
 			</List>
 			<DarkModeSwitch />

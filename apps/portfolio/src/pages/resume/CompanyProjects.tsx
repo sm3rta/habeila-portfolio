@@ -1,63 +1,70 @@
-import { Anchor, Divider, Flex, Heading, List, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, Box, Flex, List, ListItem } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
 import { Workplace } from '../../data/work';
+import { Text } from '../../ui/components/Text';
 import { getTitle } from '../../utils/getTitle';
-import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import ProjectSummary from './ProjectSummary';
 
-const renderCompany = (name: string, link?: string) => {
-	const company = (
-		<Text as="span" fontSize="$lg">
-			{name}
-		</Text>
-	);
+const renderCompany = (props: Workplace) => {
+	const company = <Text as="span">{props.name}</Text>;
 
 	return (
-		<Switch>
-			<Match when={link}>
-				<Anchor fontSize="$lg" href={link}>
-					{company}
-				</Anchor>
-			</Match>
-			<Match when={!link}>{company}</Match>
-		</Switch>
+		<>
+			<Switch>
+				<Match when={props.website}>
+					<Anchor href={props.website}>{company}</Anchor>
+				</Match>
+				<Match when={!props.website}>{company}</Match>
+			</Switch>
+			<Show when={props.location}>
+				<Text as="span">, {props.location}</Text>
+			</Show>
+		</>
 	);
 };
 
-export const CompanyProjects = (props: { company: Workplace }) => {
-	const projects = () => props.company.projects.filter((project) => !project.hideOnHomepage);
-	return (
-		<Flex h="100%" w="100%" direction="column" justifyContent="center">
-			<Heading level={2}>
+export const CompanyProjects = (props: {
+	company: Workplace;
+	forceRole?: 'full' | 'se' | undefined;
+	forceNonSenior?: boolean | undefined;
+}) => (
+	<Flex h="100%" w="100%" direction="column" justifyContent="center">
+		<Box d="flex" justifyContent="space-between">
+			<Box d="inline">
 				{props.company.title && (
-					<Text as="span" fontSize="$lg" lineHeight="24px">
-						{getTitle(props.company.title.role, props.company.title.senior)}
+					<Text variant="subtitle" as="span">
+						{getTitle(
+							props.forceRole ?? props.company.title.role,
+							props.forceNonSenior !== undefined ? !props.forceNonSenior : props.company.title.senior
+						)}
 					</Text>
-				)}{' '}
-				&ndash; {renderCompany(props.company.name, props.company.website)}
-			</Heading>
+				)}
+				<Show when={props.company.name === 'Self-employed'}>
+					<Text as="span"> (Self-employed)</Text>
+				</Show>
+				<Show when={props.company.name !== 'Self-employed'}>
+					<>
+						<Text as="span"> at </Text>
+						{renderCompany(props.company)}
+					</>
+				</Show>
+			</Box>
+
 			<Show when={props.company.from && props.company.to}>
-				<Text fontSize="$xs" fontWeight="$bold">
+				<Text>
 					{props.company.from} - {props.company.to}
 				</Text>
 			</Show>
-			<Show when={props.company.description}>
-				<Text mt="$4">{renderStringOrJsx(props.company.description)}</Text>
-			</Show>
+		</Box>
 
-			{/* <Text fontWeight="$bold" my="$4">
-				Projects:
-			</Text> */}
-			<List d="flex" flexDirection="column" mt="$2">
-				<For each={projects()}>
-					{(project, index) => (
-						<ListItem>
-							<ProjectSummary project={project} />
-							{index() !== projects().length - 1 && <Divider my="$4" />}
-						</ListItem>
-					)}
-				</For>
-			</List>
-		</Flex>
-	);
-};
+		<List d="flex" flexDirection="column" gap="$4" mt="$2">
+			<For each={props.company.projects}>
+				{(project) => (
+					<ListItem>
+						<ProjectSummary project={project} />
+					</ListItem>
+				)}
+			</For>
+		</List>
+	</Flex>
+);
