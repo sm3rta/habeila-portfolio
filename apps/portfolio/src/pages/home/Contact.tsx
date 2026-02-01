@@ -87,33 +87,28 @@ const ContactForm = () => {
 		e.preventDefault();
 		setLoading(true);
 
-		const req = new XMLHttpRequest();
+		const form = e.target as HTMLFormElement;
+		const formData = new FormData(form);
 
-		req.onreadystatechange = () => {
-			if (req.readyState == XMLHttpRequest.DONE) {
-				setLoading('completed');
-			}
-		};
-
-		req.open('POST', 'https://api.jsonbin.io/v3/b/', true);
-		req.setRequestHeader('Content-Type', 'application/json');
-		req.setRequestHeader('X-Bin-Name', `Message from ${name()}`);
-		req.setRequestHeader('X-Collection-Id', '697cb27ed0ea881f4093108d');
-		req.setRequestHeader('X-Access-Key', import.meta.env.VITE_JSONBIN_API_KEY);
-		req.send(
-			JSON.stringify({
-				name: name(),
-				email: email(),
-				message: message(),
-				date: new Date().toISOString(),
-			})
-		);
+		try {
+			await fetch('/', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: new URLSearchParams(formData as any).toString(),
+			});
+			setLoading('completed');
+		} catch (error) {
+			console.error('Form submission error:', error);
+			setLoading(false);
+			alert('Failed to send message. Please try again or email me directly.');
+		}
 	};
 
 	return (
 		<>
 			<Show when={loading() !== 'completed'}>
-				<Box as="form" onSubmit={handleSubmit} w="$full">
+				<Box as="form" onSubmit={handleSubmit} w="$full" data-netlify="true" name="contact">
+					<input type="hidden" name="form-name" value="contact" />
 					<Text fontSize="$xl" fontWeight="$semibold" mb="$4">
 						Work with me!
 					</Text>
@@ -121,6 +116,7 @@ const ContactForm = () => {
 						<FormLabel for="name">Name</FormLabel>
 						<Input
 							id="name"
+							name="name"
 							type="text"
 							placeholder="Your name"
 							value={name()}
@@ -132,6 +128,7 @@ const ContactForm = () => {
 						<FormLabel for="email">Email</FormLabel>
 						<Input
 							id="email"
+							name="email"
 							type="email"
 							placeholder="your.email@example.com"
 							value={email()}
@@ -143,6 +140,7 @@ const ContactForm = () => {
 						<FormLabel for="message">Message</FormLabel>
 						<Textarea
 							id="message"
+							name="message"
 							placeholder="Your message..."
 							value={message()}
 							onInput={(e) => setMessage(e.currentTarget.value)}
