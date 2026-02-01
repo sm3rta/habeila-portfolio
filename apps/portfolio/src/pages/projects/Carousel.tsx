@@ -97,6 +97,7 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 								onClick={nextPage}
 								disabled={transitioning()}
 								pos="absolute"
+								border="none"
 							/>
 							{progressBar}
 						</Box>

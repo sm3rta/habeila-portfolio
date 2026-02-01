@@ -1,4 +1,4 @@
-import { Box, Flex, FormControl, FormLabel, Input, Text, useTheme, Button, IconButton } from '@hope-ui/solid';
+import { Box, Flex, FormControl, FormLabel, Input, Text, useTheme, Button, IconButton, Grid } from '@hope-ui/solid';
 import { FaSolidChevronLeft } from 'solid-icons/fa';
 import { For } from 'solid-js';
 
@@ -8,10 +8,14 @@ const DesignSystemPage = () => {
 	const colors = useTheme()().colors;
 	return (
 		<>
-			<Box h="300vh"></Box>
+			<Box h="300vh" />
 			<Box position="fixed" p="100px">
-				<Flex flexWrap="wrap" gap="$4" mb="$8">
-					<For each={Object.entries(colors)}>
+				<Grid  gap="$4" mb="$8" templateColumns="repeat(12, 1fr)">
+					<For
+						each={Object.entries(colors).filter(([colorName]) =>
+							['primary', 'accent', 'neutral'].some((prefix) => colorName.startsWith(prefix))
+						)}
+					>
 						{([colorName, colorShades]) => (
 							<Box
 								width="50px"
@@ -32,11 +36,11 @@ const DesignSystemPage = () => {
 							</Box>
 						)}
 					</For>
-				</Flex>
+				</Grid>
 				<Button variant="solid">Solid</Button>
 				<Button variant="outline">Outline</Button>
 				<IconButton icon={<FaSolidChevronLeft />} aria-label="Previous" disabled />
-				<IconButton icon={<FaSolidChevronLeft />} aria-label="Previous"  />
+				<IconButton icon={<FaSolidChevronLeft />} aria-label="Previous" />
 				<FormControl mb="$4">
 					<FormLabel for="email">Email</FormLabel>
 					<Input id="email" type="email" placeholder="your.email@example.com" value={''} required />

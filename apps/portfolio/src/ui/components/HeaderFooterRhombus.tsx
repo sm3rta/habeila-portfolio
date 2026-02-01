@@ -22,7 +22,6 @@ const Rhombus = (props: { x: number | null; y: number | null }) => {
 		setY(randRangeInt(1, (props.y ?? 100) - d / 2));
 	});
 
-
 	return (
 		<StyledPath
 			d={createPath(d, x(), y())}

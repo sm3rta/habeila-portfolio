@@ -145,34 +145,27 @@ export const darkTheme = {
 	components: {
 		Heading: {
 			baseStyle: {
-				// fontFamily: 'Rubik',
 				fontSize: '$md',
 			},
 		},
 		Text: {
 			baseStyle: {
-				color: 'white',
-				// fontFamily: 'Rubik',
+				color: '$neutral12',
 				fontSize: '$md',
 			},
 		},
 		IconButton: {
 			baseStyle: {
-				background: 'unset',
+				color: '$neutral12',
+				borderColor: '$primary7',
+				borderStyle: 'solid',
+				borderWidth: '1px',
+				backgroundColor: 'transparent',
 				_hover: {
-					background: 'unset',
-					color: '$primary4',
+					color: '$neutral12',
+					borderColor: '$primary8',
+					backgroundColor: '$primary4',
 				},
-				// _active: {
-				// 	color: '$primary1',
-				// 	background: 'unset',
-				// },
-				// _disabled: {
-				// 	'&:hover': {
-				// 		background: 'unset',
-				// 	},
-				// 	background: 'unset',
-				// },
 			},
 		},
 		Badge: {
@@ -188,9 +181,12 @@ export const darkTheme = {
 			baseStyle: {
 				root: {
 					zIndex: zIndexes.aboveRhombus,
-					'&[class$="variant-outline"]':{
-						color: 'white'
-					}
+					'&[class*="variant-outline"]': {
+						color: '$neutral12',
+					},
+					'&[class*="variant-ghost"]': {
+						color: '$neutral12',
+					},
 				},
 			},
 		},
@@ -198,9 +194,9 @@ export const darkTheme = {
 			baseStyle: {
 				textDecoration: 'underline 1px',
 				_hover: {
-					color: '$accent5',
+					color: '$accent9',
 					'& *': {
-						color: '$accent5',
+						color: '$accent9',
 					},
 				},
 			},
@@ -215,48 +211,34 @@ const lightThemeOverrides = {
 		colors: lightThemeColors,
 	},
 	components: {
-		Text: {
-			baseStyle: {
-				color: 'black',
-			},
-		},
-		IconButton: {
-			baseStyle: {
-				color: 'black',
-				_hover: {
-					color: '$accent6',
-				},
-			},
-		},
 		Badge: {
 			baseStyle: {
-				color: primaryColors[1],
 				backgroundColor: accentColors[13],
-			},
-		},
-		Button: {
-			baseStyle: {
-				root: {
-					color: 'black',
-				},
+				color: primaryColors[1],
 			},
 		},
 		Input: {
 			baseStyle: {
 				input: {
-					borderColor: '$neutral12',
-					_placeholder: {
-						color: '$neutral12',
+					_hover: {
+						borderColor: '$primary12',
 					},
+					_placeholder: {
+						color: '$neutral10',
+					},
+					borderColor: '$primary7',
 				},
 			},
 		},
 		Textarea: {
 			baseStyle: {
-				borderColor: '$neutral12',
-				_placeholder: {
-					color: '$neutral12',
+				_hover: {
+					borderColor: '$primary12',
 				},
+				_placeholder: {
+					color: '$neutral10',
+				},
+				borderColor: '$primary7',
 			},
 		},
 	},

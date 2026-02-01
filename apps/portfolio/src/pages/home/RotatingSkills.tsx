@@ -24,7 +24,7 @@ import {
 	SiTestinglibrary,
 	SiTypescript
 } from 'solid-icons/si';
-import { TbBrandRadixUi } from 'solid-icons/tb';
+import { TbBrandAngular } from 'solid-icons/tb';
 import { For, JSX, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { randRange, randRangeInt } from '../../utils';
@@ -45,7 +45,7 @@ export const skills: {
 	{ name: 'Git', Icon: SiGit },
 	{ name: 'Jira', Icon: SiJira },
 	{ name: 'Material UI', Icon: SiMaterialdesign },
-	{ name: 'Radix UI', Icon: TbBrandRadixUi },
+	{ name: 'Angular', Icon: TbBrandAngular },
 	{ name: 'Sass', Icon: SiSass },
 	{ name: 'Design systems', Icon: SiFigma },
 	{ name: 'Accessibility', Icon: IoAccessibilitySharp },

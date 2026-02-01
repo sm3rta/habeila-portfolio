@@ -5,7 +5,7 @@ import { styled } from 'solid-styled-components';
 import { darkMode } from '../../App';
 
 export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean; small?: boolean }) => (
-	<Link title={props.children} role="navigation" size="sm" variant="ghost" as={A} {...props} />
+	<Link role="navigation" size="sm" variant="ghost" as={A} {...props} />
 ))(({ active, small }) => {
 	const { colors, fontSizes } = useTheme()();
 	return {
@@ -18,10 +18,10 @@ export const Link = styled((props: ComponentProps<typeof Button> & { active?: bo
 		display: 'flex',
 		transition: 'all 0.2s ease-in-out',
 		'&:hover': {
-			color: colors.accent3.value,
+			color: colors.primary8.value,
 		},
 		'&:active': {
-			color: colors.accent2.value,
+			color: colors.accent9.value,
 		},
 		backgroundSize: '0% 2px',
 		backgroundRepeat: 'no-repeat',

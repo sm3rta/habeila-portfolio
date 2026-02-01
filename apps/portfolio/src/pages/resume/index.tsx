@@ -5,7 +5,6 @@ import { work } from '../../data/work';
 import Fade from '../../ui/components/Fade';
 import { CompanyProjects } from './CompanyProjects';
 import { Timeline } from './Timeline';
-import { darkMode } from '../../App';
 
 const Resume = () => (
 	<Fade in={() => true}>
