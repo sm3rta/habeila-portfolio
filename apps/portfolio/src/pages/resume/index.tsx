@@ -27,8 +27,8 @@ const Resume = () => (
 			/>
 		</Box>
 
-		<Center mt="$24">
-			<Flex gap="$4">
+		<Center mt="$24" mb="$8">
+			<Flex gap="$4" flexWrap="wrap" justifyContent="center">
 				<Button as={A} variant="outline" href="/resume-raw">
 					Go to raw resume
 				</Button>

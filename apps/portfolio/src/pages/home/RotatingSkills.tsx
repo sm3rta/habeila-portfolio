@@ -1,4 +1,4 @@
-import { Box, Heading } from '@hope-ui/solid';
+import { Box, Heading, useTheme } from '@hope-ui/solid';
 import { createElementSize } from '@solid-primitives/resize-observer';
 import { IconTypes } from 'solid-icons';
 import { IoAccessibilitySharp } from 'solid-icons/io';
@@ -24,10 +24,9 @@ import {
 	SiTestinglibrary,
 	SiTypescript
 } from 'solid-icons/si';
-import { TbBrandRadixUi } from 'solid-icons/tb';
+import { TbBrandAngular } from 'solid-icons/tb';
 import { For, JSX, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import { colors } from '../../ui/theme';
 import { randRange, randRangeInt } from '../../utils';
 import { SkillBadge } from './SkillBadge';
 
@@ -46,7 +45,7 @@ export const skills: {
 	{ name: 'Git', Icon: SiGit },
 	{ name: 'Jira', Icon: SiJira },
 	{ name: 'Material UI', Icon: SiMaterialdesign },
-	{ name: 'Radix UI', Icon: TbBrandRadixUi },
+	{ name: 'Angular', Icon: TbBrandAngular },
 	{ name: 'Sass', Icon: SiSass },
 	{ name: 'Design systems', Icon: SiFigma },
 	{ name: 'Accessibility', Icon: IoAccessibilitySharp },
@@ -139,6 +138,8 @@ const BadgeAndLine = (props: {
 	const transform = () =>
 		firstRender() ? 'translate(0px, 0px)' : `translate(calc(${params().x}px - 50%), calc(${params().y}px - 50%))`;
 
+	const colors = useTheme()().colors;
+
 	return (
 		<>
 			<RenderAfterDelay delay={params().delay + transitionTimeMs / 4}>
@@ -147,7 +148,7 @@ const BadgeAndLine = (props: {
 						{params().posNegFactor === 1 ? (
 							<linearGradient id={`gradient-${props.index}`}>
 								<stop offset="40%" stop-color="transparent" />
-								<stop offset="100%" stop-color={colors.primary3}>
+								<stop offset="100%" stop-color={colors.primary9.value}>
 									<animate dur={`${transitionTimeSec}s`} attributeName="offset" from="0.4" to="1" />
 								</stop>
 								<stop offset="100%" stop-color="transparent">
@@ -159,7 +160,7 @@ const BadgeAndLine = (props: {
 								<stop offset="0%" stop-color="transparent">
 									<animate dur={`${transitionTimeSec}s`} attributeName="offset" from="1" to="0" />
 								</stop>
-								<stop offset="0%" stop-color={colors.primary3} />
+								<stop offset="0%" stop-color={colors.primary9.value} />
 								<stop offset="60%" stop-color="transparent">
 									<animate dur={`${transitionTimeSec}s`} attributeName="offset" from="1" to="0.6" />
 								</stop>

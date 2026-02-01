@@ -1,23 +1,31 @@
-import { Box, Flex, IconButton, Image, Text } from '@hope-ui/solid';
+import { Box, Flex, IconButton, Image, Text, useTheme } from '@hope-ui/solid';
 import { FaSolidChevronLeft, FaSolidChevronRight } from 'solid-icons/fa';
 import { For, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { Project as ProjectType } from '../../data/work';
-import { colors } from '../../ui/theme';
 import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { useLoopingSquareProgressBar } from './useLoopingSquareProgressBar';
 
-const transitionDurationMs = 300;
+const transitionDurationMs = 150;
 
-const StyledVideo = styled('video')({
-	filter: `drop-shadow(0px 0px 15px ${colors.secondary5})`,
-	marginLeft: 'auto',
+const imageVideoBorderRadius = 4;
+const imageVideoShadowColor = 'accent10';
+
+const StyledVideo = styled('video')(() => {
+	const colors = useTheme()().colors;
+	return {
+		filter: `drop-shadow(0px 0px 15px ${colors[imageVideoShadowColor].value})`,
+		marginLeft: 'auto',
+		borderRadius: `${imageVideoBorderRadius}px`,
+	};
 });
 
 const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectType['achievements']> }) => {
 	const [tab, setTab] = createSignal(0);
 	const [transitioning, setTransitioning] = createSignal(false);
 	const [height, setHeight] = createSignal(0);
+
+	const colors = useTheme()().colors;
 
 	const updateHeight = () => {
 		const carousel = document.querySelector('#carousel');
@@ -89,6 +97,7 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 								onClick={nextPage}
 								disabled={transitioning()}
 								pos="absolute"
+								border="none"
 							/>
 							{progressBar}
 						</Box>
@@ -128,9 +137,10 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 									pos="relative"
 									mx="auto"
 									maxH={600}
-									css={{ filter: `drop-shadow(0px 0px 15px ${colors.secondary6})` }}
+									css={{ filter: `drop-shadow(0px 0px 15px ${colors[imageVideoShadowColor].value})` }}
 									maxW="100%"
 									alt={task.imageAlt}
+									borderRadius={imageVideoBorderRadius}
 								/>
 							</Show>
 						</Box>

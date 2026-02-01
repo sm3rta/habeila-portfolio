@@ -2,14 +2,19 @@ import { Box } from '@hope-ui/solid';
 import { For, Show, createSignal, onMount } from 'solid-js';
 import { BackgroundRhombus } from '../ui/components/BackgroundRhombus';
 import { randRangeInt } from '../utils';
+import { mobileCheck } from '../ui/isMobileDevice';
+
+const isMobileDevice = mobileCheck();
 
 export const BackgroundRhombi = () => {
 	const [show, setShow] = createSignal(false);
 
 	onMount(() => {
-		setTimeout(() => {
-			setShow(true);
-		}, 4000);
+		if (!isMobileDevice) {
+			setTimeout(() => {
+				setShow(true);
+			}, 4000);
+		}
 	});
 
 	return (

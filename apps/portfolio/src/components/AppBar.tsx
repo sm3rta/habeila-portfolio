@@ -1,7 +1,7 @@
 import { Box, Flex, List } from '@hope-ui/solid';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
-import { Show, createSignal, onCleanup, onMount } from 'solid-js';
+import { Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { DarkModeSwitch } from '../ui/components/DarkModeSwitch';
 import { Link } from '../ui/components/Link';
 import { zIndexes } from '../ui/theme';
@@ -13,15 +13,20 @@ export const AppBar = () => {
 	const location = useLocation();
 	const pathname = useResolvedPath(() => location.pathname);
 
-	const [visibleElement, setVisibleElement] = createSignal<HomeSection | undefined>('home');
 	const sections: Array<HomeSection> = ['home', 'work', 'about', 'contact'];
+	const [visibleElement, setVisibleElement] = createSignal<HomeSection | undefined>(undefined);
+	createEffect(() => {
+		onScroll();
+	});
 
 	const createScrollHandler = (section: HomeSection) => () => {
 		const element = document.getElementById(section);
 		if (!element) return;
-		const bodyRect = document.body.getBoundingClientRect(),
-			elemRect = element.getBoundingClientRect(),
-			offset = elemRect.top - bodyRect.top;
+		debugger;
+		const bodyRect = document.body.getBoundingClientRect();
+		const elemRect = element.getBoundingClientRect();
+		const elemRectCenterOffset = (elemRect.height - document.body.offsetHeight) / 2;
+		const offset = elemRect.top - bodyRect.top + elemRectCenterOffset;
 		window.scrollTo({ top: offset, behavior: 'smooth' });
 	};
 

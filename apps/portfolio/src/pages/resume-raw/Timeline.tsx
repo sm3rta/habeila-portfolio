@@ -1,24 +1,30 @@
 import { Box } from '@hope-ui/solid';
 import { For, Show } from 'solid-js';
-import { JSX } from 'solid-js/web/types/jsx';
-import { colors } from '../../ui/theme';
+import { work } from '../../data/work';
+import { CompanyProjects } from './CompanyProjects';
 
 const side = 24;
 
-export const Timeline = (props: { children: JSX.Element[]; showStepper?: boolean }) => {
+export const Timeline = (props: {
+	forceRole?: 'full' | 'se' | undefined;
+	forceNonSenior?: boolean;
+	showStepper?: boolean;
+}) => {
 	return (
 		<Box d="flex" flexDirection="column" gap="$8">
-			<For each={props.children.filter((child) => (child as unknown as () => JSX.Element)())}>
-				{(child) => (
+			<For each={work.filter((company) => company.projects.some((project) => !project.hideOnResume))}>
+				{(company) => (
 					<Box d="flex" gap="$8">
 						<Show when={props.showStepper}>
 							<Box d="flex" flexDirection="column" w={side} alignItems="center">
-								<Box h={side} w={side} borderRadius="50%" border={`4px solid ${colors.secondary3}`} />
-								<Box flex={1} w="2px" bg={colors.secondary2} />
+								<Box h={side} w={side} borderRadius="50%" border="4px solid $accent10" />
+								<Box flex={1} w="2px" bg="$accent10" />
 							</Box>
 						</Show>
 						<Box d="flex" flexDirection="column" flex={1}>
-							<Box>{child}</Box>
+							<Box>
+								<CompanyProjects company={company} />
+							</Box>
 						</Box>
 					</Box>
 				)}

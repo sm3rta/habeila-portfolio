@@ -2,7 +2,7 @@ import { Box } from '@hope-ui/solid';
 import { createElementSize } from '@solid-primitives/resize-observer';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import { For, Show, createSignal } from 'solid-js';
-import { BottomSectionDivider } from '../pages/home/SectionDivider';
+import { BottomSectionDivider, sectionDividerHeight } from '../pages/home/SectionDivider';
 import Fade from '../ui/components/Fade';
 import Rhombus from '../ui/components/HeaderFooterRhombus';
 import { getAsteriskSectionColor } from '../ui/theme';
@@ -17,17 +17,12 @@ export const Footer = () => {
 	return (
 		<Fade in={() => true}>
 			<Show when={pathname() === '/resume'}>
-				<Box height="100px" w="100%" pos="relative">
+				<Box height={sectionDividerHeight} w="100%" pos="relative">
 					<BottomSectionDivider />
 				</Box>
+				<Box h="$8" css={{ backgroundColor: getAsteriskSectionColor() }} />
 			</Show>
-			<Box
-				minH={100}
-				ref={setRootRef}
-				css={{
-					backgroundColor: getAsteriskSectionColor(),
-				}}
-			>
+			<Box minH={100} ref={setRootRef} css={{ backgroundColor: getAsteriskSectionColor() }}>
 				<svg width="100%" height={`${size.height ?? 100}px`}>
 					<For each={[...Array(500)]}>{() => <Rhombus x={size.width} y={size.height} />}</For>
 				</svg>

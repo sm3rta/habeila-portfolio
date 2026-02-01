@@ -25,12 +25,9 @@ import { TbMenu2 } from 'solid-icons/tb';
 import { ComponentProps, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { Params, paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
 import { printWidth } from '../../../../common/printWidth';
-import { work } from '../../data/work';
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
-import { colors } from '../../ui/theme';
 import { Certifications } from './Certifications';
-import { CompanyProjects } from './CompanyProjects';
 import { StyledDivider } from './Divider';
 import { Education } from './Education';
 import { Header } from './Header';
@@ -52,7 +49,7 @@ export const iconButtonProps = {
 	background: 'none',
 	borderRadius: 0,
 	css: { '&>svg': { opacity: 0, transition: 'opacity 0.3s ease' } },
-	_hover: { background: colors.primary6, color: 'black !important', '&>svg': { opacity: 1 } },
+	_hover: { background: '$primary3', color: 'black !important', '&>svg': { opacity: 1 } },
 };
 
 export const StyledFlexLink = (props: ComponentProps<typeof Flex>) => (
@@ -83,7 +80,7 @@ const ResumeRaw = () => {
 				includeLocation: includeLocation().toString(),
 			},
 			{
-				// replace: true
+				replace: true,
 			}
 		);
 	});
@@ -348,15 +345,10 @@ const ResumeRaw = () => {
 						<Grid>
 							<Text variant="title">Work Experience</Text>
 							<StyledDivider />
-							<Timeline
-								children={work.map((company) => (
-									<CompanyProjects forceRole={forceRole()} company={company} forceNonSenior={forceNonSenior()} />
-								))}
-							/>
+							<Timeline forceRole={forceRole()} forceNonSenior={forceNonSenior()} />
 							<Text mt="$8">
-								Full work experience since{' '}
-								<b>May 2019 </b> is
-								available on <Anchor href="https://www.habeila.dev/resume">my portfolio</Anchor>.
+								Full work experience since <b>May 2019 </b> is available on{' '}
+								<Anchor href="https://www.habeila.dev/resume">my portfolio</Anchor>.
 							</Text>
 						</Grid>
 

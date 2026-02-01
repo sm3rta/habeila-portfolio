@@ -4,7 +4,7 @@ import { Text } from '../../ui/components/Text';
 import { StyledDivider } from './Divider';
 import { Params } from '../../../../common/params';
 
-const secondaryTextColor = 'var(--hope-colors-neutral10)';
+const accentTextColor = 'var(--hope-colors-neutral10)';
 
 const courses: Array<{
 	course: string;
@@ -52,7 +52,7 @@ export const SelfTaught = (props: { jobType: Params['jobType'] }) => (
 				{({ course, subtitle }) => (
 					<Flex>
 						<Text d="contents">{course}</Text>
-						<Text d="contents" color={secondaryTextColor}>
+						<Text d="contents" color={accentTextColor}>
 							{' '}
 							{subtitle}
 						</Text>
