@@ -8,9 +8,13 @@ import { ResumeDivider } from './Divider';
 
 export const Education = () => (
 	<Flex direction="column" data-id="Education-flex-1-b9663b">
-		<Text variant="title" data-id="Education-text-1-7549e9">Education</Text>
+		<Text variant="title" data-id="Education-text-1-7549e9">
+			Education
+		</Text>
 		<ResumeDivider />
-		<Text data-id="Education-text-2-9a7e89">Bachelor's Degree of Computer Science and Automatic Control &ndash; (2014 - 2019)</Text>
+		<Text data-id="Education-text-2-9a7e89">
+			Bachelor's Degree of Computer Science and Automatic Control &ndash; (2014 - 2019)
+		</Text>
 		{/* <Text data-id="Education-text-3-e6e22c">Tanta University &ndash; (2014 - 2019)</Text> */}
 		<Box d="inline" alignItems="center" data-id="Education-box-1-4c11be">
 			<Text as="span" variant="subtitle" data-id="Education-text-4-587a16">

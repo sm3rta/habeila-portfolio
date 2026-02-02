@@ -262,7 +262,8 @@ const CoverLetter = () => {
 							p="$4"
 							rowGap="$8"
 							columnGap="$4"
-						 data-id="index-box-1-72db11">
+							data-id="index-box-1-72db11"
+						>
 							{/* Skills */}
 							<TextSpan>Skills</TextSpan>
 							<Box d="grid" gap="$1" data-id="index-box-2-4b6a07">
@@ -271,7 +272,13 @@ const CoverLetter = () => {
 									setItems={setSkills}
 									getId={(item) => item}
 									renderItem={(skill, index) => (
-										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1} data-id="index-box-3-7bae40">
+										<Box
+											d="grid"
+											gap="$4"
+											gridTemplateColumns={`1fr ${controlsSectionWidth}px`}
+											flex={1}
+											data-id="index-box-3-7bae40"
+										>
 											<Input
 												value={skill}
 												onChange={(e) => {
@@ -312,7 +319,13 @@ const CoverLetter = () => {
 									setItems={setExperienceBullets}
 									getId={(item) => item}
 									renderItem={(bullet, index) => (
-										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1} data-id="index-box-5-05c2a4">
+										<Box
+											d="grid"
+											gap="$4"
+											gridTemplateColumns={`1fr ${controlsSectionWidth}px`}
+											flex={1}
+											data-id="index-box-5-05c2a4"
+										>
 											<Textarea
 												resize="vertical"
 												rows={Math.ceil(bullet.length / 80)}
@@ -367,7 +380,13 @@ const CoverLetter = () => {
 									setItems={setPerfectFitBullets}
 									getId={(item) => item}
 									renderItem={(bullet, index) => (
-										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1} data-id="index-box-7-c814a7">
+										<Box
+											d="grid"
+											gap="$4"
+											gridTemplateColumns={`1fr ${controlsSectionWidth}px`}
+											flex={1}
+											data-id="index-box-7-c814a7"
+										>
 											<Textarea
 												resize="vertical"
 												rows={Math.ceil(bullet.length / 80)}
@@ -493,7 +512,14 @@ const CoverLetter = () => {
 					<Header />
 				</Show>
 
-				<Flex direction="column" px={pagePaddings.x} pb="$20" pt={pdf() ? 0 : '$20'} id="coverMain" data-id="index-flex-2-8f5084">
+				<Flex
+					direction="column"
+					px={pagePaddings.x}
+					pb="$20"
+					pt={pdf() ? 0 : '$20'}
+					id="coverMain"
+					data-id="index-flex-2-8f5084"
+				>
 					<Show when={!pdf()}>
 						<TextSpan>Ahmed Habeila</TextSpan>
 						<TextSpan>{emailAddress}</TextSpan>

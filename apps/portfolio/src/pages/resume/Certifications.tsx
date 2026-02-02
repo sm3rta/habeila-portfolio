@@ -7,7 +7,9 @@ import { ResumeDivider } from './Divider';
 
 export const Certifications = () => (
 	<Flex direction="column" data-id="Certifications-flex-1-11d3ea">
-		<Text variant="title" data-id="Certifications-text-1-fbdc00">Certifications</Text>
+		<Text variant="title" data-id="Certifications-text-1-fbdc00">
+			Certifications
+		</Text>
 		<ResumeDivider />
 
 		<Anchor
@@ -16,7 +18,9 @@ export const Certifications = () => (
 			display="inline-flex"
 			w="fit-content"
 		>
-			<Text mr="$2" data-id="Certifications-text-2-794652">Meta Front-End Developer Specialization &ndash; April 2023</Text>
+			<Text mr="$2" data-id="Certifications-text-2-794652">
+				Meta Front-End Developer Specialization &ndash; April 2023
+			</Text>
 			<SiMeta size={ICON_SIZE} />
 		</Anchor>
 
@@ -69,7 +73,9 @@ export const Certifications = () => (
 							display="inline-flex"
 							w="fit-content"
 						>
-							<Text mr="$2" data-id="Certifications-text-3-50f5e1">{course} by Meta</Text>
+							<Text mr="$2" data-id="Certifications-text-3-50f5e1">
+								{course} by Meta
+							</Text>
 							<SiCoursera size={ICON_SIZE} />
 						</Anchor>
 					</ListItem>

@@ -1,6 +1,6 @@
 import { Badge, Box, Button, Grid, Heading, Image, Text, useTheme } from '@hope-ui/solid';
 import { MetaProvider, Title } from '@solidjs/meta';
-import { createSignal, For, onMount } from 'solid-js';
+import { For } from 'solid-js';
 import { Update, updates } from '../../data/updates';
 import Fade from '../../ui/components/Fade';
 import { zIndexes } from '../../ui/theme';
@@ -16,7 +16,6 @@ const formatDate = (date: Date) => {
 };
 
 const UpdateCard = (props: { update: Update }) => {
-	const { update } = props;
 	const colors = useTheme()().colors;
 	return (
 		<Box
@@ -29,10 +28,10 @@ const UpdateCard = (props: { update: Update }) => {
 			data-id="index-box-1-14fc2a"
 		>
 			<Box p="$6" position="relative" data-id="index-box-2-a2ca2e">
-				{update.image && (
+				{props.update.image && (
 					<Image
-						src={update.image}
-						alt={update.imageAlt || update.title}
+						src={props.update.image}
+						alt={props.update.imageAlt || props.update.title}
 						display={{ '@initial': 'none', '@md': 'block' }}
 						css={{ float: 'right' }}
 						boxShadow={`0 0 10px -6px ${colors.accent10.value}`}
@@ -42,52 +41,53 @@ const UpdateCard = (props: { update: Update }) => {
 						h="auto"
 						objectFit="contain"
 						borderRadius="$md"
+						width="300px"
 					/>
 				)}
 
 				<Box mb="$3" display="flex" justifyContent="space-between" gap="$2" data-id="index-box-3-73baa3">
 					<Badge fontSize="$xs" px="$2" py="$1">
-						{capitalizeFirstLetter(update.type)}
+						{capitalizeFirstLetter(props.update.type)}
 					</Badge>
 					<Text fontSize="$sm" color="$neutral11" flexShrink={0} data-id="index-text-1-b9eaa2">
-						{formatDate(update.date)}
+						{formatDate(props.update.date)}
 					</Text>
 				</Box>
 
 				<Box mb="$2" data-id="index-box-4-f17be6">
 					<Heading size="lg" mb="$1" color="$neutral12" data-id="index-heading-1-641b37">
-						{update.title}
+						{props.update.title}
 					</Heading>
-					{update.subtitle && (
+					{props.update.subtitle && (
 						<Text fontSize="$sm" color="$accent11" fontWeight="$semibold" mb="$2" data-id="index-text-2-ef0445">
-							{update.subtitle}
+							{props.update.subtitle}
 						</Text>
 					)}
 				</Box>
 
 				<Text color="$neutral11" lineHeight="$6" mb="$4" data-id="index-text-3-7ca61a">
-					{update.description}
+					{props.update.description}
 				</Text>
 
-				{update.link && (
+				{props.update.link && (
 					<Button
 						as="a"
 						role="link"
-						href={update.link}
+						href={props.update.link}
 						target="_blank"
 						rel="noopener noreferrer"
 						variant="subtle"
 						colorScheme="accent"
 						size="sm"
 					>
-						{update.linkText || 'Learn More'}
+						{props.update.linkText || 'Learn More'}
 					</Button>
 				)}
 
-				{update.image && (
+				{props.update.image && (
 					<Image
-						src={update.image}
-						alt={update.imageAlt || update.title}
+						src={props.update.image}
+						alt={props.update.imageAlt || props.update.title}
 						display={{ '@initial': 'block', '@md': 'none' }}
 						w="100%"
 						h="auto"
@@ -95,6 +95,7 @@ const UpdateCard = (props: { update: Update }) => {
 						objectFit="contain"
 						borderRadius="$md"
 						mt="$4"
+						width="100%"
 					/>
 				)}
 			</Box>

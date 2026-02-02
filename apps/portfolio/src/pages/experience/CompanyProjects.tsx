@@ -1,4 +1,4 @@
-import { Anchor, Box, Flex, Heading, List, ListItem, Text } from '@hope-ui/solid';
+import { Anchor, Box, Flex, Heading, Text } from '@hope-ui/solid';
 import { For, Match, Show, Switch } from 'solid-js';
 import { Workplace } from '../../data/work';
 import StyledDivider from '../../ui/components/Divider';

@@ -14,7 +14,7 @@ const getRoleTitle = (role: 'front' | 'full' | 'se' | 'architect') => {
 export const getTitle = (role: 'front' | 'full' | 'se' | 'architect', senior: boolean) => {
 	const roleTitle = getRoleTitle(role);
 	if (role === 'architect') return roleTitle;
-	
+
 	const seniority = senior ? 'Senior ' : '';
 	return `${seniority}${roleTitle}`;
 };

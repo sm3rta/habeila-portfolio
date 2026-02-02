@@ -6,7 +6,9 @@ import { TopSkills } from './TopSkills';
 
 export const SummaryOfQualifications = (props: { skills: string[] }) => (
 	<Flex direction="column" data-id="SummaryOfQualifications-flex-1-cf061e">
-		<Text variant="title" data-id="SummaryOfQualifications-text-1-03852f">Professional summary</Text>
+		<Text variant="title" data-id="SummaryOfQualifications-text-1-03852f">
+			Professional summary
+		</Text>
 		<ResumeDivider />
 		<Flex mt="$2" direction="column" as="ul" data-id="SummaryOfQualifications-flex-2-599015">
 			<For

@@ -24,7 +24,8 @@ const DesignSystemPage = () => {
 								justifyContent="center"
 								flexDirection="column"
 								mr="$2"
-							 data-id="index-box-2-56ae44">
+								data-id="index-box-2-56ae44"
+							>
 								<Text fontSize="$xs" color="#000" textAlign="center" data-id="index-text-1-b274b1">
 									{colorName}
 								</Text>

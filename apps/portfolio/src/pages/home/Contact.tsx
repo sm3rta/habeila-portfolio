@@ -1,16 +1,4 @@
-import {
-	Box,
-	Button,
-	Flex,
-	FormControl,
-	FormLabel,
-	IconButton,
-	Input,
-	List,
-	ListItem,
-	Text,
-	Textarea,
-} from '@hope-ui/solid';
+import { Box, Button, Flex, FormControl, FormLabel, IconButton, Input, Text, Textarea } from '@hope-ui/solid';
 import { IconTypes } from 'solid-icons';
 import { BiLogosDiscordAlt } from 'solid-icons/bi';
 import { FaBrandsLinkedinIn } from 'solid-icons/fa';

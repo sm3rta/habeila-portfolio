@@ -46,7 +46,9 @@ export default function About() {
 	);
 	const aboutMePersonal = (
 		<>
-			<Text data-id="About-text-4-5da871">I love the process of planning features, breaking them down into components and implementing them.</Text>
+			<Text data-id="About-text-4-5da871">
+				I love the process of planning features, breaking them down into components and implementing them.
+			</Text>
 			<Text mt="$6" data-id="About-text-5-fda3cd">
 				While my career currently revolves around web development, I love everything programming which includes game
 				development, Python, AHK and more

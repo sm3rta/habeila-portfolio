@@ -5,7 +5,9 @@ import { ResumeDivider } from './Divider';
 
 export const References = () => (
 	<Flex direction="column" mt="$8" data-id="References-flex-1-8739a5">
-		<Text variant="title" data-id="References-text-1-e2d154">References</Text>
+		<Text variant="title" data-id="References-text-1-e2d154">
+			References
+		</Text>
 		<ResumeDivider />
 		<Flex direction="column" data-id="References-flex-2-5f97fc">
 			<For
@@ -22,7 +24,9 @@ export const References = () => (
 			>
 				{({ company, email, name, phone, role, description }) => (
 					<Flex direction="column" data-id="References-flex-3-ab4464">
-						<Text variant="subtitle" data-id="References-text-2-ce9097">{name}</Text>
+						<Text variant="subtitle" data-id="References-text-2-ce9097">
+							{name}
+						</Text>
 						<Text data-id="References-text-3-1cdb3e">{role}</Text>
 						<Text data-id="References-text-4-9c635c">{company}</Text>
 						<Show when={phone}>

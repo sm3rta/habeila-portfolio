@@ -2,7 +2,6 @@ import { Box, Switch, useTheme } from '@hope-ui/solid';
 import { BsMoonStarsFill } from 'solid-icons/bs';
 import { IoSunny } from 'solid-icons/io';
 import { darkMode, setDarkMode } from '../../App';
-import { createSignal, Ref } from 'solid-js';
 
 export const DarkModeSwitch = () => {
 	const colors = useTheme()().colors;

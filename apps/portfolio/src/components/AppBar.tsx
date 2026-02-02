@@ -1,11 +1,11 @@
-import { Box, Flex, List } from '@hope-ui/solid';
+import { Box, Flex } from '@hope-ui/solid';
+import { createMediaQuery } from '@solid-primitives/media';
 import { useLocation, useResolvedPath } from '@solidjs/router';
 import debounce from 'lodash.debounce';
 import { Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { DarkModeSwitch } from '../ui/components/DarkModeSwitch';
 import { Link } from '../ui/components/Link';
 import { zIndexes } from '../ui/theme';
-import { createMediaQuery } from '@solid-primitives/media';
 
 type HomeSection = 'home' | 'about' | 'work' | 'contact';
 

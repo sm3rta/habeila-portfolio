@@ -17,7 +17,8 @@ const Home = () => {
 				css={{
 					'& > section:nth-child(even)': { background: getAsteriskSectionColor() },
 				}}
-			 data-id="index-box-1-e873c1">
+				data-id="index-box-1-e873c1"
+			>
 				<Intro />
 				<Projects />
 				<About />

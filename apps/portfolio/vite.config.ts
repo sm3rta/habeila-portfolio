@@ -85,9 +85,9 @@ export default defineConfig({
 				experimentalMinChunkSize: 5000,
 				manualChunks: (id) => {
 					// Split solid-icons into separate chunks per icon set
-					if(id.includes('solid-icons/')) {
+					if (id.includes('solid-icons/')) {
 						const parts = id.split('solid-icons/');
-						if(parts[1]) {
+						if (parts[1]) {
 							const iconSet = parts[1].split('/')[0];
 							return `icons-${iconSet}`;
 						}

@@ -246,7 +246,6 @@ Full-stack developer
 05/2020 - 11/2020
 
 1. BMW Foundation and TwentyThirty
-
    - Achievements
      - Launched 2 responsive websites with keyboard navigation and screen reader support
      - Created accessibility menu with high contrast mode, dyslexia-friendly font, and animations toggle

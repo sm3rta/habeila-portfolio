@@ -1,5 +1,5 @@
 import { Box } from '@hope-ui/solid';
-import { createSignal, For, onMount, Show } from 'solid-js';
+import { For, Show } from 'solid-js';
 import { JSX } from 'solid-js/web/types/jsx';
 import StyledDivider from '../../ui/components/Divider';
 
