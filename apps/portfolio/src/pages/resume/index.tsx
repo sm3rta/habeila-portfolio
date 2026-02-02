@@ -2,6 +2,7 @@ import {
 	Anchor,
 	Box,
 	Button,
+	createDisclosure,
 	Drawer,
 	DrawerBody,
 	DrawerCloseButton,
@@ -16,13 +17,13 @@ import {
 	Input,
 	Radio,
 	RadioGroup,
-	createDisclosure,
 } from '@hope-ui/solid';
 import { MetaProvider, Title } from '@solidjs/meta';
-import { useSearchParams } from '@solidjs/router';
+import { A, useSearchParams } from '@solidjs/router';
+import { BiRegularLeftArrowAlt } from 'solid-icons/bi';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
 import { TbMenu2 } from 'solid-icons/tb';
-import { ComponentProps, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { ComponentProps, createEffect, createSignal, onCleanup, onMount, Show } from 'solid-js';
 import { Params, paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
 import { printWidth } from '../../../../common/printWidth';
 import { SortableVerticalList } from '../../ui/components/SortableList';
@@ -185,153 +186,166 @@ const Resume = () => {
 			<MetaProvider>
 				<Title>Ahmed Habeila's Portfolio - Resume</Title>
 			</MetaProvider>
-			{/* controls */}
-			<Drawer opened={showControls()} placement="right" onClose={onCloseControls} size="lg">
-				<DrawerOverlay />
-				<DrawerContent>
-					<DrawerCloseButton />
-					<DrawerHeader />
-					<DrawerBody
-						display="grid"
-						gridTemplateColumns={`${controlsSectionWidth}px 1fr`}
-						alignContent="start"
-						p="$4"
-						rowGap="$8"
-					>
-						<Text fontSize="1rem">Skills</Text>
-						<Box d="grid" gap="$1">
-							<SortableVerticalList
-								items={skills()}
-								setItems={setSkills}
-								getId={(item) => item}
-								renderItem={(skill, index) => (
-									<Box d="grid" gap="$4" flex={1} gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
-										<Input
-											value={skill}
-											onChange={(e) => {
-												const newSkills = skills().slice();
-												newSkills[index()] = (e.target as HTMLInputElement).value;
-												setSkills(newSkills.filter(Boolean));
-											}}
-										/>
-										<Button
-											colorScheme="danger"
-											onClick={() => {
-												const newSkills = skills().slice();
-												newSkills.splice(index(), 1);
-												setSkills(newSkills);
-											}}
-										>
-											Remove
-										</Button>
-									</Box>
-								)}
-							/>
+			{/* Show drawer and invisible top bar only when running locally in dev mode */}
+			<Show when={import.meta.env.DEV}>
+				{/* controls */}
+				<Drawer opened={showControls()} placement="right" onClose={onCloseControls} size="lg">
+					<DrawerOverlay />
+					<DrawerContent>
+						<DrawerCloseButton />
+						<DrawerHeader />
+						<DrawerBody
+							display="grid"
+							gridTemplateColumns={`${controlsSectionWidth}px 1fr`}
+							alignContent="start"
+							p="$4"
+							rowGap="$8"
+						>
+							<Text fontSize="1rem">Skills</Text>
+							<Box d="grid" gap="$1">
+								<SortableVerticalList
+									items={skills()}
+									setItems={setSkills}
+									getId={(item) => item}
+									renderItem={(skill, index) => (
+										<Box d="grid" gap="$4" flex={1} gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
+											<Input
+												value={skill}
+												onChange={(e) => {
+													const newSkills = skills().slice();
+													newSkills[index()] = (e.target as HTMLInputElement).value;
+													setSkills(newSkills.filter(Boolean));
+												}}
+											/>
+											<Button
+												colorScheme="danger"
+												onClick={() => {
+													const newSkills = skills().slice();
+													newSkills.splice(index(), 1);
+													setSkills(newSkills);
+												}}
+											>
+												Remove
+											</Button>
+										</Box>
+									)}
+								/>
 
-							<Input
-								value={newSkillInput()}
-								onChange={(e) => {
-									if (!e.target.value) return;
-									setNewSkillInput(e.target.value);
-									setSkills(Array.from(new Set([...skills(), newSkillInput()!])));
-									setNewSkillInput('');
+								<Input
+									value={newSkillInput()}
+									onChange={(e) => {
+										if (!e.target.value) return;
+										setNewSkillInput(e.target.value);
+										setSkills(Array.from(new Set([...skills(), newSkillInput()!])));
+										setNewSkillInput('');
+									}}
+								/>
+							</Box>
+
+							<Text fontSize="1rem">Type</Text>
+							<RadioGroup value={jobType()}>
+								<Flex direction="column" gap="$4">
+									<Radio value="react" onChange={() => setJobType('react')}>
+										React.js
+									</Radio>
+									<Radio value="front-end" onChange={() => setJobType('front-end')}>
+										Front-end
+									</Radio>
+									<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
+										Generalist/Full-stack
+									</Radio>
+									<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
+										Software Engineer
+									</Radio>
+									<Radio value="architect" onChange={() => setJobType('architect')}>
+										Frontend Architect
+									</Radio>
+								</Flex>
+							</RadioGroup>
+							<Text fontSize="1rem">Seniority</Text>
+							<RadioGroup value={senior().toString()}>
+								<Flex direction="column" gap="$4">
+									<Radio value="true" onChange={() => setSenior(true)}>
+										Senior
+									</Radio>
+									<Radio value="false" onChange={() => setSenior(false)}>
+										Junior
+									</Radio>
+								</Flex>
+							</RadioGroup>
+							<Text fontSize="1rem">Include location</Text>
+							<RadioGroup value={includeLocation().toString()}>
+								<Flex direction="column" gap="$4">
+									<Radio value="true" onChange={() => setIncludeLocation(true)}>
+										Yes
+									</Radio>
+									<Radio value="false" onChange={() => setIncludeLocation(false)}>
+										No
+									</Radio>
+								</Flex>
+							</RadioGroup>
+							<Text fontSize="1rem">Adjective</Text>
+							<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
+						</DrawerBody>
+						<DrawerFooter gap="$4" display="grid" gridAutoFlow="column" justifyContent="unset">
+							<Button onClick={printPage}>Print</Button>
+							<Button variant="dashed" onClick={onCloseControls}>
+								Close
+							</Button>
+							<Button
+								variant="dashed"
+								as="a"
+								href={`/cover?skills=${stringifyArray(skills())}`}
+								aria-label="Go to cover letter"
+							>
+								Go to cover letter
+							</Button>
+							<Button
+								onClick={() => {
+									setSkills(paramsDefaultValues.skills.slice());
+									setJobType(paramsDefaultValues.jobType);
+									setSenior(paramsDefaultValues.senior);
+									setAdjective(paramsDefaultValues.adjective);
+									setIncludeLocation(paramsDefaultValues.includeLocation);
 								}}
-							/>
-						</Box>
+								colorScheme="danger"
+							>
+								Reset
+							</Button>
+						</DrawerFooter>
+					</DrawerContent>
+				</Drawer>
 
-						<Text fontSize="1rem">Type</Text>
-						<RadioGroup value={jobType()}>
-							<Flex direction="column" gap="$4">
-								<Radio value="react" onChange={() => setJobType('react')}>
-									React.js
-								</Radio>
-								<Radio value="front-end" onChange={() => setJobType('front-end')}>
-									Front-end
-								</Radio>
-								<Radio value="full-stack" onChange={() => setJobType('full-stack')}>
-									Generalist/Full-stack
-								</Radio>
-								<Radio value="softwareEngineer" onChange={() => setJobType('softwareEngineer')}>
-									Software Engineer
-								</Radio>
-								<Radio value="architect" onChange={() => setJobType('architect')}>
-									Frontend Architect
-								</Radio>
-							</Flex>
-						</RadioGroup>
-						<Text fontSize="1rem">Seniority</Text>
-						<RadioGroup value={senior().toString()}>
-							<Flex direction="column" gap="$4">
-								<Radio value="true" onChange={() => setSenior(true)}>
-									Senior
-								</Radio>
-								<Radio value="false" onChange={() => setSenior(false)}>
-									Junior
-								</Radio>
-							</Flex>
-						</RadioGroup>
-						<Text fontSize="1rem">Include location</Text>
-						<RadioGroup value={includeLocation().toString()}>
-							<Flex direction="column" gap="$4">
-								<Radio value="true" onChange={() => setIncludeLocation(true)}>
-									Yes
-								</Radio>
-								<Radio value="false" onChange={() => setIncludeLocation(false)}>
-									No
-								</Radio>
-							</Flex>
-						</RadioGroup>
-						<Text fontSize="1rem">Adjective</Text>
-						<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
-					</DrawerBody>
-					<DrawerFooter gap="$4" display="grid" gridAutoFlow="column" justifyContent="unset">
-						<Button onClick={printPage}>Print</Button>
-						<Button variant="dashed" onClick={onCloseControls}>
-							Close
-						</Button>
-						<Button
-							variant="dashed"
-							as="a"
-							href={`/cover?skills=${stringifyArray(skills())}`}
-							aria-label="Go to cover letter"
-						>
-							Go to cover letter
-						</Button>
-						<Button
-							onClick={() => {
-								setSkills(paramsDefaultValues.skills.slice());
-								setJobType(paramsDefaultValues.jobType);
-								setSenior(paramsDefaultValues.senior);
-								setAdjective(paramsDefaultValues.adjective);
-								setIncludeLocation(paramsDefaultValues.includeLocation);
-							}}
-							colorScheme="danger"
-						>
-							Reset
-						</Button>
-					</DrawerFooter>
-				</DrawerContent>
-			</Drawer>
+				{/* top invisible bar */}
+				<Box pos="fixed" top="0" right="0">
+					<IconButton
+						{...iconButtonProps}
+						size="lg"
+						as="a"
+						href={`/cover?skills=${stringifyArray(skills())}`}
+						aria-label="Go to cover letter"
+						icon={<BsChatLeftTextFill />}
+					/>
+					<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
+					<IconButton
+						{...iconButtonProps}
+						size="lg"
+						onClick={onOpenControls}
+						aria-label="Open drawer"
+						icon={<TbMenu2 />}
+					/>
+				</Box>
+			</Show>
 
-			{/* top invisible bar */}
-			<Box pos="fixed" top="0" right="0">
-				<IconButton
-					{...iconButtonProps}
-					size="lg"
-					as="a"
-					href={`/cover?skills=${stringifyArray(skills())}`}
-					aria-label="Go to cover letter"
-					icon={<BsChatLeftTextFill />}
-				/>
-				<IconButton {...iconButtonProps} size="lg" onClick={printPage} aria-label="Print" icon={<BsPrinter />} />
-				<IconButton
-					{...iconButtonProps}
-					size="lg"
-					onClick={onOpenControls}
-					aria-label="Open drawer"
-					icon={<TbMenu2 />}
-				/>
-			</Box>
+			{/* Show back to portfolio button only on production */}
+			<Show when={!import.meta.env.DEV}>
+				<Box ps="$3" pt="$3">
+					<Button as={A} href="/experience" variant="outline" leftIcon={<BiRegularLeftArrowAlt size={ICON_SIZE} />}>
+						Back to Portfolio
+					</Button>
+				</Box>
+			</Show>
+
 			{/* main */}
 			<Flex as="main" direction="column" id="main">
 				<Grid id="page1" w={printing() ? printWidth : 'auto'} ref={setPage1Ref}>

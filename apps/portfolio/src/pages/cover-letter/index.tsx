@@ -147,7 +147,7 @@ const CoverLetter = () => {
 				pdf: pdf() ? 'true' : 'false',
 			},
 			{
-				// replace: true,
+				replace: true,
 			}
 		);
 	});

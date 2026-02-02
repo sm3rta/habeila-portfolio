@@ -64,8 +64,12 @@ const App = () => {
 					<Route path="*" element={<Navigate href="/" />} />
 				</Route>
 
-				<Route path="/resume" component={Resume} />
-				<Route path="/cover" component={CoverLetter} />
+				<Route path="/" element={<HopeProvider config={lightTheme}>{<Outlet />}</HopeProvider>}>
+					<Route path="/resume" component={Resume} />
+					<Show when={import.meta.env.DEV}>
+						<Route path="/cover" component={CoverLetter} />
+					</Show>
+				</Route>
 				<Route path="*" element={<Navigate href="/" />} />
 			</Routes>
 		</Router>
