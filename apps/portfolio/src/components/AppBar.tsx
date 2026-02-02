@@ -122,6 +122,10 @@ export const AppBar = () => {
 				<Link role="listitem" href="/experience" active={pathname() === '/experience'}>
 					Experience
 				</Link>
+
+				<Link role="listitem" href="/updates" active={pathname() === '/updates'}>
+					Updates
+				</Link>
 			</List>
 			<DarkModeSwitch />
 		</Flex>

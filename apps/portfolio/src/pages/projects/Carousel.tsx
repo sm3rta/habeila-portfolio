@@ -8,15 +8,14 @@ import { useLoopingSquareProgressBar } from './useLoopingSquareProgressBar';
 
 const transitionDurationMs = 150;
 
-const imageVideoBorderRadius = 4;
 const imageVideoShadowColor = 'accent10';
 
 const StyledVideo = styled('video')(() => {
-	const colors = useTheme()().colors;
+	const { colors, radii } = useTheme()();
 	return {
 		filter: `drop-shadow(0px 0px 15px ${colors[imageVideoShadowColor].value})`,
 		marginLeft: 'auto',
-		borderRadius: `${imageVideoBorderRadius}px`,
+		borderRadius: radii.md.value,
 	};
 });
 
@@ -140,7 +139,7 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 									css={{ filter: `drop-shadow(0px 0px 15px ${colors[imageVideoShadowColor].value})` }}
 									maxW="100%"
 									alt={task.imageAlt}
-									borderRadius={imageVideoBorderRadius}
+									borderRadius="$md"
 								/>
 							</Show>
 						</Box>

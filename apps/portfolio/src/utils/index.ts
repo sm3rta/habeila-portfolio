@@ -37,4 +37,8 @@ export const applyAlphaToHex = (hex: string, alpha: number) => {
 	return `${hex}${alphaHex}`;
 };
 
+export const capitalizeFirstLetter = (string: string) => {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export * from './getTitle';

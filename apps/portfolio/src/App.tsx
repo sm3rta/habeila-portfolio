@@ -11,6 +11,7 @@ import { darkTheme, lightTheme } from './ui/theme';
 const Home = lazy(() => import('./pages/home'));
 const Project = lazy(() => import('./pages/projects'));
 const Experience = lazy(() => import('./pages/experience'));
+const Updates = lazy(() => import('./pages/updates'));
 const Resume = lazy(() => import('./pages/resume'));
 const CoverLetter = lazy(() => import('./pages/cover-letter'));
 const DesignSystem = lazy(() => import('./pages/ds'));
@@ -57,6 +58,7 @@ const App = () => {
 				>
 					<Route path="/" component={Home} />
 					<Route path="/experience" component={Experience} />
+					<Route path="/updates" component={Updates} />
 					<Route path="/projects/:id" component={Project} />
 					<Show when={import.meta.env.DEV}>
 						<Route path="/ds" component={DesignSystem} />
