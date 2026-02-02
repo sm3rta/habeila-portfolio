@@ -14,7 +14,13 @@ const getRandomDividerPath = () => sectionDividerPaths[Math.floor(Math.random() 
 
 const SectionDividerSvg = (props: JSX.IntrinsicElements['div']) => (
 	<div {...props}>
-		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+		<svg
+			role="presentation"
+			data-name="Layer 1"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 1200 120"
+			preserveAspectRatio="none"
+		>
 			<path class="shape-fill" d={getRandomDividerPath()} />
 		</svg>
 	</div>
@@ -53,13 +59,13 @@ const sectionDividerWrapperCss = () => ({
 });
 
 export const UpperSectionDivider = () => (
-	<Box css={sectionDividerWrapperCss()}>
+	<Box css={sectionDividerWrapperCss()} data-id="SectionDivider-box-1-0462fb">
 		<UpperSectionDividerSvg />
 	</Box>
 );
 
 export const BottomSectionDivider = () => (
-	<Box css={sectionDividerWrapperCss()}>
+	<Box css={sectionDividerWrapperCss()} data-id="SectionDivider-box-2-26cf4b">
 		<BottomSectionDividerSvg />
 	</Box>
 );

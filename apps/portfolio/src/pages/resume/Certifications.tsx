@@ -3,12 +3,12 @@ import { SiCoursera, SiMeta } from 'solid-icons/si';
 import { For } from 'solid-js';
 import { ICON_SIZE } from '.';
 import { Text } from '../../ui/components/Text';
-import { StyledDivider } from './Divider';
+import { ResumeDivider } from './Divider';
 
 export const Certifications = () => (
-	<Flex direction="column">
-		<Text variant="title">Certifications</Text>
-		<StyledDivider />
+	<Flex direction="column" data-id="Certifications-flex-1-11d3ea">
+		<Text variant="title" data-id="Certifications-text-1-fbdc00">Certifications</Text>
+		<ResumeDivider />
 
 		<Anchor
 			href="https://coursera.org/verify/professional-cert/GT8AZWL3T9L2"
@@ -16,11 +16,11 @@ export const Certifications = () => (
 			display="inline-flex"
 			w="fit-content"
 		>
-			<Text mr="$2">Meta Front-End Developer Specialization &ndash; April 2023</Text>
+			<Text mr="$2" data-id="Certifications-text-2-794652">Meta Front-End Developer Specialization &ndash; April 2023</Text>
 			<SiMeta size={ICON_SIZE} />
 		</Anchor>
 
-		<Flex direction="column" as={List} ml="$6">
+		<Flex direction="column" as={List} ml="$6" data-id="Certifications-flex-2-a6ea2e">
 			<For
 				each={[
 					// {
@@ -62,14 +62,14 @@ export const Certifications = () => (
 				]}
 			>
 				{({ course, courseraVerificationId }) => (
-					<ListItem>
+					<ListItem data-id="Certifications-listitem-1-769616">
 						<Anchor
 							href={`https://coursera.org/verify/${courseraVerificationId}`}
 							alignItems="center"
 							display="inline-flex"
 							w="fit-content"
 						>
-							<Text mr="$2">{course} by Meta</Text>
+							<Text mr="$2" data-id="Certifications-text-3-50f5e1">{course} by Meta</Text>
 							<SiCoursera size={ICON_SIZE} />
 						</Anchor>
 					</ListItem>

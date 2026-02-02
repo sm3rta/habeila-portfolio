@@ -16,7 +16,7 @@ const Sortable = (props: { renderItem: JSX.Element; id: string | number; index: 
 	// const [state] = useDragDropContext() as NonNullable<ReturnType<typeof useDragDropContext>>;
 	// console.log(`🚀 ~ Sortable ~ state:`, state);
 	return (
-		<Flex gap="$2">
+		<Flex gap="$2" data-id="SortableList-flex-1-76b973">
 			<div
 				style={{
 					display: 'flex',

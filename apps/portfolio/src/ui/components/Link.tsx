@@ -5,7 +5,7 @@ import { styled } from 'solid-styled-components';
 import { darkMode } from '../../App';
 
 export const Link = styled((props: ComponentProps<typeof Button> & { active?: boolean; small?: boolean }) => (
-	<Link role="navigation" size="sm" variant="ghost" as={A} {...props} />
+	<Link size="sm" variant="ghost" as={A} {...props} />
 ))(({ active, small }) => {
 	const { colors, fontSizes } = useTheme()();
 	return {

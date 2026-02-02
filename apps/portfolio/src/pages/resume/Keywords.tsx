@@ -201,8 +201,10 @@ export const _resumeSkills = [
 const resumeSkills = [...new Set(_resumeSkills)];
 
 export const Keywords = () => (
-	<List color="white" styleType="none" mt="$8">
-		<Text fontSize={1}>Skills:</Text>
-		<For each={resumeSkills}>{(skill) => <ListItem fontSize={1}>{skill}</ListItem>}</For>
-	</List>
+	<>
+		<Text fontSize={1} data-id="Keywords-text-1-ff2baf">Skills:</Text>
+		<List color="white" styleType="none" mt="$8" data-id="Keywords-list-1-da1ea4">
+			<For each={resumeSkills}>{(skill) => <ListItem fontSize={1} data-id="Keywords-listitem-1-61de6c">{skill}</ListItem>}</For>
+		</List>
+	</>
 );

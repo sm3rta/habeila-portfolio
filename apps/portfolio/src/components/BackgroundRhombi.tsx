@@ -19,9 +19,9 @@ export const BackgroundRhombi = () => {
 
 	return (
 		<Show when={show()}>
-			<Box pos="absolute" h="100%" w="100%" pointerEvents="none">
-				<Box pos="relative" h="100%" w="100%" pointerEvents="none">
-					<For each={[...Array(randRangeInt(40, 60))]}>{() => <BackgroundRhombus />}</For>
+			<Box pos="absolute" h="100%" w="100%" pointerEvents="none" data-id="BackgroundRhombi-box-1-d49cf0">
+				<Box pos="relative" h="100%" w="100%" pointerEvents="none" data-id="BackgroundRhombi-box-2-2d3f26">
+					<For each={[...Array(randRangeInt(20, 40))]}>{() => <BackgroundRhombus />}</For>
 				</Box>
 			</Box>
 		</Show>

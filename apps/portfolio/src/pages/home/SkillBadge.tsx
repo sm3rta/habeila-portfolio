@@ -16,6 +16,7 @@ export const SkillBadge = (
 
 	return (
 		<Badge
+			role="listitem"
 			{...badgeProps}
 			h={22}
 			d="flex"
@@ -24,7 +25,7 @@ export const SkillBadge = (
 			transform={props.transform?.() ?? 'unset'}
 		>
 			{props.skill.Icon && (
-				<Box mr="$2">
+				<Box mr="$2" data-id="SkillBadge-box-1-9d7257">
 					<props.skill.Icon />
 				</Box>
 			)}

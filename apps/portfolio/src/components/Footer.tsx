@@ -17,13 +17,18 @@ export const Footer = () => {
 	return (
 		<Fade in={() => true}>
 			<Show when={pathname() === '/experience' || pathname() === '/updates'}>
-				<Box height={sectionDividerHeight} w="100%" pos="relative">
+				<Box height={sectionDividerHeight} w="100%" pos="relative" data-id="Footer-box-1-6afdb9">
 					<BottomSectionDivider />
 				</Box>
 				<Box h="$8" css={{ backgroundColor: getAsteriskSectionColor() }} />
 			</Show>
-			<Box minH={100} ref={setRootRef} css={{ backgroundColor: getAsteriskSectionColor() }}>
-				<svg width="100%" height={`${size.height ?? 100}px`}>
+			<Box
+				minH={100}
+				ref={setRootRef}
+				css={{ backgroundColor: getAsteriskSectionColor() }}
+				data-id="Footer-box-2-9db756"
+			>
+				<svg role="presentation" width="100%" height={`${size.height ?? 100}px`}>
 					<For each={[...Array(500)]}>{() => <Rhombus x={size.width} y={size.height} />}</For>
 				</svg>
 			</Box>

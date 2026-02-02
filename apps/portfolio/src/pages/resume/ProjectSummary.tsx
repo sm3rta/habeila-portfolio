@@ -6,7 +6,7 @@ import { renderStringOrJsx } from '../../utils/renderStringOrJsx';
 import { SkillBadge } from '../home/SkillBadge';
 
 const renderProjectTitle = (props: Project) => {
-	const project = <Text>{props.name}</Text>;
+	const project = <Text data-id="ProjectSummary-text-1-b29cea">{props.name}</Text>;
 	return (
 		<Switch>
 			<Match when={props.renderTitle}>{props.renderTitle!()}</Match>
@@ -25,16 +25,18 @@ const renderProjectTitle = (props: Project) => {
 };
 
 const ProjectSummary = (props: { project: Project }) => (
-	<Flex w="100%" direction="column" justifyContent="center">
-		<Box>{renderProjectTitle(props.project)}</Box>
+	<Flex w="100%" direction="column" justifyContent="center" data-id="ProjectSummary-flex-1-fecb1e">
+		<Box data-id="ProjectSummary-box-1-a4da2d">{renderProjectTitle(props.project)}</Box>
 
-		<Box>
-			<Flex direction="column" as="ul">
+		<Box data-id="ProjectSummary-box-2-3c30da">
+			<Flex direction="column" as="ul" data-id="ProjectSummary-flex-2-f72427">
 				<For each={props.project.achievements.filter((achievement) => !achievement.hideOnResume)}>
 					{(achievement) => (
-						<ListItem ml="$6">
-							<Text display="contents">{renderStringOrJsx(achievement.description)}</Text>
-							<Text display="contents" variant="hidden">
+						<ListItem ml="$6" data-id="ProjectSummary-listitem-1-23147b">
+							<Text display="contents" data-id="ProjectSummary-text-2-77a71b">
+								{renderStringOrJsx(achievement.description)}
+							</Text>
+							<Text display="contents" variant="hidden" data-id="ProjectSummary-text-3-e3ebce">
 								.
 							</Text>
 						</ListItem>
@@ -43,14 +45,18 @@ const ProjectSummary = (props: { project: Project }) => (
 			</Flex>
 
 			<Show when={props.project.technologies?.length}>
-				<Text variant="hidden">skills:</Text>
-				<Flex mt="$2" gap="$1" wrap="wrap">
+				<Text variant="hidden" data-id="ProjectSummary-text-4-ba5522">
+					skills:
+				</Text>
+				<Flex mt="$2" gap="$1" wrap="wrap" role="list" data-id="ProjectSummary-flex-3-77efc7">
 					<For each={props.project.technologies}>
 						{(skill, index) => (
 							<>
 								<SkillBadge skill={skill} />
 								<Show when={index() < props.project.technologies!.length - 1}>
-									<Text variant="hidden">,</Text>
+									<Text variant="hidden" data-id="ProjectSummary-text-5-5395fc">
+										,
+									</Text>
 								</Show>
 							</>
 						)}

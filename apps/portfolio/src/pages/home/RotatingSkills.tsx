@@ -22,7 +22,7 @@ import {
 	SiSolid,
 	SiTailwindcss,
 	SiTestinglibrary,
-	SiTypescript
+	SiTypescript,
 } from 'solid-icons/si';
 import { TbBrandAngular } from 'solid-icons/tb';
 import { For, JSX, Show, createEffect, createSignal, onMount } from 'solid-js';
@@ -30,7 +30,7 @@ import { styled } from 'solid-styled-components';
 import { randRange, randRangeInt } from '../../utils';
 import { SkillBadge } from './SkillBadge';
 
-const StyledSvg = styled('svg')({ position: 'absolute', width: '100%', height: '100%' });
+const StyledSvg = styled('svg')({ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0 });
 
 export const skills: {
 	name: string;
@@ -143,7 +143,7 @@ const BadgeAndLine = (props: {
 	return (
 		<>
 			<RenderAfterDelay delay={params().delay + transitionTimeMs / 4}>
-				<StyledSvg>
+				<StyledSvg role="presentation">
 					<defs>
 						{params().posNegFactor === 1 ? (
 							<linearGradient id={`gradient-${props.index}`}>
@@ -213,7 +213,7 @@ export const RotatingSkills = () => {
 	});
 
 	return (
-		<Box w="100%" ref={setRootRef}>
+		<Box w="100%" ref={setRootRef} data-id="RotatingSkills-box-1-2d47a7">
 			<Box
 				pos="relative"
 				d="flex"
@@ -222,11 +222,20 @@ export const RotatingSkills = () => {
 				w={outerRadius()}
 				h={outerRadius() * aToBRatio}
 				m="auto"
+				data-id="RotatingSkills-box-2-66933b"
 			>
-				{skillBadges()}
-				<Heading level="1" textAlign="center" mb="$6" fontSize="$9xl" zIndex={1} fontWeight="$hairline">
+				<Heading
+					level="1"
+					textAlign="center"
+					mb="$6"
+					fontSize="$9xl"
+					zIndex={1}
+					fontWeight="$hairline"
+					data-id="RotatingSkills-heading-1-feeb37"
+				>
 					Ahmed Habeila
 				</Heading>
+				<Box role="list">{skillBadges()}</Box>
 			</Box>
 		</Box>
 	);

@@ -33,8 +33,9 @@ export const HeaderRhombi = () => {
 	const isSmall = createMediaQuery('(max-width: 1280px)');
 
 	return (
-		<Fade in={() => true}>
+		<Fade in={() => true} role="presentation">
 			<svg
+				role="presentation"
 				width="100vw"
 				height="100vh"
 				pointer-events="none"

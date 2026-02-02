@@ -32,6 +32,7 @@ const App = () => {
 			overflow="hidden"
 			background="linear-gradient($accent4, $primary4)"
 			minHeight="100%"
+			data-id="App-flex-1-279f3c"
 		>
 			<BackgroundRhombi />
 			<HeaderRhombi />

@@ -267,7 +267,10 @@ export const work: Workplace[] = [
 						description: () => (
 							<>
 								It's fully accessible, keyboard tabbable, responsive and SEO-enabled, scoring{' '}
-								<Anchor href={`https://pagespeed.web.dev/report?url=${website}&form_factor=desktop`}>
+								<Anchor
+									aria-label="Portfolio website scoring 100 on PageSpeed Insights"
+									href={`https://pagespeed.web.dev/report?url=${website}&form_factor=desktop`}
+								>
 									100 on PageSpeed Insights
 								</Anchor>{' '}
 								on both mobile and desktop
@@ -293,13 +296,13 @@ export const work: Workplace[] = [
 			// 	name: 'Quint Blog and Staking',
 			// 	id: 'quint-blog-staking',
 			// 	renderTitle: () => (
-			// 		<Text as="span">
+			// 		<Text as="span" data-id="work-text-1-a999c5">
 			// 			<Anchor href="https://blog.quint.io/">
-			// 				<Text as="span">Quint blog</Text>
+			// 				<Text as="span" data-id="work-text-2-f31bd0">Quint blog</Text>
 			// 			</Anchor>{' '}
 			// 			and{' '}
 			// 			<Anchor href="https://stake.quint.io/">
-			// 				<Text as="span">Quint Staking App</Text>
+			// 				<Text as="span" data-id="work-text-3-06c6cc">Quint Staking App</Text>
 			// 			</Anchor>
 			// 		</Text>
 			// 	),
@@ -355,7 +358,10 @@ export const work: Workplace[] = [
 						description: () => (
 							<>
 								Achieved{' '}
-								<Anchor href="https://pagespeed.web.dev/analysis/https-blog-quint-io/h260dtvci1?form_factor=mobile">
+								<Anchor
+									aria-label="Quint blog website scoring 100 on PageSpeed Insights"
+									href="https://pagespeed.web.dev/analysis/https-blog-quint-io/h260dtvci1?form_factor=mobile"
+								>
 									100 on PageSpeed Insights
 								</Anchor>{' '}
 								with optimized SEO and accessibility
@@ -449,8 +455,10 @@ export const work: Workplace[] = [
 								]}
 							>
 								{(item) => (
-									<ListItem ml="$6">
-										<Text fontSize="$sm">{item}</Text>
+									<ListItem ml="$6" data-id="work-listitem-1-db8346">
+										<Text fontSize="$sm" data-id="work-text-4-b0864e">
+											{item}
+										</Text>
 									</ListItem>
 								)}
 							</For>
@@ -643,7 +651,7 @@ export const work: Workplace[] = [
 			// 	name: 'BMW Foundation',
 			// 	id: 'bmw-foundation-tt',
 			// 	renderTitle: () => (
-			// 		<Text as="span">
+			// 		<Text as="span" data-id="work-text-5-3f1d43">
 			// 			<Anchor href="https://bmw-foundation.org/">BMW Foundation</Anchor> and{' '}
 			// 			<Anchor href="https://twentythirty.com/">TwentyThirty</Anchor>
 			// 		</Text>

@@ -6,7 +6,11 @@ import { getTitle } from '../../utils/getTitle';
 import ProjectSummary from './ProjectSummary';
 
 const renderCompany = (props: Workplace) => {
-	const company = <Text as="span">{props.name}</Text>;
+	const company = (
+		<Text as="span" data-id="CompanyProjects-text-1-4d244c">
+			{props.name}
+		</Text>
+	);
 
 	return (
 		<>
@@ -17,7 +21,9 @@ const renderCompany = (props: Workplace) => {
 				<Match when={!props.website}>{company}</Match>
 			</Switch>
 			<Show when={props.location}>
-				<Text as="span">, {props.location}</Text>
+				<Text as="span" data-id="CompanyProjects-text-2-9ff92a">
+					, {props.location}
+				</Text>
 			</Show>
 		</>
 	);
@@ -28,11 +34,11 @@ export const CompanyProjects = (props: {
 	forceRole?: 'full' | 'se' | undefined;
 	forceNonSenior?: boolean | undefined;
 }) => (
-	<Flex h="100%" w="100%" direction="column" justifyContent="center">
-		<Box d="flex" justifyContent="space-between">
-			<Box d="inline">
+	<Flex h="$full" w="$full" direction="column" justifyContent="center" data-id="CompanyProjects-flex-1-fc46f2">
+		<Box d="flex" justifyContent="space-between" data-id="CompanyProjects-box-1-773179">
+			<Box d="inline" data-id="CompanyProjects-box-2-f6f768">
 				{props.company.title && (
-					<Text variant="subtitle" as="span">
+					<Text variant="subtitle" as="span" data-id="CompanyProjects-text-3-7d3d13">
 						{getTitle(
 							props.forceRole ?? props.company.title.role,
 							props.forceNonSenior !== undefined ? !props.forceNonSenior : props.company.title.senior
@@ -40,31 +46,31 @@ export const CompanyProjects = (props: {
 					</Text>
 				)}
 				<Show when={props.company.name === 'Self-employed'}>
-					<Text as="span"> (Self-employed)</Text>
+					<Text as="span" data-id="CompanyProjects-text-4-3cac25">
+						{' '}
+						(Self-employed)
+					</Text>
 				</Show>
 				<Show when={props.company.name !== 'Self-employed'}>
 					<>
-						<Text as="span"> at </Text>
+						<Text as="span" data-id="CompanyProjects-text-5-1defaa">
+							{' '}
+							at{' '}
+						</Text>
 						{renderCompany(props.company)}
 					</>
 				</Show>
 			</Box>
 
 			<Show when={props.company.from && props.company.to}>
-				<Text>
+				<Text data-id="CompanyProjects-text-6-a73353">
 					{props.company.from} - {props.company.to}
 				</Text>
 			</Show>
 		</Box>
 
-		<List d="flex" flexDirection="column" gap="$4" mt="$2">
-			<For each={props.company.projects}>
-				{(project) => (
-					<ListItem>
-						<ProjectSummary project={project} />
-					</ListItem>
-				)}
-			</For>
+		<List d="flex" flexDirection="column" gap="$4" mt="$2" data-id="CompanyProjects-list-1-9a80c2">
+			<For each={props.company.projects}>{(project) => <ProjectSummary project={project} />}</For>
 		</List>
 	</Flex>
 );

@@ -29,7 +29,7 @@ import { printWidth } from '../../../../common/printWidth';
 import { SortableVerticalList } from '../../ui/components/SortableList';
 import { Text } from '../../ui/components/Text';
 import { Certifications } from './Certifications';
-import { StyledDivider } from './Divider';
+import { ResumeDivider } from './Divider';
 import { Education } from './Education';
 import { Header } from './Header';
 import { Publications } from './Publications';
@@ -201,14 +201,22 @@ const Resume = () => {
 							p="$4"
 							rowGap="$8"
 						>
-							<Text fontSize="1rem">Skills</Text>
-							<Box d="grid" gap="$1">
+							<Text fontSize="1rem" data-id="index-text-1-c4e67d">
+								Skills
+							</Text>
+							<Box d="grid" gap="$1" data-id="index-box-1-b086ac">
 								<SortableVerticalList
 									items={skills()}
 									setItems={setSkills}
 									getId={(item) => item}
 									renderItem={(skill, index) => (
-										<Box d="grid" gap="$4" flex={1} gridTemplateColumns={`1fr ${controlsSectionWidth}px`}>
+										<Box
+											d="grid"
+											gap="$4"
+											flex={1}
+											gridTemplateColumns={`1fr ${controlsSectionWidth}px`}
+											data-id="index-box-2-d4b776"
+										>
 											<Input
 												value={skill}
 												onChange={(e) => {
@@ -242,9 +250,11 @@ const Resume = () => {
 								/>
 							</Box>
 
-							<Text fontSize="1rem">Type</Text>
+							<Text fontSize="1rem" data-id="index-text-2-b98148">
+								Type
+							</Text>
 							<RadioGroup value={jobType()}>
-								<Flex direction="column" gap="$4">
+								<Flex direction="column" gap="$4" data-id="index-flex-1-bd11ab">
 									<Radio value="react" onChange={() => setJobType('react')}>
 										React.js
 									</Radio>
@@ -262,9 +272,11 @@ const Resume = () => {
 									</Radio>
 								</Flex>
 							</RadioGroup>
-							<Text fontSize="1rem">Seniority</Text>
+							<Text fontSize="1rem" data-id="index-text-3-d9034b">
+								Seniority
+							</Text>
 							<RadioGroup value={senior().toString()}>
-								<Flex direction="column" gap="$4">
+								<Flex direction="column" gap="$4" data-id="index-flex-2-c4712e">
 									<Radio value="true" onChange={() => setSenior(true)}>
 										Senior
 									</Radio>
@@ -273,9 +285,11 @@ const Resume = () => {
 									</Radio>
 								</Flex>
 							</RadioGroup>
-							<Text fontSize="1rem">Include location</Text>
+							<Text fontSize="1rem" data-id="index-text-4-c85b6f">
+								Include location
+							</Text>
 							<RadioGroup value={includeLocation().toString()}>
-								<Flex direction="column" gap="$4">
+								<Flex direction="column" gap="$4" data-id="index-flex-3-5ae1f8">
 									<Radio value="true" onChange={() => setIncludeLocation(true)}>
 										Yes
 									</Radio>
@@ -284,7 +298,9 @@ const Resume = () => {
 									</Radio>
 								</Flex>
 							</RadioGroup>
-							<Text fontSize="1rem">Adjective</Text>
+							<Text fontSize="1rem" data-id="index-text-5-2e783c">
+								Adjective
+							</Text>
 							<Input value={adjective()} onChange={createOnChangeHandler(setAdjective)} />
 						</DrawerBody>
 						<DrawerFooter gap="$4" display="grid" gridAutoFlow="column" justifyContent="unset">
@@ -295,6 +311,7 @@ const Resume = () => {
 							<Button
 								variant="dashed"
 								as="a"
+								role="link"
 								href={`/cover?skills=${stringifyArray(skills())}`}
 								aria-label="Go to cover letter"
 							>
@@ -317,7 +334,7 @@ const Resume = () => {
 				</Drawer>
 
 				{/* top invisible bar */}
-				<Box pos="fixed" top="0" right="0">
+				<Box pos="fixed" top="0" right="0" data-id="index-box-3-b262ed">
 					<IconButton
 						{...iconButtonProps}
 						size="lg"
@@ -339,7 +356,7 @@ const Resume = () => {
 
 			{/* Show back to portfolio button only on production */}
 			<Show when={!import.meta.env.DEV}>
-				<Box ps="$3" pt="$3">
+				<Box ps="$3" pt="$3" data-id="index-box-4-2e4496">
 					<Button as={A} href="/experience" variant="outline" leftIcon={<BiRegularLeftArrowAlt size={ICON_SIZE} />}>
 						Back to Portfolio
 					</Button>
@@ -347,20 +364,22 @@ const Resume = () => {
 			</Show>
 
 			{/* main */}
-			<Flex as="main" direction="column" id="main">
-				<Grid id="page1" w={printing() ? printWidth : 'auto'} ref={setPage1Ref}>
+			<Flex as="main" direction="column" id="main" data-id="index-flex-4-2552d3">
+				<Grid id="page1" w={printing() ? printWidth : 'auto'} ref={setPage1Ref} data-id="index-grid-1-15121b">
 					{/* header */}
 					<Header adjective={adjective()} jobType={jobType()} includeLocation={includeLocation()} />
 					{/* page 1 */}
 
-					<Grid rowGap="$8" px={pagePaddings.x} pb={pagePaddings.y}>
+					<Grid rowGap="$8" px={pagePaddings.x} pb={pagePaddings.y} data-id="index-grid-2-cf9c61">
 						<SummaryOfQualifications skills={skills()} />
 
-						<Grid>
-							<Text variant="title">Work Experience</Text>
-							<StyledDivider />
+						<Grid data-id="index-grid-3-d2ec2c">
+							<Text variant="title" data-id="index-text-6-9711a6">
+								Work Experience
+							</Text>
+							<ResumeDivider />
 							<Timeline forceRole={forceRole()} forceNonSenior={forceNonSenior()} />
-							<Text mt="$8">
+							<Text mt="$8" data-id="index-text-7-66d767">
 								Full work experience since <b>May 2019 </b> is available on{' '}
 								<Anchor href="https://www.habeila.dev/experience">my portfolio</Anchor>.
 							</Text>
@@ -384,7 +403,7 @@ const Resume = () => {
 					rowGap="$8"
 					px={pagePaddings.x}
 					py={pagePaddings.y}
-				></Box> */}
+				 data-id="index-box-5-305655"></Box> */}
 			</Flex>
 		</HopeProvider>
 	);

@@ -30,10 +30,10 @@ export default function Project() {
 						<Show when={project()}>
 							<ProjectLayoutDetailed project={project()!} />
 						</Show>
-						<Box pos="relative" mt="$16" height={sectionDividerHeight}>
+						<Box pos="relative" mt="$16" height={sectionDividerHeight} data-id="index-box-1-56c4bf">
 							<BottomSectionDivider />
 						</Box>
-						<Box background={getAsteriskSectionColor()}>
+						<Box background={getAsteriskSectionColor()} data-id="index-box-2-b27a77">
 							<Projects />
 						</Box>
 					</Fade>

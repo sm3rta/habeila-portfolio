@@ -29,6 +29,7 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 			css={{
 				filter: `drop-shadow(0 0 ${hover() ? '15px' : '10px'} ${boxShadowColor})`,
 			}}
+			role="listitem"
 		>
 			<Flex
 				position="relative"
@@ -45,6 +46,7 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 					clipPath: createOctagonalClipPathWithMargin(5),
 				}}
 				p="$3"
+				data-id="Projects-flex-1-c57c3b"
 			>
 				{props.project.Logo ? (
 					<props.project.Logo height="100%" />
@@ -70,9 +72,11 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 				left={0}
 				backgroundColor="rgba(0, 0, 0, 0.8) !important"
 				as={A}
+				role="link"
 				href={`/projects/${props.project.id}`}
 				textAlign="center"
 				color="white"
+				aria-label={`See details for project ${props.project.name}`}
 			>
 				See project details
 			</Button>
@@ -81,11 +85,18 @@ const ProjectTile = (props: { project: (typeof projects)[0] }) => {
 };
 
 const Projects = () => (
-	<Section id="work" alignItems="center">
+	<Section id="work" alignItems="center" role="group" aria-label="Projects section" tabIndex={-1}>
 		<Heading level="2" fontSize="$3xl">
 			Projects
 		</Heading>
-		<Flex wrap="wrap" gap="$6" placeContent="center" mt={{ '@initial': '$8', '@lg': '$16' }}>
+		<Flex
+			aria-label="List of projects"
+			role="list"
+			wrap="wrap"
+			gap="$6"
+			placeContent="center"
+			mt={{ '@initial': '$8', '@lg': '$16' }}
+		>
 			<For each={projects}>{(project) => <ProjectTile project={project} />}</For>
 		</Flex>
 	</Section>

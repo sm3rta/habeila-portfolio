@@ -78,18 +78,25 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 	});
 
 	return (
-		<Box mt="$8" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-			<Flex justifyContent="space-between" align-items="center">
-				<Text fontWeight="$bold">Achievements</Text>
+		<Box
+			mt="$8"
+			onMouseEnter={() => setPaused(true)}
+			onMouseLeave={() => setPaused(false)}
+			data-id="Carousel-box-1-e69a24"
+		>
+			<Flex justifyContent="space-between" align-items="center" data-id="Carousel-flex-1-5f18db">
+				<Text fontWeight="$bold" data-id="Carousel-text-1-2ab9e4">
+					Achievements
+				</Text>
 				<Show when={props.achievements.length > 1}>
-					<Flex gap="$2">
+					<Flex gap="$2" data-id="Carousel-flex-2-6d02ab">
 						<IconButton
 							icon={<FaSolidChevronLeft />}
 							aria-label="Previous"
 							onClick={prevPage}
 							disabled={transitioning()}
 						/>
-						<Box position="relative" w={40}>
+						<Box position="relative" w={40} data-id="Carousel-box-2-1a1124">
 							<IconButton
 								icon={<FaSolidChevronRight />}
 								aria-label="Next"
@@ -103,7 +110,17 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 					</Flex>
 				</Show>
 			</Flex>
-			<Box mt="$2" d="flex" gap="$2" flexWrap="wrap" pos="relative" id="carousel" h={height()}>
+			<Box
+				role="list"
+				mt="$2"
+				d="flex"
+				gap="$2"
+				flexWrap="wrap"
+				pos="relative"
+				id="carousel"
+				h={height()}
+				data-id="Carousel-box-3-3b912f"
+			>
 				<For each={props.achievements}>
 					{(task, index) => (
 						<Box
@@ -120,8 +137,10 @@ const Carousel = (props: { projectId: string; achievements: NonNullable<ProjectT
 								visibility: tab() === index() && !transitioning() && height() ? 'visible' : 'hidden',
 							}}
 							pos="absolute"
+							role="listitem"
+							data-id="Carousel-box-4-d5b8c5"
 						>
-							<Text>{renderStringOrJsx(task.description)}</Text>
+							<Text data-id="Carousel-text-2-bf1857">{renderStringOrJsx(task.description)}</Text>
 
 							{/* video/image container */}
 							<Show when={task.videoUrl}>

@@ -1,10 +1,10 @@
-import { Divider, PropsOf } from '@hope-ui/solid';
+import { PropsOf } from '@hope-ui/solid';
 import { styled } from 'solid-styled-components';
+import StyledDivider from '../../ui/components/Divider';
 
-export const StyledDivider = styled((props: PropsOf<typeof Divider> & { noMargin?: boolean }) => (
-	<Divider {...props} />
+export const ResumeDivider = styled((props: PropsOf<typeof StyledDivider> & { noMargin?: boolean }) => (
+	<StyledDivider {...props} />
 ))(({ noMargin }) => ({
 	marginBlock: noMargin ? 0 : '0.5rem',
 	backgroundColor: 'gray',
-	// height: '2px',
 }));

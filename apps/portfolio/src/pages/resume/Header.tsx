@@ -7,20 +7,20 @@ import { emailAddress, locationAddress, telephoneNumber, telephoneNumberStylized
 import { Text } from '../../ui/components/Text';
 import { ICON_SIZE } from '../../ui/theme';
 import { socials } from '../home/Contact';
-import { StyledDivider } from './Divider';
+import { ResumeDivider } from './Divider';
 import { Params } from '../../../../common/params';
 import { IoMailOutline } from 'solid-icons/io';
 
 const PhoneNumber = () => (
 	<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
 		<RiDeviceSmartphoneLine size={ICON_SIZE} />
-		<Text ml="$2">{telephoneNumberStylized}</Text>
+		<Text ml="$2" data-id="Header-text-1-bb740f">{telephoneNumberStylized}</Text>
 	</StyledFlexLink>
 );
 const Email = () => (
 	<StyledFlexLink href={`mailto:${emailAddress}?subject=Let's%20work%20together!`} textDecoration="none">
 		<IoMailOutline size={ICON_SIZE} />
-		<Text ml="$2">{emailAddress}</Text>
+		<Text ml="$2" data-id="Header-text-2-9da287">{emailAddress}</Text>
 	</StyledFlexLink>
 );
 const Links = () => (
@@ -34,7 +34,7 @@ const Links = () => (
 		{({ href, Icon, name }) => (
 			<StyledFlexLink gap="$2" href={href} as={Anchor}>
 				<Icon size={ICON_SIZE} />
-				<Text>{name}</Text>
+				<Text data-id="Header-text-3-ab51c9">{name}</Text>
 			</StyledFlexLink>
 		)}
 	</For>
@@ -61,32 +61,32 @@ export const Header = (props: { adjective?: string; jobType?: Params['jobType'];
 			// color="white"
 			gap="$4"
 			alignItems="center"
-		>
-			<Text variant="h1">Ahmed Habeila</Text>
+		 data-id="Header-flex-1-2dcb60">
+			<Text variant="h1" data-id="Header-text-4-14ff4e">Ahmed Habeila</Text>
 			<Show when={props.jobType}>
-				<Text variant="title" textTransform="unset" fontWeight="normal">
+				<Text variant="title" textTransform="unset" fontWeight="normal" data-id="Header-text-5-14831b">
 					{props.adjective}{' '}
 					{props.adjective ? jobTypeTitles[props.jobType!] : capitalizeFirstLetter(jobTypeTitles[props.jobType!])}
 				</Text>
 			</Show>
-			<StyledDivider noMargin />
+			<ResumeDivider noMargin />
 
 			<Switch>
 				<Match when={props.includeLocation}>
-					<Flex gap="$8">
-						<Flex alignItems="center">
+					<Flex gap="$8" data-id="Header-flex-2-0eebfd">
+						<Flex alignItems="center" data-id="Header-flex-3-10581a">
 							<FaSolidLocationDot size={ICON_SIZE} />
-							<Text ml="$2">{locationAddress}</Text>
+							<Text ml="$2" data-id="Header-text-6-0904e4">{locationAddress}</Text>
 						</Flex>
 						<Email />
 						<PhoneNumber />
 					</Flex>
-					<Flex gap="$8">
+					<Flex gap="$8" data-id="Header-flex-4-fb5385">
 						<Links />
 					</Flex>
 				</Match>
 				<Match when={!props.includeLocation}>
-					<Flex gap="$8">
+					<Flex gap="$8" data-id="Header-flex-5-cce864">
 						<Email />
 						<PhoneNumber />
 						<Links />

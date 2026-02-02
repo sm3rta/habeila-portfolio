@@ -262,16 +262,16 @@ const CoverLetter = () => {
 							p="$4"
 							rowGap="$8"
 							columnGap="$4"
-						>
+						 data-id="index-box-1-72db11">
 							{/* Skills */}
 							<TextSpan>Skills</TextSpan>
-							<Box d="grid" gap="$1">
+							<Box d="grid" gap="$1" data-id="index-box-2-4b6a07">
 								<SortableVerticalList
 									items={skills()}
 									setItems={setSkills}
 									getId={(item) => item}
 									renderItem={(skill, index) => (
-										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
+										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1} data-id="index-box-3-7bae40">
 											<Input
 												value={skill}
 												onChange={(e) => {
@@ -306,13 +306,13 @@ const CoverLetter = () => {
 
 							{/* Experience Bullets */}
 							<TextSpan>Experience Bullets</TextSpan>
-							<Box d="grid" gap="$1">
+							<Box d="grid" gap="$1" data-id="index-box-4-719ba4">
 								<SortableVerticalList
 									items={experienceBullets()}
 									setItems={setExperienceBullets}
 									getId={(item) => item}
 									renderItem={(bullet, index) => (
-										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
+										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1} data-id="index-box-5-05c2a4">
 											<Textarea
 												resize="vertical"
 												rows={Math.ceil(bullet.length / 80)}
@@ -361,13 +361,13 @@ const CoverLetter = () => {
 
 							{/* Perfect Fit Bullets */}
 							<TextSpan>Perfect Fit Bullets</TextSpan>
-							<Box d="grid" gap="$1">
+							<Box d="grid" gap="$1" data-id="index-box-6-0ee13c">
 								<SortableVerticalList
 									items={perfectFitBullets()}
 									setItems={setPerfectFitBullets}
 									getId={(item) => item}
 									renderItem={(bullet, index) => (
-										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1}>
+										<Box d="grid" gap="$4" gridTemplateColumns={`1fr ${controlsSectionWidth}px`} flex={1} data-id="index-box-7-c814a7">
 											<Textarea
 												resize="vertical"
 												rows={Math.ceil(bullet.length / 80)}
@@ -431,9 +431,9 @@ const CoverLetter = () => {
 							<TextSpan>Job board</TextSpan>
 							<Input value={jobBoard()} onChange={createOnChangeHandler(setJobBoard)} />
 							{/* pdf */}
-							<Text>PDF</Text>
+							<Text data-id="index-text-1-9be70e">PDF</Text>
 							<RadioGroup value={pdf().toString()}>
-								<Flex direction="column" gap="$4">
+								<Flex direction="column" gap="$4" data-id="index-flex-1-3eb5d6">
 									<Radio value="true" onChange={() => setPdf(true)}>
 										True
 									</Radio>
@@ -468,7 +468,7 @@ const CoverLetter = () => {
 			</Drawer>
 
 			{/* top invisible bar */}
-			<Box pos="fixed" top="0" right="0">
+			<Box pos="fixed" top="0" right="0" data-id="index-box-8-822c5e">
 				<IconButton
 					{...iconButtonProps}
 					size="lg"
@@ -488,12 +488,12 @@ const CoverLetter = () => {
 			</Box>
 
 			{/* main */}
-			<Box ref={setCoverRef} width={pdf() ? `${coverPrintWidth}px` : 'unset'}>
+			<Box ref={setCoverRef} width={pdf() ? `${coverPrintWidth}px` : 'unset'} data-id="index-box-9-fa5007">
 				<Show when={pdf()}>
 					<Header />
 				</Show>
 
-				<Flex direction="column" px={pagePaddings.x} pb="$20" pt={pdf() ? 0 : '$20'} id="coverMain">
+				<Flex direction="column" px={pagePaddings.x} pb="$20" pt={pdf() ? 0 : '$20'} id="coverMain" data-id="index-flex-2-8f5084">
 					<Show when={!pdf()}>
 						<TextSpan>Ahmed Habeila</TextSpan>
 						<TextSpan>{emailAddress}</TextSpan>
@@ -518,7 +518,7 @@ const CoverLetter = () => {
 					</TextSpan>
 					{lineBreak()}
 
-					<Box>
+					<Box data-id="index-box-10-32cc62">
 						<TextSpan>
 							I am writing to express my interest in the <b>{roleTitle().trim()}</b> position
 						</TextSpan>
@@ -535,17 +535,17 @@ const CoverLetter = () => {
 
 					<Show when={perfectFitBullets().length}>
 						<TextSpan>Here's why I think I'm the perfect fit for this job</TextSpan>
-						<List styleType="disc" ml="$6">
+						<List styleType="disc" ml="$6" data-id="index-list-1-1d04b0">
 							<For each={perfectFitBullets()}>
 								{(bullet) => (
 									<Switch>
 										<Match when={pdf()}>
-											<ListItem>
+											<ListItem data-id="index-listitem-1-720a1c">
 												<TextSpan>{bullet}</TextSpan>
 											</ListItem>
 										</Match>
 										<Match when={!pdf()}>
-											<Box>
+											<Box data-id="index-box-11-cda2bc">
 												<TextSpan>- {bullet}</TextSpan>
 											</Box>
 										</Match>
@@ -561,18 +561,18 @@ const CoverLetter = () => {
 							In my previous roles, I have successfully delivered several web-based projects for different clients and
 							industries. Some of my notable achievements include:
 						</TextSpan>
-						<List styleType="disc" ml="$6">
+						<List styleType="disc" ml="$6" data-id="index-list-2-3e0c53">
 							<For each={experienceBullets()}>
 								{(bullet) => (
 									<>
 										<Switch>
 											<Match when={pdf()}>
-												<ListItem>
+												<ListItem data-id="index-listitem-2-e82e59">
 													<TextSpan>{bullet}</TextSpan>
 												</ListItem>
 											</Match>
 											<Match when={!pdf()}>
-												<Box>
+												<Box data-id="index-box-12-b61c8a">
 													<TextSpan>- {bullet}</TextSpan>
 												</Box>
 											</Match>

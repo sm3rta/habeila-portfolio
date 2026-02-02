@@ -1,6 +1,6 @@
 import { Badge, Box, Button, Grid, Heading, Image, Text, useTheme } from '@hope-ui/solid';
 import { MetaProvider, Title } from '@solidjs/meta';
-import { For } from 'solid-js';
+import { createSignal, For, onMount } from 'solid-js';
 import { Update, updates } from '../../data/updates';
 import Fade from '../../ui/components/Fade';
 import { zIndexes } from '../../ui/theme';
@@ -20,13 +20,15 @@ const UpdateCard = (props: { update: Update }) => {
 	const colors = useTheme()().colors;
 	return (
 		<Box
+			role="listitem"
 			background="$neutral1"
 			borderWidth="1px"
 			borderColor="$neutral6"
 			borderRadius="$lg"
 			zIndex={zIndexes.aboveRhombus}
+			data-id="index-box-1-14fc2a"
 		>
-			<Box p="$6" position="relative">
+			<Box p="$6" position="relative" data-id="index-box-2-a2ca2e">
 				{update.image && (
 					<Image
 						src={update.image}
@@ -43,33 +45,34 @@ const UpdateCard = (props: { update: Update }) => {
 					/>
 				)}
 
-				<Box mb="$3" display="flex" justifyContent="space-between" gap="$2">
+				<Box mb="$3" display="flex" justifyContent="space-between" gap="$2" data-id="index-box-3-73baa3">
 					<Badge fontSize="$xs" px="$2" py="$1">
 						{capitalizeFirstLetter(update.type)}
 					</Badge>
-					<Text fontSize="$sm" color="$neutral11" flexShrink={0}>
+					<Text fontSize="$sm" color="$neutral11" flexShrink={0} data-id="index-text-1-b9eaa2">
 						{formatDate(update.date)}
 					</Text>
 				</Box>
 
-				<Box mb="$2">
-					<Heading size="lg" mb="$1" color="$neutral12">
+				<Box mb="$2" data-id="index-box-4-f17be6">
+					<Heading size="lg" mb="$1" color="$neutral12" data-id="index-heading-1-641b37">
 						{update.title}
 					</Heading>
 					{update.subtitle && (
-						<Text fontSize="$sm" color="$accent11" fontWeight="$semibold" mb="$2">
+						<Text fontSize="$sm" color="$accent11" fontWeight="$semibold" mb="$2" data-id="index-text-2-ef0445">
 							{update.subtitle}
 						</Text>
 					)}
 				</Box>
 
-				<Text color="$neutral11" lineHeight="$6" mb="$4">
+				<Text color="$neutral11" lineHeight="$6" mb="$4" data-id="index-text-3-7ca61a">
 					{update.description}
 				</Text>
 
 				{update.link && (
 					<Button
 						as="a"
+						role="link"
 						href={update.link}
 						target="_blank"
 						rel="noopener noreferrer"
@@ -99,33 +102,34 @@ const UpdateCard = (props: { update: Update }) => {
 	);
 };
 
-const Updates = () => {
-	return (
-		<Fade in={() => true}>
-			<MetaProvider>
-				<Title>Ahmed Habeila's Portfolio - Updates</Title>
-			</MetaProvider>
-			<Section>
-				<Text
-					mt={{
-						'@xl': '$32',
-					}}
-					mb="$12"
-					as="h1"
-					fontSize="$2xl"
-					color="$neutral12"
-					maxW="800px"
-					mx="auto"
-				>
-					News, achievements, and publications
-				</Text>
+const Updates = () => (
+	<Fade in={() => true}>
+		<MetaProvider>
+			<Title>Ahmed Habeila's Portfolio - Updates</Title>
+		</MetaProvider>
+		<Section>
+			<Text
+				tabIndex={-1}
+				mt={{
+					'@xl': '$32',
+				}}
+				mb="$12"
+				as="h1"
+				fontSize="$2xl"
+				color="$neutral12"
+				maxW="800px"
+				mx="auto"
+				data-id="index-text-4-7073d3"
+				id="main-content"
+			>
+				News, achievements, and publications
+			</Text>
 
-				<Grid templateColumns="1fr" gap="$6" mx="auto">
-					<For each={updates}>{(update) => <UpdateCard update={update} />}</For>
-				</Grid>
-			</Section>
-		</Fade>
-	);
-};
+			<Grid templateColumns="1fr" gap="$6" mx="auto" data-id="index-grid-1-e2d7df" role="list">
+				<For each={updates}>{(update) => <UpdateCard update={update} />}</For>
+			</Grid>
+		</Section>
+	</Fade>
+);
 
 export default Updates;

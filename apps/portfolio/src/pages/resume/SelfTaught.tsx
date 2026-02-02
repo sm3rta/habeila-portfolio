@@ -1,7 +1,7 @@
 import { Flex } from '@hope-ui/solid';
 import { For } from 'solid-js';
 import { Text } from '../../ui/components/Text';
-import { StyledDivider } from './Divider';
+import { ResumeDivider } from './Divider';
 import { Params } from '../../../../common/params';
 
 const accentTextColor = 'var(--hope-colors-neutral10)';
@@ -44,15 +44,19 @@ const courses: Array<{
 ];
 
 export const SelfTaught = (props: { jobType: Params['jobType'] }) => (
-	<Flex direction="column" mt="$8">
-		<Text variant="title">Self-taught Courses</Text>
-		<StyledDivider />
-		<Flex direction="column">
+	<Flex direction="column" mt="$8" data-id="SelfTaught-flex-1-cd336c">
+		<Text variant="title" data-id="SelfTaught-text-1-694cef">
+			Self-taught Courses
+		</Text>
+		<ResumeDivider />
+		<Flex direction="column" role="list" data-id="SelfTaught-flex-2-4d8609">
 			<For each={courses.filter((course) => course.availableJobTypes.includes(props.jobType))}>
 				{({ course, subtitle }) => (
-					<Flex>
-						<Text d="contents">{course}</Text>
-						<Text d="contents" color={accentTextColor}>
+					<Flex role="listitem" data-id="SelfTaught-flex-3-b58000">
+						<Text d="contents" data-id="SelfTaught-text-2-83f26e">
+							{course}
+						</Text>
+						<Text d="contents" color={accentTextColor} data-id="SelfTaught-text-3-f7e434">
 							{' '}
 							{subtitle}
 						</Text>

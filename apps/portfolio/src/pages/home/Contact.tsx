@@ -1,7 +1,6 @@
 import {
 	Box,
 	Button,
-	Divider,
 	Flex,
 	FormControl,
 	FormLabel,
@@ -20,36 +19,37 @@ import { SiGithub, SiMaildotru } from 'solid-icons/si';
 import { For, Show, createSignal } from 'solid-js';
 import { darkMode } from '../../App';
 import { emailAddress, telephoneNumberStylized } from '../../data/work';
+import StyledDivider from '../../ui/components/Divider';
 import { ICON_SIZE } from '../../ui/theme';
 import Section from './Section';
 
 export const EmailAndTelephone = () => (
-	<List d="flex" flexDirection="column" rowGap="$4">
-		<ListItem d="flex" alignItems="center">
-			<Button
-				as="a"
-				href={`mailto:${emailAddress}`}
-				leftIcon={<SiMaildotru size={ICON_SIZE} />}
-				variant="ghost"
-				p="$1"
-				h="$full"
-			>
-				{emailAddress}
-			</Button>
-		</ListItem>
-		<ListItem d="flex" alignItems="center">
-			<Button
-				as="a"
-				href={`tel:${telephoneNumberStylized}`}
-				leftIcon={<RiDeviceSmartphoneLine size={ICON_SIZE} />}
-				variant="ghost"
-				p="$1"
-				h="$full"
-			>
-				{telephoneNumberStylized}
-			</Button>
-		</ListItem>
-	</List>
+	<Box d="flex" flexDirection="column" rowGap="$4" data-id="Contact-list-1-01ba39">
+		<Button
+			as="a"
+			role="link"
+			href={`mailto:${emailAddress}`}
+			leftIcon={<SiMaildotru size={ICON_SIZE} />}
+			variant="ghost"
+			p="$1"
+			h="$full"
+			w="fit-content"
+		>
+			{emailAddress}
+		</Button>
+		<Button
+			as="a"
+			role="link"
+			href={`tel:${telephoneNumberStylized}`}
+			leftIcon={<RiDeviceSmartphoneLine size={ICON_SIZE} />}
+			variant="ghost"
+			p="$1"
+			h="$full"
+			w="fit-content"
+		>
+			{telephoneNumberStylized}
+		</Button>
+	</Box>
 );
 
 export const socials: Array<{
@@ -107,9 +107,16 @@ const ContactForm = () => {
 	return (
 		<>
 			<Show when={loading() !== 'completed'}>
-				<Box as="form" onSubmit={handleSubmit} w="$full" data-netlify="true" name="contact">
+				<Box
+					as="form"
+					onSubmit={handleSubmit}
+					w="$full"
+					data-netlify="true"
+					name="contact"
+					data-id="Contact-box-1-8c2ab2"
+				>
 					<input type="hidden" name="form-name" value="contact" />
-					<Text fontSize="$xl" fontWeight="$semibold" mb="$4">
+					<Text fontSize="$xl" fontWeight="$semibold" mb="$4" data-id="Contact-text-1-14fa8b">
 						Work with me!
 					</Text>
 					<FormControl mb="$4">
@@ -155,8 +162,8 @@ const ContactForm = () => {
 				</Box>
 			</Show>
 			<Show when={loading() === 'completed'}>
-				<Box d="flex" alignItems="center" h="$full">
-					<Text>Message sent. Thank you for reaching out!</Text>
+				<Box d="flex" alignItems="center" h="$full" data-id="Contact-box-2-1af1b6">
+					<Text data-id="Contact-text-2-a7cbae">Message sent. Thank you for reaching out!</Text>
 				</Box>
 			</Show>
 		</>
@@ -165,27 +172,46 @@ const ContactForm = () => {
 
 export default function Contact() {
 	return (
-		<Section flexDirection="column" id="contact" w="$full">
-			<Box d="flex" flexDirection={{ '@initial': 'column', '@lg': 'row' }} gap={{ '@initial': '$8', '@lg': '$16' }}>
-				<Flex flex="1" direction="column" justifyContent="center">
+		<Section flexDirection="column" id="contact" w="$full" role="group" aria-label="Contact section" tabIndex={-1}>
+			<Box
+				d="flex"
+				flexDirection={{ '@initial': 'column', '@lg': 'row' }}
+				gap={{ '@initial': '$8', '@lg': '$16' }}
+				data-id="Contact-box-3-cad580"
+			>
+				<Flex
+					role="group"
+					aria-label="Contact links"
+					flex="1"
+					direction="column"
+					justifyContent="center"
+					data-id="Contact-flex-1-a8b9f9"
+				>
 					<EmailAndTelephone />
-					<Box d="flex" columnGap="$6" mt="$4" ps="$1">
+					<Box d="flex" columnGap="$6" mt="$4" ps="$1" data-id="Contact-box-4-0d938f">
 						<For each={socials}>
 							{({ href, Icon }) => (
-								<IconButton as="a" href={href} target="_blank" aria-label={href} icon={<Icon size={ICON_SIZE} />} />
+								<IconButton
+									as="a"
+									role="link"
+									href={href}
+									target="_blank"
+									aria-label={href}
+									icon={<Icon size={ICON_SIZE} />}
+								/>
 							)}
 						</For>
 					</Box>
 				</Flex>
 
-				<Divider
+				<StyledDivider
 					orientation={{ '@initial': 'horizontal', '@lg': 'vertical' }}
 					backgroundColor={!darkMode() ? '$neutral10' : '$neutral7'}
 					flex="0 1 1px"
 					h="unset"
 				/>
 
-				<Box flex="1">
+				<Box flex="1" data-id="Contact-box-5-5617ab">
 					<ContactForm />
 				</Box>
 			</Box>

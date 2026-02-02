@@ -2,7 +2,15 @@ import { Box, Text } from '@hope-ui/solid';
 import { JSX } from 'solid-js';
 
 const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
-	<svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+	<svg
+		aria-label="Quint logo"
+		width="36"
+		height="37"
+		viewBox="0 0 36 37"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
 		<mask
 			id="mask0_1966_78523"
 			style={{ 'mask-type': 'luminance' }}
@@ -202,18 +210,18 @@ const QuintLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 );
 
 export const QuintLogoBlog = () => (
-	<Box d="grid" justifyItems="center">
+	<Box d="grid" justifyItems="center" data-id="QuintLogo-box-1-16fd6e">
 		<QuintLogo />
-		<Text mt="$2" fontWeight="bold">
+		<Text mt="$2" fontWeight="bold" data-id="QuintLogo-text-1-b730d1">
 			Quint Blog
 		</Text>
 	</Box>
 );
 
 export const QuintLogoStaking = () => (
-	<Box d="grid" justifyItems="center">
+	<Box d="grid" justifyItems="center" data-id="QuintLogo-box-2-4b1ecd">
 		<QuintLogo />
-		<Text mt="$2" fontWeight="bold">
+		<Text mt="$2" fontWeight="bold" data-id="QuintLogo-text-2-ef33ae">
 			Quint Staking
 		</Text>
 	</Box>

@@ -11,21 +11,24 @@ export const Timeline = (props: {
 	showStepper?: boolean;
 }) => {
 	return (
-		<Box d="flex" flexDirection="column" gap="$8">
+		<Box d="flex" flexDirection="column" gap="$8" role="list" data-id="Timeline-box-1-c8fbfc">
 			<For each={work.filter((company) => company.projects.some((project) => !project.hideOnResume))}>
 				{(company) => (
-					<Box d="flex" gap="$8">
+					<Box d="flex" gap="$8" role="listitem" data-id="Timeline-box-2-37974b">
 						<Show when={props.showStepper}>
-							<Box d="flex" flexDirection="column" w={side} alignItems="center">
+							<Box
+								d="flex"
+								flexDirection="column"
+								w={side}
+								alignItems="center"
+								role="presentation"
+								data-id="Timeline-box-3-8f7d24"
+							>
 								<Box h={side} w={side} borderRadius="50%" border="4px solid $accent10" />
 								<Box flex={1} w="2px" bg="$accent10" />
 							</Box>
 						</Show>
-						<Box d="flex" flexDirection="column" flex={1}>
-							<Box>
-								<CompanyProjects company={company} />
-							</Box>
-						</Box>
+						<CompanyProjects company={company} />
 					</Box>
 				)}
 			</For>

@@ -28,6 +28,7 @@ export const AppBar = () => {
 		const elemRectCenterOffset = (elemRect.height - document.body.offsetHeight) / 2;
 		const offset = elemRect.top - bodyRect.top + elemRectCenterOffset;
 		window.scrollTo({ top: offset, behavior: 'smooth' });
+		element.focus();
 	};
 
 	const onScroll = debounce(() => {
@@ -51,7 +52,6 @@ export const AppBar = () => {
 
 	return (
 		<Flex
-			as="nav"
 			position={isSmall() ? 'unset' : 'fixed'}
 			top={0}
 			right={0}
@@ -60,13 +60,26 @@ export const AppBar = () => {
 			direction="column"
 			zIndex={zIndexes.appBar}
 			pointerEvents="none"
+			data-id="AppBar-flex-1-3d9910"
 		>
-			<List d="flex" flexDirection="column" columnGap="$3" alignItems="flex-end" pointerEvents="none">
+			<Flex
+				as="nav"
+				flexDirection="column"
+				columnGap="$3"
+				alignItems="flex-end"
+				pointerEvents="none"
+				data-id="AppBar-list-1-cd4493"
+			>
 				<Link
-					role="listitem"
 					href="/"
-					onClick={createScrollHandler('home')}
+					onClick={() => {
+						createScrollHandler('home')();
+						requestAnimationFrame(() => {
+							document.getElementById('home')?.focus();
+						});
+					}}
 					active={pathname() === '/' && visibleElement() === 'home'}
+					aria-label="Go to homepage, scroll to top"
 				>
 					Home
 				</Link>
@@ -82,51 +95,67 @@ export const AppBar = () => {
 						d="flex"
 						flexDirection="column"
 						alignItems="flex-end"
+						data-id="AppBar-box-1-67555b"
 					>
 						<Link
 							small
-							role="listitem"
-							// href="/#work"
 							href="/"
 							onClick={createScrollHandler('work')}
 							active={visibleElement() === 'work'}
 							tabIndex={pathname() === '/' ? 0 : -1}
+							aria-label="Go to Work section"
 						>
 							Work
 						</Link>
 						<Link
 							small
-							role="listitem"
-							// href="/#about"
 							href="/"
 							onClick={createScrollHandler('about')}
 							active={visibleElement() === 'about'}
 							tabIndex={pathname() === '/' ? 0 : -1}
+							aria-label="Go to About section"
 						>
 							About
 						</Link>
 						<Link
 							small
-							role="listitem"
-							// href="/#contact"
 							href="/"
 							onClick={createScrollHandler('contact')}
 							active={visibleElement() === 'contact'}
 							tabIndex={pathname() === '/' ? 0 : -1}
+							aria-label="Go to Contact section"
 						>
 							Contact
 						</Link>
 					</Box>
 				</Show>
 
-				<Link role="listitem" href="/experience" active={pathname() === '/experience'}>
+				<Link
+					href="/experience"
+					active={pathname() === '/experience'}
+					aria-label="Go to Experience page"
+					onClick={() => {
+						requestAnimationFrame(() => {
+							document.getElementById('main-content')?.focus();
+						});
+					}}
+				>
 					Experience
 				</Link>
 
-				<Link role="listitem" href="/updates" active={pathname() === '/updates'}>
+				<Link
+					href="/updates"
+					active={pathname() === '/updates'}
+					aria-label="Go to Updates page"
+					onClick={() => {
+						requestAnimationFrame(() => {
+							document.getElementById('main-content')?.focus();
+						});
+					}}
+				>
 					Updates
 				</Link>
-			</List>
+			</Flex>
 			<DarkModeSwitch />
 		</Flex>
 	);

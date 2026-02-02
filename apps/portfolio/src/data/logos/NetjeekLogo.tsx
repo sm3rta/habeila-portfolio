@@ -3,7 +3,7 @@ import { darkMode } from '../../App';
 
 export const NetjeekLogo = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
 	<svg
-		version="1.0"
+		aria-label="Netjeek logo"
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 960 150"
 		preserveAspectRatio="xMidYMid meet"

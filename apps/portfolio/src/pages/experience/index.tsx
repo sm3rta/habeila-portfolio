@@ -18,6 +18,7 @@ const Experience = () => (
 				'@lg': '$48',
 			}}
 			px={{ '@xl': '$48' }}
+			data-id="index-box-1-7c9065"
 		>
 			<Timeline
 				showStepper
@@ -27,12 +28,18 @@ const Experience = () => (
 			/>
 		</Box>
 
-		<Center mt="$24" mb="$8">
-			<Flex gap="$4" flexWrap="wrap" justifyContent="center">
-				<Button as={A} variant="outline" href="/resume">
+		<Center mt="$24" mb="$8" data-id="index-center-1-7a3578">
+			<Flex gap="$4" flexWrap="wrap" justifyContent="center" data-id="index-flex-1-1e878e">
+				<Button as={A} role="link" variant="outline" href="/resume">
 					View my resume online
 				</Button>
-				<Button as={A} variant="outline" href="/assets/AhmedHabeilaResume.pdf" download="Ahmed Habeila's resume">
+				<Button
+					as={A}
+					role="link"
+					variant="outline"
+					href="/assets/AhmedHabeilaResume.pdf"
+					download="Ahmed Habeila's resume"
+				>
 					Download my resume as PDF
 				</Button>
 			</Flex>

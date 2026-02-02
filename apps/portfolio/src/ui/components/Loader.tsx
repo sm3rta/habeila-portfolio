@@ -5,7 +5,7 @@ const side = 80;
 const Loader = () => {
 	const colors = useTheme()().colors;
 	return (
-		<Box d="flex" justifyContent="center" alignItems="center" w="100%" minH="calc(100vh)">
+		<Box d="flex" justifyContent="center" alignItems="center" w="100%" minH="calc(100vh)" data-id="Loader-box-1-fc835e">
 			<svg width={`${side}px`} height={`${side}px`} viewBox={`0 0 ${side} ${side}`}>
 				<circle cx={side / 2} cy={side / 2} r="0" fill="none" stroke={colors.primary7.value} stroke-width="2">
 					<animate
