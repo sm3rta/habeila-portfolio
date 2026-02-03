@@ -47,7 +47,7 @@ export const updates: Update[] = [
 		subtitle: 'Saffron Design System - Thomson Reuters',
 		date: new Date(2025, 11, 10), // December 10, 2025 (month is 0-indexed)
 		description:
-			'The Saffron Design System won the Zeroheight Innovation Award for pAIella—an AI framework that transforms Figma designs into production-ready fully accessible code with Saffron web components, enabling teams to build 2.7 times as fast.',
+			'The Saffron Design System won the Zeroheight Innovation Award for pAIella, an AI framework that transforms Figma designs into production-ready fully accessible code with Saffron web components, enabling teams to build 2.7 times as fast.',
 		link: 'https://www.linkedin.com/feed/update/urn:li:activity:7421953089332633600/',
 		linkText: 'View on LinkedIn',
 		image: '/pAIella-award.jpg',

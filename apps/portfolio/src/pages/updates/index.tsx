@@ -20,7 +20,7 @@ const UpdateCard = (props: { update: Update }) => {
 	return (
 		<Box
 			role="listitem"
-			background="$neutral1"
+			background="$neutral2"
 			borderWidth="1px"
 			borderColor="$neutral6"
 			borderRadius="$lg"
@@ -65,7 +65,7 @@ const UpdateCard = (props: { update: Update }) => {
 					)}
 				</Box>
 
-				<Text color="$neutral11" lineHeight="$6" mb="$4" data-id="index-text-3-7ca61a">
+				<Text color="$neutral12" lineHeight="$6" mb="$4" data-id="index-text-3-7ca61a">
 					{props.update.description}
 				</Text>
 
