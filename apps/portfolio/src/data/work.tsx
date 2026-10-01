@@ -140,7 +140,7 @@ export const work: Workplace[] = [
 					{ name: 'Angular', Icon: SiAngular },
 					{ name: 'Storybook', Icon: SiStorybook },
 					{ name: 'Rollup', Icon: SiRollupdotjs },
-					{ name: 'GPT-4', Icon: SiOpenai },
+					{ name: 'Generative AI', Icon: SiOpenai },
 					{ name: 'Playwright', Icon: SiPlaywright },
 					{ name: 'Chromatic', Icon: null },
 				],
@@ -149,8 +149,8 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Scaled adoption to <b>1000+</b> engineers across <b>250+</b> repositories, reaching <b>1.8 million</b>{' '}
-								internal downloads and <b>87%</b> adoption rate within 2 years
+								Scaled adoption to <b>1000+</b> engineers across <b>250+</b> repositories, reaching <b>2.8 million</b>{' '}
+								internal downloads and <b>87%</b> adoption rate within 3 years
 							</>
 						),
 					},
@@ -174,26 +174,27 @@ export const work: Workplace[] = [
 						description: () => (
 							<>
 								Built pAIella: a Figma-to-code workflow generating code in any framework (React, Angular, vanilla),
-								achieving up to <b>64.2%</b> in time savings
+								achieving up to <b>64.2%</b> in time savings and winning the{' '}
+								<b>
+									<Anchor href="https://zeroheight.com/blog/celebrating-the-2025-design-system-awards-winners/#:~:text=Award%20for%20Innovation,systems%20look%20like.">
+										ZeroHeight award
+									</Anchor>
+								</b>{' '}
+								for design system innovation in 2025
 							</>
 						),
 					},
 					{
 						description: () => (
 							<>
-								Won{' '}
-								<b>
-									<Anchor href="https://zeroheight.com/blog/celebrating-the-2025-design-system-awards-winners/#:~:text=Award%20for%20Innovation,systems%20look%20like.">
-										ZeroHeight award
-									</Anchor>
-								</b>{' '}
-								in design system innovation in 2025 for project pAIella
+								Built Aioli, an AI-powered CLI tool that employs AI agent swarms to automatically detect, triage, and{' '}
+								<b>remediate accessibility violations</b> and tech debt faster
 							</>
 						),
 					},
 					{
 						description:
-							'Owned technical architecture including repo structure, bundling, build/release processes, GitHub Actions, and 3rd party integrations',
+							'Owned technical architecture including monorepo structure, bundling, build/release processes, GitHub Actions, and 3rd party integrations',
 					},
 					{
 						description: () => (
@@ -206,8 +207,8 @@ export const work: Workplace[] = [
 					{
 						description: () => (
 							<>
-								Led team of <b>10</b> engineers, providing technical guidance, code reviews, and acting as subject
-								matter expert
+								Led team of <b>10</b> engineers, providing technical guidance and acting as subject matter expert,
+								architecture reviewer, and sign-off authority on proposed changes
 							</>
 						),
 					},
@@ -215,7 +216,7 @@ export const work: Workplace[] = [
 						description: () => (
 							<>
 								Developed proprietary solutions for handling multiple web component versions in <b>micro-frontend</b>{' '}
-								architectures using namespaces and scoped registries architecture using namespaces and scoped registries
+								architectures using namespaces and scoped registries
 							</>
 						),
 					},
@@ -227,14 +228,15 @@ export const work: Workplace[] = [
 							</>
 						),
 					},
-					{
-						description: () => (
-							<>
-								Developed a code generator to accelerate AI chatbot development, enabling creation of <b>15</b>{' '}
-								applications
-							</>
-						),
-					},
+					// AI chat wrapper
+					// {
+					// 	description: () => (
+					// 		<>
+					// 			Developed a code generator to accelerate AI chatbot development, enabling creation of <b>15</b>{' '}
+					// 			applications
+					// 		</>
+					// 	),
+					// },
 				],
 			},
 		],
@@ -831,5 +833,5 @@ export const projectPriority: Record<(typeof projectIds)[number], number> = {
 
 export const telephoneNumber = '16479790872';
 export const telephoneNumberStylized = '(647) 979-0872';
-export const locationAddress = 'Scarborough, ON, M1P5C7';
+export const locationAddress = 'North York, ON, M3A 2C7';
 export const emailAddress = 'HabeilaAhmed@gmail.com';

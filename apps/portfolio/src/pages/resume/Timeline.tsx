@@ -28,7 +28,7 @@ export const Timeline = (props: {
 								<Box flex={1} w="2px" bg="$accent10" />
 							</Box>
 						</Show>
-						<CompanyProjects company={company} />
+						<CompanyProjects company={company} forceRole={props.forceRole} forceNonSenior={props.forceNonSenior} />
 					</Box>
 				)}
 			</For>

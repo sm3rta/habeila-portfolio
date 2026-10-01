@@ -13,7 +13,7 @@ export const SummaryOfQualifications = (props: { skills: string[] }) => (
 		<Flex mt="$2" direction="column" as="ul" data-id="SummaryOfQualifications-flex-2-599015">
 			<For
 				each={[
-					<>7+ years of experience building elegant, performant and accessible user experiences</>,
+					<>8+ years of building and scaling frontend architecture and design systems</>,
 					// helping companies create and maintain a better code base for reusability
 					<>
 						Excellent background in <TopSkills skills={props.skills} /> with high adaptability to work with any stack
