@@ -1,20 +1,11 @@
 import express from "express";
-import { Params, paramsDefaultValues, stringifyArray } from "../../common/params";
+import os from "os";
+import path from "path";
+import { paramsDefaultValues, stringifyArray } from "../../common/params";
 import { printWidth as width } from "../../common/printWidth";
 import { launchPuppeteer } from "./utils";
 
 const router = express.Router();
-
-const jobTypesMap: Record<Params["jobType"], string> = {
-  "full-stack": "Fullstack",
-  "front-end": "Frontend",
-  softwareEngineer: "SoftwareEngineer",
-  react: "React",
-  architect: "Architect",
-};
-
-// const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end", "softwareEngineer", "react"];
-const jobTypes: Array<Params["jobType"]> = ["full-stack", "front-end"];
 
 /* GET home page. */
 router.post("/", async (req, res) => {
@@ -34,40 +25,29 @@ router.post("/", async (req, res) => {
       height,
     };
 
-    const promises: Array<() => Promise<unknown>> = jobTypes.map((jobType) => {
-      return async () => {
+    const promises: Array<() => Promise<unknown>> = [
+      // Public-facing resume linked from the portfolio site, always uses default params
+      async () => {
         const page = await browser.newPage();
-        const modifiedUrl = new URL(url);
+        const defaultUrl = new URL(url);
 
-        modifiedUrl.searchParams.set("jobType", jobType);
-        modifiedUrl.searchParams.set("senior", paramsDefaultValues.senior.toString());
-        modifiedUrl.searchParams.set("adjective", paramsDefaultValues.adjective);
-        if (jobType === "full-stack") {
-          modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.fullStackSkills));
-        } else {
-          modifiedUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.skills));
-        }
+        defaultUrl.searchParams.set("jobType", paramsDefaultValues.jobType);
+        defaultUrl.searchParams.set("senior", paramsDefaultValues.senior.toString());
+        defaultUrl.searchParams.set("adjective", paramsDefaultValues.adjective);
+        defaultUrl.searchParams.set("skills", stringifyArray(paramsDefaultValues.skills));
+        defaultUrl.searchParams.set("includeLocation", paramsDefaultValues.includeLocation.toString());
 
-        await page.goto(modifiedUrl.href, { waitUntil: "networkidle0" });
-
-        const fileName = `AhmedHabeilaResume_${jobTypesMap[jobType]}.pdf`;
-        const path = `../../resumes/${fileName}`;
-
-        await page.pdf({ path, ...pdfArgs });
-
-        if (jobType === "front-end") {
-          await page.pdf({ path: "../portfolio/public/assets/AhmedHabeilaResume.pdf", ...pdfArgs });
-        }
-      };
-    });
-
-    promises.push(async () => {
-      const page = await browser.newPage();
-      await page.goto(url, { waitUntil: "networkidle0" });
-      const fileName = `AhmedHabeilaResume.pdf`;
-      const path = `../../resumes/${fileName}`;
-      await page.pdf({ path, ...pdfArgs });
-    });
+        await page.goto(defaultUrl.href, { waitUntil: "networkidle0" });
+        await page.pdf({ path: "../portfolio/public/assets/AhmedHabeilaResume.pdf", ...pdfArgs });
+      },
+      // Customized resume (current drawer params) saved to the desktop, outside the repo
+      async () => {
+        const page = await browser.newPage();
+        await page.goto(url, { waitUntil: "networkidle0" });
+        const outPath = path.join(os.homedir(), "Desktop", "AhmedHabeilaResume.pdf");
+        await page.pdf({ path: outPath, ...pdfArgs });
+      },
+    ];
 
     await Promise.all(promises.map((p) => p()));
 

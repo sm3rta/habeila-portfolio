@@ -70,7 +70,9 @@ export const CompanyProjects = (props: {
 		</Box>
 
 		<List d="flex" flexDirection="column" gap="$4" mt="$2" data-id="CompanyProjects-list-1-9a80c2">
-			<For each={props.company.projects}>{(project) => <ProjectSummary project={project} />}</For>
+			<For each={props.company.projects.filter((project) => !project.hideOnResume)}>
+				{(project) => <ProjectSummary project={project} />}
+			</For>
 		</List>
 	</Flex>
 );

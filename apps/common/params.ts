@@ -14,7 +14,7 @@ export const parseArray = (str: string | undefined) => {
 export const stringifyArray = (arr: string[] | readonly string[]) => arr.join(SPLIT_CHARACTER);
 
 export const paramsDefaultValues = {
-  skills: ["React", "TypeScript", "HTML/CSS"],
+  skills: ["Design systems", "AI", "TypeScript", "React"],
   fullStackSkills: ["React", "TypeScript", "Python"],
   senior: false,
   jobType: "architect",

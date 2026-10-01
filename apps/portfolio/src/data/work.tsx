@@ -592,11 +592,13 @@ export const work: Workplace[] = [
 				achievements: [
 					{
 						description: 'Built this website from the ground up until it went live',
+						hideOnResume: true,
 						imageUrl: '/assets/projects/bmwf/BMWF.png',
 						imageAlt: 'BMW Foundation website',
 					},
 					{
-						description: 'Fully responsive, supports keyboard navigation and screen readers',
+						description:
+							'Built a fully responsive and fully accessible website that supports keyboard navigation and screen readers',
 						imageUrl: '/assets/projects/bmwf/BMWF-Mobile.png',
 						imageAlt: 'BMW Foundation website mobile',
 					},
@@ -639,11 +641,13 @@ export const work: Workplace[] = [
 				achievements: [
 					{
 						description: 'Built this website from the ground up until it went live',
+						hideOnResume: true,
 						imageUrl: '/assets/projects/tt/TT.png',
 						imageAlt: 'TwentyThirty website',
 					},
 					{
-						description: 'Fully responsive, supports keyboard navigation and screen readers',
+						description:
+							'Built a fully responsive and fully accessible website that supports keyboard navigation and screen readers',
 						imageUrl: '/assets/projects/tt/TT-Mobile.png',
 						imageAlt: 'TwentyThirty website mobile',
 					},
