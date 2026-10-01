@@ -23,7 +23,7 @@ import { MetaProvider, Title } from '@solidjs/meta';
 import { useSearchParams } from '@solidjs/router';
 import { BsPrinter } from 'solid-icons/bs';
 import { IoDocument } from 'solid-icons/io';
-import { TbMenu2 } from 'solid-icons/tb';
+import { TbOutlineMenu2 } from 'solid-icons/tb';
 import { For, Match, Show, Switch, createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 import { emailAddress, locationAddress, telephoneNumberStylized, website } from '../../data/work';
 import { SortableVerticalList } from '../../ui/components/SortableList';
@@ -67,7 +67,7 @@ const defaultPerfectFitBullets: string[] = [
 	'I also have experience writing unit tests with Jest and React testing library.',
 	'I worked for fintech companies Calqulate (financial tool) and Quint (crypto currency).',
 	"I'm skilled in Next.js and other SSR technologies such as Gatsby.js and Astro.",
-	"I'm familiar with agile environments, JIRA and daily scrum meetings.",
+	"I'm familiar with agile environments, ADO/Jira and daily scrum meetings.",
 	'I have experience with monorepos: Lerna, Yarn workspaces and Turborepo.',
 	'I know Material UI by heart, with 4 years of experience working solely with this UI framework on multiple projects.',
 ];
@@ -502,7 +502,7 @@ const CoverLetter = () => {
 					size="lg"
 					onClick={onOpenControls}
 					aria-label="Open drawer"
-					icon={<TbMenu2 />}
+					icon={<TbOutlineMenu2 />}
 				/>
 			</Box>
 

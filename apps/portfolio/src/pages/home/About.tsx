@@ -32,7 +32,7 @@ export default function About() {
 
 	const aboutProfessionalExperience = (
 		<>
-			<Text data-id="About-text-1-fca423">I have 7+ years of professional experience in software engineering.</Text>
+			<Text data-id="About-text-1-fca423">I have 8+ years of professional experience in software engineering.</Text>
 			<Text mt="$6" data-id="About-text-2-95fdde">
 				I worked on various projects and dived into a lot of concepts of front-end development, from content-driven
 				websites focused on accessibility, keyboard navigation and SEO to data-driven web apps with complex forms,

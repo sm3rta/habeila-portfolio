@@ -3,28 +3,28 @@ import { createElementSize } from '@solid-primitives/resize-observer';
 import { IconTypes } from 'solid-icons';
 import { IoAccessibilitySharp } from 'solid-icons/io';
 import {
-	SiAstro,
+	SiAngular,
 	SiAuth0,
-	SiCplusplus,
-	SiExpress,
 	SiFigma,
-	SiFirebase,
 	SiGit,
-	SiJira,
-	SiMaterialdesign,
+	SiGithubactions,
+	SiMarkdown,
+	SiModelcontextprotocol,
 	SiNextdotjs,
 	SiNodedotjs,
-	SiPython,
 	SiReact,
 	SiReacthookform,
-	SiRedux,
+	SiRollupdotjs,
 	SiSass,
 	SiSolid,
-	SiTailwindcss,
+	SiStorybook,
 	SiTestinglibrary,
 	SiTypescript,
+	SiVite,
+	SiWebcomponentsdotorg,
 } from 'solid-icons/si';
-import { TbBrandAngular } from 'solid-icons/tb';
+import { TbOutlineBrandOpenai } from 'solid-icons/tb';
+import { VsAzureDevops } from 'solid-icons/vs';
 import { For, JSX, Show, createEffect, createSignal, onMount } from 'solid-js';
 import { styled } from 'solid-styled-components';
 import { randRange, randRangeInt } from '../../utils';
@@ -36,29 +36,29 @@ export const skills: {
 	name: string;
 	Icon: IconTypes | null;
 }[] = [
-	{ name: 'React', Icon: SiReact },
 	{ name: 'TypeScript', Icon: SiTypescript },
-	{ name: 'Astro', Icon: SiAstro },
-	{ name: 'Next.js', Icon: SiNextdotjs },
-	{ name: 'Tailwind CSS', Icon: SiTailwindcss },
-	{ name: 'Node.js', Icon: SiNodedotjs },
-	{ name: 'Git', Icon: SiGit },
-	{ name: 'Jira', Icon: SiJira },
-	{ name: 'Material UI', Icon: SiMaterialdesign },
-	{ name: 'Angular', Icon: TbBrandAngular },
+	{ name: 'Web Components', Icon: SiWebcomponentsdotorg },
+	{ name: 'React', Icon: SiReact },
+	{ name: 'Angular', Icon: SiAngular },
 	{ name: 'Sass', Icon: SiSass },
-	{ name: 'Design systems', Icon: SiFigma },
+	{ name: 'Responsive Design', Icon: null },
+	{ name: 'JSDoc', Icon: null },
 	{ name: 'Accessibility', Icon: IoAccessibilitySharp },
 	{ name: 'Forms & validation', Icon: SiReacthookform },
-	{ name: 'Express.js', Icon: SiExpress },
-	{ name: 'C++', Icon: SiCplusplus },
-	{ name: 'Responsive Design', Icon: null },
-	{ name: 'Authentication', Icon: SiAuth0 },
-	{ name: 'JSDoc', Icon: null },
-	{ name: 'Firebase', Icon: SiFirebase },
+	{ name: 'Git', Icon: SiGit },
+	{ name: 'Design systems', Icon: SiFigma },
 	{ name: 'Unit Testing', Icon: SiTestinglibrary },
-	{ name: 'Redux', Icon: SiRedux },
-	{ name: 'Python', Icon: SiPython },
+	{ name: 'Storybook', Icon: SiStorybook },
+	{ name: 'Server side rendering', Icon: SiNextdotjs },
+	{ name: 'CI/CD', Icon: SiGithubactions },
+	{ name: 'Rollup', Icon: SiRollupdotjs },
+	{ name: 'Vite', Icon: SiVite },
+	{ name: 'MD/MDX', Icon: SiMarkdown },
+	{ name: 'MCP', Icon: SiModelcontextprotocol },
+	{ name: 'Azure', Icon: VsAzureDevops },
+	{ name: 'Authentication', Icon: SiAuth0 },
+	{ name: 'Node.js', Icon: SiNodedotjs },
+	{ name: 'Gen AI', Icon: TbOutlineBrandOpenai },
 	{ name: 'Solid JS', Icon: SiSolid },
 ];
 
