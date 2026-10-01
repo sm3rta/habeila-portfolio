@@ -1,15 +1,15 @@
 import { Anchor, Flex } from '@hope-ui/solid';
 import { FaSolidLocationDot } from 'solid-icons/fa';
-import { RiDeviceSmartphoneLine, RiDocumentBookMarkFill } from 'solid-icons/ri';
+import { IoMailOutline } from 'solid-icons/io';
+import { RiDeviceSmartphoneLine, RiDocumentBookMarkedFill } from 'solid-icons/ri';
 import { For, Match, Show, Switch } from 'solid-js';
 import { StyledFlexLink, pagePaddings } from '.';
+import { Params } from '../../../../common/params';
 import { emailAddress, locationAddress, telephoneNumber, telephoneNumberStylized, website } from '../../data/work';
 import { Text } from '../../ui/components/Text';
 import { ICON_SIZE } from '../../ui/theme';
 import { socials } from '../home/Contact';
 import { ResumeDivider } from './Divider';
-import { Params } from '../../../../common/params';
-import { IoMailOutline } from 'solid-icons/io';
 
 const PhoneNumber = () => (
 	<StyledFlexLink href={`tel:+${telephoneNumber}`} textDecoration="none">
@@ -30,7 +30,7 @@ const Email = () => (
 const Links = () => (
 	<For
 		each={[
-			{ name: 'Portfolio', href: website, Icon: RiDocumentBookMarkFill },
+			{ name: 'Portfolio', href: website, Icon: RiDocumentBookMarkedFill },
 			socials.find((s) => s.name === 'LinkedIn')!,
 			socials.find((s) => s.name === 'Github')!,
 		]}

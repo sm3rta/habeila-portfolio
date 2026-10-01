@@ -22,7 +22,7 @@ import { MetaProvider, Title } from '@solidjs/meta';
 import { A, useSearchParams } from '@solidjs/router';
 import { BiRegularLeftArrowAlt } from 'solid-icons/bi';
 import { BsChatLeftTextFill, BsPrinter } from 'solid-icons/bs';
-import { TbMenu2 } from 'solid-icons/tb';
+import { TbOutlineMenu2 } from 'solid-icons/tb';
 import { ComponentProps, createEffect, createSignal, onCleanup, onMount, Show } from 'solid-js';
 import { Params, paramsDefaultValues, parseArray, stringifyArray } from '../../../../common/params';
 import { printWidth } from '../../../../common/printWidth';
@@ -349,7 +349,7 @@ const Resume = () => {
 						size="lg"
 						onClick={onOpenControls}
 						aria-label="Open drawer"
-						icon={<TbMenu2 />}
+						icon={<TbOutlineMenu2 />}
 					/>
 				</Box>
 			</Show>
